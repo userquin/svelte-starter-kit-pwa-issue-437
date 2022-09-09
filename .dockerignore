@@ -1,0 +1,11 @@
+/*
+!/package.json
+!/package-lock.json
+!/svelte.config.js
+!/tailwind.config.cjs
+!/vite.config.js
+!/postcss.config.cjs
+!/src
+!/static
+!/config
+!/tsconfig.json

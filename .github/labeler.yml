@@ -1,0 +1,25 @@
+app:
+    - src/routes/(app)/**/*
+    - change-notes/**/*app*
+marketing:
+    - src/routes/(marketing)/**/*
+    - change-notes/**/*marketing*
+documentation:
+    - '**/*.md'
+    - docs/**/*
+test:
+    - tests/**/*
+    - change-notes/**/*tests*
+api:
+    - src/routes/api/**/*
+    - change-notes/**/*api*
+users:
+    - src/routes/dashboard/users/**/*
+    - change-notes/**/*users*
+groups:
+    - src/routes/dashboard/groups/**/*
+    - change-notes/**/*groups*
+workspace:
+    - .github/**/*
+    - Dockerfile*.*
+    - package.json
