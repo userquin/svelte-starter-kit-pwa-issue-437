@@ -11,3 +11,27 @@ node_modules
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# vercel #
+###################
+/.yarn
+.yarn
+/examples
+
+/functions
+
+/.vercel_build_output
+.vercel_build_output
+/workers-site
+static/global.css
+static/*.js
+
+# Storybook files #
+###################
+storybook-static
+storybook-static/*
+
+# Jest files #
+#############################
+coverage
+coverage/*

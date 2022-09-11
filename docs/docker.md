@@ -1,7 +1,5 @@
 # docker
 
-
-
 ### Local Docker Build
 
 multi-platform, multi-stage, multi-module local build

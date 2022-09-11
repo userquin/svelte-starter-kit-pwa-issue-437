@@ -1,4 +1,5 @@
 # SvelteKit
+
 Awesome SvelteKit Links
 
 ## Components
@@ -11,8 +12,8 @@ Awesome SvelteKit Links
 
 ## Testing
 
-- [Svelte Component Test Recipes](https://github.com/davipon/svelte-component-test-recipes)
-  - Svelte component test recipes using Vitest & Testing Library with TypeScript
+-   [Svelte Component Test Recipes](https://github.com/davipon/svelte-component-test-recipes)
+    -   Svelte component test recipes using Vitest & Testing Library with TypeScript
 
 ## Performance
 
@@ -20,4 +21,4 @@ Awesome SvelteKit Links
 
 ## Reference
 
-- https://github.com/rocketlaunchr/awesome-svelte
+-   https://github.com/rocketlaunchr/awesome-svelte

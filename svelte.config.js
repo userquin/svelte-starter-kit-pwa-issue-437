@@ -5,42 +5,42 @@ import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-    // Consult https://github.com/sveltejs/svelte-preprocess
-    // for more information about preprocessors
-    preprocess: [
-        preprocess({
-            postcss: true
-        })
-    ],
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
+	preprocess: [
+		preprocess({
+			postcss: true
+		})
+	],
 
-    kit: {
-        adapter: getAdapter(),
+	kit: {
+		adapter: getAdapter()
 
-        // When hosting SPA on GitHub Pages
-        // paths: {
-        // 	base: dev ? '' : '/svelte-starter-kit',
-        // },
+		// When hosting SPA on GitHub Pages
+		// paths: {
+		// 	base: dev ? '' : '/svelte-starter-kit',
+		// },
 
-        // prerender: { entries: [] },
-    }
+		// prerender: { entries: [] },
+	}
 };
 
 export default config;
 
 function getAdapter() {
-    switch (process.env.ADAPTER) {
-        case 'node':
-            return nodeAdapter({
-                // envPrefix: 'CONFY_'
-                // Can overwrite at runtime: `HOST=127.0.0.1 PORT=4000 ORIGIN=https://my.site node build`
-                // default: HOST=0.0.0.0 PORT=3000
-            });
-        case 'static':
-            return staticAdapter({
-                fallback: 'index.html', // 404.html,
-                // trailingSlash: 'always'
-            });
-        default:
-            return adapter();
-    }
+	switch (process.env.ADAPTER) {
+		case 'node':
+			return nodeAdapter({
+				// envPrefix: 'CONFY_'
+				// Can overwrite at runtime: `HOST=127.0.0.1 PORT=4000 ORIGIN=https://my.site node build`
+				// default: HOST=0.0.0.0 PORT=3000
+			});
+		case 'static':
+			return staticAdapter({
+				fallback: 'index.html' // 404.html,
+				// trailingSlash: 'always'
+			});
+		default:
+			return adapter();
+	}
 }
