@@ -1,0 +1,25 @@
+tag_prefix = "v"
+ignore_merge_commits = true
+branch_whitelist = ["master", "main"]
+
+pre_bump_hooks = [
+    "echo {{version}}",
+	"npm --no-git-tag-version -f version v{{version}}",
+]
+post_bump_hooks = [
+    "git push",
+    "git push --tags",
+#	"gh release create {{version}} -d -t 'Version {{version}}' -n \"$(cog changelog -a v{{version}})\"",
+]
+
+[commit_types]
+
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+repository = "svelte-starter-kit"
+owner = "xmlking"
+authors = [{ username = "xmlking", signature = "Sumanth Chinthagunta" }]
+
+[bump_profiles]
