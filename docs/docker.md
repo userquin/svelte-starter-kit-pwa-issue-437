@@ -28,8 +28,8 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 docker buildx create --use
 
 docker buildx build --platform linux/arm64,linux/amd64 \
--t $DOCKER_IMAGE:$VERSION \
--t $DOCKER_IMAGE:latest \
+-t $DOCKER_IMAGE\:$VERSION \
+-t $DOCKER_IMAGE\:latest \
 --build-arg BUILD_DATE=$BUILD_DATE --build-arg VERSION=$VERSION \
 --push .
 
