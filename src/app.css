@@ -1,0 +1,30 @@
+/*Write your global styles here, in PostCSS syntax*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+pre {
+	background-color: rgb(242, 242, 242);
+	white-space: pre-wrap;
+	width: 100%;
+}
+
+/* FIXME:get rid of this, which may interfere with how p/h2/h3 appear */
+@layer base {
+	p,
+	h2,
+	h3 {
+		@apply dark:text-white;
+	}
+}
+
+/*!* CSS Variables *!*/
+:root {
+	--column-content-hight: 445px;
+}
+
+/*Fix: Unexpected blue border while typing text Svelecte*/
+/*https://stackoverflow.com/questions/69307885/unexpected-blue-border-while-typing-text-react-select*/
+input[type='text']:focus {
+	box-shadow: none;
+}
