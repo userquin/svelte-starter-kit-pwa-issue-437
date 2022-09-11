@@ -9,3 +9,4 @@
 !/static
 !/config
 !/tsconfig.json
+!/vite.config.ts
