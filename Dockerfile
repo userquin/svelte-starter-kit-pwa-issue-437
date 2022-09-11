@@ -26,7 +26,7 @@ RUN npm ci --no-audit --unsafe-perm
 # remove potential security issues
 RUN npm audit fix
 # build SvelteKit app
-RUN npm run build
+RUN npm run build:node
 
 # This stage installs the runtime dependencies.
 FROM --platform=${BUILDPLATFORM} node:18-alpine as build-runtime
@@ -49,7 +49,7 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY --from=tini /tini /tini
 ENTRYPOINT ["/tini", "--", "/nodejs/bin/node"]
-COPY --from=build-app /app/build/dist ./build
+COPY --from=build-app /app/build ./build
 #COPY --from=build-app /app/config ./config
 COPY --from=build-runtime /app/package.json ./package.json
 COPY --from=build-runtime /app/node_modules ./node_modules
