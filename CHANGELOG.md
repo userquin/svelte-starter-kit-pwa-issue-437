@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.0.2](https://github.com/xmlking/svelte-starter-kit/compare/v0.0.1..v0.0.2) - 2022-09-12
+#### Bug Fixes
+- **(static)** add favicons - ([ca1aaa9](https://github.com/xmlking/svelte-starter-kit/commit/ca1aaa9b6fa10be4b93af7a2c220b843259fbd98)) - [@xmlking](https://github.com/xmlking)
+- **(style)** add tailwindcss and flowbite - ([28a7ea8](https://github.com/xmlking/svelte-starter-kit/commit/28a7ea8773b5b26cf745652ea6360994762add4c)) - [@xmlking](https://github.com/xmlking)
+#### Build system
+- **(action)** fix docker/login-action - ([73c3acf](https://github.com/xmlking/svelte-starter-kit/commit/73c3acf0cebf96e1d86527eaa623bb30283495a4)) - [@xmlking](https://github.com/xmlking)
+- **(action)** fix codeQL github action - ([dda4121](https://github.com/xmlking/svelte-starter-kit/commit/dda412156e953b23eb389a469747ef0c56977804)) - [@xmlking](https://github.com/xmlking)
+#### Tests
+- **(tests)** add vitest with svelte-add-vitest - ([2b8615e](https://github.com/xmlking/svelte-starter-kit/commit/2b8615e1e5f514c4da6e1ebb7adfd9ab8239f562)) - [@xmlking](https://github.com/xmlking)
+
+- - -
+
 ## [v0.0.1](https://github.com/xmlking/svelte-starter-kit/compare/a7999505180b4a8dc4c687c79b3692f0bec11b94..v0.0.1) - 2022-09-11
 #### Bug Fixes
 - **(tools)** fix dockerfile build path - ([2f42bd3](https://github.com/xmlking/svelte-starter-kit/commit/2f42bd3e04dfb662bfbaeff403a838f86b606309)) - [@xmlking](https://github.com/xmlking)
