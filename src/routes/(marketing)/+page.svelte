@@ -1,12 +1,9 @@
-<script>
-	import { Alert } from 'flowbite-svelte';
+<script lang="ts">
+	import { Hero1, Hero2, Hero3, Hero4, Hero5, Hero6 } from '$lib/blocks/hero';
+	import { Cta1, Cta2 } from '$lib/blocks/cta';
+	import { Feature1, Feature2, Feature3, Feature4 } from '$lib/blocks/feature';
+	import { Blog1, Blog2, Blog3, Blog4 } from '$lib/blocks/blog';
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<div class="p-8">
-	<Alert>
-		<span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
-	</Alert>
-</div>
+<Hero5 />
+<Feature2 />
