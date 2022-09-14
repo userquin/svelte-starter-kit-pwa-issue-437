@@ -11,12 +11,12 @@ describe('Test index.svelte', () => {
 	});
 	it('h1 exists', () => {
 		const { getByText } = render(Index);
-		expect(getByText('Welcome to SvelteKit')).toBeTruthy();
+		expect(getByText('Combine GraphQL APIs into a unified supergraph')).toBeTruthy();
 	});
 	it('link to svelte website', () => {
 		render(Index);
 
 		const link = screen.getByRole('link');
-		expect(link).toHaveAttribute('href', 'https://kit.svelte.dev');
+		expect(link).toHaveAttribute('href', '/dashboard');
 	});
 });
