@@ -5,5 +5,10 @@
 	import { Blog1, Blog2, Blog3, Blog4 } from '$lib/blocks/blog';
 </script>
 
+<svelte:head>
+	<title>Home</title>
+	<meta name="description" content="Home page" />
+</svelte:head>
+
 <Hero5 />
 <Feature2 />

@@ -4,6 +4,11 @@
 	import { Contact1, Contact2 } from '$lib/blocks/contact';
 </script>
 
+<svelte:head>
+	<title>Contact</title>
+	<meta name="description" content="Contact Us" />
+</svelte:head>
+
 <!--<Testimonial1 />-->
 <Team1 />
 <!--<Contact1 />-->

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { DarkMode } from 'flowbite-svelte';
 	import { Header1, Header2, Header3, Header4 } from '$lib/blocks/header';
 	import { Footer1, Footer4 } from '$lib/blocks/footer';
