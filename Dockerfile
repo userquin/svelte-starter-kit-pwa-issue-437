@@ -21,8 +21,8 @@ FROM --platform=${BUILDPLATFORM} node:18 as build-app
 WORKDIR /app
 
 COPY . .
-# clean install all dependencies
-RUN npm ci --no-audit --unsafe-perm
+# clean install all dependencies (except optional)
+RUN npm ci --omit=optional --no-audit --unsafe-perm
 # remove potential security issues
 RUN npm audit fix
 # build SvelteKit app
@@ -37,7 +37,7 @@ COPY package.json package-lock.json ./
 #    --mount=type=cache,target=/root/.cache/node-build \
 #    npm ci --production --unsafe-perm --ignore-scripts
 
-RUN npm ci --production --unsafe-perm --ignore-scripts
+RUN npm ci --production --omit=optional --unsafe-perm --ignore-scripts
 # remove potential security issues
 RUN npm audit fix
 
