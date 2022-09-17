@@ -38,10 +38,10 @@ docker inspect --format "{{.Architecture}}" $DOCKER_IMAGE:$VERSION
 
 # run
 docker run -it --rm --platform linux/arm64 -p 3000:3000 \
--e NODE_ENV=production CONFY_ENGINE_ENDPOINT=20.232.141.148:8080 -e CONFY_PAYMENT_ENDPOINT=20.232.141.148:8080 \
+-e NODE_ENV=production CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
 $DOCKER_IMAGE:$VERSION
 docker run -it --rm --platform linux/amd64 -p 3000:3000 \
--e NODE_ENV=production CONFY_ENGINE_ENDPOINT=20.232.141.148:8080 -e CONFY_PAYMENT_ENDPOINT=20.232.141.148:8080 \
+-e NODE_ENV=production CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
 $DOCKER_IMAGE:$VERSION
 
 ## (or)
