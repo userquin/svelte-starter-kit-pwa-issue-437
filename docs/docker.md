@@ -7,7 +7,7 @@ multi-platform, multi-stage, multi-module local build
 login to GHCR first.
 
 ```shell
-export GITHUB_PACKAGES_TOKEN=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
+export GITHUB_PACKAGES_TOKEN=<ghp_XXX>
 echo $GITHUB_PACKAGES_TOKEN | docker login ghcr.io -u xmlking --password-stdin
 ```
 
