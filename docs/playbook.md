@@ -28,7 +28,8 @@ Code coverage via [c8](https://github.com/bcoe/c8) or [istanbul](https://istanbu
 ```shell
 # lets run preset to automate vitest setup for sveltekit
 npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
-npx playwright install
+# optional
+npm i -O @vitest/ui
 ```
 
 #### [playwright-testing-library](https://github.com/testing-library/playwright-testing-library)
@@ -36,11 +37,16 @@ npx playwright install
 Find elements in **playwright** like your users with queries from **@testing-library/dom**
 
 ```shell
+# install supported browsers
+npx playwright install
+```
+
+```shell
 # For use with Playwright
-npm i -D playwright-testing-library
+npm i -O playwright-testing-library
 
 # For use with Playwright Test
-npm i -D @playwright-testing-library/test
+npm i -O @playwright-testing-library/test
 ```
 
 ### Styling

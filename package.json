@@ -33,7 +33,7 @@
 		"@types/testing-library__jest-dom": "5.14.5",
 		"@typescript-eslint/eslint-plugin": "5.37.0",
 		"@typescript-eslint/parser": "5.37.0",
-		"@vitest/coverage-c8": "0.23.2",
+		"@vitest/coverage-c8": "0.23.4",
 		"autoprefixer": "10.4.11",
 		"c8": "7.12.0",
 		"classnames": "2.3.2",
@@ -44,7 +44,7 @@
 		"eslint-config-prettier": "8.5.0",
 		"eslint-plugin-svelte3": "4.0.0",
 		"flowbite": "1.5.3",
-		"flowbite-svelte": "0.26.22",
+		"flowbite-svelte": "0.26.23",
 		"jsdom": "20.0.0",
 		"msw": "0.47.3",
 		"postcss": "8.4.16",
@@ -59,11 +59,13 @@
 		"tslib": "2.4.0",
 		"typescript": "4.8.3",
 		"vite": "3.1.2",
-		"vitest": "0.23.2"
+		"vitest": "0.23.4"
 	},
 	"optionalDependencies": {
-		"@playwright-testing-library/test": "4.3.1",
-		"@playwright/test": "1.25.2"
+		"@playwright-testing-library/test": "4.4.0",
+		"@playwright/test": "1.25.2",
+		"@vitest/ui": "^0.23.4",
+		"playwright-testing-library": "4.4.0"
 	},
 	"type": "module",
 	"dependencies": {
