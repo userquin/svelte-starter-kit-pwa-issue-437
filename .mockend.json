@@ -1,77 +1,61 @@
 {
-	"Member": {
-		"id": {
-			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+	"Listing": {
+		"title": "title",
+		"description": "paragraphs",
+		"photos": {
+			"hasMany": "Photo"
 		},
-		"title": {
-			"string": [
-				"Mr",
-				"Mrs",
-				"Miss",
-				"Dr",
-				"Eng",
-				"Prof"
-			]
+		"listingAgent": {
+			"belongsTo": "Agent"
 		},
-		"firstName": {
-			"loremWord": {}
+		"tags": {
+			"hasMany": "Tag"
 		},
-		"lastName": {
-			"loremSentences": {
-				"minLength": 2,
-				"maxLength": 3
-			}
-		},
-		"email": {
-			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
-		},
-		"gender": {
-			"string": [
-				"Male",
-				"Female",
-				"Other"
-			]
-		},
-		"dob": {
+		"address": "address",
+		"city": "city",
+		"postcode": "postcode",
+		"state": "state",
+		"price": "price",
+		"bedrooms": { "int": { "min": 1, "max": 10 } },
+		"bathrooms": { "int": { "min": 1, "max": 10 } },
+		"squareFeet": "randomFloat",
+		"lotSize": "randomFloat",
+		"yearBuilt": "year",
+		"propertyType": ["Single Family", "Condo", "Townhouse", "Multi Family", "Land", "Commercial"],
+		"status": ["Active", "Pending", "Sold"],
+		"displayStatus": ["published", "draft"],
+		"updated": {
 			"dateTime": {
-				"min": "1995-01-01T00:00:00Z",
-				"max": "2001-12-31T23:59:59Z"
+				"min": "2022-01-01T00:00:00Z",
+				"max": "2023-12-31T23:59:59Z"
 			}
 		},
-		"address": {
-			"hasMany": "Address"
-		},
-		"phone": {
-			"regexp": "[0-9]{10}"
-		},
+		"created": {
+			"dateTime": {
+				"min": "2022-01-01T00:00:00Z",
+				"max": "2023-12-31T23:59:59Z"
+			}
+		}
+	},
+	"Agent": {
+		"firstName": ["firstNameMale", "firstNameFemale"],
+		"lastName": "lastName",
+		"email": "email",
+		"phonenumber": "phoneNumber",
+		"registration": "uuid",
+		"bio": "bs",
+		"active": "boolean",
 		"avatar": {
 			"regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
 		}
 	},
-	"Address": {
-		"member": {
-			"belongsTo": "Member"
-		},
-		"street": {
-			"loremWords": {
-				"minLength": 20,
-				"maxLength": 50
-			}
-		},
-		"city": {
-			"regexp": "[A-Z][a-z]{5,10}"
-		},
-		"state": {
-			"string": [
-				"California",
-				"Texas"
-			]
-		},
-		"zip": {
-			"int": {
-				"min": 10001,
-				"max": 99999
-			}
+	"Tag": {
+		"name": { "loremWord": {} }
+	},
+	"Photo": {
+		"regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080",
+		"listing": {
+			"belongsTo": "Listing"
 		}
 	}
 }

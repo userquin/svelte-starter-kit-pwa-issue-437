@@ -1,0 +1,77 @@
+{
+	"Member": {
+		"id": {
+			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+		},
+		"title": {
+			"string": [
+				"Mr",
+				"Mrs",
+				"Miss",
+				"Dr",
+				"Eng",
+				"Prof"
+			]
+		},
+		"firstName": {
+			"loremWord": {}
+		},
+		"lastName": {
+			"loremSentences": {
+				"minLength": 2,
+				"maxLength": 3
+			}
+		},
+		"email": {
+			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
+		},
+		"gender": {
+			"string": [
+				"Male",
+				"Female",
+				"Other"
+			]
+		},
+		"dob": {
+			"dateTime": {
+				"min": "1995-01-01T00:00:00Z",
+				"max": "2001-12-31T23:59:59Z"
+			}
+		},
+		"addresses": {
+			"hasMany": "Address"
+		},
+		"phone": {
+			"regexp": "[0-9]{10}"
+		},
+		"avatar": {
+			"regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
+		}
+	},
+	"Address": {
+		"member": {
+			"belongsTo": "Member"
+		},
+		"street": {
+			"loremWords": {
+				"minLength": 20,
+				"maxLength": 50
+			}
+		},
+		"city": {
+			"regexp": "[A-Z][a-z]{5,10}"
+		},
+		"state": {
+			"string": [
+				"California",
+				"Texas"
+			]
+		},
+		"zip": {
+			"int": {
+				"min": 10001,
+				"max": 99999
+			}
+		}
+	}
+}
