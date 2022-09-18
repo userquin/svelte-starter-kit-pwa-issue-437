@@ -1,5 +1,5 @@
 {
-	"Members": {
+	"Member": {
 		"id": {
 			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 		},
@@ -38,12 +38,6 @@
 				"max": "2001-12-31T23:59:59Z"
 			}
 		},
-		"age": {
-			"int": {
-				"min": 18,
-				"max": 150
-			}
-		},
 		"addresses": {
 			"hasMany": "Address"
 		},
@@ -52,12 +46,6 @@
 		},
 		"avatar": {
 			"regexp": "https://picsum\\.photos/seed/[0-9]{5}/250/400"
-		},
-		"createdAt": {
-			"dateTime": {
-				"min": "2020-01-01T00:00:00Z",
-				"max": "2022-04-30T23:59:59Z"
-			}
 		}
 	},
 	"Address": {
