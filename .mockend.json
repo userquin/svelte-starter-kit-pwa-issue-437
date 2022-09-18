@@ -42,13 +42,16 @@
 			"hasMany": "Address"
 		},
 		"phone": {
-			"regexp": "+1 #[0-9]{10}"
+			"regexp": "[0-9]{11}"
 		},
 		"avatar": {
-			"regexp": "https://picsum\\.photos/seed/[0-9]{5}/250/400"
+			"regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
 		}
 	},
 	"Address": {
+		"post": {
+			"belongsTo": "Member"
+		},
 		"street": {
 			"loremWords": {
 				"minLength": 20,
