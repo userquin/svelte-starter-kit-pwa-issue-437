@@ -1,62 +1,74 @@
 {
-	"User": {
+	"Member": {
 		"id": {
-			"string": {}
+			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 		},
-		"email": {
-			"regexp": "^[a-z0-9]{5,20}@g(oogle)?mail\\.com$"
-		},
-		"notifications": {
-			"hasMany": "Notification"
-		}
-	},
-	"Notification": {
-		"alertCategory": {
+		"title": {
 			"string": [
-				"peak",
-				"mean",
-				"trip",
-				"level"
+				"Mr",
+				"Mrs",
+				"Miss",
+				"Dr",
+				"Eng",
+				"Prof"
 			]
 		},
-		"alertClass": {
-			"string": [
-				"fault",
-				"warning",
-				"abnormal"
-			]
+		"firstName": {
+			"loremWord": {}
 		},
-		"alertDate": {
-			"dateTime": {
-				"min": "2019-01-01T00:00:00Z",
-				"max": "2022-09-14T23:59:59Z"
+		"lastName": {
+			"loremSentences": {
+				"minLength": 2,
+				"maxLength": 3
 			}
 		},
-		"deviceName": {
+		"email": {
+			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
+		},
+		"gender": {
 			"string": [
-				"AirCon1",
-				"AirCon2",
-				"AirCon3",
-				"Elevator",
-				"1"
+				"Male",
+				"Female",
+				"Other"
 			]
 		},
-		"ack": {
-			"boolean": {}
+		"dob": {
+			"dateTime": {
+				"min": "1995-01-01T00:00:00Z",
+				"max": "2001-12-31T23:59:59Z"
+			}
 		},
-		"location": {
+		"addresses": {
+			"hasMany": "Address"
+		},
+		"phone": {
+			"regexp": "[0-9]{10}"
+		},
+		"avatar": {
+			"regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
+		}
+	},
+	"Address": {
+		"street": {
+			"loremWords": {
+				"minLength": 20,
+				"maxLength": 50
+			}
+		},
+		"city": {
+			"regexp": "[A-Z][a-z]{5,10}"
+		},
+		"state": {
 			"string": [
-				"ITSROOM/7Floor/Office",
-				"ITSROOM/7Floor/Demokit",
-				"ITSROOM/8Floor/Office",
-				"ITSROOM/9Floor/Controlroom"
+				"California",
+				"Texas"
 			]
 		},
-		"comment": {
-			"string":{}
-		},
-		"user": {
-			"belongsTo": "User"
+		"zip": {
+			"int": {
+				"min": 10001,
+				"max": 99999
+			}
 		}
 	}
 }
