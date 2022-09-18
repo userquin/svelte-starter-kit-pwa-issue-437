@@ -1,10 +1,17 @@
 {
-	"Member": {
+	"Members": {
 		"id": {
 			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 		},
 		"title": {
-			"string": ["Mr", "Mrs", "Miss", "Dr", "Eng", "Prof"]
+			"string": [
+				"Mr",
+				"Mrs",
+				"Miss",
+				"Dr",
+				"Eng",
+				"Prof"
+			]
 		},
 		"firstName": {
 			"loremWord": {}
@@ -19,7 +26,11 @@
 			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
 		},
 		"gender": {
-			"string": ["Male", "Female", "Other"]
+			"string": [
+				"Male",
+				"Female",
+				"Other"
+			]
 		},
 		"dob": {
 			"dateTime": {
@@ -33,30 +44,12 @@
 				"max": 150
 			}
 		},
-		"address": {
-			"street": {
-				"loremWords": {
-					"minLength": 20,
-					"maxLength": 50
-				}
-			},
-			"city": {
-				"regexp": "[A-Z][a-z]{5,10}"
-			},
-			"state": "string",
-			"zip": {
-				"int": {
-					"min": 10001,
-					"max": 99999
-				}
-			}
+		"addresses": {
+			"hasMany": "Address"
 		},
-		"phoneNumbers": [
-			{
-				"type": "string",
-				"regexp": "+1 #[0-9]{10}"
-			}
-		],
+		"phone": {
+			"regexp": "+1 #[0-9]{10}"
+		},
 		"avatar": {
 			"regexp": "https://picsum\\.photos/seed/[0-9]{5}/250/400"
 		},
@@ -64,6 +57,24 @@
 			"dateTime": {
 				"min": "2020-01-01T00:00:00Z",
 				"max": "2022-04-30T23:59:59Z"
+			}
+		}
+	},
+	"Address": {
+		"street": {
+			"loremWords": {
+				"minLength": 20,
+				"maxLength": 50
+			}
+		},
+		"city": {
+			"regexp": "[A-Z][a-z]{5,10}"
+		},
+		"state": "string",
+		"zip": {
+			"int": {
+				"min": 10001,
+				"max": 99999
 			}
 		}
 	}
