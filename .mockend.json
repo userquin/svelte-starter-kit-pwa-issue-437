@@ -42,14 +42,14 @@
 			"hasMany": "Address"
 		},
 		"phone": {
-			"regexp": "[0-9]{11}"
+			"regexp": "[0-9]{10}"
 		},
 		"avatar": {
 			"regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}"
 		}
 	},
 	"Address": {
-		"post": {
+		"owner": {
 			"belongsTo": "Member"
 		},
 		"street": {
