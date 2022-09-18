@@ -58,7 +58,12 @@
 		"city": {
 			"regexp": "[A-Z][a-z]{5,10}"
 		},
-		"state": "string",
+		"state": {
+			"string": [
+				"California",
+				"Texas"
+			]
+		},
 		"zip": {
 			"int": {
 				"min": 10001,
