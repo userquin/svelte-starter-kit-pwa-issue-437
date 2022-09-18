@@ -38,7 +38,7 @@
 				"max": "2001-12-31T23:59:59Z"
 			}
 		},
-		"addresses": {
+		"address": {
 			"hasMany": "Address"
 		},
 		"phone": {
@@ -49,7 +49,7 @@
 		}
 	},
 	"Address": {
-		"owner": {
+		"member": {
 			"belongsTo": "Member"
 		},
 		"street": {
