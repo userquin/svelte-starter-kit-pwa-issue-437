@@ -1,30 +1,69 @@
 {
-	"Post": {
-		"cover": {
-			"regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/270"
+	"Member": {
+		"id": {
+			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 		},
 		"title": {
-			"loremWords": {
-				"minLength": 5,
-				"maxLength": 20
+			"string": ["Mr", "Mrs", "Miss", "Dr", "Eng", "Prof"]
+		},
+		"firstName": {
+			"loremWord": {}
+		},
+		"lastName": {
+			"loremSentences": {
+				"minLength": 2,
+				"maxLength": 3
 			}
 		},
-		"body": {
-			"loremParagraphs": {
-				"minLength": 10,
-				"maxLength": 100
+		"email": {
+			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
+		},
+		"gender": {
+			"string": ["Male", "Female", "Other"]
+		},
+		"dob": {
+			"dateTime": {
+				"min": "1995-01-01T00:00:00Z",
+				"max": "2001-12-31T23:59:59Z"
 			}
 		},
-		"tag": {
-			"string": ["one", "two", "three"]
+		"age": {
+			"int": {
+				"min": 18,
+				"max": 150
+			}
 		},
-		"isDraft": {
-			"boolean": {}
+		"address": {
+			"street": {
+				"loremWords": {
+					"minLength": 20,
+					"maxLength": 50
+				}
+			},
+			"city": {
+				"regexp": "[A-Z][a-z]{5,10}"
+			},
+			"state": "string",
+			"zip": {
+				"int": {
+					"min": 10001,
+					"max": 99999
+				}
+			}
+		},
+		"phoneNumbers": [
+			{
+				"type": "string",
+				"regexp": "+1 #[0-9]{10}"
+			}
+		],
+		"avatar": {
+			"regexp": "https://picsum\\.photos/seed/[0-9]{5}/250/400"
 		},
 		"createdAt": {
 			"dateTime": {
-				"min": "2010-01-01T00:00:00Z",
-				"max": "2020-12-31T23:59:59Z"
+				"min": "2020-01-01T00:00:00Z",
+				"max": "2022-04-30T23:59:59Z"
 			}
 		}
 	}
