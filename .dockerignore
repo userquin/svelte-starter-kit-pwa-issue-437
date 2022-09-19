@@ -10,3 +10,6 @@
 !/config
 !/tsconfig.json
 !/vite.config.ts
+# we need some static/build-time environment variables during build
+!.env
+!.npmrc

@@ -18,6 +18,7 @@ Build and publish docker image to ghcr.io
 VERSION=v0.1.0
 BUILD_DATE=$(date +%FT%T%Z)
 REGISTRY=ghcr.io
+#REGISTRY=us-west1-docker.pkg.dev/<project_id>/docker
 IMAGE_NAME=xmlking/svelte-starter-kit
 DOCKER_IMAGE=$REGISTRY/$IMAGE_NAME
 

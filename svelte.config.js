@@ -14,7 +14,7 @@ const config = {
 	],
 
 	kit: {
-		adapter: getAdapter()
+		adapter: getAdapter(),
 
 		// When hosting SPA on GitHub Pages
 		// paths: {
