@@ -17,4 +17,9 @@ module.exports = {
 		es2017: true,
 		node: true
 	}
+	// "globals": {
+	// 	'__APP_VERSION__': true,
+	// 	'__GIT_TAG__': true,
+	// 	'__GIT_DATE__': true,
+	// }
 };

@@ -1,12 +1,28 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 import { configDefaults } from 'vitest/config';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 
+// Get current tag/commit and last commit date from git
+const pexec = promisify(exec);
+
+const [gitTag, gitDate] = (await Promise.allSettled([pexec('git describe --tags || git rev-parse --short HEAD'), pexec('git log -1 --format=%cd --date=format:"%Y-%m-%d %H:%M"')])).map((v) =>
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
+	JSON.stringify(v.value?.stdout.trim())
+);
+
+/** @type {import('vite').UserConfig} */
 const config: UserConfig = {
 	plugins: [sveltekit()],
 	define: {
 		// Eliminate in-source test code
-		'import.meta.vitest': 'undefined'
+		'import.meta.vitest': 'undefined',
+		// to burn-in release version in the footer.svelte
+		__APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+		__GIT_TAG__: gitTag,
+		__GIT_DATE__: gitDate
 	},
 	test: {
 		// jest like globals

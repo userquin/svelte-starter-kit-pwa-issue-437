@@ -7,7 +7,10 @@ declare namespace App {
 	}
 
 	// interface PageData {}
-	// interface PageError {}
+	// interface Error {
+	// 	message: string; // this property is always required, to provide a sensible fallback
+	// 	whateverYouWant: string;
+	// }
 	// interface Platform {}
 	// interface PrivateEnv {}
 	// interface PublicEnv {}
@@ -31,3 +34,10 @@ interface Window {
 	dataLayer: IArguments[];
 	gtag(type: string, ...args: any[]): void;
 }
+
+// App version from package.json
+declare const __APP_VERSION__: string;
+// Git commit tag or hash
+declare const __GIT_TAG__: string;
+// Date of last commit
+declare const __GIT_DATE__: string;

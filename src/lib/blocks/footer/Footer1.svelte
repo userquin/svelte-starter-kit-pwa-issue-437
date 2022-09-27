@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { Stack } from '$lib/components/icons';
+	/*global __APP_VERSION__ __GIT_TAG__ __GIT_DATE__ */
+	const appVersion = __APP_VERSION__;
+	const gitTag = __GIT_TAG__;
+	const gitDate = __GIT_DATE__;
 </script>
 
 <footer class="body-font mt-auto text-gray-600 dark:bg-gray-900">
@@ -11,6 +15,9 @@
 		<p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:mt-0 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:pl-4"
 			>© 2020 Datablocks —
 			<a href="https://twitter.com/xmlking" class="ml-1 text-gray-600" target="_blank">@sumanth</a>
+		</p>
+		<p class="mt-4 inline-flex justify-center text-xs text-gray-500 sm:ml-auto sm:mt-0 sm:justify-start">
+			Version: {appVersion} <br /> Tag: {gitTag} <br /> Date: {gitDate}
 		</p>
 		<span class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start">
 			<a class="text-gray-500">

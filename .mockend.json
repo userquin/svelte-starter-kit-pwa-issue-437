@@ -4,14 +4,7 @@
 			"regexp": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 		},
 		"title": {
-			"string": [
-				"Mr",
-				"Mrs",
-				"Miss",
-				"Dr",
-				"Eng",
-				"Prof"
-			]
+			"string": ["Mr", "Mrs", "Miss", "Dr", "Eng", "Prof"]
 		},
 		"firstName": {
 			"loremWord": {}
@@ -26,11 +19,7 @@
 			"regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
 		},
 		"gender": {
-			"string": [
-				"Male",
-				"Female",
-				"Other"
-			]
+			"string": ["Male", "Female", "Other"]
 		},
 		"dob": {
 			"dateTime": {
@@ -59,10 +48,7 @@
 			"regexp": "[A-Z][a-z]{5,10}"
 		},
 		"state": {
-			"string": [
-				"California",
-				"Texas"
-			]
+			"string": ["California", "Texas"]
 		},
 		"zip": {
 			"int": {

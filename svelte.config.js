@@ -22,6 +22,9 @@ const config = {
 		// },
 
 		// prerender: { entries: [] },
+		alias: {
+			$mocks: 'src/mocks'
+		}
 	}
 };
 
