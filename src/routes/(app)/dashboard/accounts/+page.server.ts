@@ -3,7 +3,8 @@ import { error } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
 import { endpoints } from '$lib/config';
 import type { PageServerLoad, Action } from './$types';
-import { createData, MEMBERS } from '$mocks/data/members';
+import { createData, ACCOUNTS } from '$mocks/data/accounts';
+import type { Account } from '$lib/models/types/accounts';
 
 export const load: PageServerLoad = async ({ url }: RequestEvent) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');
@@ -16,10 +17,10 @@ export const load: PageServerLoad = async ({ url }: RequestEvent) => {
 		// 	headers: { 'Content-Type': 'application/json' }
 		// });
 		// const response = await resp.json();
-		// const members = response.data;
+		// const accounts = response;
 
-		const members = createData(100);
-		return { members };
+		const accounts: Account[] = createData(100);
+		return { accounts };
 	} catch (err) {
 		console.error(err);
 		throw error(404, (err as Error).message);

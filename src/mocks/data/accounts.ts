@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import type { Member, Address, Phone } from '$lib/models/types/member';
+import type { Account, Address, Phone } from '$lib/models/types/accounts';
 
 export function createRandomPhone(): Phone {
 	return {
@@ -18,7 +18,7 @@ export function createRandomAddress(): Address {
 	};
 }
 
-export function createRandomMember(): Member {
+export function createRandomAccount(): Account {
 	return {
 		id: faker.datatype.uuid(),
 		firstName: faker.name.firstName(),
@@ -32,7 +32,7 @@ export function createRandomMember(): Member {
 }
 
 export function createData(length = 10) {
-	return [...Array(length)].map((_) => createRandomMember());
+	return [...Array(length)].map((_) => createRandomAccount());
 }
 
-export const MEMBERS: Member[] = createData(10);
+export const ACCOUNTS: Account[] = createData(10);

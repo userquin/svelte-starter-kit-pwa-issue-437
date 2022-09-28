@@ -16,6 +16,10 @@ Awesome **SvelteKit** Links
     -   Svelte component test recipes using Vitest & Testing Library with TypeScript
 -   [Test Svelte Component Using Vitest & Playwright](https://davipon.hashnode.dev/test-svelte-component-using-vitest-playwright)
 
+## Templates
+
+-   [Svelte Sirens](https://github.com/Svelte-Sirens/svelte-sirens)
+
 ## Performance
 
 ## Tools

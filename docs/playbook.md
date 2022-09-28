@@ -112,8 +112,17 @@ Added [Dockerfile](../Dockerfile) and GitHub [actions](../.github/workflows).
 
 ### Recommended
 
-```shell
+1. [Svelte Headless Table](https://svelte-headless-table.bryanmylee.com/#headless)
+2. [Felte](https://felte.dev/) - An extensible form library for Svelte
+3. [A lightweight Svelte Action to make your elements draggable](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme)
 
+```shell
+# table library for Svelte
+npm install -D svelte-headless-table
+# form library for Svelte
+npm i -D felte @felte/reporter-svelte @felte/validator-zod zod
+# make any element draggable
+npm i -D @neodrag/svelte
 ```
 
 ### Optional

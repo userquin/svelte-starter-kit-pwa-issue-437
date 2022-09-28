@@ -1,4 +1,4 @@
-<style>
+<style lang="postcss">
 	:global(td.matches) {
 		background: rgba(46, 196, 182, 0.2);
 	}
@@ -24,16 +24,18 @@
 	import { default as Address } from './Address.svelte';
 	import { default as Link } from './Link.svelte';
 	import type { PageData, Errors } from './$types';
-	import type { Member } from '$lib/models/types/member';
+	import type { Accounts } from '$lib/models/types/member';
 	import { goto, invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	/** @type {import('./$types').PageData */
-	export let data: { members: Member[] } = { members: [] }; // `data` props get initialized from page endpoint.
+	export let data: { accounts: Accounts[] } = { accounts: [] }; // `data` props get initialized from page endpoint.
 	export let errors: Errors; // `errors` props gets its value if server side error occurred.
-	let { members } = data; // we need this statement to access `results/total` values before component mounted.
-	$: ({ members } = data); // so `members` stays in sync when `data` changes
+	let { accounts } = data; // we need this statement to access `results/total` values before component mounted.
+	$: ({ accounts } = data); // so `members` stays in sync when `data` changes
+	$: memberStore.set(accounts); // update store when data changed
 
-	const memberStore = writable(members);
+	const memberStore = writable(accounts);
 	const table = createTable(memberStore, {
 		page: addPagination({ initialPageSize: 5 }),
 		tableFilter: addTableFilter()
@@ -121,9 +123,9 @@
 	const { pageIndex, pageCount, pageSize, hasNextPage, hasPreviousPage } = pluginStates.page;
 
 	// Search Table
-	let firstName = '';
-	let lastName = '';
-	let limit = '100';
+	let firstName = $page.url.searchParams.get('firstName') ?? '*';
+	let lastName = $page.url.searchParams.get('lastName') ?? '*';
+	let limit = $page.url.searchParams.get('limit') ?? '50';
 	let limits = [
 		{ value: '5', name: '5' },
 		{ value: '10', name: '10' },
@@ -134,9 +136,7 @@
 	const { filterValue } = pluginStates.tableFilter;
 
 	async function search() {
-		await goto(`/dashboard/members?firstName=${firstName}&lastName=${lastName}&limit=${limit}`);
-		// Refresh data to reset invalid values.
-		$memberStore = $memberStore;
+		await goto(`/dashboard/accounts?firstName=${firstName}&lastName=${lastName}&limit=${limit}`);
 	}
 </script>
 

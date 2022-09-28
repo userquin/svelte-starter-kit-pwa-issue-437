@@ -1,28 +1,25 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, Action } from './$types';
-import { endpoints } from '../../../../../lib/config';
-import { createRandomMember } from '$mocks/data/members';
+import { endpoints } from '$lib/config';
+import { createRandomAccount } from '$mocks/data/accounts';
+import type { Account } from '$lib/models/types/accounts';
 
 export const load: PageServerLoad = async ({ params }: RequestEvent) => {
 	const { id } = params;
-	const payload = {
-		memberId: id ?? '3YP5VF7QE73',
-		startDate: '2022/01/01',
-		endDate: '2022/12/31'
-	};
+	const payload = { id };
 	try {
-		// const resp = await fetch(`${endpoints.api}/member`, {
+		// const resp = await fetch(`${endpoints.api}/account`, {
 		// 	method: 'POST',
 		// 	headers: { 'Content-Type': 'application/json' },
 		// 	body: JSON.stringify(payload)
 		// });
 		// const response = await resp.json();
-		// const member = response.data;
+		// const account = response;
 
-		const member = createRandomMember();
+		const account = createRandomAccount();
 
-		return { member };
+		return { account };
 	} catch (err) {
 		console.error(err);
 		throw error(404, (err as Error).message);

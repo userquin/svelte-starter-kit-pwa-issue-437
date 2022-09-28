@@ -1,4 +1,4 @@
-export interface Member {
+export interface Account {
 	id: string
 	firstName: string
 	middleName: string
