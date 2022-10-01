@@ -1,6 +1,6 @@
 <svelte:options immutable />
 
-<style>
+<style lang="postcss">
 	.page-loading {
 		position: fixed;
 		top: calc(50% - 2.5rem);

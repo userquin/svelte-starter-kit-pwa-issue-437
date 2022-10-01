@@ -1,4 +1,4 @@
-<style>
+<style lang="postcss">
 	svg {
 		min-height: 24px;
 		transition: transform 0.3s ease-in-out;

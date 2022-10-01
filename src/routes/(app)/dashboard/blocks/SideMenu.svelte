@@ -35,13 +35,13 @@
 				<SidebarItem href="/dashboard/tenants" label="Tenants">
 					<svelte:fragment slot="icon"><ShieldCheck /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/users" label="Agents">
+				<SidebarItem href="/dashboard/accounts" label="Accounts">
 					<svelte:fragment slot="icon"><Stop /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem href="/dashboard/users" label="Users">
 					<svelte:fragment slot="icon"><Users /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/users" label="Groups">
+				<SidebarItem href="/dashboard/tenants" label="Tenants">
 					<svelte:fragment slot="icon"><UserGroup /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem href="/dashboard/settings" label="Settings">

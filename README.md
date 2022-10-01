@@ -34,7 +34,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 ```shell
 cd ~/Developer/Work/SPA
-git clonehttps://github.com/xmlking/svelte-starter-kit.git
+git clone https://github.com/xmlking/svelte-starter-kit.git
 cd /svelte-starter-kit && npm install
 # playwright is required for end-to-end testing
 npx playwright install

@@ -56,13 +56,13 @@
 	<div></div>
 	<NavUl hidden="{hidden}">
 		<NavLi href="/dashboard" active="{path == '/dashboard'}">Dashboard</NavLi>
-		<NavLi href="/dashboard/tenants" active="{path == '/dashboard/tenants'}">Tenants</NavLi>
+		<NavLi href="/dashboard/accounts" active="{path == '/dashboard/accounts'}">Accounts</NavLi>
 		<NavLi href="/dashboard/users" active="{path == '/dashboard/users'}">Users</NavLi>
 	</NavUl>
 
 	<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 	<div class="hidden md:block">
-		<Avatar class="acs" src="https://flowbite-svelte.com/images/profile-picture-2.webp" size="md" border>SC</Avatar>
+		<Avatar class="acs" src="/images/profile-picture-3.webp" size="md" border>SC</Avatar>
 		<Dropdown arrowIcon="{false}" inline="{true}">
 			<DropdownHeader>
 				<span class="block text-sm"> Sumanth </span>

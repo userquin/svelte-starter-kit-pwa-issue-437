@@ -1,9 +1,12 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+
+// plugins
 const typography = require('@tailwindcss/typography');
 const forms = require('@tailwindcss/forms');
 const lineClamp = require('@tailwindcss/line-clamp');
 const aspectRatio = require('@tailwindcss/aspect-ratio');
 const flowbite = require('flowbite/plugin');
-const defaultTheme = require('tailwindcss/defaultTheme');
 // const tailwindUI = require('@tailwindcss/ui');
 
 /** @type {import('tailwindcss').Config} */

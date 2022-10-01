@@ -14,7 +14,7 @@ const config = {
 	],
 
 	kit: {
-		adapter: getAdapter()
+		adapter: getAdapter(),
 
 		// When hosting SPA on GitHub Pages
 		// paths: {
@@ -22,6 +22,9 @@ const config = {
 		// },
 
 		// prerender: { entries: [] },
+		alias: {
+			$mocks: 'src/mocks'
+		}
 	}
 };
 
