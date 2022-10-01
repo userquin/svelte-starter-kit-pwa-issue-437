@@ -1,12 +1,11 @@
 import fetch from 'cross-fetch';
 import { error } from '@sveltejs/kit';
-import type { RequestEvent } from '@sveltejs/kit';
 import { endpoints } from '$lib/config';
 import type { PageServerLoad, Action } from './$types';
 import { createData, ACCOUNTS } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
 
-export const load: PageServerLoad = async ({ url }: RequestEvent) => {
+export const load: PageServerLoad = async ({ url }) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');
 	const lastName = url.searchParams.get('lastName') ?? encodeURIComponent('*');
 	const limit = url.searchParams.get('limit') ?? '50';

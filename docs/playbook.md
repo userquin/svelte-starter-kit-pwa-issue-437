@@ -112,17 +112,23 @@ Added [Dockerfile](../Dockerfile) and GitHub [actions](../.github/workflows).
 
 ### Recommended
 
-1. [Svelte Headless Table](https://svelte-headless-table.bryanmylee.com/#headless)
+1. Headless Table
+    1. [Svelte Headless Table](https://svelte-headless-table.bryanmylee.com/#headless)
+    2. [TanStack Table](https://tanstack.com/table/v8)
 2. [Felte](https://felte.dev/) - An extensible form library for Svelte
 3. [A lightweight Svelte Action to make your elements draggable](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme)
+4. Fetch, cache and update asynchronous data in your Svelte applications [TanStack Query](https://tanstack.com/query/v4)
 
 ```shell
 # table library for Svelte
-npm install -D svelte-headless-table
+npm i -D svelte-headless-table
+#npm i -D @tanstack/svelte-table
 # form library for Svelte
 npm i -D felte @felte/reporter-svelte @felte/validator-zod zod
 # make any element draggable
 npm i -D @neodrag/svelte
+# to fetch, cache and update data
+npm i -D @tanstack/svelte-query
 ```
 
 ### Optional

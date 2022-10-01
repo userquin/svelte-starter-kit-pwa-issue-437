@@ -1,11 +1,10 @@
-import type { RequestEvent } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, Action } from './$types';
 import { endpoints } from '$lib/config';
 import { createRandomAccount } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
 
-export const load: PageServerLoad = async ({ params }: RequestEvent) => {
+export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
 	const payload = { id };
 	try {
