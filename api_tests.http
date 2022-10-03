@@ -1,0 +1,15 @@
+### GetAccounts
+GET https://mockend.com/xmlking/svelte-starter-kit/members
+Content-Type: "application/json"
+
+### GetAccount
+GET https://mockend.com/xmlking/svelte-starter-kit/members/1
+Content-Type: "application/json"
+
+### GetAddresses
+GET https://mockend.com/xmlking/svelte-starter-kit/addresses
+Content-Type: "application/json"
+
+### GetAddress
+GET https://mockend.com/xmlking/svelte-starter-kit/addresses/1
+Content-Type: "application/json"

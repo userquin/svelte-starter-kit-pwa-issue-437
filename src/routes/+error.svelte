@@ -1,6 +1,16 @@
+<style lang="postcss">
+	.error {
+		@apply text-gray-600;
+	}
+</style>
+
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
+
+	// we don't want to use <svelte:window bind:online> here, because we only care about the online
+	// state when the page first loads
+	let online = typeof navigator !== 'undefined' ? navigator.onLine : true;
 </script>
 
 <svelte:head>
@@ -28,8 +38,30 @@
 	</main>
 </div>
 
-<!--<p>{$page.error.message}</p>-->
+<!--<p>{$page.error?.message}</p>-->
 
-{#if dev && $page.error.stack}
-	<pre>{$page.error.stack}</pre>
-{/if}
+<!--{#if dev && $page.error.stack}-->
+<!--	<pre>{$page.error.stack}</pre>-->
+<!--{/if}-->
+
+<div class="text-center text-gray-500">
+	{#if online}
+		{#if $page.error.message}
+			<p class="error">{$page.status}: {$page.error.message}</p>
+		{:else}
+			<p class="error">Encountered a {$page.status} error</p>
+		{/if}
+
+		{#if $page.status >= 500}
+			{#if dev && $page.error.stack}
+				<pre>{$page.error.stack}</pre>
+			{:else}
+				<p>Please try reloading the page.</p>
+			{/if}
+		{/if}
+	{:else}
+		<h1>It looks like you're offline</h1>
+
+		<p>Reload the page once you've found the internet.</p>
+	{/if}
+</div>
