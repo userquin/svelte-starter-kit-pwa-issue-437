@@ -65,11 +65,26 @@ npm i -D @tailwindcss/aspect-ratio @tailwindcss/line-clamp
 Install JetBrain's [postcss](https://plugins.jetbrains.com/plugin/8578-postcss) plugin<br/>
 Rename any files in your repo, with file extension `postcss` to `pcss`
 
+#### cssnano
+
 Also add `cssnano` plugin for `postcss` and include it in [postcss.config.cjs](../postcss.config.cjs) for production env.
 
 ```shell
 npm i -D cssnano
 ```
+
+#### PostCSS Preset Env
+
+[PostCSS Preset Env](https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env) lets you convert modern CSS into something most browsers can understand,
+determining the polyfills you need based on your targeted browsers or runtime environments.
+
+Read: [Use Future CSS Today](https://joyofcode.xyz/using-future-css-in-svelte) and Watch: [video](https://www.youtube.com/watch?v=eqwtoaP-0pk)
+
+```shell
+npm i -D postcss-preset-env postcss-load-config @types/postcss-preset-env
+```
+
+Add `postcssPresetEnv` plugin for `postcss` and include it in [postcss.config.cjs](../postcss.config.cjs).
 
 ### UI Components
 

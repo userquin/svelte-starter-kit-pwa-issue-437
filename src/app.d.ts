@@ -5,15 +5,13 @@ declare namespace App {
 	interface Locals {
 		userid: string;
 	}
-
 	// interface PageData {}
-	// interface Error {
-	// 	message: string; // this property is always required, to provide a sensible fallback
-	// 	whateverYouWant: string;
-	// }
+	interface Error {
+		message: string; // this property is always required, to provide a sensible fallback
+		code: number;
+		// whateverYouWant: string;
+	}
 	// interface Platform {}
-	// interface PrivateEnv {}
-	// interface PublicEnv {}
 	// interface Session {}
 }
 
