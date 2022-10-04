@@ -8,7 +8,7 @@
 	import { browser } from '$app/environment';
 	import type { PageData, ActionData } from './$types';
 	import type { Account } from '$lib/models/types/member';
-	import {page} from "$app/stores";
+	import { page } from '$app/stores';
 
 	/** @type {import('./$types').PageData */
 	export let data: PageData; // item: Account;

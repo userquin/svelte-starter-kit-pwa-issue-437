@@ -22,8 +22,7 @@
 	import { writable } from 'svelte/store';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addTableFilter } from 'svelte-headless-table/plugins';
-	import { default as Address } from './Address.svelte';
-	import { default as Link } from './Link.svelte';
+	import { Address, Link } from '$lib/components';
 	import type { Account } from '$lib/models/types/accounts';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -41,38 +40,33 @@
 	});
 
 	const columns = table.createColumns([
-		table.group({
-			header: 'Info',
-			columns: [
-				table.column({
-					header: 'Id',
-					accessor: 'id',
-					cell: ({ value }) =>
-						createRender(
-							Link,
-							writable({
-								id: value,
-								content: value
-							})
-						)
-				}),
-				table.column({
-					header: 'First Name',
-					accessor: 'firstName'
-				}),
-				table.column({
-					header: () => 'Last Name',
-					accessor: 'lastName'
-				}),
-				table.column({
-					header: () => 'DoB',
-					accessor: 'dob'
-				}),
-				table.column({
-					header: () => 'Gender',
-					accessor: 'gender'
-				})
-			]
+		table.column({
+			header: 'Id',
+			accessor: 'id',
+			cell: ({ value }) =>
+				createRender(
+					Link,
+					writable({
+						url: `/dashboard/accounts/${value}`,
+						content: value
+					})
+				)
+		}),
+		table.column({
+			header: 'First Name',
+			accessor: 'firstName'
+		}),
+		table.column({
+			header: () => 'Last Name',
+			accessor: 'lastName'
+		}),
+		table.column({
+			header: () => 'DoB',
+			accessor: 'dob'
+		}),
+		table.column({
+			header: () => 'Gender',
+			accessor: 'gender'
 		}),
 		table.column({
 			header: 'Address',
@@ -88,26 +82,21 @@
 					})
 				)
 		}),
-		table.group({
-			header: 'Phone',
-			columns: [
-				table.column({
-					header: 'Number',
-					id: 'number',
-					accessor: (item) => item.phone[0].number
-				})
-				// table.column({
-				// 	header: 'Extension',
-				// 	id: 'extension',
-				// 	accessor: (item) => item.phone[0].extension,
-				// }),
-				// table.column({
-				// 	header: 'Priority',
-				// 	id: 'priority',
-				// 	accessor: (item) => item.phone[0].priority,
-				// })
-			]
+		table.column({
+			header: 'Number',
+			id: 'number',
+			accessor: (item) => item.phone[0].number
 		})
+		// table.column({
+		// 	header: 'Extension',
+		// 	id: 'extension',
+		// 	accessor: (item) => item.phone[0].extension,
+		// }),
+		// table.column({
+		// 	header: 'Priority',
+		// 	id: 'priority',
+		// 	accessor: (item) => item.phone[0].priority,
+		// })
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = table.createViewModel(columns);
@@ -170,10 +159,6 @@
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 	<div class="flex items-center justify-between p-4">
-		<!-- Dropdown menu -->
-		<div>
-			<Select items="{limits}" bind:value="{$pageSize}" />
-		</div>
 		<!-- search text -->
 		<div class="p-4">
 			<label for="table-search" class="sr-only">Search</label>
@@ -224,9 +209,13 @@
 	</table>
 
 	<nav class="flex items-center justify-between p-4" aria-label="Table navigation">
-		<span class="text-sm text-gray-700 dark:text-gray-400">
-			Showing <span class="font-semibold text-gray-900 dark:text-white">{$pageIndex + 1}</span>
-			out of <span class="font-semibold text-gray-900 dark:text-white">{$pageCount}</span> Entries (PageSize: <span class="font-semibold text-gray-900 dark:text-white">{$pageSize}</span>)
+		<span class="flex items-center text-sm text-gray-700 dark:text-gray-400">
+			<span class="pr-2">Rows ({$pageSize}): </span>
+			<Select items="{limits}" bind:value="{$pageSize}" size="sm" class="w-1/6 p-1 text-xs" />
+			<span class="pl-4">
+				Showing <span class="font-semibold text-gray-900 dark:text-white">{$pageIndex + 1}</span>
+				out of <span class="font-semibold text-gray-900 dark:text-white">{$pageCount}</span> Pages
+			</span>
 		</span>
 		<ButtonGroup>
 			<Button on:click="{() => $pageIndex--}" disabled="{!$hasPreviousPage}">Prev</Button>
