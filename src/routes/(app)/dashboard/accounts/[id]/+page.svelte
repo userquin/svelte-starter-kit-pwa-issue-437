@@ -6,12 +6,12 @@
 	import { Card, Listgroup, Avatar, ButtonGroup, Button, Radio, Toggle, Input, Label, Datepicker } from 'flowbite-svelte';
 	import { AdjustmentsHorizontal, ArchiveBox, ArrowLeft, CloudArrowDown, User, UserCircle, UserGroup, DevicePhoneMobile } from 'svelte-heros-v2';
 	import { browser } from '$app/environment';
-	import type { PageData, Errors, ActionData } from './$types';
+	import type { PageData, ActionData } from './$types';
 	import type { Account } from '$lib/models/types/member';
+	import {page} from "$app/stores";
 
 	/** @type {import('./$types').PageData */
-	export let data: PageData; // item: Policy;
-	export let errors: Errors; // `errors` props gets its value if server side error occurred.
+	export let data: PageData; // item: Account;
 	const { account }: { account: Account } = data;
 
 	async function goBack() {
@@ -29,10 +29,10 @@
 	<meta name="description" content="Account" />
 </svelte:head>
 
-{#if errors}
-	<pre>{JSON.stringify(errors)}</pre>
-	<!--	<p class="errors">{errors.code}</p>-->
-	<!--	<p class="errors">{errors.details}</p>-->
+{#if $page.error}
+	<pre>{JSON.stringify($page.error)}</pre>
+	<!--	<p class="error">{$page.error.code}</p>-->
+	<!--	<p class="error">{$page.error.details}</p>-->
 {/if}
 
 <h2 class="pb-4 text-2xl">Account</h2>

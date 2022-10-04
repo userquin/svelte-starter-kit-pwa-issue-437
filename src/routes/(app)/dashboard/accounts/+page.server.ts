@@ -4,6 +4,7 @@ import { endpoints } from '$lib/config';
 import type { PageServerLoad, Action } from './$types';
 import { createData, ACCOUNTS } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
+import {getErrorMessage} from "$lib/utils/errors";
 
 export const load: PageServerLoad = async ({ url }) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');
@@ -22,6 +23,6 @@ export const load: PageServerLoad = async ({ url }) => {
 		return { accounts };
 	} catch (err) {
 		console.error(err);
-		throw error(404, (err as Error).message);
+		throw error(404, getErrorMessage(err));
 	}
 };
