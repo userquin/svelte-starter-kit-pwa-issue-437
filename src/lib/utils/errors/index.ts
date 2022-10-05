@@ -21,3 +21,11 @@ function toErrorWithMessage(maybeError: unknown): ErrorWithMessage {
 export function getErrorMessage(error: unknown) {
 	return toErrorWithMessage(error).message;
 }
+
+export function isAppError(obj: unknown): obj is App.Error {
+	return Object.prototype.hasOwnProperty.call(obj, 'message') && Object.prototype.hasOwnProperty.call(obj, 'code');
+}
+
+export function getAppError(code: number, error: unknown): App.Error {
+	return { code, message: getErrorMessage(error) };
+}

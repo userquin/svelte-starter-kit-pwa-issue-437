@@ -4,7 +4,9 @@ import { endpoints } from '$lib/config';
 import type { PageServerLoad, Action } from './$types';
 import { createData, ACCOUNTS } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
-import { getErrorMessage } from '$lib/utils/errors';
+import { getAppError, isAppError } from '$lib/utils/errors';
+import { ZodError } from 'zod';
+import { fetchPosts } from '../../../api/example/+server';
 
 export const load: PageServerLoad = async ({ url }) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');
@@ -20,9 +22,19 @@ export const load: PageServerLoad = async ({ url }) => {
 		// const accounts: Account[] = response;
 
 		const accounts: Account[] = createData(100);
+		if (!accounts?.length) throw { code: 404, message: 'not found' };
 		return { accounts };
 	} catch (err) {
-		console.error(err);
-		throw error(404, getErrorMessage(err));
+		// err as App.Error
+		if (err instanceof ZodError) {
+			throw error(400, {
+				message: 'Invalid request.',
+				code: 400,
+				context: err.flatten().fieldErrors
+			});
+		} else if (isAppError(err)) {
+			throw error(err.code, err);
+		}
+		throw error(500, getAppError(500, err));
 	}
 };

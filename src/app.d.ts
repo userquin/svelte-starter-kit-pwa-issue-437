@@ -8,8 +8,8 @@ declare namespace App {
 	// interface PageData {}
 	interface Error {
 		message: string; // this property is always required, to provide a sensible fallback
-		code?: number;
-		// whateverYouWant: string;
+		code: number;
+		context?: Record<string, any>;
 	}
 	// interface Platform {}
 	// interface Session {}

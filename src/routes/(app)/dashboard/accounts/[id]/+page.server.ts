@@ -3,7 +3,8 @@ import type { PageServerLoad, Action } from './$types';
 import { endpoints } from '$lib/config';
 import { createRandomAccount } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
-import { getErrorMessage } from '$lib/utils/errors';
+import { getAppError, isAppError } from '$lib/utils/errors';
+import { ZodError } from 'zod';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
@@ -19,9 +20,19 @@ export const load: PageServerLoad = async ({ params }) => {
 
 		const account = createRandomAccount();
 
+		if (!account) throw { code: 404, message: 'not found' };
 		return { account };
 	} catch (err) {
-		console.error(err);
-		throw error(404, { message: getErrorMessage(err) });
+		// err as App.Error
+		if (err instanceof ZodError) {
+			throw error(400, {
+				message: 'Invalid request.',
+				code: 400,
+				context: err.flatten().fieldErrors
+			});
+		} else if (isAppError(err)) {
+			throw error(err.code, err);
+		}
+		throw error(500, getAppError(500, err));
 	}
 };
