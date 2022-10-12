@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, invalid } from '@sveltejs/kit';
 import type { PageServerLoad, Action } from './$types';
 import { endpoints } from '$lib/config';
 import { createRandomAccount } from '$mocks/data/accounts';
@@ -25,7 +25,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	} catch (err) {
 		// err as App.Error
 		if (err instanceof ZodError) {
-			throw error(400, {
+			throw invalid(400, {
 				message: 'Invalid request.',
 				code: 400,
 				context: err.flatten().fieldErrors

@@ -15,6 +15,9 @@ Awesome **SvelteKit** Links
 
 ## State Management
 
+-   [svelte-store-array](https://github.com/accuser/svelte-store-array) A collection of higher-order store functions for
+    array-based stores.
+
 ## Utilities
 
 ## Testing
@@ -28,6 +31,10 @@ Awesome **SvelteKit** Links
 -   [Svelte Sirens](https://github.com/Svelte-Sirens/svelte-sirens)
 
 ## Performance
+
+## APIs
+
+-   Database access with [PrismaClient](https://github.com/joshnuss/sky-cart/blob/main/src/lib/services/db.js) example
 
 ## Tools
 

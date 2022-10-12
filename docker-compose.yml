@@ -1,13 +1,15 @@
 version: '3.8'
 
 services:
-    webapp:
-        image: ghcr.io/xmlking/svelte-starter-kit:latest
-        init: true
-        build:
-            context: .
-            dockerfile: ./Dockerfile
-        environment:
-            NODE_ENV: production
-        ports:
-            - 3000:3000
+  webapp:
+    image: ghcr.io/xmlking/svelte-starter-kit:latest
+    init: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
