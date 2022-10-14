@@ -1,5 +1,7 @@
 # docker
 
+## Build
+
 ### Local Docker Build
 
 multi-platform, multi-stage, multi-module local build
@@ -32,19 +34,24 @@ docker buildx build --platform linux/arm64,linux/amd64 \
 --build-arg BUILD_DATE=$BUILD_DATE --build-arg VERSION=$VERSION \
 --push .
 
+# (optional) pull recent images from GHCR
+docker pull --platform linux/amd64 $DOCKER_IMAGE\:latest
+docker pull --platform linux/arm64 $DOCKER_IMAGE\:latest
+docker pull --platform linux/amd64 $DOCKER_IMAGE\:$VERSION
+docker pull --platform linux/arm64 $DOCKER_IMAGE\:$VERSION
+
 # inspect
 docker buildx imagetools inspect $DOCKER_IMAGE:$VERSION
 docker buildx imagetools inspect --raw $DOCKER_IMAGE:$VERSION
 docker inspect --format "{{.Architecture}}" $DOCKER_IMAGE:$VERSION
 
 # run
-docker run -it --rm --platform linux/arm64 -p 3000:3000 \
--e NODE_ENV=production CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
-$DOCKER_IMAGE:$VERSION
 docker run -it --rm --platform linux/amd64 -p 3000:3000 \
--e NODE_ENV=production CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
+-e NODE_ENV=production -e CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
 $DOCKER_IMAGE:$VERSION
-
+docker run -it --rm --platform linux/arm64 -p 3000:3000 \
+-e NODE_ENV=production -e CONFY_API_ENDPOINT=api.datablocks.com:443 -e CONFY_PAYMENT_ENDPOINT=payment.datablocks.com:443 \
+$DOCKER_IMAGE:$VERSION
 ## (or)
 docker compose up
 

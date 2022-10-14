@@ -32,21 +32,9 @@ npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
 npm i -O @vitest/ui
 ```
 
-#### [playwright-testing-library](https://github.com/testing-library/playwright-testing-library)
-
-Find elements in **playwright** like your users with queries from **@testing-library/dom**
-
 ```shell
 # install supported browsers
 npx playwright install
-```
-
-```shell
-# For use with Playwright
-npm i -O playwright-testing-library
-
-# For use with Playwright Test
-npm i -O @playwright-testing-library/test
 ```
 
 ### Styling
@@ -101,15 +89,15 @@ npm i -D svelte-heros-v2
 
 Other optional UI Components
 
--   [daisyui](https://daisyui.com/)
--   [headlessUI](https://github.com/rgossiaux/svelte-headlessui)
+- [daisyui](https://daisyui.com/)
+- [headlessUI](https://github.com/rgossiaux/svelte-headlessui)
 
 ### UI Blocks
 
--   [Kometa UI Kit](https://kitwind.io/products/kometa) (Free) [Blocks](https://kitwind.io/products/kometa/components)
--   [Tailblocks](https://tailblocks.cc/) via [tailblocks github](https://github.com/mertJF/tailblocks)
--   [Tailwind Components](https://tailwindcomponents.com/) (Free)
--   Flowbite [Blocks](https://flowbite.com/blocks/) via [flowbite-svelte-blocks](https://github.com/shinokada/flowbite-svelte-blocks)
+- [Kometa UI Kit](https://kitwind.io/products/kometa) (Free) [Blocks](https://kitwind.io/products/kometa/components)
+- [Tailblocks](https://tailblocks.cc/) via [tailblocks github](https://github.com/mertJF/tailblocks)
+- [Tailwind Components](https://tailwindcomponents.com/) (Free)
+- Flowbite [Blocks](https://flowbite.com/blocks/) via [flowbite-svelte-blocks](https://github.com/shinokada/flowbite-svelte-blocks)
 
 ### Tools
 

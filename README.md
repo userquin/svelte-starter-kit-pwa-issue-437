@@ -5,30 +5,29 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 ## Tech Stack
 
--   JS Framework [SvelteKit](https://kit.svelte.dev/)
--   CSS: [Tailwind CSS](https://tailwindcss.com/)
--   Design System: [Flowbite](https://flowbite.com/)
--   UI Components: [flowbite-svelte](https://flowbite-svelte.com/)
--   Unit/Component testing: [vitest](https://vitest.dev/)
--   [Testing Library](https://testing-library.com/)
--   [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)
--   [Playwright Testing Library](https://github.com/testing-library/playwright-testing-library)
--   API mocking: [Mock Service Worker](https://mswjs.io/)
--   Code Coverage [c8](https://c8.io/)
--   End-to-End Testing: [playwright](https://playwright.dev/)
+- JS Framework [SvelteKit](https://kit.svelte.dev/)
+- CSS: [Tailwind CSS](https://tailwindcss.com/)
+- Design System: [Flowbite](https://flowbite.com/)
+- UI Components: [flowbite-svelte](https://flowbite-svelte.com/)
+- Unit/Component testing: [vitest](https://vitest.dev/)
+- [Testing Library](https://testing-library.com/)
+- [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)
+- API mocking: [Mock Service Worker](https://mswjs.io/)
+- Code Coverage [c8](https://c8.io/)
+- End-to-End Testing: [playwright](https://playwright.dev/)
 
 ## Features
 
--   [ ] Code Splitting
--   [ ] Pages prefetching
--   [ ] Lazy-loading images
--   [x] Responsive design
--   [ ] SEO optimization
--   [x] forms: schema definitions with `yup`. form validation with `svelte-forms-lib`
--   [x] design-system: tailwindcss, `flowbite`
--   [x] K8s deployment with _letsencrypt_ ssl certificates
--   [ ] [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
--   [ ] [felte forms](https://felte.dev/)
+- [ ] Code Splitting
+- [ ] Pages prefetching
+- [ ] Lazy-loading images
+- [x] Responsive design
+- [ ] SEO optimization
+- [x] forms: schema definitions with `yup`. form validation with `svelte-forms-lib`
+- [x] design-system: tailwindcss, `flowbite`
+- [x] K8s deployment with _letsencrypt_ ssl certificates
+- [ ] [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
+- [ ] [felte forms](https://felte.dev/)
 
 ## Setup
 
