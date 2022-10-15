@@ -20,7 +20,7 @@ In this Playbook, we will be using [svelte-add](https://github.com/svelte-add/sv
 ### Testing
 
 We will use [vitest](https://vitest.dev/) for Component (mocked) testing and
-[Playwright](https://playwright.dev/) for E2E tests (nothing is mocked).<br/>
+[Playwright](https://playwright.dev/) for E2E tests (nothing is mocked).  
 Code coverage via [c8](https://github.com/bcoe/c8) or [istanbul](https://istanbul.js.org/).
 
 [svelte-add-vitest](https://github.com/davipon/svelte-add-vitest) preset will add vitest to your SvelteKit project.
@@ -39,7 +39,7 @@ npx playwright install
 
 ### Styling
 
-We will be using [TailwindCSS](https://tailwindcss.com/) for system-wide styling.<br/>
+We will be using [TailwindCSS](https://tailwindcss.com/) for system-wide styling.  
 Follow [SvelteJit integration](https://tailwindcss.com/docs/guides/sveltekit) guide
 
 Add and configure tailwindcss via [svelte-add](https://github.com/svelte-add/tailwindcss)
@@ -50,7 +50,7 @@ npx svelte-add@latest tailwindcss --forms --typography
 npm i -D @tailwindcss/aspect-ratio @tailwindcss/line-clamp
 ```
 
-Install JetBrain's [postcss](https://plugins.jetbrains.com/plugin/8578-postcss) plugin<br/>
+Install JetBrain's [postcss](https://plugins.jetbrains.com/plugin/8578-postcss) plugin  
 Rename any files in your repo, with file extension `postcss` to `pcss`
 
 #### cssnano
@@ -105,7 +105,7 @@ Other optional UI Components
 
 Lets add [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 
-`prettier-plugin-svelte` has conflict with `prettier-plugin-tailwindcss` which is included during _SvelteKit_ project creation.<br/>
+`prettier-plugin-svelte` has conflict with `prettier-plugin-tailwindcss` which is included during _SvelteKit_ project creation.  
 To work around this, we've bundled `prettier-plugin-svelte` directly into `prettier-plugin-tailwindcss`, so if you'd like to use this plugin with Svelte, just uninstall `prettier-plugin-svelte` and everything should work as expected.
 
 ```shell

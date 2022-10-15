@@ -42,8 +42,8 @@ npx playwright install
 ### Environment Variables
 
 By default, the `dev` server (dev command) runs in `development` mode and the `build` command run in `production`
-mode.<br/>
-This means when running `npm build`, it will load the env variables from `.env.production` if there is one:<br/>
+mode.  
+This means when running `npm build`, it will load the env variables from `.env.production` if there is one:  
 Use `.env.local` to override environment variables in `.env` (like API keys) for local development.
 
 ````shell

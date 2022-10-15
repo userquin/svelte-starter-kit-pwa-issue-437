@@ -17,6 +17,12 @@
 				"tabWidth": 2,
 				"bracketSpacing": false
 			}
+		},
+		{
+			"files": "*.md",
+			"options": {
+				"tabWidth": 2
+			}
 		}
 	],
 	"tabWidth": 4,

@@ -1,9 +1,8 @@
 {
-	"window.zoomLevel": 1,
 	"explorer.sortOrder": "type",
 	////////// scm //////////
 	"scm.defaultViewMode": "tree",
-	"conventionalCommits.scopes": ["workspace", "actions", "lint", "deps", "docs", "policy"],
+	"conventionalCommits.scopes": ["workspace", "actions", "lint", "deps", "docs", "policy", "provider"],
 	////////// Editor //////////
 	"editor.autoIndent": "full",
 	"editor.codeActionsOnSave": {
@@ -30,7 +29,6 @@
 	"terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono, Monospace",
 	// "terminal.integrated.fontSize": 16, // or "window.zoomLevel": 1,
 	////////// Workbench //////////
-	"workbench.colorTheme": "GitHub Dark Default",
 	"workbench.editor.limit.enabled": true,
 	"workbench.editor.limit.value": 8,
 	"workbench.editor.highlightModifiedTabs": true,
@@ -55,6 +53,9 @@
 	// "files.hotExit": "onExit",
 	"files.defaultLanguage": "go",
 	"files.trimTrailingWhitespace": true,
+	"[markdown]": {
+		"files.trimTrailingWhitespace": false
+	},
 	////////// GoLang //////////
 	"go.testFlags": ["-v", "-count=1"],
 	"go.testTimeout": "5s",
