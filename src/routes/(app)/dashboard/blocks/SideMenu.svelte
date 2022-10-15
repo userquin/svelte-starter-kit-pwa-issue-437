@@ -1,9 +1,9 @@
 <script>
 	import { Drawer } from '$lib/components';
 	import { sidebarOpen } from '$lib/stores/sidebarStore';
-	import { SidebarBrand, SidebarGroup, SidebarItem, SidebarWrapper, Sidebar } from 'flowbite-svelte';
+	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
 
-	import { Bell, ChartPie, ClipboardDocumentList, Cog, ArrowRightOnRectangle, ShieldCheck, Star, Stop, HandRaised, UserGroup, Users, Squares2x2 } from 'svelte-heros-v2';
+	import { ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, Stop, UserGroup, Users } from 'svelte-heros-v2';
 
 	// custom style
 	let spanClass = 'flex-1 ml-3 whitespace-nowrap';

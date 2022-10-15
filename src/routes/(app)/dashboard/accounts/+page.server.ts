@@ -1,12 +1,9 @@
-import fetch from 'cross-fetch';
-import { error } from '@sveltejs/kit';
-import { endpoints } from '$lib/config';
-import type { PageServerLoad, Action } from './$types';
-import { createData, ACCOUNTS } from '$mocks/data/accounts';
 import type { Account } from '$lib/models/types/accounts';
 import { getAppError, isAppError } from '$lib/utils/errors';
+import { createData } from '$mocks/data/accounts';
+import { error } from '@sveltejs/kit';
 import { ZodError } from 'zod';
-import { fetchPosts } from '../../../api/example/+server';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url }) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');

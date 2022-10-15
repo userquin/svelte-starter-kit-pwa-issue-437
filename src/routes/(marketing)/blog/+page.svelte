@@ -1,5 +1,5 @@
 <script>
-	import { Blog1, Blog2, Blog3, Blog4 } from '$lib/blocks/blog';
+	import { Blog4 } from '$lib/blocks/blog';
 </script>
 
 <svelte:head>

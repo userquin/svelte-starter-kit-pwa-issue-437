@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
+	import { draggable } from '@neodrag/svelte';
 
 	let options: DragOptions = {
 		axis: 'y',

@@ -17,15 +17,15 @@
 </style>
 
 <script lang="ts">
-	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
-	import { MagnifyingGlassCircle, Users, ChevronUp, ChevronDown, ArrowDown, ArrowUp } from 'svelte-heros-v2';
-	import { writable } from 'svelte/store';
-	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
-	import { addPagination, addTableFilter, addSortBy } from 'svelte-headless-table/plugins';
-	import { Address, Link } from '$lib/components';
-	import type { Account } from '$lib/models/types/accounts';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { Address, Link } from '$lib/components';
+	import type { Account } from '$lib/models/types/accounts';
+	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
+	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
+	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
+	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, Users } from 'svelte-heros-v2';
+	import { writable } from 'svelte/store';
 
 	/** @type {import("./$types").PageData */
 	export let data: { accounts: Account[] } = { accounts: [] }; // `data` props get initialized from page endpoint.

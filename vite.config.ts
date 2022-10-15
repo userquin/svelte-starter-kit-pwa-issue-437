@@ -1,8 +1,8 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import type { UserConfig } from 'vite';
-import { configDefaults } from 'vitest/config';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
+import type { UserConfig } from 'vite';
+import { configDefaults } from 'vitest/config';
 
 // Get current tag/commit and last commit date from git
 const pexec = promisify(exec);

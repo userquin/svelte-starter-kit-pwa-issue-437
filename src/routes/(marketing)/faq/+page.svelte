@@ -1,5 +1,5 @@
 <script>
-	import { Faq1, Faq2 } from '$lib/blocks/faq';
+	import { Faq2 } from '$lib/blocks/faq';
 </script>
 
 <svelte:head>

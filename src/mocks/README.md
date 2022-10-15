@@ -6,4 +6,4 @@ no-code API mocking
 
 ## Reference
 
--   [mockend.com](https://mockend.com/)
+- [mockend.com](https://mockend.com/)

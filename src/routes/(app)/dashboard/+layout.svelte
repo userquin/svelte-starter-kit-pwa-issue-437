@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DarkMode } from 'flowbite-svelte';
-	import { Header, SideMenu, Footer } from './blocks';
+	import { Footer, Header, SideMenu } from './blocks';
 
 	let isLoggedIn = true;
 	let isAdmin = true;

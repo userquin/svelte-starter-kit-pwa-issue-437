@@ -1,5 +1,5 @@
 <script>
-	import { Footer, FooterBrand, FooterCopyright, FooterIcon, FooterLink, FooterLinkGroup } from 'flowbite-svelte';
+	import { Footer, FooterCopyright, FooterIcon } from 'flowbite-svelte';
 </script>
 
 <Footer footerType="socialmedia" class="bg-gray-50 dark:bg-gray-700">

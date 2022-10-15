@@ -1,4 +1,4 @@
-import type { Handle, HandleClientError, HandleFetch, HandleServerError } from '@sveltejs/kit';
+import type { Handle, HandleClientError, HandleServerError } from '@sveltejs/kit';
 // import { ENVIRONMENT, SENTRY_DSN } from '$env/static/private';
 // import Toucan from 'toucan-js';
 

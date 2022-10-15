@@ -1,10 +1,8 @@
-import { error, invalid } from '@sveltejs/kit';
-import type { PageServerLoad, Action } from './$types';
-import { endpoints } from '$lib/config';
-import { createRandomAccount } from '$mocks/data/accounts';
-import type { Account } from '$lib/models/types/accounts';
 import { getAppError, isAppError } from '$lib/utils/errors';
+import { createRandomAccount } from '$mocks/data/accounts';
+import { error, invalid } from '@sveltejs/kit';
 import { ZodError } from 'zod';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
-import Index from './+page.svelte';
 import { afterAll, beforeAll } from 'vitest';
+import Index from './+page.svelte';
 
 describe('Test index.svelte', () => {
 	beforeAll(async () => {

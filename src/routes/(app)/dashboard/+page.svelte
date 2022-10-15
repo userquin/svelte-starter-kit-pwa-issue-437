@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { Stats1, Stats2, Stats3, Stats4 } from '$lib/blocks/stats';
+	import { Stats1 } from '$lib/blocks/stats';
 
 	const handleClick = () => {
 		goto('/dashboard');

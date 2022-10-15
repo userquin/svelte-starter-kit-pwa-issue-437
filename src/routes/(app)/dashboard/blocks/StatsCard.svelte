@@ -1,5 +1,4 @@
 <script>
-	import { Card, Button } from 'flowbite-svelte';
 	import { ShieldExclamation } from 'svelte-heros-v2';
 </script>
 
