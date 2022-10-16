@@ -18,6 +18,15 @@ RUN case ${TARGETPLATFORM} in \
 
 # This stage builds the application.
 FROM --platform=${BUILDPLATFORM} node:18 as build-app
+
+# buildInfo used in vite.config.ts
+ARG BUILD_TIME
+ARG BUILD_VERSION
+ARG BUILD_REVISION
+RUN echo $BUILD_TIME
+RUN echo $BUILD_VERSION
+RUN echo $BUILD_REVISION
+
 WORKDIR /app
 
 COPY . .
@@ -30,6 +39,7 @@ RUN npm run build:node
 
 # This stage installs the runtime dependencies.
 FROM --platform=${BUILDPLATFORM} node:18-alpine as build-runtime
+
 WORKDIR /app
 COPY package.json package-lock.json ./
 # clean install dependencies, no devDependencies, no prepare script
@@ -57,29 +67,29 @@ COPY --from=build-runtime /app/node_modules ./node_modules
 EXPOSE 3000
 #USER nonroot:nonroot
 
-# Metadata params
-ARG TARGET=svelte-starter-kit
-ARG DOCKER_REGISTRY=ghcr.io
-ARG DOCKER_CONTEXT_PATH=xmlking
-ARG BUILD_DATE
-ARG VERSION
-ARG VCS_URL=svelte-starter-kit
-ARG VCS_REF=1
-ARG VENDOR=xmlking
+# # Metadata params
+# ARG TARGET=svelte-starter-kit
+# ARG DOCKER_REGISTRY=ghcr.io
+# ARG DOCKER_CONTEXT_PATH=xmlking
+# ARG BUILD_DATE
+# ARG VERSION
+# ARG VCS_URL=svelte-starter-kit
+# ARG VCS_REF=1
+# ARG VENDOR=xmlking
 
-# Metadata
-LABEL org.opencontainers.image.created=$BUILD_DATE \
-    org.opencontainers.image.name="${TARGET}" \
-    org.opencontainers.image.title="${TARGET}" \
-    org.opencontainers.image.description="Example of SvelteKit multi-stage docker build" \
-    org.opencontainers.image.url=https://github.com/xmlking/$VCS_URL \
-    org.opencontainers.image.source=https://github.com/xmlking/$VCS_URL \
-    org.opencontainers.image.revision=$VCS_REF \
-    org.opencontainers.image.version=$VERSION \
-    org.opencontainers.image.authors=sumanth \
-    org.opencontainers.image.vendor=$VENDOR \
-    org.opencontainers.image.ref.name=$VCS_REF \
-    org.opencontainers.image.licenses=MIT \
-    org.opencontainers.image.documentation="docker run -it -e NODE_ENV=production -p 3000:3000  ${DOCKER_REGISTRY:+${DOCKER_REGISTRY}/}${DOCKER_CONTEXT_PATH}/${TARGET}:${VERSION}"
+# # Metadata
+# LABEL org.opencontainers.image.created=$BUILD_DATE \
+#     org.opencontainers.image.name="${TARGET}" \
+#     org.opencontainers.image.title="${TARGET}" \
+#     org.opencontainers.image.description="Example of SvelteKit multi-stage docker build" \
+#     org.opencontainers.image.url=https://github.com/xmlking/$VCS_URL \
+#     org.opencontainers.image.source=https://github.com/xmlking/$VCS_URL \
+#     org.opencontainers.image.revision=$VCS_REF \
+#     org.opencontainers.image.version=$VERSION \
+#     org.opencontainers.image.authors=sumanth \
+#     org.opencontainers.image.vendor=$VENDOR \
+#     org.opencontainers.image.ref.name=$VCS_REF \
+#     org.opencontainers.image.licenses=MIT \
+#     org.opencontainers.image.documentation="docker run -it -e NODE_ENV=production -p 3000:3000  ${DOCKER_REGISTRY:+${DOCKER_REGISTRY}/}${DOCKER_CONTEXT_PATH}/${TARGET}:${VERSION}"
 
 CMD ["build"]
