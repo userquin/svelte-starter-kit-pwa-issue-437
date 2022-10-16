@@ -18,7 +18,7 @@ Build and publish docker image to ghcr.io
 ```shell
 #VERSION=$(git describe --tags || echo "HEAD")
 VERSION=v0.1.0
-BUILD_DATE=$(date +%FT%T%Z)
+BUILD_TIME=$(date +%FT%T%Z)
 REGISTRY=ghcr.io
 #REGISTRY=us-west1-docker.pkg.dev/<project_id>/docker
 IMAGE_NAME=xmlking/svelte-starter-kit
@@ -31,7 +31,7 @@ docker buildx create --use
 docker buildx build --platform linux/arm64,linux/amd64 \
 -t $DOCKER_IMAGE\:$VERSION \
 -t $DOCKER_IMAGE\:latest \
---build-arg BUILD_DATE=$BUILD_DATE --build-arg VERSION=$VERSION \
+--build-arg BUILD_TIME=$BUILD_TIME --build-arg BUILD_VERSION=$VERSION \
 --push .
 
 # (optional) pull recent images from GHCR

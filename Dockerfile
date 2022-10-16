@@ -19,13 +19,10 @@ RUN case ${TARGETPLATFORM} in \
 # This stage builds the application.
 FROM --platform=${BUILDPLATFORM} node:18 as build-app
 
-# buildInfo used in vite.config.ts
+# build-args are used in vite.config.ts
 ARG BUILD_TIME
 ARG BUILD_VERSION
 ARG BUILD_REVISION
-RUN echo $BUILD_TIME
-RUN echo $BUILD_VERSION
-RUN echo $BUILD_REVISION
 
 WORKDIR /app
 
