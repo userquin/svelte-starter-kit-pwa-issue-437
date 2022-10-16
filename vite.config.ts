@@ -21,8 +21,8 @@ const config: UserConfig = {
 		'import.meta.vitest': 'undefined',
 		// to burn-in release version in the footer.svelte
 		__APP_VERSION__: JSON.stringify(process.env.npm_package_version),
-		__GIT_TAG__: gitTag ?? process.env.BUILD_VERSION,
-		__GIT_DATE__: gitDate ?? process.env.BUILD_TIME
+		__GIT_TAG__: gitTag ?? JSON.stringify(process.env.BUILD_VERSION),
+		__GIT_DATE__: gitDate ?? JSON.stringify(process.env.BUILD_TIME)
 	},
 	test: {
 		// jest like globals
