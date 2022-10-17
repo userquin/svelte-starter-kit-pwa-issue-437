@@ -3,7 +3,7 @@
 	import { sidebarOpen } from '$lib/stores/sidebarStore';
 	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
 
-	import { ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, Stop, UserGroup, Users } from 'svelte-heros-v2';
+	import { ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocument, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, Stop, UserGroup, Users } from 'svelte-heros-v2';
 
 	// custom style
 	let spanClass = 'flex-1 ml-3 whitespace-nowrap';
@@ -37,6 +37,9 @@
 				</SidebarItem>
 				<SidebarItem href="/dashboard/accounts" label="Accounts">
 					<svelte:fragment slot="icon"><Stop /></svelte:fragment>
+				</SidebarItem>
+				<SidebarItem href="/dashboard/policies" label="Policies">
+					<svelte:fragment slot="icon"><ClipboardDocument /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem href="/dashboard/users" label="Users">
 					<svelte:fragment slot="icon"><Users /></svelte:fragment>

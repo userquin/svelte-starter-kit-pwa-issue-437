@@ -1,0 +1,175 @@
+### list all active policies
+# @name listPolicies
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+query  {
+  tz_policies(order_by: {update_time: desc_nulls_last}, limit: 10, where: {delete_time: {_is_null: true}}) {
+    id
+    create_time
+    display_name
+    subject_type
+    subject_display_name
+    valid_from
+    valid_to
+    weight
+    source_address
+    source_port
+    destination_address
+    destination_port
+    protocol
+    action
+    template
+  }
+}
+
+
+### search active policies
+# @name searchPolicies
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
+  tz_policies(order_by: {update_time: desc_nulls_last}, limit: $limit, where: {delete_time: {_is_null: true}, subject_id: {_eq: $subject_id}, subject_type: {_eq: $subject_type}}) {
+    id
+    create_time
+    display_name
+    subject_type
+    subject_display_name
+    subject_id
+    valid_from
+    valid_to
+    weight
+    source_address
+    source_port
+    destination_address
+    destination_port
+    protocol
+    action
+    template
+  }
+}
+
+{
+  "subject_id": "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
+  "subject_type": "subject_type_user"
+}
+
+###
+@firstPoliciyId =  {{listPolicies.response.body.$.data.tz_policies[0].id}}
+###
+
+### getPolicy by Id
+# @name getPolicy
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+query ($id:uuid!) {
+  tz_policies_by_pk(id:  $id) {
+    id
+    create_time
+    display_name
+    subject_type
+    subject_display_name
+    subject_id
+    valid_from
+    valid_to
+    weight
+    source_address
+    source_port
+    destination_address
+    destination_port
+    protocol
+    action
+    template
+  }
+}
+
+{
+  "id": "{{firstPoliciyId}}"
+}
+
+### update policiy by ID
+# @name updatePolicy
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+mutation ($id: uuid!, $weight: Int = 500, $protocol: String) {
+  update_tz_policies_by_pk(pk_columns: {id: $id}, _set: {weight: $weight, protocol: $protocol}) {
+    id
+    weight
+    protocol
+  }
+}
+
+{
+  "id": "{{firstPoliciyId}}",
+  "protocol" :"TCP"
+}
+
+### create new policiy
+# @name createPolicy
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+mutation ($display_name: String, $destination_address: String, $destination_port: String = "443", $weight: Int = 500, $protocol: String = "Any") {
+  insert_tz_policies_one(object: {
+	id: "{{$guid}}",
+	destination_address: $destination_address,
+	destination_port: $destination_port,
+	direction: "direction_egress",
+	display_name: $display_name,
+	description: "this is group1 policy 11",
+	tags: "{tz,us}",
+	annotations: "\"sumo\"=>\"demo\"",
+	subject_id: "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
+	subject_secondary_id: "chintagunta@threatzero.co",
+	subject_display_name: "sumanth chinthagunta",
+	subject_type: "subject_type_user",
+	subject_domain: "threatzero.co",
+	protocol: $protocol, action: "action_block",
+	weight:  $weight,
+	create_time: "{{$datetime rfc1123|iso8601 [offset option]}}"
+	update_time: "{{$datetime rfc1123|iso8601 [offset option]}}"
+	}) {
+    id,
+	create_time,
+	update_time
+  }
+}
+
+{
+  "display_name" :"user 1",
+  "destination_address": "1.1.1.1"
+}
+
+###
+@createdPoliciyId =  {{createPolicy.response.body.$.data.insert_tz_policies_one.id}}
+###
+
+### delete policiy
+# @name deletePolicy
+POST {{$dotenv CONFY_API_ENDPOINT}}
+Content-Type: application/json
+x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+X-REQUEST-TYPE: GraphQL
+
+mutation ($id:uuid!) {
+  delete_tz_policies_by_pk(id:  $id) {
+      id
+  }
+}
+
+{
+  "id": "{{createdPoliciyId}}"
+}

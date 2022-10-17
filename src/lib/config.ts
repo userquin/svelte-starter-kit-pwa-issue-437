@@ -4,10 +4,10 @@
  * only variables prefixed with VITE_ and CONFY_  are exposed to your Vite-processed code.
  */
 
-import { env as dynPubEnv } from '$env/dynamic/public';
 import { env as dynPriEnv } from '$env/dynamic/private';
-import { PUBLIC_GITHUB_API_URL } from '$env/static/public';
+import { env as dynPubEnv } from '$env/dynamic/public';
 import { GITHUB_API_KEY } from '$env/static/private';
+import { PUBLIC_GITHUB_API_URL } from '$env/static/public';
 
 // dynamic: this config can be imported into client-side code.
 export const tenant = {
@@ -19,6 +19,9 @@ export const endpoints = {
 	// FIXME: workaround https://github.com/sveltejs/kit/issues/6225 remove ` ?? "localhost:8080"`
 	api: dynPriEnv.CONFY_API_ENDPOINT ?? 'localhost:8080',
 	payment: dynPriEnv.CONFY_PAYMENT_ENDPOINT
+};
+export const auth = {
+	token: dynPriEnv.CONFY_API_TOKEN
 };
 
 // static: GitHub
