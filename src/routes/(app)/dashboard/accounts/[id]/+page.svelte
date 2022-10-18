@@ -1,6 +1,3 @@
-<style lang="postcss">
-</style>
-
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -49,3 +46,6 @@
 		Users
 	</Button>
 </ButtonGroup>
+
+<style lang="postcss">
+</style>

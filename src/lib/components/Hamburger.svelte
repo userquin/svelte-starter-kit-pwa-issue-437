@@ -1,3 +1,20 @@
+<script lang="ts">
+	import { sidebarOpen } from '$lib/stores/sidebarStore';
+
+	const toggle = () => {
+		sidebarOpen.update((n) => (n = !n));
+	};
+	export let hamburgerClass = 'text-gray-500 hover:text-gray-700 cursor-pointer border-none focus:outline-none dark:text-white';
+</script>
+
+<button id="hamburgerBtn" class="{hamburgerClass}" class:open="{$sidebarOpen}" on:click="{toggle}" aria-label="Sidebar">
+	<svg width="32" height="24">
+		<line id="top" x1="0" y1="2" x2="32" y2="2"></line>
+		<line id="middle" x1="0" y1="12" x2="24" y2="12"></line>
+		<line id="bottom" x1="0" y1="22" x2="32" y2="22"></line>
+	</svg>
+</button>
+
 <style lang="postcss">
 	svg {
 		min-height: 24px;
@@ -24,20 +41,3 @@
 		transform: translate(-12px, 9px) rotate(-45deg);
 	}
 </style>
-
-<script lang="ts">
-	import { sidebarOpen } from '$lib/stores/sidebarStore';
-
-	const toggle = () => {
-		sidebarOpen.update((n) => (n = !n));
-	};
-	export let hamburgerClass = 'text-gray-500 hover:text-gray-700 cursor-pointer border-none focus:outline-none dark:text-white';
-</script>
-
-<button id="hamburgerBtn" class="{hamburgerClass}" class:open="{$sidebarOpen}" on:click="{toggle}" aria-label="Sidebar">
-	<svg width="32" height="24">
-		<line id="top" x1="0" y1="2" x2="32" y2="2"></line>
-		<line id="middle" x1="0" y1="12" x2="24" y2="12"></line>
-		<line id="bottom" x1="0" y1="22" x2="32" y2="22"></line>
-	</svg>
-</button>

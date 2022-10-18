@@ -1,17 +1,3 @@
-<style lang="postcss">
-	button {
-		color: white;
-	}
-
-	•primary {
-		background: teal;
-	}
-
-	• secondary {
-		background: orange;
-	}
-</style>
-
 <script lang="ts">
 	// import type { HTMLButtonAttributes } from 'not-decided-where-from-yet'
 	// interface $$Props extends HTMLButtonAttributes {}
@@ -26,3 +12,17 @@
 <button {...$$restProps} class="{$$restProps.class ?? ''} {variant}">
 	<slot />
 </button>
+
+<style lang="postcss">
+	button {
+		color: white;
+	}
+
+	•primary {
+		background: teal;
+	}
+
+	• secondary {
+		background: orange;
+	}
+</style>

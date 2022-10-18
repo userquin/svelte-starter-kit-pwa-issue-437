@@ -1,9 +1,3 @@
-<style lang="postcss">
-	.error {
-		@apply text-gray-600;
-	}
-</style>
-
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
@@ -65,3 +59,9 @@
 		<p>Reload the page once you've found the internet.</p>
 	{/if}
 </div>
+
+<style lang="postcss">
+	.error {
+		@apply text-gray-600;
+	}
+</style>

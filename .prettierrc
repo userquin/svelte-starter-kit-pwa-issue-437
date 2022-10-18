@@ -29,6 +29,5 @@
 	"embeddedLanguageFormatting": "auto",
 	"htmlWhitespaceSensitivity": "strict",
 	"svelteStrictMode": true,
-	"svelteSortOrder": "options-styles-scripts-markup",
 	"svelteAllowShorthand": false
 }

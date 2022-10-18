@@ -1,21 +1,3 @@
-<style lang="postcss">
-	:global(td.matches) {
-		background: rgba(46, 196, 182, 0.2);
-	}
-
-	/*table {*/
-	/*	border-spacing: 0;*/
-	/*	border-top: 1px solid black;*/
-	/*	border-left: 1px solid black;*/
-	/*}*/
-
-	/*th, td {*/
-	/*	border-bottom: 1px solid black;*/
-	/*	border-right: 1px solid black;*/
-	/*	padding: 0.5rem;*/
-	/*}*/
-</style>
-
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -227,3 +209,21 @@
 		</ButtonGroup>
 	</nav>
 </div>
+
+<style lang="postcss">
+	:global(td.matches) {
+		background: rgba(46, 196, 182, 0.2);
+	}
+
+	/*table {*/
+	/*	border-spacing: 0;*/
+	/*	border-top: 1px solid black;*/
+	/*	border-left: 1px solid black;*/
+	/*}*/
+
+	/*th, td {*/
+	/*	border-bottom: 1px solid black;*/
+	/*	border-right: 1px solid black;*/
+	/*	padding: 0.5rem;*/
+	/*}*/
+</style>

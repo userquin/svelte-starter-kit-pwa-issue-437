@@ -6,12 +6,24 @@ x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 query  {
-  tz_policies(order_by: {update_time: desc_nulls_last}, limit: 10, where: {delete_time: {_is_null: true}}) {
+  counts: tz_policies_aggregate {
+    aggregate {
+      count
+    }
+  }
+  tz_policies(
+  order_by: {update_time: desc_nulls_last},
+  limit: 10,
+  where: {delete_time: {_is_null: true}}
+  ) {
     id
     create_time
     display_name
-    subject_type
-    subject_display_name
+	subject_id
+	subject_secondary_id
+	subject_domain
+	subject_display_name
+	subject_type
     valid_from
     valid_to
     weight
@@ -34,7 +46,15 @@ x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
-  tz_policies(order_by: {update_time: desc_nulls_last}, limit: $limit, where: {delete_time: {_is_null: true}, subject_id: {_eq: $subject_id}, subject_type: {_eq: $subject_type}}) {
+  tz_policies(
+  order_by: {update_time: desc_nulls_last},
+  limit: $limit,
+  where: {
+	delete_time: {_is_null: true},
+	subject_id: {_eq: $subject_id}, subject_type: {_eq: $subject_type},
+	display_name: {_like: "%user%"}
+  }
+  ) {
     id
     create_time
     display_name

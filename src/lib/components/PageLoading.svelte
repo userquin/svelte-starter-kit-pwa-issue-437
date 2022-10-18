@@ -1,18 +1,5 @@
 <svelte:options immutable />
 
-<style lang="postcss">
-	.page-loading {
-		position: fixed;
-		top: calc(50% - 2.5rem);
-		left: calc(50% - 2.5rem);
-		z-index: 100;
-	}
-	.loading {
-		width: 5rem;
-		height: 5rem;
-	}
-</style>
-
 <script lang="ts">
 	import { navigating } from '$app/stores';
 
@@ -26,3 +13,16 @@
 		</div>
 	</div>
 {/if}
+
+<style lang="postcss">
+	.page-loading {
+		position: fixed;
+		top: calc(50% - 2.5rem);
+		left: calc(50% - 2.5rem);
+		z-index: 100;
+	}
+	.loading {
+		width: 5rem;
+		height: 5rem;
+	}
+</style>

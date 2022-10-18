@@ -1,8 +1,10 @@
-import { auth, endpoints } from '$lib/config';
+import { env as dynPriEnv } from '$env/dynamic/private';
+import { CONFY_API_ENDPOINT } from '$env/static/private';
 import { getAppError, isAppError } from '$lib/utils/errors';
 import { error } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
+// import gql from 'graphql-tag';
 
 const query = `
 query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
@@ -33,14 +35,14 @@ export const load: PageServerLoad = async ({ url }) => {
 	const limit = url.searchParams.get('limit') ?? 50;
 
 	const variables = { subject_id, subject_type, limit };
-	const operationName = 'lookupPolicies';
+	// const operationName = 'lookupPolicies';
 
 	try {
-		const resp = await fetch(`${endpoints.api}`, {
+		const resp = await fetch(CONFY_API_ENDPOINT, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-hasura-admin-secret': `${auth.token}`
+				'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN
 			},
 			body: JSON.stringify({
 				query,
