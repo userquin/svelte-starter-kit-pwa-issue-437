@@ -3,8 +3,9 @@
 	let links = [
 		{ name: 'Draggable', href: '/play/draggable', current: true },
 		{ name: 'Resizeable', href: '/play/draggable' },
-		{ name: 'Next1', href: '/play/draggable' },
-		{ name: 'Next2', href: '/play/draggable' }
+		{ name: 'Grid1', href: '/play/grid1' },
+		{ name: 'Grid2', href: '/play/grid2' },
+		{ name: 'Grid3', href: '/play/grid3' }
 	];
 </script>
 
