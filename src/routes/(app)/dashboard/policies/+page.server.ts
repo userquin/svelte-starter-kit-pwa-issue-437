@@ -4,29 +4,28 @@ import { getAppError, isAppError } from '$lib/utils/errors';
 import { error } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
-// import gql from 'graphql-tag';
 
 const query = `
-query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
-  tz_policies(order_by: {update_time: desc_nulls_last}, limit: $limit, where: {delete_time: {_is_null: true}, subject_id: {_eq: $subject_id}, subject_type: {_eq: $subject_type}}) {
-    id
-    create_time
-    display_name
-    subject_type
-    subject_display_name
-    subject_id
-    valid_from
-    valid_to
-    weight
-    source_address
-    source_port
-    destination_address
-    destination_port
-    protocol
-    action
-    template
-  }
-}
+	query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
+		tz_policies(order_by: { update_time: desc_nulls_last }, limit: $limit, where: { delete_time: { _is_null: true }, subject_id: { _eq: $subject_id }, subject_type: { _eq: $subject_type } }) {
+			id
+			create_time
+			display_name
+			subject_type
+			subject_display_name
+			subject_id
+			valid_from
+			valid_to
+			weight
+			source_address
+			source_port
+			destination_address
+			destination_port
+			protocol
+			action
+			template
+		}
+	}
 `;
 
 export const load: PageServerLoad = async ({ url }) => {

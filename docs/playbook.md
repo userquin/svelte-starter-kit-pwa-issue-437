@@ -142,6 +142,38 @@ npm i -D @tanstack/svelte-query
 
 ### Optional
 
+#### Markdown CMS
+
 ```shell
 npx svelte-add@latest mdsvex
+```
+
+#### GraphQL
+
+**VS Code:** install `GraphQL.vscode-graphql` VS Code plugin
+
+use [houdini](https://www.houdinigraphql.com/) as GraphQL Client. [example](https://github.com/hygraph/hygraph-examples/tree/master/with-houdini)
+
+```shell
+npm i -D houdini
+npx houdini init
+```
+
+(Or) KitQL. See [How To](https://scottspence.com/posts/getting-started-with-kitql-and-graphcms)
+
+```shell
+npm i -D @kitql/all-in houdini graphql
+npx houdini init
+```
+
+(Or) Apollo Client. [example](https://github.com/rodneylab/sveltekit-graphql-github)
+
+```shell
+npm i -D @apollo/client graphql graphql-tag
+```
+
+(Or) [URQL](https://formidable.com/open-source/urql/docs/basics/svelte/). [example](https://github.com/hygraph/hygraph-examples/tree/master/with-sveltekit-and-urql)
+
+```shell
+npm i -D @urql/svelte graphql
 ```
