@@ -1,12 +1,12 @@
 import { env as dynPriEnv } from '$env/dynamic/private';
 import { COOKIE_STATE_KEY, setCookie } from '$lib/utils/cookies';
-import { redirect, type RequestHandler } from '@sveltejs/kit';
-// import type { RequestHandler } from './$types';
+import { redirect } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 const authEndpoint = dynPriEnv.CONFY_AUTH_ENDPOINT;
 const authParams = {
-	client_id: dynPriEnv.CONFY_AUTH_CLIENT_ID,
-	scope: dynPriEnv.CONFY_AUTH_CLIENT_SCOPE
+	client_id: dynPriEnv.CONFY_AUTH_CLIENT_ID ?? '',
+	scope: dynPriEnv.CONFY_AUTH_CLIENT_SCOPE ?? ''
 };
 
 export const GET: RequestHandler = async ({ url, locals, cookies }) => {

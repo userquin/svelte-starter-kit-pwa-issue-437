@@ -7,16 +7,16 @@ import type { RequestHandler } from './$types';
 
 const client_id = dynPriEnv.CONFY_AUTH_CLIENT_ID;
 const client_secret = dynPriEnv.CONFY_AUTH_CLIENT_SECRET;
-const auth_token_endpoint = dynPriEnv.CONFY_AUTH_TOKEN_ENDPOINT;
+const auth_token_endpoint = dynPriEnv.CONFY_AUTH_TOKEN_ENDPOINT ?? '';
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
 	const cookie_state = getCookie(cookies, COOKIE_STATE_KEY);
 	const state = url.searchParams.get('state');
 	// To protect against `cross-site request forgery` attacks, verify states are equal
-	if (!cookie_state || !state || cookie_state != state) throw error(401, { code: 401, message: '"Login failed. code empty' });
+	if (!cookie_state || !state || cookie_state != state) throw error(401, { code: 401, message: 'Login failed. state not equal' });
 
 	const code = url.searchParams.get('code');
-	if (!code) throw error(401, { code: 401, message: '"Login failed. code empty' });
+	if (!code) throw error(401, { code: 401, message: 'Login failed. code empty' });
 
 	// get accessToken, expires_in
 	const { access_token, expires_in, refresh_token, refresh_token_expires_in } = await getToken(code);

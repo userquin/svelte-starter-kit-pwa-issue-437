@@ -68,7 +68,7 @@
 	{#if isLoggedIn}
 		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 		<div class="hidden md:block">
-			<Avatar src="{avatarUrl}" size="md" border>{username?.substring(0, 2)}</Avatar>
+			<Avatar src="{avatarUrl}" size="md" border>{username?.substring(0, 2).toUpperCase()}</Avatar>
 			<Dropdown arrowIcon="{false}" inline="{true}">
 				<DropdownHeader>
 					<span class="block truncate text-sm font-medium">{name}</span>

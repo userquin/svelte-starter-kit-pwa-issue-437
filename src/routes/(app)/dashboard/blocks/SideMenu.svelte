@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
+	import { page } from '$app/stores';
 	import { Drawer } from '$lib/components';
 	import { sidebarOpen } from '$lib/stores/sidebarStore';
 	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
-
 	import { ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocument, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, Stop, UserGroup, Users } from 'svelte-heros-v2';
 
 	// custom style
@@ -10,6 +10,8 @@
 	let asideClass = 'w-64 hidden sm:block overflow-y-auto bg-gray-50 dark:bg-gray-700';
 	// change dark:bg-gray-800 -> dark:bg-gray-700
 	let divClass = 'overflow-y-auto py-4 px-3 rounded dark:bg-gray-700';
+
+	$: activeUrl = $page.url.pathname;
 </script>
 
 <Drawer bind:show="{$sidebarOpen}" asideClass="{asideClass}">
@@ -32,22 +34,22 @@
 						<span class="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-200 p-3 text-sm font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-200">3</span>
 					</svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/tenants" label="Tenants">
+				<SidebarItem label="Tenants" href="/dashboard/tenants" active="{activeUrl === '/dashboard/tenants'}">
 					<svelte:fragment slot="icon"><ShieldCheck /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/accounts" label="Accounts">
+				<SidebarItem label="Accounts" href="/dashboard/accounts" active="{activeUrl === '/dashboard/accounts'}">
 					<svelte:fragment slot="icon"><Stop /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/policies" label="Policies">
+				<SidebarItem label="Policies" href="/dashboard/policies" active="{activeUrl === '/dashboard/policies'}">
 					<svelte:fragment slot="icon"><ClipboardDocument /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/users" label="Users">
+				<SidebarItem label="Users" href="/dashboard/users" active="{activeUrl === '/dashboard/users'}">
 					<svelte:fragment slot="icon"><Users /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/tenants" label="Tenants">
+				<SidebarItem label="Tenants" href="/dashboard/tenants" active="{activeUrl === '/dashboard/tenants'}">
 					<svelte:fragment slot="icon"><UserGroup /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem href="/dashboard/settings" label="Settings">
+				<SidebarItem label="Settings" href="/dashboard/settings" active="{activeUrl === '/dashboard/settings'}">
 					<svelte:fragment slot="icon"><Cog /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem rel="external" href="/auth/logout" label="Sign Out">
