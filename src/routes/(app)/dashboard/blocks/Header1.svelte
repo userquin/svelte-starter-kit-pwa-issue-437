@@ -9,6 +9,7 @@
 	export let isLoggedIn = false;
 	export let name: string | undefined;
 	export let username: string | undefined;
+	export let avatarUrl = '/images/profile-picture-3.webp';
 
 	// let navClass = ' border-gray-200 px-2 sm:px-4 py-2.5 bg-white dark:bg-gray-800'
 	// Added `bg-gray-50 dark:bg-gray-700` like sidebar and footer
@@ -67,14 +68,13 @@
 	{#if isLoggedIn}
 		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 		<div class="hidden md:block">
-			<Avatar class="acs" src="/images/profile-picture-3.webp" size="md" border>SC</Avatar>
+			<Avatar src="{avatarUrl}" size="md" border>{username?.substring(0, 2)}</Avatar>
 			<Dropdown arrowIcon="{false}" inline="{true}">
 				<DropdownHeader>
-					<span class="block text-sm">{username}</span>
 					<span class="block truncate text-sm font-medium">{name}</span>
 				</DropdownHeader>
-				<DropdownItem>Profile</DropdownItem>
-				<DropdownItem>Settings</DropdownItem>
+				<DropdownItem><a rel="external" href="/dashboard/profile">Profile</a></DropdownItem>
+				<DropdownItem><a rel="external" href="/dashboard/settings">Settings</a></DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
 					<a rel="external" href="/auth/logout">Sign Out</a>
