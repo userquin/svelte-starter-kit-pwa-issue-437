@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Stack } from '$lib/components/icons';
 </script>
 
 <header class="body-font text-gray-600 dark:bg-gray-900 dark:text-gray-400">
@@ -17,11 +16,11 @@
 			<a href="/blog" class="mr-5 hover:text-gray-900 dark:hover:text-white">Blog</a>
 			<a href="/about" class="mr-5 hover:text-gray-900 dark:hover:text-white">About us</a>
 		</nav>
-		<button class="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 md:mt-0"
+		<a href="/auth/login" class="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 md:mt-0"
 			>Login
 			<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-1 h-4 w-4" viewBox="0 0 24 24">
 				<path d="M5 12h14M12 5l7 7-7 7"></path>
 			</svg>
-		</button>
+		</a>
 	</div>
 </header>

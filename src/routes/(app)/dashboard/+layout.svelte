@@ -1,10 +1,15 @@
 <script lang="ts">
 	import { DarkMode } from 'flowbite-svelte';
+	import type { LayoutServerData } from './$types';
 	import { Footer, Header, SideMenu } from './blocks';
 
-	let isLoggedIn = true;
-	let isAdmin = true;
-	let username = 'sumo';
+	export let data: LayoutServerData;
+	let {
+		user: { github: ghUser }
+	} = data;
+	const isLoggedIn = ghUser ? true : false;
+	const name = ghUser?.name;
+	const username = ghUser?.login;
 
 	// HINT: added `right-4 top-24` to original `btnClass`
 	let btnClass = 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg p-2.5 fixed right-4 top-24 z-50';
@@ -14,7 +19,7 @@
 
 <div class="flex h-screen flex-col">
 	<!--  start::navbar   -->
-	<Header loggedIn="{isLoggedIn}" userName="{username}" isAdmin="{isAdmin}" />
+	<Header isLoggedIn="{isLoggedIn}" name="{name}" username="{username}" />
 	<!--  end::navbar     -->
 	<div class="flex flex-1 overflow-hidden">
 		<!--   start::Sidebar    -->

@@ -1,9 +1,11 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 // and what to do when importing types
+
 declare namespace App {
+	type User = import('./lib/models/types/user').User;
 	interface Locals {
-		userid: string;
+		user: User;
 	}
 	// interface PageData {}
 	interface Error {

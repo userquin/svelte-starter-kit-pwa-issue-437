@@ -50,7 +50,7 @@
 				<SidebarItem href="/dashboard/settings" label="Settings">
 					<svelte:fragment slot="icon"><Cog /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem rel="external" href="/.auth/logout?post_logout_redirect_uri=/" label="Sign Out">
+				<SidebarItem rel="external" href="/auth/logout" label="Sign Out">
 					<svelte:fragment slot="icon"><ArrowRightOnRectangle /></svelte:fragment>
 				</SidebarItem>
 			</SidebarGroup>

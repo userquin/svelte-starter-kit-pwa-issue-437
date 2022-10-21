@@ -14,4 +14,4 @@ export const VERTICAL_LINE_ENTITY = '\u007c'; // |
 // 3rd Party Website/App URIs
 export const URL_DICEBEAR = 'https://avatars.dicebear.com/api/avataaars/';
 
-export const COOKIE_NAME = 'sb:token';
+// global constants

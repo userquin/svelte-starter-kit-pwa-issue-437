@@ -1,22 +1,18 @@
+import { getUser } from '$lib/utils/cookies';
 import type { Handle, HandleClientError, HandleServerError } from '@sveltejs/kit';
 // import { ENVIRONMENT, SENTRY_DSN } from '$env/static/private';
 // import Toucan from 'toucan-js';
 
 // Red: https://github.com/sveltejs/kit/blob/master/documentation/docs/07-hooks.md
 
+// TODO : https://github.com/chientrm/svelty/blob/main/src/hooks.server.ts
+
 // Invoked for each endpoint called and initially for SSR router
 export const handle: Handle = async ({ event, resolve }) => {
 	const { cookies } = event;
-	let userid = cookies.get('userid');
+	const user = getUser(cookies);
 
-	if (!userid) {
-		// if this is the first time the user has visited this app,
-		// set a cookie so that we recognise them when they return
-		userid = crypto.randomUUID();
-		cookies.set('userid', userid, { path: '/' });
-	}
-
-	event.locals.userid = userid;
+	event.locals.user = user;
 
 	return resolve(event);
 };

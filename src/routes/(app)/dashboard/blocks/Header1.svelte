@@ -3,8 +3,12 @@
 	import { Hamburger } from '$lib/components';
 	import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
 
-	let path;
+	let path: string;
 	$: path = $page.url.pathname;
+
+	export let isLoggedIn = false;
+	export let name: string | undefined;
+	export let username: string | undefined;
 
 	// let navClass = ' border-gray-200 px-2 sm:px-4 py-2.5 bg-white dark:bg-gray-800'
 	// Added `bg-gray-50 dark:bg-gray-700` like sidebar and footer
@@ -60,20 +64,22 @@
 		<NavLi href="/dashboard/users" active="{path == '/dashboard/users'}">Users</NavLi>
 	</NavUl>
 
-	<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
-	<div class="hidden md:block">
-		<Avatar class="acs" src="/images/profile-picture-3.webp" size="md" border>SC</Avatar>
-		<Dropdown arrowIcon="{false}" inline="{true}">
-			<DropdownHeader>
-				<span class="block text-sm"> Sumanth </span>
-				<span class="block truncate text-sm font-medium"> sumo@demo.com </span>
-			</DropdownHeader>
-			<DropdownItem>Profile</DropdownItem>
-			<DropdownItem>Settings</DropdownItem>
-			<DropdownDivider />
-			<DropdownItem>
-				<a rel="external" href="/.auth/logout?post_logout_redirect_uri=/">Sign Out</a>
-			</DropdownItem>
-		</Dropdown>
-	</div>
+	{#if isLoggedIn}
+		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
+		<div class="hidden md:block">
+			<Avatar class="acs" src="/images/profile-picture-3.webp" size="md" border>SC</Avatar>
+			<Dropdown arrowIcon="{false}" inline="{true}">
+				<DropdownHeader>
+					<span class="block text-sm">{username}</span>
+					<span class="block truncate text-sm font-medium">{name}</span>
+				</DropdownHeader>
+				<DropdownItem>Profile</DropdownItem>
+				<DropdownItem>Settings</DropdownItem>
+				<DropdownDivider />
+				<DropdownItem>
+					<a rel="external" href="/auth/logout">Sign Out</a>
+				</DropdownItem>
+			</Dropdown>
+		</div>
+	{/if}
 </Navbar>
