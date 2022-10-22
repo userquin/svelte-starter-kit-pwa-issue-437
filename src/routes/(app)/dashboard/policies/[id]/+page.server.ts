@@ -2,7 +2,7 @@ import { getAppError, isAppError } from '$lib/utils/errors';
 import { createRandomAccount } from '$mocks/data/accounts';
 import { error, invalid } from '@sveltejs/kit';
 import { ZodError } from 'zod';
-import type { PageServerLoad } from './$types';
+import type { Action, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
@@ -33,4 +33,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 		throw error(500, getAppError(500, err));
 	}
+};
+
+export const create: Action = async ({ request }) => {
+	console.log(request);
+};
+
+export const deletePoliciy: Action = async ({ request }) => {
+	console.log(request);
 };

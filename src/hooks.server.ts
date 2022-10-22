@@ -1,17 +1,31 @@
+import { CONFY_SENTRY_DSN } from '$env/static/private';
 import { getUser } from '$lib/utils/cookies';
-import type { Handle, HandleClientError, HandleServerError } from '@sveltejs/kit';
-// import { ENVIRONMENT, SENTRY_DSN } from '$env/static/private';
-// import Toucan from 'toucan-js';
+import * as Sentry from '@sentry/svelte';
+import { BrowserTracing } from '@sentry/tracing';
+import type { Handle, HandleServerError } from '@sveltejs/kit';
 
 // Red: https://github.com/sveltejs/kit/blob/master/documentation/docs/07-hooks.md
 
 // TODO : https://github.com/chientrm/svelty/blob/main/src/hooks.server.ts
 
+// Initialize the Sentry SDK here
+if (CONFY_SENTRY_DSN) {
+	Sentry.init({
+		dsn: CONFY_SENTRY_DSN,
+		integrations: [new BrowserTracing()],
+
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 1.0
+	});
+}
+
 // Invoked for each endpoint called and initially for SSR router
 export const handle: Handle = async ({ event, resolve }) => {
 	const { cookies } = event;
 	const user = getUser(cookies);
-
+	// TODO: decrypt user cookie
 	event.locals.user = user;
 
 	return resolve(event);
@@ -19,27 +33,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 export const handleServerError: HandleServerError = ({ error, event }) => {
 	console.error(error);
-	// example integration with https://sentry.io/
-	/*
-	if (SENTRY_DSN?.length) {
-		const { request } = event,
-			sentry = new Toucan({
-				dsn: SENTRY_DSN,
-				request,
-				allowedCookies: /(.*)/,
-				allowedHeaders: /(.*)/,
-				allowedSearchParams: /(.*)/,
-				environment: ENVIRONMENT
-			});
-		sentry.setExtra('event', event);
-	*/
-	// Sentry.captureException(error, { event });
-};
-
-export const handleClientError: HandleClientError = ({ error, event }) => {
-	console.error(error);
-	// example integration with https://sentry.io/
-	// Sentry.captureException(error, { event });
+	Sentry.setExtra('event', event);
+	Sentry.captureException(error);
+	const err = error as App.Error;
+	return {
+		message: err.message ?? 'Whoops!',
+		code: err.code ?? 418,
+		context: err.context
+	};
 };
 
 /*

@@ -1,6 +1,7 @@
 import { env as dynPriEnv } from '$env/dynamic/private';
 import { CONFY_API_ENDPOINT } from '$env/static/private';
 import { getAppError, isAppError } from '$lib/utils/errors';
+import * as Sentry from '@sentry/svelte';
 import { error } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
@@ -56,6 +57,10 @@ export const load: PageServerLoad = async ({ url }) => {
 		if (!policies?.length) throw { code: 404, message: 'not found' };
 		return { policies };
 	} catch (err) {
+		// example report error
+		Sentry.setContext('source', { code: 'policy' });
+		Sentry.captureException(err);
+
 		// err as App.Error
 		if (err instanceof ZodError) {
 			throw error(400, {

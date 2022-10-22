@@ -148,6 +148,22 @@ npm i -D @tanstack/svelte-query
 npx svelte-add@latest mdsvex
 ```
 
+#### Time Distance
+
+[svelte-time-distance](https://github.com/joshnuss/svelte-time-distance) Display time distances in a human readable format.
+
+```shell
+npm i -D svelte-time-distance
+```
+
+#### Error Tracking
+
+Sentry helps track errors in code.
+
+```shell
+npm i -D @sentry/svelte @sentry/tracing
+```
+
 #### GraphQL
 
 **VS Code:** install `GraphQL.vscode-graphql` VS Code plugin
