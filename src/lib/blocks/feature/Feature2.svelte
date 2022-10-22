@@ -17,7 +17,7 @@
 					</div>
 					<div class="flex-grow">
 						<p class="text-base leading-relaxed">Apply & execute policies using a graphical flow diagram or from your CLI.</p>
-						<a class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
+						<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
 							>Learn More
 							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -39,7 +39,7 @@
 					</div>
 					<div class="flex-grow">
 						<p class="text-base leading-relaxed">Visualize and understand API usage with the included analytics dashboard or integrate with popular tools like Grafana or Kibana.</p>
-						<a class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
+						<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
 							>Learn More
 							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -62,7 +62,7 @@
 					</div>
 					<div class="flex-grow">
 						<p class="text-base leading-relaxed">Make APIs consumable by publishing your APIs and their documentation to a developer portal.</p>
-						<a class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
+						<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500 dark:text-indigo-400"
 							>Learn More
 							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>

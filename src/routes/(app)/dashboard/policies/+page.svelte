@@ -2,15 +2,14 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { Address, Link } from '$lib/components';
-	import type { Account } from '$lib/models/types/accounts';
 	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
 	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, Users } from 'svelte-heros-v2';
 	import { writable } from 'svelte/store';
+	import type { PageData } from './$types';
 
-	/** @type {import("./$types").PageData */
-	export let data: { policies: Account[] } = { policies: [] }; // `data` props get initialized from page endpoint.
+	export let data: PageData; // `data` props get initialized from page endpoint.
 	let { policies } = data; // we need this statement to access `results/total` values before component mounted.
 	$: ({ policies } = data); // so `members` stays in sync when `data` changes
 	$: memberStore.set(policies); // update store when data changed

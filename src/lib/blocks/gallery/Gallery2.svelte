@@ -6,7 +6,7 @@
 				<div class="relative z-10 w-full text-center">
 					<h2 class="title-font mb-2 text-2xl font-medium text-gray-900">Shooting Stars</h2>
 					<p class="leading-relaxed">Skateboard +1 mustache fixie paleo lumbersexual.</p>
-					<a class="mt-3 inline-flex items-center text-indigo-500"
+					<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500"
 						>Learn More
 						<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 							<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -21,7 +21,7 @@
 						<div class="relative z-10 w-full text-center">
 							<h2 class="title-font mb-2 text-xl font-medium text-gray-900">Shooting Stars</h2>
 							<p class="leading-relaxed">Skateboard +1 mustache fixie paleo lumbersexual.</p>
-							<a class="mt-3 inline-flex items-center text-indigo-500"
+							<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500"
 								>Learn More
 								<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 									<path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -36,7 +36,7 @@
 						<div class="relative z-10 w-full text-center">
 							<h2 class="title-font mb-2 text-xl font-medium text-gray-900">Shooting Stars</h2>
 							<p class="leading-relaxed">Skateboard +1 mustache fixie paleo lumbersexual.</p>
-							<a class="mt-3 inline-flex items-center text-indigo-500"
+							<a href="{'#'}" class="mt-3 inline-flex items-center text-indigo-500"
 								>Learn More
 								<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 h-4 w-4" viewBox="0 0 24 24">
 									<path d="M5 12h14M12 5l7 7-7 7"></path>

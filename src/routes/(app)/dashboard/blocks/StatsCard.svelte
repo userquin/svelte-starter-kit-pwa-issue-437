@@ -9,7 +9,7 @@
 			<div class="flex-grow px-4 py-5 sm:p-6">
 				<div class="flex items-center">
 					<div class="flex-shrink-0 rounded-md bg-indigo-500 p-3">
-						<svg class="h-6 w-6 text-white" x-description="Heroicon name: outline/users" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+						<svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
 						</svg>
 					</div>
@@ -31,7 +31,7 @@
 			</div>
 			<div class="bg-gray-50 px-4 py-4 sm:px-6">
 				<div class="text-sm">
-					<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Total Subscribers stats</span></a>
+					<a href="{'#'}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Total Subscribers stats</span></a>
 				</div>
 			</div>
 		</div>
@@ -60,7 +60,7 @@
 			</div>
 			<div class="bg-gray-50 px-4 py-4 sm:px-6">
 				<div class="text-sm">
-					<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Avg. Open Rate stats</span></a>
+					<a href="{'#'}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Avg. Open Rate stats</span></a>
 				</div>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 			<div class="flex-grow px-4 py-5 sm:p-6">
 				<div class="flex items-center">
 					<div class="flex-shrink-0 rounded-md bg-indigo-500 p-3">
-						<svg class="h-6 w-6 text-white" x-description="Heroicon name: outline/cursor-click" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+						<svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
 						</svg>
 					</div>
@@ -91,7 +91,7 @@
 			</div>
 			<div class="bg-gray-50 px-4 py-4 sm:px-6">
 				<div class="text-sm">
-					<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Avg. Click Rate stats</span></a>
+					<a href="{'#'}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Avg. Click Rate stats</span></a>
 				</div>
 			</div>
 		</div>

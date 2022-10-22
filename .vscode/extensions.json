@@ -25,7 +25,6 @@
 		"zxh404.vscode-proto3",
 		"xaver.clang-format",
 		// WebApps
-		"ardenivanov.svelte-intellisense",
 		"bradlc.vscode-tailwindcss",
 		"codezombiech.gitignore",
 		"cschleiden.vscode-github-actions",
@@ -45,5 +44,5 @@
 		"GraphQL.vscode-graphql"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
-	"unwantedRecommendations": []
+	"unwantedRecommendations": ["ardenivanov.svelte-intellisense"]
 }

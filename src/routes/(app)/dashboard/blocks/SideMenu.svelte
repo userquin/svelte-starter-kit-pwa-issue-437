@@ -3,7 +3,7 @@
 	import { Drawer } from '$lib/components';
 	import { sidebarOpen } from '$lib/stores/sidebarStore';
 	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
-	import { ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocument, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, Stop, UserGroup, Users } from 'svelte-heros-v2';
+	import { AcademicCap, ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, UserGroup, Users } from 'svelte-heros-v2';
 
 	// custom style
 	let spanClass = 'flex-1 ml-3 whitespace-nowrap';
@@ -34,14 +34,11 @@
 						<span class="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-200 p-3 text-sm font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-200">3</span>
 					</svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Tenants" href="/dashboard/tenants" active="{activeUrl === '/dashboard/tenants'}">
-					<svelte:fragment slot="icon"><ShieldCheck /></svelte:fragment>
-				</SidebarItem>
 				<SidebarItem label="Accounts" href="/dashboard/accounts" active="{activeUrl === '/dashboard/accounts'}">
-					<svelte:fragment slot="icon"><Stop /></svelte:fragment>
+					<svelte:fragment slot="icon"><AcademicCap /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem label="Policies" href="/dashboard/policies" active="{activeUrl === '/dashboard/policies'}">
-					<svelte:fragment slot="icon"><ClipboardDocument /></svelte:fragment>
+					<svelte:fragment slot="icon"><ShieldCheck /></svelte:fragment>
 				</SidebarItem>
 				<SidebarItem label="Users" href="/dashboard/users" active="{activeUrl === '/dashboard/users'}">
 					<svelte:fragment slot="icon"><Users /></svelte:fragment>

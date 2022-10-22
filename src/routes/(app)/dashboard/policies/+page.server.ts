@@ -51,7 +51,7 @@ export const load: PageServerLoad = async ({ url }) => {
 
 		// const { errors, response } = await resp.json();
 		const response = await resp.json();
-		const policies: any[] = response.data.tz_policies;
+		const policies: any[] = response.data.tz_policies; // FIXME use Policy model
 		console.log(policies);
 		if (!policies?.length) throw { code: 404, message: 'not found' };
 		return { policies };

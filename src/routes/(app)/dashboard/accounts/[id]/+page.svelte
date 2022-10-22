@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import type { Account } from '$lib/models/types/member';
 	import { Button, ButtonGroup } from 'flowbite-svelte';
 	import { AdjustmentsHorizontal, ArrowLeft } from 'svelte-heros-v2';
 	import type { PageData } from './$types';
 
-	/** @type {import('./$types').PageData */
 	export let data: PageData; // item: Account;
-	const { account }: { account: Account } = data;
+	const { account } = data;
 
 	async function goBack() {
 		history.back();
