@@ -172,14 +172,20 @@ use [houdini](https://www.houdinigraphql.com/) as GraphQL Client. [example](http
 
 ```shell
 npm i -D houdini
-npx houdini init
+
+# npx houdini init
+npx houdini init -ph "x-hasura-admin-secret"="<hasura-secret>"
 ```
 
-(Or) KitQL. See [How To](https://scottspence.com/posts/getting-started-with-kitql-and-graphcms)
+(Or) [KitQL](https://www.kitql.dev/)as GraphQL stackm which includes `houdini` as GraphQL Client. See [How To](https://scottspence.com/posts/getting-started-with-kitql-and-graphcms)
 
 ```shell
-npm i -D @kitql/all-in houdini graphql
-npx houdini init
+npm i -D @kitql/all-in
+# npm i -D houdini
+# npm i -D graphql
+
+# npx houdini init
+npx houdini init -ph "x-hasura-admin-secret"="<hasura-secret>"
 ```
 
 (Or) Apollo Client. [example](https://github.com/rodneylab/sveltekit-graphql-github)

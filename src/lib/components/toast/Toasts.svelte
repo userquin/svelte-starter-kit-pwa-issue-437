@@ -44,7 +44,7 @@
 						{toast.message}
 					</div>
 					{#if toast.dismissible}
-						<CloseButton on:click="{() => dismissToast(toast.id)}" />
+						<CloseButton aria-label="Close" on:click="{() => dismissToast(toast.id)}" />
 					{/if}
 				</div>
 			</Frame>
