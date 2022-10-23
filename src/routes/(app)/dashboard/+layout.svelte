@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Toasts } from '$lib/components/toast';
 	import { DarkMode } from 'flowbite-svelte';
 	import type { LayoutServerData } from './$types';
 	import { Footer, Header, SideMenu } from './blocks';
@@ -16,6 +17,7 @@
 </script>
 
 <DarkMode btnClass="{btnClass}" />
+<Toasts position="bottom-right" />
 
 <div class="flex h-screen flex-col">
 	<!--  start::navbar   -->
