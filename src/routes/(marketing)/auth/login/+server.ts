@@ -10,14 +10,14 @@ const authParams = {
 };
 
 export const GET: RequestHandler = async ({ url, locals, cookies }) => {
-	const redirect_uri = `${url.origin}/auth/callback`;
-	const state = crypto.randomUUID(); // The unguessable random string
-	setCookie(cookies, COOKIE_STATE_KEY, state, 5 * 1000);
-
 	// redirect user if logged in
 	if (locals.user) {
 		throw redirect(302, '/dashboard');
 	}
+
+	const redirect_uri = `${url.origin}/auth/callback`;
+	const state = crypto.randomUUID(); // The unguessable random string
+	setCookie(cookies, COOKIE_STATE_KEY, state, 5 * 1000);
 
 	// otherwise, redirect to auth provider
 	const urlEncoded = new URLSearchParams({ ...authParams, state, redirect_uri }).toString();
