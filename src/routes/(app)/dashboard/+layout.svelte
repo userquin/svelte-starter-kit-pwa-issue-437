@@ -4,6 +4,11 @@
 	import type { LayoutServerData } from './$types';
 	import { Footer, Header, SideMenu } from './blocks';
 
+	import { urqlClient } from '$lib/graphql/client';
+	import { setContextClient } from '@urql/svelte';
+
+	setContextClient(urqlClient());
+
 	export let data: LayoutServerData;
 	let {
 		user: { github: ghUser }

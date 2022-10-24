@@ -198,4 +198,7 @@ npm i -D @apollo/client graphql graphql-tag
 
 ```shell
 npm i -D @urql/svelte graphql
+# TypeScript integration (optional)
+# https://formidable.com/open-source/urql/docs/basics/typescript-integration/
+npm install -D @graphql-codegen/cli @graphql-codegen/client-preset
 ```

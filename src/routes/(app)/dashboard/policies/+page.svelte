@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { Address, Link } from '$lib/components';
+	import { Link } from '$lib/components';
+	import { getContextClient, gql, queryStore } from '@urql/svelte';
 	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
@@ -9,13 +10,50 @@
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
+	const ps = queryStore({
+		client: getContextClient(),
+		query: gql`
+			query {
+				counts: tz_policies_aggregate {
+					aggregate {
+						count
+					}
+				}
+				tz_policies(order_by: { update_time: desc_nulls_last }, limit: 10, where: { delete_time: { _is_null: true } }) {
+					id
+					create_time
+					display_name
+					subject_idnpm
+					run
+					subject_secondary_id
+					subject_domain
+					subject_display_name
+					subject_type
+					valid_from
+					valid_to
+					weight
+					source_address
+					source_port
+					destination_address
+					destination_port
+					protocol
+					action
+					template
+				}
+			}
+		`
+	});
+	console.log($ps.data);
+
 	export let data: PageData; // `data` props get initialized from page endpoint.
 	let { policies } = data; // we need this statement to access `results/total` values before component mounted.
 	$: ({ policies } = data); // so `members` stays in sync when `data` changes
-	$: memberStore.set(policies); // update store when data changed
+	$: policyStore.set(policies); // update store when data changed
 
-	const memberStore = writable(policies);
-	const table = createTable(memberStore, {
+	// console.log(policies);
+
+	const policyStore = writable(policies);
+	const table = createTable(policyStore, {
 		page: addPagination({ initialPageSize: 5 }),
 		tableFilter: addTableFilter(),
 		sort: addSortBy()
@@ -29,45 +67,32 @@
 				createRender(
 					Link,
 					writable({
-						url: `/dashboard/accounts/${value}`,
+						url: `/dashboard/policies/${value}`,
 						content: value
 					})
 				)
 		}),
 		table.column({
-			header: 'First Name',
-			accessor: 'firstName'
+			header: 'Display Name',
+			accessor: 'display_name'
 		}),
 		table.column({
-			header: () => 'Last Name',
-			accessor: 'lastName'
+			header: () => 'Subject',
+			accessor: 'subject_display_name'
 		}),
 		table.column({
-			header: () => 'DoB',
-			accessor: 'dob'
+			header: () => 'subject_type',
+			accessor: 'subject_type'
 		}),
 		table.column({
-			header: () => 'Gender',
-			accessor: 'gender'
+			header: () => 'weight',
+			accessor: 'weight'
 		}),
+
 		table.column({
-			header: 'Address',
-			accessor: 'address',
-			cell: ({ value }) =>
-				createRender(
-					Address,
-					writable({
-						street: value[0].street,
-						city: value[0].city,
-						state: value[0].state,
-						zip: value[0].zip
-					})
-				)
-		}),
-		table.column({
-			header: 'Number',
-			id: 'number',
-			accessor: (item) => item.phone[0].number
+			header: 'destination_address',
+			id: 'destination_address',
+			accessor: (item) => item.destination_address
 		})
 		// table.column({
 		// 	header: 'Extension',
@@ -116,7 +141,7 @@
 <Navbar let:hidden let:toggle border="{true}" rounded="{true}">
 	<NavBrand>
 		<Users />
-		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Accounts </span>
+		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Policies </span>
 	</NavBrand>
 
 	<!--	<div class="w-1/6"><div class="w-1/4">-->
