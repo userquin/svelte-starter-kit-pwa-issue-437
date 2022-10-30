@@ -10,7 +10,6 @@ const CONFY_API_ENDPOINT1 = dynPubEnv.PUBLIC_CONFY_API_ENDPOINT ?? '';
 const CONFY_API_TOKEN1 = dynPubEnv.PUBLIC_CONFY_API_TOKEN ?? '';
 
 export function urqlClient() {
-	console.log('CONFY_API_ENDPOINT1', CONFY_API_ENDPOINT1, CONFY_API_TOKEN1);
 	return createClient({
 		url: CONFY_API_ENDPOINT1,
 		requestPolicy: 'cache-and-network',

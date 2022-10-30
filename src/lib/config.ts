@@ -24,6 +24,26 @@ export const auth = {
 	token: dynPriEnv.CONFY_API_TOKEN
 };
 
+export const ssoGithubConfig = {
+	authorization_endpoint: dynPriEnv.CONFY_SSO_GITHUB_AUTHORIZATION_ENDPOINT ?? '',
+	token_endpoint: dynPriEnv.CONFY_SSO_GITHUB_TOKEN_ENDPOINT ?? '',
+	userinfo_endpoint: dynPriEnv.CONFY_SSO_GITHUB_USERINFO_ENDPOINT ?? '',
+	logout_endpoint: dynPriEnv.CONFY_SSO_GITHUB_LOGOUT_ENDPOINT ?? '',
+	client_id: dynPriEnv.CONFY_SSO_GITHUB_CLIENT_ID ?? '',
+	client_secret: dynPriEnv.CONFY_SSO_GITHUB_CLIENT_SECRET ?? '',
+	scope: dynPriEnv.CONFY_SSO_GITHUB_SCOPE ?? ''
+};
+
+export const ssoAzureADConfig = {
+	authorization_endpoint: dynPriEnv.CONFY_SSO_AZUREAD_AUTHORIZATION_ENDPOINT ?? '',
+	token_endpoint: dynPriEnv.CONFY_SSO_AZUREAD_TOKEN_ENDPOINT ?? '',
+	userinfo_endpoint: dynPriEnv.CONFY_SSO_AZUREAD_USERINFO_ENDPOINT ?? '',
+	logout_endpoint: dynPriEnv.CONFY_SSO_AZUREAD_LOGOUT_ENDPOINT ?? '',
+	client_id: dynPriEnv.CONFY_SSO_AZUREAD_CLIENT_ID ?? '',
+	acr_values: dynPriEnv.CONFY_SSO_AZUREAD_ACR_VALUES ?? '', // level Of Assurance
+	scope: dynPriEnv.CONFY_SSO_AZUREAD_SCOPE ?? ''
+};
+
 // static: GitHub
 export const github = {
 	apiUrl: PUBLIC_GITHUB_API_URL,

@@ -1,8 +1,9 @@
 /** Generated with https://app.quicktype.io/ **/
 
 export interface User {
-		github?: GithubUser;
-	}
+	github?: GithubUser;
+	azure?: AzureADUser
+}
 
 
 export interface GithubUser {
@@ -38,4 +39,13 @@ export interface GithubUser {
     following:           number;
     created_at:          Date;
     updated_at:          Date;
+}
+
+export interface AzureADUser {
+	sub: string;
+	groups: string[];
+	displayName: string;
+	email: string;
+	username: string;
+	avatar_url: string;
 }

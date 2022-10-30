@@ -1,13 +1,11 @@
-import { env as dynPriEnv } from '$env/dynamic/private';
-import { PUBLIC_GITHUB_API_URL as githubApiBaseUrl } from '$env/static/public';
+import { ssoGithubConfig } from '$lib/config';
 import type { GithubUser } from '$lib/models/types/user';
 import { COOKIE_ACCESS_TOKEN_KEY, COOKIE_REFRESH_TOKEN_KEY, COOKIE_STATE_KEY, getCookie, setCookie, setUser } from '$lib/utils/cookies';
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-const client_id = dynPriEnv.CONFY_AUTH_CLIENT_ID;
-const client_secret = dynPriEnv.CONFY_AUTH_CLIENT_SECRET;
-const auth_token_endpoint = dynPriEnv.CONFY_AUTH_TOKEN_ENDPOINT ?? '';
+const grant_type = 'authorization_code';
+const { client_id, client_secret, token_endpoint, userinfo_endpoint } = ssoGithubConfig;
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
 	const cookie_state = getCookie(cookies, COOKIE_STATE_KEY);
@@ -37,7 +35,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 };
 
 async function getToken(code: string) {
-	const r = await fetch(auth_token_endpoint, {
+	const r = await fetch(token_endpoint, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -53,18 +51,7 @@ async function getToken(code: string) {
 }
 
 async function getUser(token: string) {
-	const r = await fetch(`${githubApiBaseUrl}/user`, {
-		headers: {
-			Accept: 'application/json',
-			Authorization: `Bearer ${token}`
-		}
-	});
-	return await r.json();
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function getEmail(token: string) {
-	const r = await fetch(`${githubApiBaseUrl}/user/emails`, {
+	const r = await fetch(userinfo_endpoint, {
 		headers: {
 			Accept: 'application/json',
 			Authorization: `Bearer ${token}`
