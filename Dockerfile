@@ -17,7 +17,7 @@ RUN case ${TARGETPLATFORM} in \
     && chmod +x /tini
 
 # This stage builds the application.
-FROM --platform=${BUILDPLATFORM} node:18 as build-app
+FROM --platform=${BUILDPLATFORM} node:19 as build-app
 
 # build-args are used in vite.config.ts
 ARG BUILD_TIME
@@ -35,7 +35,7 @@ RUN npm audit fix
 RUN npm run build:node
 
 # This stage installs the runtime dependencies.
-FROM --platform=${BUILDPLATFORM} node:18-alpine as build-runtime
+FROM --platform=${BUILDPLATFORM} node:19-alpine as build-runtime
 
 WORKDIR /app
 COPY package.json package-lock.json ./
