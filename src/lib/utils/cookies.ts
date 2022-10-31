@@ -4,6 +4,7 @@ import type { User } from '$lib/models/types/user';
 import { encrypt } from '$lib/utils';
 import type { Cookies } from '@sveltejs/kit';
 export const COOKIE_ACCESS_TOKEN_KEY = 'sb:access_token';
+export const COOKIE_ID_TOKEN_KEY = 'sb:id_token';
 export const COOKIE_REFRESH_TOKEN_KEY = 'sb:refresh_token';
 export const COOKIE_USER_KEY = 'sb:user';
 export const COOKIE_STATE_KEY = 'sb:state';
@@ -47,6 +48,7 @@ export function getUser(cookies: Cookies) {
 
 export function clearUser(cookies: Cookies) {
 	cookies.delete(COOKIE_ACCESS_TOKEN_KEY, { path: '/' });
+	cookies.delete(COOKIE_ID_TOKEN_KEY, { path: '/' });
 	cookies.delete(COOKIE_REFRESH_TOKEN_KEY, { path: '/' });
 	cookies.delete(COOKIE_STATE_KEY, { path: '/' });
 	cookies.delete(COOKIE_CODE_VERIFIER_KEY, { path: '/' });

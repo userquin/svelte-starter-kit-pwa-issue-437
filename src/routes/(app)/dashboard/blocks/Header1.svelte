@@ -77,7 +77,7 @@
 				<DropdownItem><a rel="external" href="/dashboard/settings">Settings</a></DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<a rel="external" href="/auth/logout/github">Sign Out</a>
+					<a rel="external" href="/auth/logout/azure">Sign Out</a>
 				</DropdownItem>
 			</Dropdown>
 		</div>

@@ -7,9 +7,9 @@ import type { RequestHandler } from './$types';
 const authEndpoint = ssoAzureADConfig.authorization_endpoint;
 const authParams = {
 	response_type: 'code',
+	response_mode: 'query',
 	client_id: ssoAzureADConfig.client_id,
 	scope: ssoAzureADConfig.scope,
-	acr_values: ssoAzureADConfig.acr_values,
 	code_challenge_method: 'S256'
 };
 

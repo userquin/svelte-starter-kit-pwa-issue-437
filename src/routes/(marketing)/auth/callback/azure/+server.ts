@@ -1,6 +1,6 @@
 import { ssoAzureADConfig } from '$lib/config';
-import type { PingUser } from '$lib/models/types/user';
-import { COOKIE_ACCESS_TOKEN_KEY, COOKIE_CODE_VERIFIER_KEY, COOKIE_REFRESH_TOKEN_KEY, COOKIE_STATE_KEY, getCookie, setCookie, setUser } from '$lib/utils/cookies';
+import type { AzureADUser } from '$lib/models/types/user';
+import { COOKIE_ACCESS_TOKEN_KEY, COOKIE_CODE_VERIFIER_KEY, COOKIE_ID_TOKEN_KEY, COOKIE_REFRESH_TOKEN_KEY, COOKIE_STATE_KEY, getCookie, setCookie, setUser } from '$lib/utils/cookies';
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
@@ -20,24 +20,27 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 	if (!code) throw error(401, { code: 401, message: 'Login failed. code missing' });
 
 	const redirect_uri = `${url.origin}/auth/callback/azure`;
-	const { access_token, expires_in, refresh_token, id_token } = await getToken(code, code_verifier, redirect_uri);
+	const { access_token, expires_in, ext_expires_in, refresh_token, id_token } = await getToken(code, code_verifier, redirect_uri);
 	if (!access_token) throw error(401, { code: 401, message: 'Login failed. access_token missing' });
 
 	// get user
-	const pingUser: PingUser = await getUser(access_token);
-	setUser(cookies, { ping: pingUser }, expires_in);
+	const azureUser: AzureADUser = await getUser(access_token);
+	// azureUser.avatar_url = await getProfilePicture(access_token);
+	setUser(cookies, { azure: azureUser }, expires_in);
 	setCookie(cookies, COOKIE_ACCESS_TOKEN_KEY, access_token, expires_in);
-	// TODO expire refresh_token on time provided by `getToken`
-	setCookie(cookies, COOKIE_REFRESH_TOKEN_KEY, refresh_token, 60 * 60 * 24 * 30);
+	setCookie(cookies, COOKIE_ID_TOKEN_KEY, id_token, expires_in);
+	// TODO: expire refresh_token on time provided by `getToken`
+	setCookie(cookies, COOKIE_REFRESH_TOKEN_KEY, refresh_token, ext_expires_in);
 	throw redirect(302, '/dashboard');
 };
 
 async function getToken(code: string, code_verifier: string, redirect_uri: string) {
-	const authDetails = { client_id: client_id, grant_type: grant_type, redirect_uri: redirect_uri, code: code, code_verifier: code_verifier };
+	const tokenParams = { client_id, grant_type, redirect_uri, code, code_verifier };
+	// HINT: we need `Origin` header, as we are fetching token via back-channel. otherwise you hit error: AADSTS9002327
 	const r = await fetch(token_endpoint, {
 		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams(authDetails).toString()
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded', Origin: 'thisismyapp' },
+		body: new URLSearchParams(tokenParams).toString()
 	});
 	return await r.json();
 }
@@ -50,4 +53,18 @@ async function getUser(token: string) {
 	});
 
 	return await r.json();
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function getProfilePicture(token: string) {
+	const res = await fetch('https://graph.microsoft.com/v1.0/me/photos/48x48/$value', {
+		headers: {
+			Authorization: `Bearer ${token}`,
+			'Content-Type': 'image/jpg'
+		}
+	});
+
+	const data = await res.arrayBuffer();
+	const pictureBase64 = Buffer.from(data).toString('base64');
+	return `data:image/jpeg;base64, ${pictureBase64}`;
 }

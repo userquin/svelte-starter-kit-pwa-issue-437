@@ -11,7 +11,11 @@ Awesome **SvelteKit** Links
   - <https://github.com/jlefebure/redisgraph-navi/tree/master/src/client>
 
 - three.js
+
   - [Threlte](https://threlte.xyz/) is a component library for Svelte to build and render `three.js` scenes declaratively and state-driven in Svelte apps.
+
+- Grid
+  - [svelte-image-gallery](https://github.com/berkinakkaya/svelte-image-gallery)
 
 ## Animation
 

@@ -43,9 +43,9 @@ export interface GithubUser {
 
 export interface AzureADUser {
 	sub: string;
-	groups: string[];
-	displayName: string;
-	email: string;
-	username: string;
+	name: string;
+	family_name: string;
+	given_name: string;
+	picture: string;
 	avatar_url: string;
 }
