@@ -39,7 +39,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (userString) {
 		// TODO: decrypt user cookie
 		const user = JSON.parse(userString);
-		console.log('hooks.server.ts, Handle, user', user);
 		event.locals.user = user;
 	}
 
