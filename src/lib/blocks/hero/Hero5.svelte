@@ -12,7 +12,7 @@
 				</h2>
 				<p class="text-base text-gray-700 md:text-lg"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. explicabo. </p>
 			</div>
-			<a href="/dashboard" aria-label="" class="inline-flex items-center font-semibold text-deep-purple-accent-400 transition-colors duration-200 hover:text-deep-purple-800">
+			<a href="/dashboard" aria-label="dashboard-link" class="inline-flex items-center font-semibold text-deep-purple-accent-400 transition-colors duration-200 hover:text-deep-purple-800">
 				Get Started
 				<svg class="ml-2 inline-block w-3" fill="currentColor" viewBox="0 0 12 12">
 					<path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>

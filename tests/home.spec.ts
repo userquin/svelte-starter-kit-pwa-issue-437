@@ -19,16 +19,16 @@ test.describe.serial('Home page', () => {
 		await expect(page).toHaveTitle(/Home/);
 
 		// create a locator
-		const getStarted = page.getByText('Get Started');
+		const aboutUs = page.getByText('About us');
 
 		// Expect an attribute "to be strictly equal" to the value.
-		await expect(getStarted).toHaveAttribute('href', '/dashboard');
+		await expect(aboutUs).toHaveAttribute('href', '/about');
 
 		// Click the get started link.
-		await getStarted.click();
+		await aboutUs.click();
 
 		// Expects the URL to contain intro.
-		await expect(page).toHaveURL(/dashboard/);
+		await expect(page).toHaveURL(/about/);
 	});
 
 	test('has H1 content @slow', async ({ page }) => {

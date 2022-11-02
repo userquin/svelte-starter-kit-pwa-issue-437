@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { sidebarOpen } from '$lib/stores/sidebarStore';
+	import { sidebarOpen } from '$lib/stores/sidebar.store';
 
 	const toggle = () => {
 		sidebarOpen.update((n) => (n = !n));

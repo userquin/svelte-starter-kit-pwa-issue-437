@@ -2,7 +2,7 @@ import { CONFY_SENTRY_DSN } from '$env/static/private';
 // import * as Sentry from '@sentry/browser';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
-import type { HandleClientError } from '@sveltejs/kit';
+import type { Handle, HandleFetch, HandleClientError } from '@sveltejs/kit';
 
 // Initialize the Sentry SDK here
 if (CONFY_SENTRY_DSN) {
@@ -16,6 +16,21 @@ if (CONFY_SENTRY_DSN) {
 		tracesSampleRate: 1.0
 	});
 }
+
+export const handle: Handle = async ({ event, resolve }) => {
+	console.log('hooks.client.ts, Handle, Token:');
+	event.request.headers.set('Authorization', 'Bearer me,me,me');
+
+	const response = await resolve(event);
+	// response.headers['authorization'] = 'me,me,me'
+	return response;
+};
+export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
+	console.log('hooks.client.ts, HandleFetch, Token:');
+	// request.headers.set('Authorization', 'Bearer me,me,me')
+
+	return fetch(request);
+};
 
 export const handleClientError: HandleClientError = ({ error, event }) => {
 	console.error(error);

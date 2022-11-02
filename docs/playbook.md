@@ -202,3 +202,19 @@ npm i -D @urql/svelte graphql
 # https://formidable.com/open-source/urql/docs/basics/typescript-integration/
 npm install -D @graphql-codegen/cli @graphql-codegen/client-preset
 ```
+
+#### OpenID Connect
+
+Usage example [softrig-workshop-templates](https://github.com/urrang/softrig-workshop-templates/tree/main/svelte)
+
+```shell
+npm i -D oidc-client-ts
+```
+
+#### Cookies
+
+Set/Get/Remove cookies in browser (for server-side svelte already provide utils)
+
+```shell
+npm i -D js-cookie
+```

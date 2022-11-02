@@ -2,48 +2,12 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { Link } from '$lib/components';
-	import { getContextClient, gql, queryStore } from '@urql/svelte';
 	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
 	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, Users } from 'svelte-heros-v2';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
-
-	const ps = queryStore({
-		client: getContextClient(),
-		query: gql`
-			query {
-				counts: tz_policies_aggregate {
-					aggregate {
-						count
-					}
-				}
-				tz_policies(order_by: { update_time: desc_nulls_last }, limit: 10, where: { delete_time: { _is_null: true } }) {
-					id
-					create_time
-					display_name
-					subject_idnpm
-					run
-					subject_secondary_id
-					subject_domain
-					subject_display_name
-					subject_type
-					valid_from
-					valid_to
-					weight
-					source_address
-					source_port
-					destination_address
-					destination_port
-					protocol
-					action
-					template
-				}
-			}
-		`
-	});
-	console.log($ps.data);
 
 	export let data: PageData; // `data` props get initialized from page endpoint.
 	let { policies } = data; // we need this statement to access `results/total` values before component mounted.

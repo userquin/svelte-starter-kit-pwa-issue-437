@@ -1,8 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
-	export let data: PageData;
-	let user = data.user?.azure ?? data.user?.github;
+	import { auth } from '$lib/stores/auth.store';
 </script>
 
 <svelte:head>
@@ -12,10 +9,10 @@
 
 <h2 class="pb-4 text-2xl font-bold text-gray-800 dark:text-white ">Profile</h2>
 <div class="relative overflow-x-auto">
-	<!-- <Avatar src="{ghUser?.avatar_url}" /> -->
+	<!-- <Avatar src="{user?.picture}" /> -->
 	<table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
 		<tbody>
-			{#each Object.entries(user ?? {}).filter(([key, value]) => !key.endsWith('url') && value) as [key, value]}
+			{#each Object.entries($auth.profile ?? {}) as [key, value]}
 				<tr class="border-b bg-white dark:border-gray-800 dark:bg-gray-900">
 					<th scope="row" class="whitespace-nowrap py-2 px-4 font-medium text-gray-900 dark:text-white">
 						{key}
@@ -30,5 +27,5 @@
 </div>
 
 <!-- <div>
-	<pre>{JSON.stringify(user, null, 4)}</pre>
+	<pre>{JSON.stringify($auth.profile, null, 4)}</pre>
 </div> -->

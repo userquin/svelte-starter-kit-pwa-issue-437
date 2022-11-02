@@ -5,6 +5,7 @@ declare namespace App {
 	type User = import('./lib/models/types/user').User;
 	interface Locals {
 		user: User;
+		token: string;
 	}
 	// interface PageData {}
 	interface Error {

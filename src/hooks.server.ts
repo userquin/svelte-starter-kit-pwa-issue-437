@@ -1,8 +1,15 @@
 import { CONFY_SENTRY_DSN } from '$env/static/private';
-import { getUser } from '$lib/utils/cookies';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
 import type { Handle, HandleServerError } from '@sveltejs/kit';
+
+// for graceful termination
+process.on('SIGINT', function () {
+	process.exit();
+}); // Ctrl+C
+process.on('SIGTERM', function () {
+	process.exit();
+}); // docker stop
 
 // Red: https://github.com/sveltejs/kit/blob/master/documentation/docs/07-hooks.md
 
@@ -24,9 +31,17 @@ if (CONFY_SENTRY_DSN) {
 // Invoked for each endpoint called and initially for SSR router
 export const handle: Handle = async ({ event, resolve }) => {
 	const { cookies } = event;
-	const user = getUser(cookies);
-	// TODO: decrypt user cookie
-	event.locals.user = user;
+	const token = cookies.get('access_token');
+	if (token) {
+		event.locals.token = token;
+	}
+	const userString = cookies.get('user');
+	if (userString) {
+		// TODO: decrypt user cookie
+		const user = JSON.parse(userString);
+		console.log('hooks.server.ts, Handle, user', user);
+		event.locals.user = user;
+	}
 
 	return resolve(event);
 };
@@ -44,7 +59,7 @@ export const handleServerError: HandleServerError = ({ error, event }) => {
 };
 
 /*
-export const handleFetch: HandleFetch = async ({ request, fetch }) => {
+export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
 	if (request.url.startsWith('https://api.yourapp.com/')) {
 		// clone the original request, but change the URL
 		request = new Request(
@@ -52,6 +67,12 @@ export const handleFetch: HandleFetch = async ({ request, fetch }) => {
 			request
 		);
 	}
+
+	// set header
+	if (request.url.startsWith('https://api.my-domain.com/')) {
+    	request.headers.set('cookie', event.request.headers.get('cookie'));
+  	}
+
 	return fetch(request);
 }
 */

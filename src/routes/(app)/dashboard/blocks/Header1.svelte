@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Hamburger } from '$lib/components';
+	import { logout } from '$lib/stores/auth.store';
 	import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
 
 	let path: string;
@@ -68,16 +69,16 @@
 	{#if isLoggedIn}
 		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 		<div class="hidden md:block">
-			<Avatar src="{avatarUrl}" size="md" border>{username?.substring(0, 2).toUpperCase()}</Avatar>
+			<Avatar src="{avatarUrl}" size="md" border referrerpolicy="no-referrer">{username?.substring(0, 2).toUpperCase()}</Avatar>
 			<Dropdown arrowIcon="{false}" inline="{true}">
 				<DropdownHeader>
 					<span class="block truncate text-sm font-medium">{name}</span>
 				</DropdownHeader>
-				<DropdownItem><a rel="external" href="/dashboard/profile">Profile</a></DropdownItem>
-				<DropdownItem><a rel="external" href="/dashboard/settings">Settings</a></DropdownItem>
+				<DropdownItem><a href="/dashboard/profile">Profile</a></DropdownItem>
+				<DropdownItem><a href="/dashboard/settings">Settings</a></DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<a rel="external" href="/auth/logout/azure">Sign Out</a>
+					<a on:click="{logout}" href="{'#'}">Sign Out</a>
 				</DropdownItem>
 			</Dropdown>
 		</div>

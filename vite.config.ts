@@ -16,9 +16,6 @@ const [gitTag, gitDate] = (await Promise.allSettled([pexec('git describe --tags 
 /** @type {import('vite').UserConfig} */
 const config: UserConfig = {
 	plugins: [sveltekit()],
-	optimizeDeps: {
-		exclude: ['@urql/svelte']
-	},
 	define: {
 		// Eliminate in-source test code
 		'import.meta.vitest': 'undefined',

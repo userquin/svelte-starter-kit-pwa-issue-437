@@ -12,12 +12,25 @@ export const tenant = {
 	domainNane: dynPubEnv.PUBLIC_DOMAIN_NAME
 };
 
+// dynamic: Auth
+export const baseUrl = dynPubEnv.PUBLIC_BASE_URL ?? '';
+
+export const azureAuthConfig = {
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_AUTHORITY ?? '',
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_CLIENT_ID ?? ''
+};
+export const googlAuthConfig = {
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_AUTHORITY ?? '',
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID ?? '',
+	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET ?? ''
+};
+
 // static: GitHub
 export const github = {
 	apiUrl: PUBLIC_GITHUB_API_URL
 };
 
-// Constants
+// static: Constants
 export const siteSeoTwitter = {
 	site: '@username',
 	title: 'Twitter Card Title',

@@ -16,7 +16,7 @@ describe('Test index.svelte', () => {
 	it('link to svelte website', () => {
 		render(Index);
 
-		const link = screen.getByRole('link');
+		const link = screen.getByRole('link', { name: /dashboard/i }); // getByLabelText
 		expect(link).toHaveAttribute('href', '/dashboard');
 	});
 });
