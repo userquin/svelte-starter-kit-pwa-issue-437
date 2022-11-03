@@ -8,7 +8,7 @@ import { goto } from '$app/navigation';
 import { azureAuthConfig, baseUrl, googlAuthConfig } from '$lib/config-public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
 import Cookies from 'js-cookie';
-import { Log, User, UserManager, type UserManagerSettings, type UserProfile } from 'oidc-client-ts';
+import { Log, User, UserManager, type UserManagerSettings } from 'oidc-client-ts';
 import { derived, get, writable } from 'svelte/store';
 
 /**
@@ -23,21 +23,12 @@ const appUrl = dev ? 'http://localhost:5173' : baseUrl;
 function createUserManager(config: UserManagerSettings) {
 	const userManager = new UserManager(config);
 
-	userManager.events.addUserLoaded(async (user) => {
+	userManager.events.addUserLoaded(async () => {
 		userManager.clearStaleState();
-		const profile = await getProfile(user.profile, user.access_token);
-		auth.update((details) => {
-			details.token = user.access_token;
-			details.profile = profile;
-			return details;
-		});
-		// set access_token/profile cookie to pass to backend for every request.
-		Cookies.set('access_token', user.access_token);
-		Cookies.set('user', JSON.stringify({ ...profile, picture: undefined }));
 	});
 
 	userManager.events.addUserUnloaded(() => {
-		auth.set({ isAuthenticated: false });
+		auth.set({ isAuthenticated: false, token: undefined, profile: undefined });
 		// unset access_token/profile cookie
 		Cookies.remove('access_token');
 		Cookies.remove('user');
@@ -53,11 +44,9 @@ const azureUserManager = createUserManager({
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid User.Read', // email
 	filterProtocolClaims: true,
-	loadUserInfo: true,
-	automaticSilentRenew: true,
+	loadUserInfo: true
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
-	includeIdTokenInSilentRenew: false
 });
 const googleUserManager = createUserManager({
 	authority: googlAuthConfig.authority,
@@ -68,10 +57,8 @@ const googleUserManager = createUserManager({
 	scope: 'profile openid email',
 	filterProtocolClaims: true,
 	loadUserInfo: true,
-	automaticSilentRenew: true,
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
-	includeIdTokenInSilentRenew: false,
 	metadataSeed: {
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
 		end_session_endpoint: 'http://localhost:5173'
@@ -120,7 +107,7 @@ export async function login(newProvider: Provider = 'azure') {
 	const user = await currentUserManager.getUser();
 
 	if (user && !user.expired && user.access_token) {
-		setAuth(user);
+		await setAuth(user);
 	} else {
 		try {
 			await currentUserManager.signinRedirect();
@@ -141,19 +128,24 @@ export async function authenticate(params: URLSearchParams) {
 	if (params.has('code')) {
 		try {
 			// const user = await userManager.signinCallback();
-			const user = await currentUserManager.signinRedirectCallback();
-			setAuth(user);
+			const oidcUser = await currentUserManager.signinRedirectCallback();
+			const profile = await setAuth(oidcUser);
+
+			// set access_token/profile cookies to pass to backend for every request.
+			Cookies.set('access_token', oidcUser.access_token);
+			Cookies.set('user', JSON.stringify({ ...profile, picture: undefined }));
+
 			// TODO send to original target page
-			goto('/dashboard');
+			await goto('/dashboard');
 		} catch (err) {
 			console.error(err);
-			goto('/');
+			await goto('/');
 		}
 	} else {
 		const user = await currentUserManager.getUser();
 
 		if (user && !user.expired && user.access_token) {
-			setAuth(user);
+			await setAuth(user);
 		}
 	}
 }
@@ -162,51 +154,39 @@ export async function authenticate(params: URLSearchParams) {
  * trigger SSO logout
  */
 export async function logout() {
-	try {
-		const currentUserManager = get(userManager);
-		// const post_logout_redirect_uri = window.location.href;
-		// await userManager.revokeTokens()
-		await currentUserManager.signoutRedirect();
-	} catch (err) {
-		console.error(err);
-	} finally {
-		console.log('logout finally');
-	}
-}
-
-/**
- * silent renew token using renew_token
- */
-export async function renewToken() {
-	try {
-		const currentUserManager = get(userManager);
-		const user = await currentUserManager.signinSilent();
-		if (user) setAuth(user);
-	} catch (err) {
-		console.error(err);
-		goto('/');
-	}
+	const currentUserManager = get(userManager);
+	// const post_logout_redirect_uri = window.location.href;
+	// await userManager.revokeTokens()
+	await currentUserManager.signoutRedirect();
 }
 
 /**
  * Private API
  */
 
+/**
+ * `setAuth` sets `oidcUser` properties into `auth` store.
+ * `oidcUser` is loaded from `sessionStore` if exists or from 'oidc-client-ts` after callback
+ * @param oidcUser
+ */
 async function setAuth(oidcUser: User) {
-	const profile = await getProfile(oidcUser.profile, oidcUser.access_token);
+	const profile = await getProfile(oidcUser);
 	auth.set({
 		isAuthenticated: true,
 		token: oidcUser.access_token,
 		profile
 	});
+
+	return profile;
 }
 
-async function getProfile(rawProfile: UserProfile, access_token: string): Promise<AppUser> {
-	const sub = rawProfile.sub;
-	const name = rawProfile.name ?? '';
-	const email = rawProfile.email ?? (rawProfile.upn as string) ?? '';
-	let picture = rawProfile.picture ?? '';
-	const roles = (rawProfile.roles as Role[]) ?? ['Policy.Read' as Role];
+async function getProfile(oidcUser: User): Promise<AppUser> {
+	const { profile, access_token } = oidcUser;
+	const sub = profile.sub;
+	const name = profile.name ?? '';
+	const email = profile.email ?? (profile.upn as string) ?? '';
+	let picture = profile.picture ?? '';
+	const roles = (profile.roles as Role[]) ?? ['Policy.Read' as Role];
 
 	// in the case of provider==Azure, lets get the real picture url
 	if (picture?.startsWith('https://graph.microsoft.com')) {
@@ -225,7 +205,8 @@ async function getAzureProfilePicture(access_token: string) {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
 			'Content-Type': 'image/jpg'
-		}
+		},
+		cache: 'force-cache'
 	});
 
 	const data = await res.arrayBuffer();
