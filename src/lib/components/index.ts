@@ -6,5 +6,6 @@ export { default as Drawer } from './Drawer.svelte';
 export { default as Hamburger } from './Hamburger.svelte';
 export { default as Address } from './Address.svelte';
 export { default as Link } from './Link.svelte';
+export { default as Delete } from './Delete.svelte';
 
 export { ListErrors, PreloadingIndicator, Spinner };

@@ -24,6 +24,7 @@ const query = `
 			destination_port
 			protocol
 			action
+			disabled
 			template
 		}
 	}

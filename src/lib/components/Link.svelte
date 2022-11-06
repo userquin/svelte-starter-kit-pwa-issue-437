@@ -1,6 +1,6 @@
-<script>
-	export let url;
-	export let content;
+<script lang="ts">
+	export let url: string;
+	export let content: string;
 </script>
 
 <a href="{url}">{content}</a>

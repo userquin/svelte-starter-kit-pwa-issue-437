@@ -1,20 +1,18 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { Link } from '$lib/components';
+	import { Delete, Link } from '$lib/components';
 	import { Button, ButtonGroup, Input, Navbar, NavBrand, Select } from 'flowbite-svelte';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
-	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, Users } from 'svelte-heros-v2';
+	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, ShieldCheck } from 'svelte-heros-v2';
 	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
 	export let data: PageData; // `data` props get initialized from page endpoint.
-	let { policies } = data; // we need this statement to access `results/total` values before component mounted.
-	$: ({ policies } = data); // so `members` stays in sync when `data` changes
+	let { policies } = data;
+	$: ({ policies } = data); // so `policies` stays in sync when `data` changes
 	$: policyStore.set(policies); // update store when data changed
-
-	// console.log(policies);
 
 	const policyStore = writable(policies);
 	const table = createTable(policyStore, {
@@ -25,49 +23,50 @@
 
 	const columns = table.createColumns([
 		table.column({
-			header: 'Id',
-			accessor: 'id',
+			header: 'Name',
+			accessor: (item) => item,
+			id: 'name',
 			cell: ({ value }) =>
 				createRender(
 					Link,
 					writable({
-						url: `/dashboard/policies/${value}`,
-						content: value
+						url: `/dashboard/policies/${value.id}`,
+						content: value.display_name
 					})
 				)
 		}),
 		table.column({
-			header: 'Display Name',
-			accessor: 'display_name'
-		}),
-		table.column({
-			header: () => 'Subject',
+			header: 'Subject',
 			accessor: 'subject_display_name'
 		}),
 		table.column({
-			header: () => 'subject_type',
-			accessor: 'subject_type'
+			header: 'SID',
+			accessor: 'subject_id'
 		}),
 		table.column({
-			header: () => 'weight',
-			accessor: 'weight'
+			header: 'Source',
+			id: 'source',
+			accessor: (item) => `${item.source_address ?? ''}:${item.source_port ?? ''}`
 		}),
-
 		table.column({
-			header: 'destination_address',
-			id: 'destination_address',
-			accessor: (item) => item.destination_address
+			header: 'Destination',
+			id: 'destination',
+			accessor: (item) => `${item.destination_address ?? ''}:${item.destination_port ?? ''}`
+		}),
+		table.column({
+			header: 'Disabled',
+			accessor: 'disabled'
+		}),
+		table.column({
+			header: 'Template',
+			accessor: 'template'
+		}),
+		table.column({
+			header: 'Delete',
+			id: 'delete',
+			accessor: (item) => item,
+			cell: ({ value }) => createRender(Delete).on('click', async () => deletePolicy(value.id))
 		})
-		// table.column({
-		// 	header: 'Extension',
-		// 	id: 'extension',
-		// 	accessor: (item) => item.phone[0].extension,
-		// }),
-		// table.column({
-		// 	header: 'Priority',
-		// 	id: 'priority',
-		// 	accessor: (item) => item.phone[0].priority,
-		// })
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = table.createViewModel(columns);
@@ -89,22 +88,34 @@
 	async function search() {
 		await goto(`/dashboard/accounts?firstName=${firstName}&lastName=${lastName}&limit=${limit}`);
 	}
+
+	async function gotoCreatePolicy() {
+		goto('/dashboard/policies/00000000-0000-0000-0000-000000000000');
+	}
+
+	async function deletePolicy(id: string) {
+		const response = await fetch(`/dashboard/policies/${id}`, {
+			method: 'DELETE',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			}
+		});
+		if (response.status < 300) {
+			// invalidate will re-load the items by calling page's endpoint with current params.
+			await invalidateAll();
+		}
+	}
 </script>
 
 <svelte:head>
-	<title>Accounts</title>
-	<meta name="description" content="Accounts" />
+	<title>Policies</title>
+	<meta name="description" content="Policies" />
 </svelte:head>
-
-{#if $page.error}
-	<pre>{JSON.stringify($page.error)}</pre>
-	<!--	<p class="error">{$page.error.code}</p>-->
-	<!--	<p class="error">{$page.error.details}</p>-->
-{/if}
 
 <Navbar let:hidden let:toggle border="{true}" rounded="{true}">
 	<NavBrand>
-		<Users />
+		<ShieldCheck />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Policies </span>
 	</NavBrand>
 
@@ -125,7 +136,7 @@
 		<Select class="pl-10" items="{limits}" bind:value="{limit}" />
 	</div>
 
-	<Button on:click="{search}">Search</Button>
+	<Button on:click="{gotoCreatePolicy}">Add Policy</Button>
 </Navbar>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -201,6 +212,10 @@
 <style lang="postcss">
 	:global(td.matches) {
 		background: rgba(46, 196, 182, 0.2);
+	}
+	:global(.sv-control) {
+		--sv-min-height: 48px;
+		border-radius: 0.5rem !important;
 	}
 
 	/*table {*/

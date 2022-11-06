@@ -67,4 +67,4 @@ Awesome **SvelteKit** Links
 ## Reference
 
 - <https://github.com/rocketlaunchr/awesome-svelte>
-- Huntabyte [YouTube](https://www.youtube.com/c/Huntabyte>) tutorials 
+- Huntabyte [YouTube](https://www.youtube.com/c/Huntabyte>) tutorials

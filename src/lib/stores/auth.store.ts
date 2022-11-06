@@ -12,7 +12,7 @@ import { Log, User, UserManager, type UserManagerSettings } from 'oidc-client-ts
 import { derived, get, writable } from 'svelte/store';
 
 /**
- * UserManager suports multiple IDP providers
+ * UserManager supports multiple IDP providers
  */
 
 // enable debug logs for `oidc-client-ts`
@@ -28,14 +28,19 @@ function createUserManager(config: UserManagerSettings) {
 		await userManager.clearStaleState();
 	});
 
-	userManager.events.addUserUnloaded(() => {
-		auth.set({ isAuthenticated: false, token: undefined, profile: undefined });
-		// unset access_token/profile cookie
-		Cookies.remove('access_token');
-		Cookies.remove('user');
-	});
+	userManager.events.addUserUnloaded(clearUser);
 
 	return userManager;
+}
+
+/**
+ * remove current stale user from svelte-store and cookies
+ */
+function clearUser() {
+	auth.set({ isAuthenticated: false, token: undefined, profile: undefined });
+	// unset access_token/profile cookie
+	Cookies.remove('access_token');
+	Cookies.remove('user');
 }
 
 const azureUserManager = createUserManager({
@@ -45,7 +50,7 @@ const azureUserManager = createUserManager({
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid User.Read', // email
 	filterProtocolClaims: true,
-	loadUserInfo: true,
+	loadUserInfo: true
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
 });
@@ -64,7 +69,7 @@ const googleUserManager = createUserManager({
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
 		end_session_endpoint: 'http://localhost:5173'
 	},
-	extraQueryParams: { access_type: 'offline', prompt: 'consent' },
+	extraQueryParams: { access_type: 'offline', prompt: 'consent' }
 	// revokeTokensOnSignout: true
 });
 
@@ -151,7 +156,8 @@ export async function authenticate(params: URLSearchParams) {
 				user = await currentUserManager.signinSilent();
 			} catch (err) {
 				console.warn(err);
-				// if refresh token also expired, then remove local stored user
+				// if refresh token also expired, then remove local stale user from svelte-store, cookies and local storage
+				clearUser();
 				return await currentUserManager.removeUser();
 			}
 		}

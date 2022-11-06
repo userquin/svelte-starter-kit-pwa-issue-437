@@ -1,3 +1,5 @@
+export { getHttpCode } from './grpc2http';
+
 export type ErrorWithMessage = {
 	message: string;
 };
@@ -22,8 +24,8 @@ export function getErrorMessage(error: unknown) {
 	return toErrorWithMessage(error).message;
 }
 
-export function isAppError(obj: unknown): obj is App.Error {
-	return Object.prototype.hasOwnProperty.call(obj, 'message') && Object.prototype.hasOwnProperty.call(obj, 'code');
+export function isAppError(obj: any): obj is App.Error {
+	return Object.prototype.hasOwnProperty.call(obj, 'message') && Object.prototype.hasOwnProperty.call(obj, 'code') && typeof obj.count === 'number';
 }
 
 export function getAppError(code: number, error: unknown): App.Error {
