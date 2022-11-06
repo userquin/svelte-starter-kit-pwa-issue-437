@@ -16,7 +16,8 @@ import { derived, get, writable } from 'svelte/store';
  */
 
 // enable debug logs for `oidc-client-ts`
-if (dev) Log.setLogger(console);
+if (dev) Log.setLevel(Log.DEBUG);
+Log.setLogger(console);
 
 const appUrl = dev ? 'http://localhost:5173' : baseUrl;
 
@@ -24,7 +25,7 @@ function createUserManager(config: UserManagerSettings) {
 	const userManager = new UserManager(config);
 
 	userManager.events.addUserLoaded(async () => {
-		userManager.clearStaleState();
+		await userManager.clearStaleState();
 	});
 
 	userManager.events.addUserUnloaded(() => {
@@ -44,7 +45,7 @@ const azureUserManager = createUserManager({
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid User.Read', // email
 	filterProtocolClaims: true,
-	loadUserInfo: true
+	loadUserInfo: true,
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
 });
@@ -63,7 +64,8 @@ const googleUserManager = createUserManager({
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
 		end_session_endpoint: 'http://localhost:5173'
 	},
-	extraQueryParams: { access_type: 'offline', prompt: 'consent' }
+	extraQueryParams: { access_type: 'offline', prompt: 'consent' },
+	// revokeTokensOnSignout: true
 });
 
 function getUserManager(provider: Provider) {
@@ -142,8 +144,17 @@ export async function authenticate(params: URLSearchParams) {
 			await goto('/');
 		}
 	} else {
-		const user = await currentUserManager.getUser();
-
+		let user = await currentUserManager.getUser();
+		// FIXME: SilentRenewService may be not started yet. lets try silent renew
+		if (user?.expired) {
+			try {
+				user = await currentUserManager.signinSilent();
+			} catch (err) {
+				console.warn(err);
+				// if refresh token also expired, then remove local stored user
+				return await currentUserManager.removeUser();
+			}
+		}
 		if (user && !user.expired && user.access_token) {
 			await setAuth(user);
 		}
@@ -208,6 +219,7 @@ async function getAzureProfilePicture(access_token: string) {
 		},
 		cache: 'force-cache'
 	});
+	if (!res.ok) throw { code: res.status, message: res.statusText };
 
 	const data = await res.arrayBuffer();
 	const pictureBase64 = btoa(String.fromCharCode(...new Uint8Array(data)));

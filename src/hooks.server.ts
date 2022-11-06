@@ -1,7 +1,12 @@
 import { CONFY_SENTRY_DSN } from '$env/static/private';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
-import type { Handle, HandleServerError } from '@sveltejs/kit';
+import type { Handle, HandleFetch, HandleServerError } from '@sveltejs/kit';
+
+/**
+ * Code in hooks.server.ts will run when the application starts up,
+ * making them useful for initializing database clients, Sentry and so on.
+ */
 
 // for graceful termination
 process.on('SIGINT', function () {
@@ -19,6 +24,10 @@ process.on('SIGTERM', function () {
 if (CONFY_SENTRY_DSN) {
 	Sentry.init({
 		dsn: CONFY_SENTRY_DSN,
+		release: __APP_VERSION__,
+		initialScope: {
+			tags: { source: 'server' }
+		},
 		integrations: [new BrowserTracing()],
 
 		// Set tracesSampleRate to 1.0 to capture 100%
@@ -46,6 +55,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 };
 
 export const handleServerError: HandleServerError = ({ error, event }) => {
+	console.log('in hooks.server.ts: handleServerError:', error);
 	console.error(error);
 	Sentry.setExtra('event', event);
 	Sentry.captureException(error);
@@ -57,8 +67,16 @@ export const handleServerError: HandleServerError = ({ error, event }) => {
 	};
 };
 
-/*
 export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
+	console.log('hooks.server.ts, HandleFetch, Token:');
+	const { locals } = event;
+
+	if (request.url.startsWith('https://graph.microsoft.com')) {
+		if (locals.token) {
+			request.headers.set('Authorization', `Bearer ${locals.token}`);
+		}
+	}
+	/*
 	if (request.url.startsWith('https://api.yourapp.com/')) {
 		// clone the original request, but change the URL
 		request = new Request(
@@ -66,12 +84,6 @@ export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
 			request
 		);
 	}
-
-	// set header
-	if (request.url.startsWith('https://api.my-domain.com/')) {
-    	request.headers.set('cookie', event.request.headers.get('cookie'));
-  	}
-
+	*/
 	return fetch(request);
-}
-*/
+};

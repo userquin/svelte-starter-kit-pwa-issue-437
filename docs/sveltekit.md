@@ -28,6 +28,8 @@ Awesome **SvelteKit** Links
 
 ## Utilities
 
+- [Time Distance ](https://github.com/joshnuss/svelte-time-distance) - Display time distances in a human-readable format.
+
 ## Testing
 
 - [Svelte Component Test Recipes](https://github.com/davipon/svelte-component-test-recipes)
@@ -49,7 +51,6 @@ Awesome **SvelteKit** Links
 - [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
   - A [Prettier](https://prettier.io/) plugin for Tailwind CSS v3.0+ that automatically sorts classes based
     on [our recommended class order](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier#how-classes-are-sorted)
-    .
 
 ## FQA
 
@@ -66,3 +67,4 @@ Awesome **SvelteKit** Links
 ## Reference
 
 - <https://github.com/rocketlaunchr/awesome-svelte>
+- Huntabyte [YouTube](https://www.youtube.com/c/Huntabyte>) tutorials 
