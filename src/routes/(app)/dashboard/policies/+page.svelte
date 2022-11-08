@@ -7,7 +7,10 @@
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
 	import { ChevronDown, ChevronUp, MagnifyingGlassCircle, ShieldCheck } from 'svelte-heros-v2';
 	import { writable } from 'svelte/store';
-	import type { PageData } from './$types';
+	import type { ActionData, PageData } from './$types';
+
+	export let form: ActionData;
+	$: console.log('ActionData', form)
 
 	export let data: PageData; // `data` props get initialized from page endpoint.
 	let { policies } = data;
@@ -64,8 +67,9 @@
 		table.column({
 			header: 'Delete',
 			id: 'delete',
-			accessor: (item) => item,
-			cell: ({ value }) => createRender(Delete).on('click', async () => deletePolicy(value.id))
+			accessor: 'id',
+			// cell: ({ value }) => createRender(Delete).on('click', async () => deletePolicy(value))
+			cell: ({ value }) => createRender(Delete, {id: value})
 		})
 	]);
 
@@ -84,10 +88,6 @@
 		{ value: '100', name: '100' }
 	];
 	const { filterValue } = pluginStates.tableFilter;
-
-	async function search() {
-		await goto(`/dashboard/accounts?firstName=${firstName}&lastName=${lastName}&limit=${limit}`);
-	}
 
 	async function gotoCreatePolicy() {
 		goto('/dashboard/policies/00000000-0000-0000-0000-000000000000');
@@ -183,7 +183,7 @@
 						{#each row.cells as cell (cell.id)}
 							<Subscribe attrs="{cell.attrs()}" let:attrs props="{cell.props()}" let:props>
 								<td {...attrs} class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white" class:matches="{props.tableFilter.matches}">
-									<Render of="{cell.render()}" />
+								<Render of="{cell.render()}" />
 								</td>
 							</Subscribe>
 						{/each}

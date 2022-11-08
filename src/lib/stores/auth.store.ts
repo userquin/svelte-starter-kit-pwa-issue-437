@@ -28,7 +28,7 @@ function createUserManager(config: UserManagerSettings) {
 		await userManager.clearStaleState();
 	});
 
-	userManager.events.addUserUnloaded(clearUser);
+	userManager.events.addUserUnloaded(clearUserState);
 
 	return userManager;
 }
@@ -36,7 +36,7 @@ function createUserManager(config: UserManagerSettings) {
 /**
  * remove current stale user from svelte-store and cookies
  */
-function clearUser() {
+function clearUserState() {
 	auth.set({ isAuthenticated: false, token: undefined, profile: undefined });
 	// unset access_token/profile cookie
 	Cookies.remove('access_token');
@@ -69,8 +69,9 @@ const googleUserManager = createUserManager({
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
 		end_session_endpoint: 'http://localhost:5173'
 	},
-	extraQueryParams: { access_type: 'offline', prompt: 'consent' }
-	// revokeTokensOnSignout: true
+	extraQueryParams: { access_type: 'offline', prompt: 'consent' },
+	revokeTokenTypes: ['access_token'],
+	revokeTokensOnSignout: true
 });
 
 function getUserManager(provider: Provider) {
@@ -150,18 +151,23 @@ export async function authenticate(params: URLSearchParams) {
 		}
 	} else {
 		let user = await currentUserManager.getUser();
-		// FIXME: SilentRenewService may be not started yet. lets try silent renew
-		if (user?.expired) {
+		// check if stale user exist, clean the stores if needed.
+		if(!user) {
+			clearUserState();
+			return;
+		}
+		if (user.expired) {
 			try {
 				user = await currentUserManager.signinSilent();
 			} catch (err) {
 				console.warn(err);
 				// if refresh token also expired, then remove local stale user from svelte-store, cookies and local storage
-				clearUser();
-				return await currentUserManager.removeUser();
+				clearUserState();
+				await currentUserManager.removeUser();
+				return
 			}
 		}
-		if (user && !user.expired && user.access_token) {
+		if (user?.access_token) {
 			await setAuth(user);
 		}
 	}

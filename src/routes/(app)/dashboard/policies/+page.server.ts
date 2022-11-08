@@ -4,7 +4,7 @@ import { getAppError, isAppError } from '$lib/utils/errors';
 import * as Sentry from '@sentry/svelte';
 import { error } from '@sveltejs/kit';
 import { ZodError } from 'zod';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 const query = `
 	query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
@@ -30,7 +30,15 @@ const query = `
 	}
 `;
 
-export const load: PageServerLoad = async ({ url }) => {
+const delete_mutation = `
+	mutation ($id:uuid!) {
+		delete_tz_policies_by_pk(id:  $id) {
+			id
+		}
+	}
+`;
+
+export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const subject_id = url.searchParams.get('subId') ?? '6e9bf365-8c09-4dd9-b9b2-83f6ab315618';
 	const subject_type = url.searchParams.get('subType') ?? 'subject_type_user';
 	const limit = url.searchParams.get('limit') ?? 50;
@@ -50,11 +58,19 @@ export const load: PageServerLoad = async ({ url }) => {
 				variables
 			})
 		});
+		if (!resp.ok) throw { code: resp.status, message: resp.statusText };
 
-		// const { errors, response } = await resp.json();
-		const response = await resp.json();
-		const policies: any[] = response.data.tz_policies; // FIXME use Policy model
+		const { errors, data } = await resp.json();
+		if (errors) throw { code: 400, message: errors[0].message };
+
+		const policies: any[] = data.tz_policies; // FIXME use Policy model
 		if (!policies?.length) throw { code: 404, message: 'not found' };
+
+		// TIXME: tune: This page will have cache for 5min
+		// setHeaders({
+		// 	'cache-control': 'public, max-age=300'
+		// });
+
 		return { policies };
 	} catch (err) {
 		// example report error
@@ -72,5 +88,56 @@ export const load: PageServerLoad = async ({ url }) => {
 			throw error(err.code, err);
 		}
 		throw error(500, getAppError(500, err));
+	}
+};
+
+export const actions: Actions = {
+	create: async ({ request }) => {
+		const formData = await request.json();
+		console.log(formData);
+	},
+	delete: async ({ request }) => {
+		const formData = await request.formData();
+		const id = formData.get('id');
+		console.log(id);
+
+		const variables = { id };
+
+		try {
+			const resp = await fetch(CONFY_API_ENDPOINT, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN
+				},
+				body: JSON.stringify({
+					query: delete_mutation,
+					variables
+				})
+			});
+			if (!resp.ok) throw { code: resp.status, message: resp.statusText };
+
+			const { errors, data } = await resp.json();
+			if (errors) {
+				return {
+					success: false,
+					errors
+				};
+			}
+
+			return {
+				success: true,
+				data
+			};
+		} catch (err) {
+			console.error('policy.delete', err);
+			Sentry.setContext('source', { code: 'policy.delete' });
+			Sentry.captureException(err);
+
+			if (isAppError(err)) {
+				throw error(err.code, err);
+			}
+			throw error(500, getAppError(500, err));
+		}
 	}
 };

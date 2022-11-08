@@ -68,6 +68,7 @@ query ($id: uuid!) {
 	}
 }
 
+
 query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
 	tz_policies(order_by: { update_time: desc_nulls_last }, limit: $limit, where: { delete_time: { _is_null: true }, subject_id: { _eq: $subject_id }, subject_type: { _eq: $subject_type } }) {
 		id
@@ -87,4 +88,13 @@ query ($subject_id: String, $subject_type: String = "subject_type_user", $limit:
 		action
 		template
 	}
+}
+{
+  "subject_id": "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
+  "subject_type": "subject_type_user"
+}
+
+
+mutation $id: uuid) {
+  delete_tz_policies_by_pk(id: $id)
 }
