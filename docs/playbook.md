@@ -153,7 +153,7 @@ npx svelte-add@latest mdsvex
 [svelte-time-distance](https://github.com/joshnuss/svelte-time-distance) Display time distances in a human readable format.
 
 ```shell
-npm i -D svelte-time-distance
+npm i -D svelte-time-distance date-fns
 ```
 
 #### Error Tracking
@@ -217,4 +217,13 @@ Set/Get/Remove cookies in browser (for server-side svelte already provide utils)
 
 ```shell
 npm i -D js-cookie
+```
+
+#### Forms
+
+Custom form elements
+
+```
+npm i -D svelte-tags-input
+npm i -D svelecte
 ```

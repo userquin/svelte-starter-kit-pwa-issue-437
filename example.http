@@ -3,39 +3,51 @@
 POST {{$dotenv CONFY_API_ENDPOINT}}
 Content-Type: application/json
 x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+Authorization: Bearer {{$dotenv CONFY_API_TOKEN_ID}}
 X-REQUEST-TYPE: GraphQL
 
-query  {
+query {
   counts: tz_policies_aggregate {
     aggregate {
       count
     }
   }
   tz_policies(
-  order_by: {update_time: desc_nulls_last},
-  limit: 10,
-  where: {delete_time: {_is_null: true}}
+    order_by: { update_time: desc_nulls_last }
+    limit: 10
+    where: { delete_time: { _is_null: true } }
   ) {
     id
-    create_time
     display_name
-	subject_id
-	subject_secondary_id
-	subject_domain
-	subject_display_name
-	subject_type
+    description
+    tags
+    annotations
+    disabled
+    template
+    create_time
+    created_by
+    update_time
+    updated_by
+    delete_time
     valid_from
     valid_to
-    weight
+    subject_display_name
+    subject_domain
+    subject_id
+    subject_secondary_id
+    subject_type
     source_address
     source_port
     destination_address
     destination_port
     protocol
     action
-    template
+    direction
+    app_id
+    weight
   }
 }
+
 
 
 ### search active policies
@@ -45,38 +57,54 @@ Content-Type: application/json
 x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
-query ($subject_id: String, $subject_type: String = "subject_type_user", $limit: Int = 50) {
+query (
+  $subject_id: String
+  $subject_type: String = "subject_type_user"
+  $limit: Int = 50
+) {
   tz_policies(
-  order_by: {update_time: desc_nulls_last},
-  limit: $limit,
-  where: {
-	delete_time: {_is_null: true},
-	subject_id: {_eq: $subject_id}, subject_type: {_eq: $subject_type},
-	display_name: {_like: "%user%"}
-  }
+    order_by: { update_time: desc_nulls_last }
+    limit: $limit
+    where: {
+      delete_time: { _is_null: true }
+      subject_id: { _eq: $subject_id }
+      subject_type: { _eq: $subject_type }
+      display_name: { _like: "%user%" }
+    }
   ) {
     id
-    create_time
     display_name
-    subject_type
-    subject_display_name
-    subject_id
+    description
+    tags
+    annotations
+    disabled
+    template
+    create_time
+    update_time
     valid_from
     valid_to
-    weight
+    subject_display_name
+    subject_domain
+    subject_id
+    subject_secondary_id
+    subject_type
     source_address
     source_port
     destination_address
     destination_port
     protocol
     action
-    template
+    direction
+    app_id
+    weight
   }
 }
 
+
 {
   "subject_id": "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
-  "subject_type": "subject_type_user"
+  "subject_type": "subject_type_user",
+  "limit": 2
 }
 
 ###
@@ -90,26 +118,39 @@ Content-Type: application/json
 x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
-query ($id:uuid!) {
-  tz_policies_by_pk(id:  $id) {
+query ($id: uuid!) {
+  tz_policies_by_pk(id: $id) {
     id
-    create_time
     display_name
-    subject_type
-    subject_display_name
-    subject_id
+    description
+    tags
+    annotations
+    disabled
+    template
+    create_time
+    created_by
+    update_time
+    updated_by
+    delete_time
     valid_from
     valid_to
-    weight
+    subject_display_name
+    subject_domain
+    subject_id
+    subject_secondary_id
+    subject_type
     source_address
     source_port
     destination_address
     destination_port
     protocol
     action
-    template
+    direction
+    app_id
+    weight
   }
 }
+
 
 {
   "id": "{{firstPoliciyId}}"
@@ -122,18 +163,94 @@ Content-Type: application/json
 x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
-mutation ($id: uuid!, $weight: Int = 500, $protocol: String) {
-  update_tz_policies_by_pk(pk_columns: {id: $id}, _set: {weight: $weight, protocol: $protocol}) {
+mutation (
+  $id: uuid!
+  $display_name: String
+  $description: String
+  $tags: _text
+  $annotations: hstore
+  $disabled: Boolean
+  $template: Boolean
+  $subject_id: String
+  $subject_secondary_id: String
+  $subject_display_name: String
+  $subject_type: String
+  $subject_domain: String
+  $source_address: String
+  $source_port: String
+  $destination_address: String
+  $destination_port: String
+  $direction: String = "direction_egress"
+  $protocol: String = "Any"
+  $action: String = "action_block"
+  $weight: Int = 500
+  $app_id: String
+  $create_time: timestamptz
+  $update_time: timestamptz
+  $valid_from: timestamptz
+) {
+  update_tz_policies_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      display_name: $display_name
+      description: $description
+      tags: $tags
+      annotations: $annotations
+      disabled: $disabled
+      template: $template
+      subject_id: $subject_id
+      subject_secondary_id: $subject_secondary_id
+      subject_display_name: $subject_display_name
+      subject_type: $subject_type
+      subject_domain: $subject_domain
+      source_address: $source_address
+      source_port: $source_port
+      destination_address: $destination_address
+      destination_port: $destination_port
+      direction: $direction
+      protocol: $protocol
+      action: $action
+      weight: $weight
+      app_id: $app_id
+      create_time: $create_time
+      update_time: $update_time
+      valid_from: $valid_from
+    }
+  ) {
     id
-    weight
-    protocol
+    update_time
   }
 }
 
+
+
 {
-  "id": "{{firstPoliciyId}}",
-  "protocol" :"TCP"
+  "id":"{{firstPoliciyId}}",
+  "display_name" :"user 1",
+  "description" :"user 1 policy",
+  "tags": "{tz,us}",
+  "annotations": "\"sumo\"=>\"demo\"",
+  "disabled": false,
+  "template": false,
+  "subject_id": "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
+  "subject_secondary_id": "chintagunta@threatzero.co",
+  "subject_display_name": "sumanth chinthagunta",
+  "subject_type": "subject_type_user",
+  "subject_domain": "threatzero.co",
+  "source_address": "0.0.0.0",
+  "source_port": "5000",
+  "destination_address": "1.1.1.1",
+  "destination_port": "443",
+  "direction": "direction_egress",
+  "protocol": "Any",
+  "action": "action_block",
+  "weight": 1000,
+  "app_id": "myapp.exe",
+  "create_time": "2022-09-20T23:44:12.319395+00:00",
+  "update_time": "{{$datetime rfc1123|iso8601 [offset option]}}",
+  "valid_from": "{{$datetime rfc1123|iso8601 [offset option]}}"
 }
+
 
 ### create new policiy
 # @name createPolicy
@@ -142,35 +259,92 @@ Content-Type: application/json
 x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
-mutation ($display_name: String, $destination_address: String, $destination_port: String = "443", $weight: Int = 500, $protocol: String = "Any") {
-  insert_tz_policies_one(object: {
-	id: "{{$guid}}",
-	destination_address: $destination_address,
-	destination_port: $destination_port,
-	direction: "direction_egress",
-	display_name: $display_name,
-	description: "this is group1 policy 11",
-	tags: "{tz,us}",
-	annotations: "\"sumo\"=>\"demo\"",
-	subject_id: "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
-	subject_secondary_id: "chintagunta@threatzero.co",
-	subject_display_name: "sumanth chinthagunta",
-	subject_type: "subject_type_user",
-	subject_domain: "threatzero.co",
-	protocol: $protocol, action: "action_block",
-	weight:  $weight,
-	create_time: "{{$datetime rfc1123|iso8601 [offset option]}}"
-	update_time: "{{$datetime rfc1123|iso8601 [offset option]}}"
-	}) {
-    id,
-	create_time,
-	update_time
+mutation (
+  $id: uuid!
+  $display_name: String
+  $description: String
+  $tags: _text
+  $annotations: hstore
+  $disabled: Boolean
+  $template: Boolean
+  $subject_id: String
+  $subject_secondary_id: String
+  $subject_display_name: String
+  $subject_type: String
+  $subject_domain: String
+  $source_address: String
+  $source_port: String
+  $destination_address: String
+  $destination_port: String
+  $direction: String = "direction_egress"
+  $protocol: String = "Any"
+  $action: String = "action_block"
+  $weight: Int = 500
+  $app_id: String
+  $create_time: timestamptz
+  $update_time: timestamptz
+  $valid_from: timestamptz
+) {
+  insert_tz_policies_one(
+    object: {
+      id: $id
+      display_name: $display_name
+      description: $description
+      tags: $tags
+      annotations: $annotations
+      disabled: $disabled
+      template: $template
+      subject_id: $subject_id
+      subject_secondary_id: $subject_secondary_id
+      subject_display_name: $subject_display_name
+      subject_type: $subject_type
+      subject_domain: $subject_domain
+      source_address: $source_address
+      source_port: $source_port
+      destination_address: $destination_address
+      destination_port: $destination_port
+      direction: $direction
+      protocol: $protocol
+      action: $action
+      weight: $weight
+      app_id: $app_id
+      create_time: $create_time
+      update_time: $update_time
+      valid_from: $valid_from
+    }
+  ) {
+    id
+    create_time
+    update_time
   }
 }
 
+
 {
-  "display_name" :"user 1",
-  "destination_address": "1.1.1.1"
+  "id":"{{$guid}}",
+  "display_name":"user 1",
+  "description":"user 1 policy",
+  "tags":"{tz,us}",
+  "annotations":"\"sumo\"=>\"demo\"",
+  "disabled":false,
+  "template":false,
+  "subject_id":"6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
+  "subject_secondary_id":"chintagunta@threatzero.co",
+  "subject_display_name":"sumanth chinthagunta",
+  "subject_type":"subject_type_user",
+  "subject_domain":"threatzero.co",
+  "source_address":"0.0.0.0",
+  "source_port":"5000",
+  "destination_address":"1.1.1.1",
+  "destination_port":"443",
+  "direction":"direction_egress",
+  "protocol":"Any",
+  "action":"action_block",
+  "weight":1000,
+  "app_id":"myapp.exe",
+  "create_time":"{{$datetime rfc1123|iso8601 [offset option]}}",
+  "update_time":"{{$datetime rfc1123|iso8601 [offset option]}}",
+  "valid_from":"{{$datetime rfc1123|iso8601 [offset option]}}"
 }
 
 ###
