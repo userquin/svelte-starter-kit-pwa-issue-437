@@ -7,6 +7,7 @@ const forms = require('@tailwindcss/forms');
 const lineClamp = require('@tailwindcss/line-clamp');
 const aspectRatio = require('@tailwindcss/aspect-ratio');
 const flowbite = require('flowbite/plugin');
+const daisyui = require('daisyui');
 // const tailwindUI = require('@tailwindcss/ui');
 
 /** @type {import('tailwindcss').Config} */
@@ -25,6 +26,7 @@ const config = {
 			//  sans: ['Inter var', ...defaultTheme.fontFamily.sans],
 			// },
 			// custom shades generator https://javisperez.github.io/tailwindcolorshades/?
+			// http://colorcode.is/ - helpful color site
 			colors: {
 				optred: {
 					50: '#fbf3f4',
@@ -355,7 +357,20 @@ const config = {
 		opacity: ['responsive', 'hover', 'focus', 'group-hover'],
 		backgroundColor: ['responsive', 'hover', 'focus', 'group-hover']
 	},
-	plugins: [forms, typography, aspectRatio, lineClamp, flowbite]
+
+	// daisyUI config (optional)
+	// daisyui: {
+	// 	styled: true,
+	// 	themes: true,
+	// 	base: true,
+	// 	utils: true,
+	// 	logs: true,
+	// 	rtl: false,
+	// 	prefix: "",
+	// 	darkTheme: "dark",
+	// },
+
+	plugins: [forms, typography, aspectRatio, lineClamp, flowbite, daisyui]
 };
 
 module.exports = config;

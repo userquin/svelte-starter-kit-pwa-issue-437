@@ -89,8 +89,24 @@ npm i -D svelte-heros-v2
 
 Other optional UI Components
 
-- [daisyui](https://daisyui.com/)
+- [DaisyUI](https://daisyui.com/)
 - [headlessUI](https://github.com/rgossiaux/svelte-headlessui)
+
+I will be using both **flowbite** and **daisyui** for UI Components
+
+```shell
+npm i -D daisyui
+# add 
+```
+
+Then add daisyUI to your **tailwind.config.js** files:
+
+```js
+const config = {
+  //...
+  plugins: [flowbite, daisyui, ...],
+}
+```
 
 ### UI Blocks
 
@@ -223,7 +239,7 @@ npm i -D js-cookie
 
 Custom form elements
 
-```
+```shell
 npm i -D svelte-tags-input
 npm i -D svelecte
 ```
