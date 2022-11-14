@@ -2,10 +2,10 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { ErrorMessage, Errors, FloatingLabelField, Tags } from '$lib/components';
+	// import {default as TagInput } from '$lib/components/TagInput.svelte';
 	import { addToast, ToastLevel } from '$lib/components/toast';
 	import { Breadcrumb, BreadcrumbItem, Button, ButtonGroup, FloatingLabelInput, Radio, Select, Toggle } from 'flowbite-svelte';
 	import { AdjustmentsHorizontal, ArrowLeft, CloudArrowDown } from 'svelte-heros-v2';
-	// import Tags from 'svelte-tags-input';
 	import type { ActionData, PageData } from './$types';
 
 	export let form: ActionData;
@@ -98,6 +98,7 @@
 		{ value: 'ICMPV6', name: 'ICMPV6' },
 		{ value: 'RM', name: 'RM' }
 	];
+	let selectedAction = policy?.action;
 	let actionOptions = [
 		{
 			id: 'action-option-1',
@@ -114,6 +115,7 @@
 			label: 'Deny'
 		}
 	];
+	let selectedDirection = policy?.direction;
 	let directionOptions = [
 		{
 			id: 'direction-option-1',
@@ -161,6 +163,7 @@
 			<div class="my-tag col-span-3">
 				<Tags tags="{tags}" onlyUnique="{true}" minChars="{3}" on:tags="{handleSubjectTags}" placeholder="{'Enter tags...'}" labelText="{'Tags'}" labelShow />
 				<input type="hidden" name="tags" hidden value="{tags}" />
+				<!-- <TagInput {tags}  name="tags" /> <span>{tags}</span> -->
 				<ErrorMessage id="description_help" error="{fieldErrors?.tags?.[0]}" />
 			</div>
 			<div class="col-span-3">
@@ -208,7 +211,7 @@
 				<ul class="w-3/5 divide-x divide-gray-500 rounded-lg border border-gray-500 dark:divide-gray-600 dark:border-gray-600 dark:bg-gray-800 sm:flex">
 					{#each actionOptions as opt}
 						<li>
-							<Radio class="p-3" {...opt} bind:group="{policy.action}">{opt.label}</Radio>
+							<Radio class="p-3" {...opt} bind:group="{selectedAction}">{opt.label}</Radio>
 						</li>
 					{/each}
 				</ul>
@@ -217,7 +220,7 @@
 				<ul class="w-3/5 divide-x divide-gray-500 rounded-lg border border-gray-500 dark:divide-gray-600 dark:border-gray-600 dark:bg-gray-800 sm:flex">
 					{#each directionOptions as opt}
 						<li>
-							<Radio class="p-3" {...opt} bind:group="{policy.direction}">{opt.label}</Radio>
+							<Radio class="p-3" {...opt} bind:group="{selectedDirection}">{opt.label}</Radio>
 						</li>
 					{/each}
 				</ul>

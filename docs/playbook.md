@@ -239,6 +239,5 @@ npm i -D js-cookie
 Custom form elements
 
 ```shell
-npm i -D svelte-tags-input
 npm i -D svelecte
 ```
