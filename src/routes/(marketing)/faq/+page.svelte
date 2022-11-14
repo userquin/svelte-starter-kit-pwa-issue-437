@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Faq2 } from '$lib/blocks/faq';
 </script>
 

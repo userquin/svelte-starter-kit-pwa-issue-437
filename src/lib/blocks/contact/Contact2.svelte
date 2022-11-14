@@ -9,7 +9,7 @@
 				</div>
 				<div class="mt-4 px-6 lg:mt-0 lg:w-1/2">
 					<h2 class="title-font text-xs font-semibold tracking-widest text-gray-900">EMAIL</h2>
-					<a class="leading-relaxed text-indigo-500">example@email.com</a>
+					<a href="{'#'}" class="leading-relaxed text-indigo-500">example@email.com</a>
 					<h2 class="title-font mt-4 text-xs font-semibold tracking-widest text-gray-900">PHONE</h2>
 					<p class="leading-relaxed">123-456-7890</p>
 				</div>

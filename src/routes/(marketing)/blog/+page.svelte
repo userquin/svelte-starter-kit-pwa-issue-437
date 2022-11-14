@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Blog4 } from '$lib/blocks/blog';
 </script>
 

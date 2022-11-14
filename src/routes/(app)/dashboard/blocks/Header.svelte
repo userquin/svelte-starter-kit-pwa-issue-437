@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// ref: https://github.com/DandrewsDev/lnkd/blob/main/lnkd-front/src/routes/__layout.svelte
 
 	import { modalIdStore, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';

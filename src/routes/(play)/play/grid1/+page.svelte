@@ -34,6 +34,7 @@
 
 <!-- https://twitter.com/cassiecodes/status/1517122525649686530 -->
 <style>
+	/* Used Grid Generated https://cssgrid-generator.netlify.app  */
 	:global(body) {
 		min-height: 100vh;
 		padding: 0;

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Feature2 } from '$lib/blocks/feature';
 	import { Gallery1 } from '$lib/blocks/gallery';
 </script>

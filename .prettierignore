@@ -7,3 +7,7 @@ node_modules/**
 /coverage
 CHANGELOG.md
 src/lib/models/types/**
+.idea
+
+/infra/helm/templates/deployment.yaml
+infra/helm/templates/ingress.yaml

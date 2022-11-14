@@ -49,7 +49,7 @@ RUN npm ci --production --omit=optional --unsafe-perm --ignore-scripts
 RUN npm audit fix
 
 # This stage only needs the compiled application and the runtime dependencies.
-#FROM gcr.io/distroless/nodejs:18 as final
+#FROM gcr.io/distroless/nodejs:19 as final
 FROM gcr.io/distroless/nodejs:18-debug as final
 ENV NODE_ENV production
 

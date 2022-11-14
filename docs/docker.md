@@ -56,7 +56,7 @@ $DOCKER_IMAGE:$VERSION
 docker compose up
 
 ## Debug
-# when built from `FROM gcr.io/distroless/nodejs:18-debug`, you can debug by running:
+# when built from `FROM gcr.io/distroless/nodejs:19-debug`, you can debug by running:
 docker run --rm -it --entrypoint=sh $DOCKER_IMAGE:$VERSION
 # other option to explore docker image is via dive
 dive $DOCKER_IMAGE:$VERSION

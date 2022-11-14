@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { ShieldExclamation } from 'svelte-heros-v2';
 </script>
 

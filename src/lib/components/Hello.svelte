@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let count;
 	let times = 2;
 	$: result = count * times;
