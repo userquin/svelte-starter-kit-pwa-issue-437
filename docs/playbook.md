@@ -96,7 +96,6 @@ I will be using both **flowbite** and **daisyui** for UI Components
 
 ```shell
 npm i -D daisyui
-# add 
 ```
 
 Then add daisyUI to your **tailwind.config.js** files:

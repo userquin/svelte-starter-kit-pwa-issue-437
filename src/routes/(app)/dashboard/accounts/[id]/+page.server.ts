@@ -29,8 +29,8 @@ export const load: PageServerLoad = async ({ params }) => {
 				context: err.flatten().fieldErrors
 			});
 		} else if (isAppError(err)) {
-			throw error(err.code, err);
+			throw error(500, err);
 		}
-		throw error(500, getAppError(500, err));
+		throw error(500, getAppError(err));
 	}
 };

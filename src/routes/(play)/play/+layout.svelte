@@ -7,6 +7,7 @@
 
 <DarkMode btnClass="{btnClass}" />
 
+<!-- <div class="h-full w-full"> -->
 <div class="flex h-screen flex-col">
 	<slot />
 </div>

@@ -1,13 +1,13 @@
-import { CONFY_SENTRY_DSN } from '$env/static/private';
+import { PUBLIC_CONFY_SENTRY_DSN } from '$env/static/public';
 // import * as Sentry from '@sentry/browser';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
-import type { Handle, HandleClientError, HandleFetch } from '@sveltejs/kit';
+import type { HandleClientError } from '@sveltejs/kit';
 
 // Initialize the Sentry SDK here
-if (CONFY_SENTRY_DSN) {
+if (PUBLIC_CONFY_SENTRY_DSN) {
 	Sentry.init({
-		dsn: CONFY_SENTRY_DSN,
+		dsn: PUBLIC_CONFY_SENTRY_DSN,
 		release: __APP_VERSION__,
 		initialScope: {
 			tags: { source: 'client' }
@@ -22,15 +22,14 @@ if (CONFY_SENTRY_DSN) {
 }
 
 export const handleClientError: HandleClientError = ({ error, event }) => {
-	console.log('in hooks.client.ts: handleClientError:', error);
-	console.error(error);
+	console.error('hooks:client:handleClientError:', error);
 	Sentry.setExtra('event', event);
 	Sentry.captureException(error);
 
 	const err = error as App.Error;
 	return {
 		message: err.message ?? 'Whoops!',
-		code: err.code ?? 418,
+		code: err.code ?? 500,
 		context: err.context
 	};
 };

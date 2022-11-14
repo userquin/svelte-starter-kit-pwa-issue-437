@@ -152,7 +152,7 @@ export async function authenticate(params: URLSearchParams) {
 	} else {
 		let user = await currentUserManager.getUser();
 		// check if stale user exist, clean the stores if needed.
-		if(!user) {
+		if (!user) {
 			clearUserState();
 			return;
 		}
@@ -164,7 +164,7 @@ export async function authenticate(params: URLSearchParams) {
 				// if refresh token also expired, then remove local stale user from svelte-store, cookies and local storage
 				clearUserState();
 				await currentUserManager.removeUser();
-				return
+				return;
 			}
 		}
 		if (user?.access_token) {

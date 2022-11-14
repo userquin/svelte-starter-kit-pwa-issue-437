@@ -23,8 +23,8 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 - [ ] Lazy-loading images
 - [x] Responsive design
 - [ ] SEO optimization
-- [x] ~~forms: schema definitions with `yup`.  validation errors with [svelte-forms-lib](https://svelte-forms-lib-sapper-docs.vercel.app/introduction)~~
-- [ ] Forms: schema definitions with `zod`.  validation errors with [felte forms](https://felte.dev/)
+- [x] ~~forms: schema definitions with `yup`. validation errors with [svelte-forms-lib](https://svelte-forms-lib-sapper-docs.vercel.app/introduction)~~
+- [ ] Forms: schema definitions with `zod`. validation errors with [felte forms](https://felte.dev/)
 - [x] UI Components: tailwindcss, `flowbite`, `daisyui`
 - [x] K8s deployment with _letsencrypt_ ssl certificates
 - [ ] Tables: [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)

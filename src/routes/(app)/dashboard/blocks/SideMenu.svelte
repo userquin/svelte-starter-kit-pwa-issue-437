@@ -50,7 +50,7 @@
 				<SidebarItem label="Settings" href="/dashboard/settings" active="{activeUrl === '/dashboard/settings'}">
 					<svelte:fragment slot="icon"><Cog /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem rel="external" on:click="{logout}" href="{'#'}" label="Sign Out">
+				<SidebarItem on:click="{logout}" href="{'#'}" label="Sign Out">
 					<svelte:fragment slot="icon"><ArrowRightOnRectangle /></svelte:fragment>
 				</SidebarItem>
 			</SidebarGroup>

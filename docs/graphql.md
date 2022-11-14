@@ -1,6 +1,6 @@
 # GraphQL
 
- GraphQL APIs with Hasura
+GraphQL APIs with Hasura
 
 ![Hasura GraphQL Engine architecture](https://raw.githubusercontent.com/hasura/graphql-engine/master/assets/hasura-arch.svg)
 
@@ -8,8 +8,8 @@
 
 ```shell
 docker compose up hasura
-# shutdown 
-docker compose down 
+# shutdown
+docker compose down
 # shutdown , reset volume
 docker compose down -v
 ```
@@ -37,10 +37,10 @@ accounts (
 
 ```gql
 query {
-  profiles {
-    id
-    name
-  }
+	profiles {
+		id
+		name
+	}
 }
 ```
 

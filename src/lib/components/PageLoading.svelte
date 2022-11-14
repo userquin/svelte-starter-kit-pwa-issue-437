@@ -9,7 +9,7 @@
 {#if isNavigating}
 	<div class="page-loading">
 		<div class="spinner-grow text-primary" role="status">
-			<span class="loading visually-hidden">Loading...</span>
+			<span class="visually-hidden loading">Loading...</span>
 		</div>
 	</div>
 {/if}

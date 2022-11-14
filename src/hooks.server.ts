@@ -1,4 +1,4 @@
-import { CONFY_SENTRY_DSN } from '$env/static/private';
+import { PUBLIC_CONFY_SENTRY_DSN } from '$env/static/public';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
 import type { Handle, HandleFetch, HandleServerError } from '@sveltejs/kit';
@@ -21,9 +21,9 @@ process.on('SIGTERM', function () {
 // TODO : https://github.com/chientrm/svelty/blob/main/src/hooks.server.ts
 
 // Initialize the Sentry SDK here
-if (CONFY_SENTRY_DSN) {
+if (PUBLIC_CONFY_SENTRY_DSN) {
 	Sentry.init({
-		dsn: CONFY_SENTRY_DSN,
+		dsn: PUBLIC_CONFY_SENTRY_DSN,
 		release: __APP_VERSION__,
 		initialScope: {
 			tags: { source: 'server' }
@@ -55,8 +55,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 };
 
 export const handleServerError: HandleServerError = ({ error, event }) => {
-	console.log('in hooks.server.ts: handleServerError:', error);
-	console.error(error);
+	console.error('hooks:server:handleServerError:', error);
 	Sentry.setExtra('event', event);
 	Sentry.captureException(error);
 	const err = error as App.Error;

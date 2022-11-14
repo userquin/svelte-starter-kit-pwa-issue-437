@@ -28,7 +28,7 @@ Awesome **SvelteKit** Links
 
 ## Utilities
 
-- [Time Distance ](https://github.com/joshnuss/svelte-time-distance) - Display time distances in a human-readable format.
+- [Time Distance](https://github.com/joshnuss/svelte-time-distance) - Display time distances in a human-readable format.
 
 ## Testing
 
@@ -56,13 +56,15 @@ Awesome **SvelteKit** Links
 
 - External Links
 
-  ```html
-  <a rel="external" href="path">Path</a>
-  ```
+tell SvelteKit not to handle a link, but allow the browser to handle it
 
-  By default, the **SvelteKit** runtime intercepts clicks on `<a>` elements and bypasses the normal browser navigation
-  for relative (same-origin) URLs that match one of your page routes.  
-   SvelteKit doc Adding a `rel=external` attribute to a link will trigger a browser navigation when the link is clicked.
+```html
+<a rel="external" href="path">Path</a>
+```
+
+By default, the **SvelteKit** runtime intercepts clicks on `<a>` elements and bypasses the normal browser navigation
+for relative (same-origin) URLs that match one of your page routes.  
+ SvelteKit doc Adding a `rel=external` attribute to a link will trigger a browser navigation when the link is clicked.
 
 ## Reference
 
