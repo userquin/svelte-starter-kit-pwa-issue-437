@@ -26,8 +26,6 @@ export const auth = {
 // static: GitHub
 export const github = {
 	apiUrl: PUBLIC_GITHUB_API_URL,
-	// private: for server-side use only
-	apiKey: GITHUB_API_KEY
 };
 
 // Constants
