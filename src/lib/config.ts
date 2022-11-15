@@ -18,7 +18,6 @@ export const tenant = {
 export const endpoints = {
 	// FIXME: workaround https://github.com/sveltejs/kit/issues/6225 remove ` ?? "localhost:8080"`
 	api: dynPriEnv.CONFY_API_ENDPOINT ?? 'localhost:8080',
-	payment: dynPriEnv.CONFY_PAYMENT_ENDPOINT
 };
 export const auth = {
 	token: dynPriEnv.CONFY_API_TOKEN

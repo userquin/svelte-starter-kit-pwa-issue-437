@@ -19,7 +19,6 @@ declare namespace App {
 // check https://vitejs.dev/guide/env-and-mode.html#env-files
 interface ImportMetaEnv {
 	readonly CONFY_API_ENDPOINT: string;
-	readonly CONFY_PAYMENT_ENDPOINT: string;
 	readonly CONFY_API_TOKEN: string;
 	readonly VITE_API_BASE_URL: string;
 	readonly VITE_GTAG_ID: string;

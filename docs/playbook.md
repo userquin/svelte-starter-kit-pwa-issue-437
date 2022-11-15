@@ -40,12 +40,12 @@ npx playwright install
 ### Styling
 
 We will be using [TailwindCSS](https://tailwindcss.com/) for system-wide styling.  
-Follow [SvelteJit integration](https://tailwindcss.com/docs/guides/sveltekit) guide
+Follow [SvelteKit integration](https://tailwindcss.com/docs/guides/sveltekit) guide
 
 Add and configure tailwindcss via [svelte-add](https://github.com/svelte-add/tailwindcss)
 
 ```shell
-npx svelte-add@latest tailwindcss --forms --typography
+npx svelte-add@latest tailwindcss --forms --typography --daisyui
 # also add other tailwind plugins and include them in `tailwind.config.cjs`
 npm i -D @tailwindcss/aspect-ratio @tailwindcss/line-clamp
 ```
