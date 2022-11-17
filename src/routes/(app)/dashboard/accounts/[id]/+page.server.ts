@@ -8,13 +8,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
 	const payload = { id };
 	try {
-		// const resp = await fetch(`${endpoints.api}/account`, {
-		// 	method: 'POST',
-		// 	headers: { 'Content-Type': 'application/json' },
-		// 	body: JSON.stringify(payload)
-		// });
-		// const response = await resp.json();
-		// const account = response;
 
 		const account = createRandomAccount();
 

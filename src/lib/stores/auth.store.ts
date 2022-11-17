@@ -5,7 +5,7 @@
  */
 import { browser, dev } from '$app/environment';
 import { goto } from '$app/navigation';
-import { azureAuthConfig, baseUrl, googlAuthConfig } from '$lib/config-public';
+import { env as dynPubEnv } from '$env/dynamic/public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
 import Cookies from 'js-cookie';
 import { Log, User, UserManager, type UserManagerSettings } from 'oidc-client-ts';
@@ -19,7 +19,9 @@ import { derived, get, writable } from 'svelte/store';
 if (dev) Log.setLevel(Log.DEBUG);
 Log.setLogger(console);
 
-const appUrl = dev ? 'http://localhost:5173' : baseUrl;
+// const appUrl = dev ? 'http://localhost:5173' : dynPubEnv.PUBLIC_BASE_URL;
+const appUrl = browser ? window.location.origin : dynPubEnv.PUBLIC_BASE_URL;
+console.log('appUrl...', appUrl);
 
 function createUserManager(config: UserManagerSettings) {
 	const userManager = new UserManager(config);
@@ -44,8 +46,8 @@ function clearUserState() {
 }
 
 const azureUserManager = createUserManager({
-	authority: azureAuthConfig.authority,
-	client_id: azureAuthConfig.client_id,
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_AUTHORITY ?? '',
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_CLIENT_ID ?? '',
 	redirect_uri: appUrl, // window.location.origin,
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid User.Read', // email
@@ -55,9 +57,9 @@ const azureUserManager = createUserManager({
 	// silentRequestTimeout: 20000,
 });
 const googleUserManager = createUserManager({
-	authority: googlAuthConfig.authority,
-	client_id: googlAuthConfig.client_id,
-	client_secret: googlAuthConfig.client_secret,
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_AUTHORITY ?? '',
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID ?? '',
+	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET ?? '',
 	redirect_uri: appUrl, // window.location.origin,
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid email',

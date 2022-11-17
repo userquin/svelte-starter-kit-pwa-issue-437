@@ -11,12 +11,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	const limit = url.searchParams.get('limit') ?? '50';
 
 	try {
-		// const resp = await fetch(`${endpoints.api}/members?firstName=${firstName}&lastName=${lastName}&limit=${limit}`, {
-		// 	method: 'GET',
-		// 	headers: { 'Content-Type': 'application/json' }
-		// });
-		// const response = await resp.json();
-		// const accounts: Account[] = response;
 
 		const accounts: Account[] = createData(100);
 		if (!accounts?.length) throw { code: 404, message: 'not found' };
