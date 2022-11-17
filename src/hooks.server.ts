@@ -61,13 +61,12 @@ export const handleServerError: HandleServerError = ({ error, event }) => {
 	const err = error as App.Error;
 	return {
 		message: err.message ?? 'Whoops!',
-		code: err.code ?? 418,
 		context: err.context
 	};
 };
 
 export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
-	console.log('hooks.server.ts, HandleFetch, Token:');
+	console.log('hooks.server.ts, HandleFetch:');
 	const { locals } = event;
 
 	if (request.url.startsWith('https://graph.microsoft.com')) {
