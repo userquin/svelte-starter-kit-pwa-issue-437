@@ -64,10 +64,6 @@ ALTER TABLE public.tz_policies OWNER TO postgres;
 -- Data for Name: tz_policies; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.tz_policies (id, create_time, update_time, delete_time, created_by, updated_by, display_name, description, tags, annotations, disabled, template, valid_from, valid_to, subject_id, subject_secondary_id, subject_display_name, subject_type, subject_domain, source_address, source_port, destination_address, destination_port, protocol, action, direction, weight, app_id) FROM stdin;
-4da8e537-719e-4f26-b967-38ae25a31600	2022-09-19 02:46:09.984987+00	2022-09-19 02:46:26.19184+00	\N	\N	\N	user 1	this is group1 policy 11	{tz,us}	"sumo"=>"demo"	f	t	2022-09-19 16:46:00+00	\N	6e9bf365-8c09-4dd9-b9b2-83f6ab315618	chintagunta@chinthagunta.co	sumanth chinthagunta	subject_type_user	chinthagunta.com		\N	5.9.243.188	2342	Any	action_block	direction_egress	2000	\N
-\.
-
 
 --
 -- Name: tz_policies tz_policies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
