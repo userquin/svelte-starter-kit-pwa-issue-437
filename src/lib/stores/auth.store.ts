@@ -2,6 +2,8 @@
  * Svelte auth store built on `oidc-client-ts`
  * This library shoud be used client-side only, in the browser.
  * This may not work with SSR / SSG
+ * `$env/dynamic/public` not working when `prerender = true` for home routes.
+ * https://github.com/sveltejs/kit/discussions/7700
  */
 import { browser, dev } from '$app/environment';
 import { goto } from '$app/navigation';
@@ -20,7 +22,7 @@ if (dev) Log.setLevel(Log.DEBUG);
 Log.setLogger(console);
 
 const appUrl = browser ? window.location.origin : dynPubEnv.PUBLIC_BASE_URL;
-console.log('appUrl...', appUrl);
+console.log('appUrl...', appUrl, dynPubEnv.PUBLIC_BASE_URL);
 
 function createUserManager(config: UserManagerSettings) {
 	const userManager = new UserManager(config);
@@ -45,8 +47,8 @@ function clearUserState() {
 }
 
 const azureUserManager = createUserManager({
-	authority: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_AUTHORITY ?? '',
-	client_id: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_CLIENT_ID ?? '',
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_AUTHORITY,
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_CLIENT_ID,
 	redirect_uri: appUrl, // window.location.origin,
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid User.Read', // email
@@ -56,9 +58,9 @@ const azureUserManager = createUserManager({
 	// silentRequestTimeout: 20000,
 });
 const googleUserManager = createUserManager({
-	authority: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_AUTHORITY ?? '',
-	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID ?? '',
-	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET ?? '',
+	authority: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_AUTHORITY,
+	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID,
+	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET,
 	redirect_uri: appUrl, // window.location.origin,
 	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid email',
@@ -68,7 +70,7 @@ const googleUserManager = createUserManager({
 	// silentRequestTimeout: 20000,
 	metadataSeed: {
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
-		end_session_endpoint: 'http://localhost:5173'
+		end_session_endpoint: appUrl
 	},
 	extraQueryParams: { access_type: 'offline', prompt: 'consent' },
 	revokeTokenTypes: ['access_token'],
