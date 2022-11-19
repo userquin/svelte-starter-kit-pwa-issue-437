@@ -19,7 +19,6 @@ import { derived, get, writable } from 'svelte/store';
 if (dev) Log.setLevel(Log.DEBUG);
 Log.setLogger(console);
 
-// const appUrl = dev ? 'http://localhost:5173' : dynPubEnv.PUBLIC_BASE_URL;
 const appUrl = browser ? window.location.origin : dynPubEnv.PUBLIC_BASE_URL;
 console.log('appUrl...', appUrl);
 

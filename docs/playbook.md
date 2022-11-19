@@ -25,6 +25,8 @@ Code coverage via [c8](https://github.com/bcoe/c8) or [istanbul](https://istanbu
 
 [svelte-add-vitest](https://github.com/davipon/svelte-add-vitest) preset will add vitest to your SvelteKit project.
 
+For examples checkout [Svelte Component Test Recipes](https://github.com/davipon/svelte-component-test-recipes)
+
 ```shell
 # lets run preset to automate vitest setup for sveltekit
 npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
