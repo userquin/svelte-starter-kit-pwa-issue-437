@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
-
 	let tag = '';
 	let arrelementsmatch: string[] = [];
 	let autoCompleteIndex = -1;
-	let regExpEscape = (s: string) => {
+
+	let regExpEscape = (s) => {
 		return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
 	};
 
@@ -21,7 +18,7 @@
 	export let splitWith = ',';
 	export let autoComplete = false;
 	export let autoCompleteFilter = true;
-	export let autoCompleteKey: string | boolean = false;
+	export let autoCompleteKey = false;
 	export let autoCompleteMarkupKey = false;
 	export let name = 'svelte-tags-input';
 	export let id = uniqueID();
@@ -36,7 +33,7 @@
 
 	$: tags = tags || [];
 	$: addKeys = addKeys || [13];
-	$: maxTags = maxTags;
+	$: maxTags = maxTags || 10;
 	$: onlyUnique = onlyUnique || false;
 	$: removeKeys = removeKeys || [8];
 	$: placeholder = placeholder || '';
@@ -96,10 +93,6 @@
 					tags.pop();
 					tags = tags;
 
-					dispatch('tags', {
-						tags: tags
-					});
-
 					arrelementsmatch = [];
 					document.getElementById(id).readOnly = false;
 					placeholder = storePlaceholder;
@@ -146,10 +139,6 @@
 		tags = tags;
 		tag = '';
 
-		dispatch('tags', {
-			tags: tags
-		});
-
 		// Hide autocomplete list
 		// Focus on svelte tags input
 		arrelementsmatch = [];
@@ -165,10 +154,6 @@
 	function removeTag(i) {
 		tags.splice(i, 1);
 		tags = tags;
-
-		dispatch('tags', {
-			tags: tags
-		});
 
 		// Hide autocomplete list
 		// Focus on svelte tags input
@@ -339,24 +324,7 @@
 			</span>
 		{/each}
 	{/if}
-	<!-- <input
-        type="text"
-        id={id}
-        name={name}
-        bind:value={tag}
-        on:keydown={setTag}
-        on:keyup={getMatchElements}
-        on:paste={onPaste}
-        on:drop={onDrop}
-        on:focus={onFocus}
-        on:blur={(e) => onBlur(e, tag)}
-        on:pointerdown={onClick}
-        class="svelte-tags-input"
-        placeholder={placeholder}
-        disabled={disable}
-        autocomplete="off"
-    > -->
-	<input type="text" id="{id}" bind:value="{tag}" on:keydown="{setTag}" on:keyup="{getMatchElements}" on:paste="{onPaste}" on:drop="{onDrop}" on:focus="{onFocus}" on:blur="{(e) => onBlur(e, tag)}" on:pointerdown="{onClick}" class="svelte-tags-input" placeholder="{placeholder}" disabled="{disable}" autocomplete="off" />
+	<input type="text" id="{id}" name="{name}" bind:value="{tag}" on:keydown="{setTag}" on:keyup="{getMatchElements}" on:paste="{onPaste}" on:drop="{onDrop}" on:focus="{onFocus}" on:blur="{(e) => onBlur(e, tag)}" on:pointerdown="{onClick}" class="svelte-tags-input" placeholder="{placeholder}" disabled="{disable}" autocomplete="off" />
 </div>
 
 {#if autoComplete && arrelementsmatch.length > 0}
@@ -371,7 +339,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	/* CSS svelte-tags-input */
 
 	.svelte-tags-input,
