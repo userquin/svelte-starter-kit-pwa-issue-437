@@ -40,14 +40,10 @@
 
 	//Form
 	let tags = policy?.tags ?? '';
-	function handleSubjectTags(event) {
-		tags = event.detail.tags;
-	}
 	let disabled = policy?.disabled;
 	function handleDisabledClick(event) {
 		const target = event.target;
 		let value = (<HTMLInputElement>target).getAttribute('value');
-		console.log(disabled, value);
 		disabled = value != 'true';
 	}
 	let template = policy?.template;
