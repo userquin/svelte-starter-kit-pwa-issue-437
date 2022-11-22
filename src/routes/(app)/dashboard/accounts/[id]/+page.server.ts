@@ -8,7 +8,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;
 	const payload = { id };
 	try {
-
 		const account = createRandomAccount();
 
 		if (!account) throw { code: 404, message: 'not found' };

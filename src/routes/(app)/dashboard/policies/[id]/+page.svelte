@@ -161,7 +161,7 @@
 				<ErrorMessage id="description_help" error="{fieldErrors?.description?.[0]}" />
 			</div>
 			<div class="my-tag col-span-3">
-				<Tags bind:tags="{tags}" onlyUnique="{true}" minChars="{3}" placeholder="{'Enter tags...'}" labelText="{'Tags'}" labelShow />
+				<Tags bind:tags onlyUnique="{true}" minChars="{3}" placeholder="{'Enter tags...'}" labelText="{'Tags'}" labelShow />
 				<input type="hidden" name="tags" hidden value="{tags}" />
 				<!-- <TagInput {tags}  name="tags" /> <span>{tags}</span> -->
 				<ErrorMessage id="description_help" error="{fieldErrors?.tags?.[0]}" />

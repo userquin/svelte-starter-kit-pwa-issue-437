@@ -1,12 +1,21 @@
 import { PUBLIC_CONFY_SENTRY_DSN } from '$env/static/public';
+
+import { dev } from '$app/environment';
+import { guard, setUser } from '$lib/middleware';
+import { Logger } from '$lib/utils';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
-import type { Handle, HandleFetch, HandleServerError } from '@sveltejs/kit';
-
+import type { HandleFetch, HandleServerError } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 /**
  * Code in hooks.server.ts will run when the application starts up,
  * making them useful for initializing database clients, Sentry and so on.
  */
+
+// Setup logger
+if (!dev) {
+	Logger.enableProductionMode();
+}
 
 // for graceful termination
 process.on('SIGINT', function () {
@@ -16,9 +25,7 @@ process.on('SIGTERM', function () {
 	process.exit();
 }); // docker stop
 
-// Red: https://github.com/sveltejs/kit/blob/master/documentation/docs/07-hooks.md
-
-// TODO : https://github.com/chientrm/svelty/blob/main/src/hooks.server.ts
+// Read: https://github.com/sveltejs/kit/blob/master/documentation/docs/07-hooks.md
 
 // Initialize the Sentry SDK here
 if (PUBLIC_CONFY_SENTRY_DSN) {
@@ -38,21 +45,8 @@ if (PUBLIC_CONFY_SENTRY_DSN) {
 }
 
 // Invoked for each endpoint called and initially for SSR router
-export const handle: Handle = async ({ event, resolve }) => {
-	const { cookies } = event;
-	const token = cookies.get('access_token');
-	if (token) {
-		event.locals.token = token;
-	}
-	const userString = cookies.get('user');
-	if (userString) {
-		// TODO: decrypt user cookie
-		const user = JSON.parse(userString);
-		event.locals.user = user;
-	}
-
-	return resolve(event);
-};
+// export const handle = sequence(setUser, guard, logger);
+export const handle = sequence(setUser, guard);
 
 export const handleServerError: HandleServerError = ({ error, event }) => {
 	console.error('hooks:server:handleServerError:', error);

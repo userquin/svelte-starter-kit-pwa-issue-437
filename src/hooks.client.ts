@@ -1,8 +1,15 @@
 import { PUBLIC_CONFY_SENTRY_DSN } from '$env/static/public';
 // import * as Sentry from '@sentry/browser';
+import { dev } from '$app/environment';
+import { Logger } from '$lib/utils';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
 import type { HandleClientError } from '@sveltejs/kit';
+
+// Setup logger
+if (!dev) {
+	Logger.enableProductionMode();
+}
 
 // Initialize the Sentry SDK here
 if (PUBLIC_CONFY_SENTRY_DSN) {
@@ -29,7 +36,6 @@ export const handleClientError: HandleClientError = ({ error, event }) => {
 	const err = error as App.Error;
 	return {
 		message: err.message ?? 'Whoops!',
-		code: err.code ?? 500,
 		context: err.context
 	};
 };

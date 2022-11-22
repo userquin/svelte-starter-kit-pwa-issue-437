@@ -11,6 +11,14 @@ export class Logger {
 
 	private source: string;
 
+	/**
+	 * Enables production mode.
+	 * Sets logging level to LogLevel.Warning.
+	 */
+	static enableProductionMode() {
+		Logger.level = LogLevel.Warning;
+	}
+
 	constructor(component: string) {
 		this.source = component;
 	}
@@ -20,15 +28,15 @@ export class Logger {
 	}
 
 	public info(...data: unknown[]): void {
-		this.log(console.info, LogLevel.Debug, data);
+		this.log(console.info, LogLevel.Info, data);
 	}
 
 	public warn(...data: unknown[]): void {
-		this.log(console.warn, LogLevel.Debug, data);
+		this.log(console.warn, LogLevel.Warning, data);
 	}
 
 	public error(...data: unknown[]): void {
-		this.log(console.error, LogLevel.Debug, data);
+		this.log(console.error, LogLevel.Error, data);
 	}
 
 	private log = (fun: () => void, level: LogLevel, objects: unknown[]): void => {
@@ -39,8 +47,5 @@ export class Logger {
 	};
 }
 
-export const LoggerUtils = {
-	getInstance(className: string): Logger {
-		return new Logger(className);
-	}
-};
+export const AuthLogger = new Logger('middleware:auth');
+export const RequestLogger = new Logger('middleware:request');

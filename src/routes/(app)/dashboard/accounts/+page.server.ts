@@ -11,7 +11,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	const limit = url.searchParams.get('limit') ?? '50';
 
 	try {
-
 		const accounts: Account[] = createData(100);
 		if (!accounts?.length) throw { code: 404, message: 'not found' };
 		return { accounts };

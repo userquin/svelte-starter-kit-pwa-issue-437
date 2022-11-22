@@ -1,6 +1,7 @@
 import { env as dynPriEnv } from '$env/dynamic/private';
 import { CONFY_API_ENDPOINT } from '$env/static/private';
 import type { Account, AccountDeleteResult } from '$lib/models/schema';
+import { Logger } from '$lib/utils';
 import { getAppError, isAppError, isHttpError } from '$lib/utils/errors';
 import * as Sentry from '@sentry/svelte';
 import { error, invalid } from '@sveltejs/kit';
@@ -10,6 +11,8 @@ import type { Actions, PageServerLoad } from './$types';
 
 assert.ok(CONFY_API_ENDPOINT, 'CONFY_API_ENDPOINT not configered');
 assert.ok(dynPriEnv.CONFY_API_TOKEN, 'CONFY_API_TOKEN not configered');
+
+const log = new Logger('policies.server');
 
 const query = `
 	query SearchPolicies(
@@ -108,7 +111,8 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 		return { policies };
 	} catch (err) {
-		console.error('accounts:actions:load:error:', err);
+		log.error('accounts:actions:load:error:', err);
+		// console.error('accounts:actions:load:error:', err);
 		Sentry.setContext('source', { code: 'account' });
 		Sentry.captureException(err);
 

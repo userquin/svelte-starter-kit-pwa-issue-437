@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { auth } from '$lib/stores/auth.store';
+	import { page } from '$app/stores';
+	import { auth, rehydrate } from '$lib/stores/auth.store';
 	import { DarkMode } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	// import type { LayoutServerData } from './$types';
 	import { Footer, Header, SideMenu } from './blocks';
 
+	onMount(() => {
+		rehydrate($page.url.searchParams);
+	});
 	// export let data: LayoutServerData;
 	// let {user} = data;
 	// $: console.log($auth.profile)

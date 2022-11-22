@@ -226,6 +226,7 @@ Usage example [softrig-workshop-templates](https://github.com/urrang/softrig-wor
 
 ```shell
 npm i -D oidc-client-ts
+npm i -D jwks-rsa jsonwebtoken
 ```
 
 #### Cookies

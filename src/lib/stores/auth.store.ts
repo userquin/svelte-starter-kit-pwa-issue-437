@@ -41,16 +41,15 @@ function createUserManager(config: UserManagerSettings) {
  */
 function clearUserState() {
 	auth.set({ isAuthenticated: false, token: undefined, profile: undefined });
-	// unset access_token/profile cookie
-	Cookies.remove('access_token');
-	Cookies.remove('user');
+	// unset token/provider cookie
+	Cookies.remove('token');
 }
 
 const azureUserManager = createUserManager({
 	authority: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_AUTHORITY,
 	client_id: dynPubEnv.PUBLIC_CONFY_SSO_AZUREAD_CLIENT_ID,
-	redirect_uri: appUrl, // window.location.origin,
-	post_logout_redirect_uri: appUrl, // window.location.origin,
+	redirect_uri: appUrl + '/callback', // window.location.origin,
+	post_logout_redirect_uri: appUrl + '/logout', // window.location.origin,
 	scope: 'profile openid User.Read', // email
 	filterProtocolClaims: true,
 	loadUserInfo: true
@@ -61,8 +60,8 @@ const googleUserManager = createUserManager({
 	authority: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_AUTHORITY,
 	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID,
 	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET,
-	redirect_uri: appUrl, // window.location.origin,
-	post_logout_redirect_uri: appUrl, // window.location.origin,
+	redirect_uri: appUrl + '/callback', // window.location.origin,
+	post_logout_redirect_uri: appUrl + '/logout', // window.location.origin,
 	scope: 'profile openid email',
 	filterProtocolClaims: true,
 	loadUserInfo: true,
@@ -70,7 +69,7 @@ const googleUserManager = createUserManager({
 	// silentRequestTimeout: 20000,
 	metadataSeed: {
 		// end_session_endpoint: 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout',
-		end_session_endpoint: appUrl
+		end_session_endpoint: appUrl + '/logout'
 	},
 	extraQueryParams: { access_type: 'offline', prompt: 'consent' },
 	revokeTokenTypes: ['access_token'],
@@ -112,13 +111,14 @@ export const auth = writable<{ isAuthenticated: boolean; token?: string; profile
  * trigger SSO login
  * @param newProvider
  */
-export async function login(newProvider: Provider = 'azure') {
+export async function login(newProvider: Provider = 'google') {
 	setProvider(newProvider);
 	const currentUserManager = get(userManager);
 	const user = await currentUserManager.getUser();
 
-	if (user && !user.expired && user.access_token) {
+	if (user && !user.expired && user.id_token) {
 		await setAuth(user);
+		await goto('/dashboard');
 	} else {
 		try {
 			await currentUserManager.signinRedirect();
@@ -129,50 +129,53 @@ export async function login(newProvider: Provider = 'azure') {
 }
 
 /**
- * Handle callback if `code` param is present, or rehydrate `user` from localStorage if exist.
+ * Handle callback if `code` param is present
+ * @param params
+ */
+export async function callback(params: URLSearchParams) {
+	const currentUserManager = get(userManager);
+	try {
+		if (!params.has('code')) throw new Error('auth:store:authenticate: missing code');
+		// const user = await userManager.signinCallback();
+		const oidcUser = await currentUserManager.signinRedirectCallback();
+		await setAuth(oidcUser);
+
+		// TODO send to original target page
+		await goto('/dashboard');
+	} catch (err) {
+		console.error(err);
+		await goto('/');
+	}
+}
+
+/**
+ * Rehydrate `user` state from localStorage if exist.
+ * when page is full-refeshed, this will reinstate user's state
  * This should be added to root layout's onMount().
  * @param params
  */
-export async function authenticate(params: URLSearchParams) {
+export async function rehydrate(params: URLSearchParams) {
 	const currentUserManager = get(userManager);
-
-	if (params.has('code')) {
+	if (params.has('code')) return;
+	let user = await currentUserManager.getUser();
+	// check if stale user exist, clean the stores if needed.
+	if (!user) {
+		clearUserState();
+		return;
+	}
+	if (user.expired) {
 		try {
-			// const user = await userManager.signinCallback();
-			const oidcUser = await currentUserManager.signinRedirectCallback();
-			const profile = await setAuth(oidcUser);
-
-			// set access_token/profile cookies to pass to backend for every request.
-			Cookies.set('access_token', oidcUser.access_token);
-			Cookies.set('user', JSON.stringify({ ...profile, picture: undefined }));
-
-			// TODO send to original target page
-			await goto('/dashboard');
+			user = await currentUserManager.signinSilent();
 		} catch (err) {
-			console.error(err);
-			await goto('/');
-		}
-	} else {
-		let user = await currentUserManager.getUser();
-		// check if stale user exist, clean the stores if needed.
-		if (!user) {
+			console.warn(err);
+			// if refresh token also expired, then remove local stale user from svelte-store, cookies and local storage
 			clearUserState();
+			await currentUserManager.removeUser();
 			return;
 		}
-		if (user.expired) {
-			try {
-				user = await currentUserManager.signinSilent();
-			} catch (err) {
-				console.warn(err);
-				// if refresh token also expired, then remove local stale user from svelte-store, cookies and local storage
-				clearUserState();
-				await currentUserManager.removeUser();
-				return;
-			}
-		}
-		if (user?.access_token) {
-			await setAuth(user);
-		}
+	}
+	if (user?.id_token) {
+		await setAuth(user);
 	}
 }
 
@@ -199,11 +202,11 @@ async function setAuth(oidcUser: User) {
 	const profile = await getProfile(oidcUser);
 	auth.set({
 		isAuthenticated: true,
-		token: oidcUser.access_token,
+		token: oidcUser.id_token,
 		profile
 	});
-
-	return profile;
+	// set token cookie to pass to backend for every request.
+	Cookies.set('token', oidcUser.id_token!);
 }
 
 async function getProfile(oidcUser: User): Promise<AppUser> {
