@@ -61,7 +61,7 @@ const googleUserManager = createUserManager({
 	client_id: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_ID,
 	client_secret: dynPubEnv.PUBLIC_CONFY_SSO_GOOGLE_CLIENT_SECRET,
 	redirect_uri: appUrl + '/callback', // window.location.origin,
-	post_logout_redirect_uri: appUrl + '/logout', // window.location.origin,
+	post_logout_redirect_uri: appUrl, // window.location.origin,
 	scope: 'profile openid email',
 	filterProtocolClaims: true,
 	loadUserInfo: true,
@@ -98,7 +98,7 @@ function setProvider(newProvider: Provider) {
 /**
  * Stores
  */
-const seedProvider = browser ? window.localStorage.getItem(LocalStorageProviderKey) ?? 'azure' : 'azure';
+const seedProvider = browser ? window.localStorage.getItem(LocalStorageProviderKey) ?? 'google' : 'google';
 export const provider = writable(seedProvider as Provider);
 const userManager = derived(provider, ($provider) => getUserManager($provider));
 export const auth = writable<{ isAuthenticated: boolean; token?: string; profile?: AppUser }>({ isAuthenticated: false });
