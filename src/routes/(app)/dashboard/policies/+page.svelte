@@ -38,14 +38,14 @@
 			accessor: (item) => item,
 			id: 'name',
 			cell: ({ value }) =>
-				createRender(
-					Link,
-					writable({
-						url: `/dashboard/policies/${value.id}`,
-						content: value.display_name
-					})
-				),
+				createRender(Link, {
+					url: `/dashboard/policies/${value.id}`,
+					content: value.display_name
+				}),
 			plugins: {
+				tableFilter: {
+					getFilterValue: ({ display_name }) => display_name
+				},
 				sort: {
 					getSortValue: ({ display_name }) => display_name
 				}
@@ -56,17 +56,21 @@
 			accessor: 'subject_display_name'
 		}),
 		table.column({
-			header: 'Updated',
-			id: 'update_time',
-			accessor: (item) => `${item.update_time ?? item.create_time}`,
+			header: 'Created',
+			accessor: 'create_time',
 			cell: ({ value }) =>
-				createRender(
-					TimeDistance,
-					writable({
-						timestamp: Date.parse(value),
-						class: 'decoration-solid'
-					})
-				)
+				createRender(TimeDistance, {
+					timestamp: Date.parse(value),
+					class: 'decoration-solid'
+				}),
+			plugins: {
+				tableFilter: {
+					exclude: true
+				},
+				sort: {
+					getSortValue: (value) => value
+				}
+			}
 		}),
 		table.column({
 			header: 'Source',
