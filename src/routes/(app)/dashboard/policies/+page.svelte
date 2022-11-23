@@ -95,7 +95,15 @@
 			id: 'delete',
 			accessor: 'id',
 			// cell: ({ value }) => createRender(Delete).on('click', async () => deletePolicy(value))
-			cell: ({ value }) => createRender(Delete, { id: value })
+			cell: ({ value }) => createRender(Delete, { id: value }),
+			plugins: {
+				tableFilter: {
+					exclude: true
+				},
+				sort: {
+					disable: true
+				}
+			}
 		})
 	]);
 
