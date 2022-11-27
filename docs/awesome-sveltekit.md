@@ -66,7 +66,17 @@ By default, the **SvelteKit** runtime intercepts clicks on `<a>` elements and by
 for relative (same-origin) URLs that match one of your page routes.  
  SvelteKit doc Adding a `rel=external` attribute to a link will trigger a browser navigation when the link is clicked.
 
+- Felte - ignore a specific form firled
+
+add `data-felte-ignore` attrubute
+
+## Community
+
+- [svelteradio](https://www.svelteradio.com/)
+- [sveltesociety](https://sveltesociety.dev/)
+
 ## Reference
 
 - <https://github.com/rocketlaunchr/awesome-svelte>
 - Huntabyte [YouTube](https://www.youtube.com/c/Huntabyte>) tutorials
+- <https://github.com/janosh/awesome-sveltekit>

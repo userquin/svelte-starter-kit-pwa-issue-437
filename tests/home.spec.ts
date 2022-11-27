@@ -36,4 +36,14 @@ test.describe.serial('Home page', () => {
 
 		expect(await page.textContent('h1')).toBe('Combine GraphQL APIs into a unified supergraph');
 	});
+
+	test.skip('skiped: login with google', async ({ page }) => {
+		// This test is not run
+		await page.bringToFront();
+		// Recording...
+		await page.getByRole('banner').getByRole('link', { name: 'Datablocks' }).click();
+		await page.getByRole('link', { name: 'dashboard-link' }).click();
+		await page.getByRole('textbox', { name: 'Email or phone' }).fill('sumo@gmail.com');
+		await page.getByRole('button', { name: 'Next' }).click();
+	});
 });

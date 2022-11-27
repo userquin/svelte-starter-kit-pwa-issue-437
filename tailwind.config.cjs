@@ -12,7 +12,8 @@ const daisyui = require('daisyui');
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	darkMode: 'class', // or 'media' or false
+	// darkMode: 'class', // or 'media' or false
+	darkMode: ['class', '[data-theme="dark"]'],
 
 	content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}'],
 
@@ -359,18 +360,12 @@ const config = {
 	},
 
 	// daisyUI config (optional)
-	// daisyui: {
-	// 	styled: true,
-	// 	themes: true,
-	// 	base: true,
-	// 	utils: true,
-	// 	logs: true,
-	// 	rtl: false,
-	// 	prefix: "",
-	// 	darkTheme: "dark",
-	// },
+	daisyui: {
+		themes: ['light', 'dark']
+	},
 
-	plugins: [forms, typography, aspectRatio, lineClamp, flowbite, daisyui]
+	// Make sure you require daisyui AFTER @tailwindcss/typography in plugins array
+	plugins: [typography, aspectRatio, lineClamp, daisyui]
 };
 
 module.exports = config;

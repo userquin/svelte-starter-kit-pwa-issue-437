@@ -7,8 +7,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 - JS Framework [SvelteKit](https://kit.svelte.dev/)
 - CSS: [Tailwind CSS](https://tailwindcss.com/)
-- Design System: [Flowbite](https://flowbite.com/)
-- UI Components: [flowbite-svelte](https://flowbite-svelte.com/) and [DaisyUI](https://daisyui.com/)
+- UI Components: [[Flowbite](https://flowbite.com/)/[flowbite-svelte](https://flowbite-svelte.com/)] and [DaisyUI](https://daisyui.com/)
 - Unit/Component testing: [vitest](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
 - [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)
@@ -18,16 +17,14 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 ## Features
 
-- [ ] Code Splitting
-- [ ] Pages prefetching
 - [ ] Lazy-loading images
 - [x] Responsive design
 - [ ] SEO optimization
 - [x] ~~forms: schema definitions with `yup`. validation errors with [svelte-forms-lib](https://svelte-forms-lib-sapper-docs.vercel.app/introduction)~~
-- [ ] Forms: schema definitions with `zod`. validation errors with [felte forms](https://felte.dev/)
-- [x] UI Components: tailwindcss, `flowbite`, `daisyui`
+- [ ] Forms: schema definitions with `zod`. Validation errors with [felte forms](https://felte.dev/)
+- [x] **UI Components:** tailwindcss based `flowbite` and `daisyui` , make both work together without conflect, add **DarkMode** switcher.
 - [x] K8s deployment with _letsencrypt_ ssl certificates
-- [ ] Tables: [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
+- [x] Tables: [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
 
 ## Setup
 

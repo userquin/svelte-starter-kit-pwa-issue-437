@@ -1,5 +1,10 @@
 {
 	"explorer.sortOrder": "type",
+	"explorer.autorevealExclude": {
+		"**/node_modules": true,
+		".svelte-kit": true,
+		"build": true
+	},
 	////////// scm //////////
 	"scm.defaultViewMode": "tree",
 	"conventionalCommits.scopes": ["workspace", "actions", "lint", "deps", "docs", "policy", "provider"],
@@ -25,6 +30,18 @@
 	"editor.tabCompletion": "on",
 	"editor.tabSize": 2,
 	"editor.wordWrap": "off",
+	// To make tailwindcss-intellisense work in .svelte files
+	"editor.quickSuggestions": {
+		"comments": false,
+		"strings": true
+	},
+	////////// Search //////////
+	"search.exclude": {
+		"node_modules": true,
+		".svelte-kit": true,
+		"coverage": true,
+		"build": true
+	},
 	////////// Terminal //////////
 	"terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono, Monospace",
 	// "terminal.integrated.fontSize": 16, // or "window.zoomLevel": 1,

@@ -47,7 +47,8 @@ Follow [SvelteKit integration](https://tailwindcss.com/docs/guides/sveltekit) gu
 Add and configure tailwindcss via [svelte-add](https://github.com/svelte-add/tailwindcss)
 
 ```shell
-npx svelte-add@latest tailwindcss --forms --typography --daisyui
+npx svelte-add@latest tailwindcss  --typography --daisyui
+# NOTE: tailwindcss's forms plugin and daisyui wont work together
 # also add other tailwind plugins and include them in `tailwind.config.cjs`
 npm i -D @tailwindcss/aspect-ratio @tailwindcss/line-clamp
 ```
@@ -78,15 +79,17 @@ Add `postcssPresetEnv` plugin for `postcss` and include it in [postcss.config.cj
 
 ### UI Components
 
-we will be using [Flowbite](https://flowbite.com/) as _Design System_ and its [Svelte UI Components](https://flowbite-svelte.com/)
-
+We will be using [Flowbite](https://flowbite.com/) its [Svelte UI Components](https://flowbite-svelte.com/)  
 Follow **flowbite-svelte** [getting-started](https://flowbite-svelte.com/pages/getting-started) guild, install and configure `tailwind.config.cjs`
 
 We will be using [heroicons](https://heroicons.com/) via [svelte-heros-v2](https://github.com/shinokada/svelte-heros-v2) Icon Components.
 
+Use [clsx](https://github.com/lukeed/clsx) in place of [classnames](https://github.com/JedWatson/classnames) utility lib for constructing _className_ strings conditionally.
+
 ```shell
-npm i -D flowbite flowbite-svelte @floating-ui/dom classnames @popperjs/core
+npm i -D flowbite flowbite-svelte
 npm i -D svelte-heros-v2
+npm i -D clsx
 ```
 
 Other optional UI Components
@@ -105,7 +108,7 @@ Then add daisyUI to your **tailwind.config.js** files:
 ```js
 const config = {
   //...
-  plugins: [flowbite, daisyui, ...],
+  plugins: [typography,  ..., daisyui]
 }
 ```
 
@@ -115,6 +118,7 @@ const config = {
 - [Tailblocks](https://tailblocks.cc/) via [tailblocks github](https://github.com/mertJF/tailblocks)
 - [Tailwind Components](https://tailwindcomponents.com/) (Free)
 - Flowbite [Blocks](https://flowbite.com/blocks/) via [flowbite-svelte-blocks](https://github.com/shinokada/flowbite-svelte-blocks)
+- [Konsta UI](https://konstaui.com/svelte) - is a free and open source mobile UI svelte components framework built with [Tailwind CSS](https://tailwindcss.com/).
 
 ### Tools
 
@@ -123,11 +127,23 @@ const config = {
 Lets add [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 
 `prettier-plugin-svelte` has conflict with `prettier-plugin-tailwindcss` which is included during _SvelteKit_ project creation.  
-To work around this, we've bundled `prettier-plugin-svelte` directly into `prettier-plugin-tailwindcss`, so if you'd like to use this plugin with Svelte, just uninstall `prettier-plugin-svelte` and everything should work as expected.
+To work around this, `prettier-plugin-tailwindcss` must be loaded last, meaning Prettier auto-loading needs to be disabled. You can do this by setting the `pluginSearchDirs` option to `false` and then listing each of your Prettier plugins in the plugins array:
 
 ```shell
-npm uninstall -D prettier-plugin-svelte
 npm i -D prettier-plugin-tailwindcss
+```
+
+```shell
+// .prettierrc
+{
+  // ..
+  "plugins": [
+    "prettier-plugin-svelte",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss" // MUST come last
+  ],
+  "pluginSearchDirs": false
+}
 ```
 
 #### Docker

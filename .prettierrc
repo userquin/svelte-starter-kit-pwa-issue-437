@@ -3,7 +3,8 @@
 	"singleQuote": true,
 	"trailingComma": "none",
 	"printWidth": 500,
-	"pluginSearchDirs": ["."],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"pluginSearchDirs": false,
 	"overrides": [
 		{
 			"files": "*.svelte",
@@ -29,5 +30,5 @@
 	"embeddedLanguageFormatting": "auto",
 	"htmlWhitespaceSensitivity": "strict",
 	"svelteStrictMode": true,
-	"svelteAllowShorthand": false
+	"svelteAllowShorthand": true
 }

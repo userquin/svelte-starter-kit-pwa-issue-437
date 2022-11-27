@@ -7,7 +7,7 @@ test.describe.configure({ mode: 'parallel' });
 test('Home page should have Login button', async ({ page }) => {
 	await page.goto('/');
 
-	await expect(page.getByRole('button').nth(1)).toHaveText('Login Google');
+	await expect(page.getByRole('link', { name: 'dashboard-link' })).toHaveText('Get Started');
 });
 
 test.skip('skip this test', async ({ page }) => {

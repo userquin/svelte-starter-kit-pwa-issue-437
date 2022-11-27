@@ -7,7 +7,7 @@
 		return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
 	};
 
-	export let tags: string[];
+	export let tags: Set<string> | string[] = [];
 	export let addKeys = [13];
 	export let maxTags = 10;
 	export let onlyUnique = false;
@@ -324,7 +324,7 @@
 			</span>
 		{/each}
 	{/if}
-	<input type="text" id="{id}" name="{name}" bind:value="{tag}" on:keydown="{setTag}" on:keyup="{getMatchElements}" on:paste="{onPaste}" on:drop="{onDrop}" on:focus="{onFocus}" on:blur="{(e) => onBlur(e, tag)}" on:pointerdown="{onClick}" class="svelte-tags-input" placeholder="{placeholder}" disabled="{disable}" autocomplete="off" />
+	<input type="text" id="{id}" name="{name}" data-felte-ignore bind:value="{tag}" on:keydown="{setTag}" on:keyup="{getMatchElements}" on:paste="{onPaste}" on:drop="{onDrop}" on:focus="{onFocus}" on:blur="{(e) => onBlur(e, tag)}" on:pointerdown="{onClick}" class="svelte-tags-input" placeholder="{placeholder}" disabled="{disable}" autocomplete="off" />
 </div>
 
 {#if autoComplete && arrelementsmatch.length > 0}
