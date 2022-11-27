@@ -1,5 +1,5 @@
 <script lang="ts">
-	import classNames from 'classnames';
+	import { clsx } from 'clsx';
 	import { default as CloseButton } from 'flowbite-svelte/utils/CloseButton.svelte';
 	import { default as Frame } from 'flowbite-svelte/utils/Frame.svelte';
 	import { Check, ExclamationTriangle, HandRaised, InformationCircle } from 'svelte-heros-v2';
@@ -18,10 +18,10 @@
 	};
 
 	let toastsClass: string;
-	$: toastsClass = classNames(divClass, positions[position], $$props.class);
+	$: toastsClass = clsx(divClass, positions[position], $$props.class);
 
 	let iconClass: string;
-	$: iconClass = classNames('inline-flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3');
+	$: iconClass = clsx('inline-flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3');
 </script>
 
 {#if $toasts}

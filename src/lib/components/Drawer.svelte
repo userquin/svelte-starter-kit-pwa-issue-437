@@ -1,5 +1,5 @@
 <script lang="ts">
-	import classNames from 'classnames';
+	import { clsx } from 'clsx';
 	import { fly } from 'svelte/transition';
 
 	export let show = true;
@@ -8,7 +8,7 @@
 </script>
 
 {#if show}
-	<aside transition:fly="{{ x: -250, opacity: 1 }}" class="{classNames(asideClass, $$props.class)}" {...$$restProps} aria-label="Sidebar">
+	<aside transition:fly="{{ x: -250, opacity: 1 }}" class="{clsx(asideClass, $$props.class)}" {...$$restProps} aria-label="Sidebar">
 		<slot />
 	</aside>
 {/if}
