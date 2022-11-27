@@ -287,9 +287,9 @@
 </form>
 
 <!-- debug -->
-<pre class="p-4">$isValid: {$isValid}</pre>
+<!-- <pre class="p-4">$isValid: {$isValid}</pre>
 <pre class="p-4">$fData: {JSON.stringify($fData, null, 4)}</pre>
-<pre class="p-4">$fErrors: {JSON.stringify($fErrors, null, 4)}</pre>
+<pre class="p-4">$fErrors: {JSON.stringify($fErrors, null, 4)}</pre> -->
 
 <style lang="postcss">
 	:global(.sv-control) {
