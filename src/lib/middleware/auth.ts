@@ -2,8 +2,7 @@ import { env as dynPubEnv } from '$env/dynamic/public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
 import { AuthLogger } from '$lib/utils';
 import type { Handle } from '@sveltejs/kit';
-import type { JwtPayload, VerifyOptions } from 'jsonwebtoken';
-import { decode, verify } from 'jsonwebtoken';
+import jwt, { type JwtPayload, type VerifyOptions } from 'jsonwebtoken';
 import { JwksClient } from 'jwks-rsa';
 import assert from 'node:assert';
 import type { OidcMetadata } from 'oidc-client-ts';
@@ -43,15 +42,15 @@ export const setUser: Handle = async ({ event, resolve }) => {
 	const token = cookies.get('token');
 	if (token) {
 		try {
-			const jwt = decode(token, { complete: true });
-			const iss = (jwt?.payload as JwtPayload).iss;
-			const kid = jwt?.header.kid;
+			const jwtObj = jwt.decode(token, { complete: true });
+			const iss = (jwtObj?.payload as JwtPayload).iss;
+			const kid = jwtObj?.header.kid;
 			assert.ok(iss && kid && clients.has(iss) && verifyOptions.has(iss), 'Unknwon issuer');
 			const client = clients.get(iss) as JwksClient;
 			const key = await client.getSigningKey(kid);
 			const signingKey = key.getPublicKey();
 
-			const jwtPayload = verify(token, signingKey, verifyOptions.get(iss)) as JwtPayload;
+			const jwtPayload = jwt.verify(token, signingKey, verifyOptions.get(iss)) as JwtPayload;
 			// AuthLogger.debug('jwtPayload', jwtPayload);
 			const user: AppUser = {
 				sub: jwtPayload.sub ?? '',
@@ -64,6 +63,8 @@ export const setUser: Handle = async ({ event, resolve }) => {
 			// TODO: set new token/session encrypted cookie?
 		} catch (error) {
 			AuthLogger.error(error);
+			AuthLogger.warn('bad token. deleteing token cookie');
+			cookies.delete('token', { path: '/' });
 		}
 	}
 
