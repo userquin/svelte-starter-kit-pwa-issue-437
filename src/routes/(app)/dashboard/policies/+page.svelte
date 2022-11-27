@@ -168,7 +168,7 @@
 					<User />
 				{/if}
 			</InputAddon>
-			<Input bind:value="{name}" placeholder="Display Name" />
+			<Input bind:value="{name}" class="input !rounded-none focus:outline-none" placeholder="Display Name" />
 			<Select class="w-16 !rounded-none border-l-0" items="{limits}" bind:value="{limit}" />
 			<Button color="dark" class="!p-2.5" on:click="{onSearch}"><MagnifyingGlass size="20" /></Button>
 		</ButtonGroup>

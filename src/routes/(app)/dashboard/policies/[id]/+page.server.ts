@@ -2,7 +2,7 @@ import { env as dynPriEnv } from '$env/dynamic/private';
 import { CONFY_API_ENDPOINT } from '$env/static/private';
 import { accountCreateSchema, accountUpdateSchema, type Account, type AccountSaveResult } from '$lib/models/schema';
 import { getAppError, isAppError, isHttpError, isRedirect } from '$lib/utils/errors';
-import { removeEmpty, uuidSchema } from '$lib/utils/zod.utils';
+import { arrayToString, mapToString, removeEmpty, uuidSchema } from '$lib/utils/zod.utils';
 import * as Sentry from '@sentry/svelte';
 import { error, invalid } from '@sveltejs/kit';
 import crypto from 'node:crypto';
@@ -121,7 +121,14 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		const policy: Account = data.tz_policies_by_pk;
 		if (!policy) return { loadErrors: [{ message: 'Not Found' }] };
 
-		return { policy };
+		// trim dates
+		const policyFormatted = {
+			...policy,
+			...(policy.valid_from && { valid_from: new Date(policy.valid_from).toISOString().slice(0, 16) }),
+			...(policy.valid_to && { valid_to: new Date(policy.valid_to).toISOString().slice(0, 16) })
+		};
+
+		return { policy: policyFormatted };
 	} catch (err) {
 		console.error('account:actions:load:error:', err);
 		Sentry.setContext('source', { code: 'account' });
@@ -145,10 +152,6 @@ export const actions: Actions = {
 			token
 		} = locals;
 
-		console.log('save action formData:', formData);
-		removeEmpty(formData);
-		console.log('save action cleanFormData:', formData);
-
 		try {
 			let actionResult: AccountSaveResult;
 			const id = uuidSchema.parse(params.id);
@@ -156,6 +159,12 @@ export const actions: Actions = {
 			// CREATE
 			if (id == '00000000-0000-0000-0000-000000000000') {
 				console.log('in CREATE');
+
+				// remove empty fields for CREATE caction
+				console.log('CREATE action formData:', formData);
+				removeEmpty(formData);
+				console.log('CREATE action cleanFormData:', formData);
+
 				formData.id = crypto.randomUUID();
 				formData.created_by = email;
 				formData.create_time = new Date().toISOString();
@@ -164,8 +173,10 @@ export const actions: Actions = {
 				const payload = accountCreateSchema.parse(formData);
 				const jsonPayload = {
 					...payload,
-					...(payload.tags && { tags: `{${[...payload.tags].join(',')}}` }),
-					...(payload.annotations && { annotations: Array.from(payload.annotations, ([k, v]) => `"${k}"=>"${v}"`).join(',') }),
+					...(payload.tags && { tags: arrayToString(payload.tags) }),
+					...(payload.annotations && { annotations: mapToString(payload.annotations) }),
+					...(payload.valid_from && { valid_from: payload.valid_from.toISOString() }),
+					...(payload.valid_to && { valid_to: payload.valid_to.toISOString() }),
 					...(payload.create_time && { create_time: payload.create_time.toISOString() }),
 					...(payload.update_time && { update_time: payload.update_time.toISOString() })
 				};
@@ -200,14 +211,17 @@ export const actions: Actions = {
 
 			// UPDATE
 			else {
-				console.log('in UPDATE');
+				console.log('in UPDATE', formData);
 				formData.updated_by = email;
 				formData.update_time = new Date().toISOString();
 				const payload = accountUpdateSchema.parse(formData);
+				console.log('in UPDATE payload', payload);
 				const jsonPayload = {
 					...payload,
-					...(payload.tags && { tags: `{${[...payload.tags].join(',')}}` }),
-					...(payload.annotations && { annotations: Array.from(payload.annotations, ([k, v]) => `"${k}"=>"${v}"`).join(',') }),
+					...(payload.tags && { tags: arrayToString(payload.tags) }),
+					...(payload.annotations && { annotations: mapToString(payload.annotations) }),
+					...(payload.valid_from && { valid_from: payload.valid_from.toISOString() }),
+					...(payload.valid_to && { valid_to: payload.valid_to.toISOString() }),
 					...(payload.update_time && { update_time: payload.update_time.toISOString() })
 				};
 
