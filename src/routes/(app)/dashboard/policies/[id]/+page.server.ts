@@ -4,7 +4,7 @@ import { accountCreateSchema, accountUpdateSchema, type Account, type AccountSav
 import { getAppError, isAppError, isHttpError, isRedirect } from '$lib/utils/errors';
 import { arrayToString, mapToString, removeEmpty, uuidSchema } from '$lib/utils/zod.utils';
 import * as Sentry from '@sentry/svelte';
-import { error, invalid } from '@sveltejs/kit';
+import { error, invalid, redirect } from '@sveltejs/kit';
 import crypto from 'node:crypto';
 import { ZodError } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
@@ -146,6 +146,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 export const actions: Actions = {
 	save: async ({ params, request, locals }) => {
+		if (!locals.user) {
+			throw redirect(307, '/login');
+		}
+
 		const formData = Object.fromEntries(await request.formData());
 		const {
 			user: { email },

@@ -65,18 +65,20 @@ export const setUser: Handle = async ({ event, resolve }) => {
 			AuthLogger.error(error);
 			AuthLogger.warn('bad token. deleteing token cookie');
 
-			// Not working
-			//cookies.delete('token', { path: '/' }); // <-- this is not deleting the token cookie !
-			//return Response.redirect(`${event.url.origin}/login`, 307); <-- ERR_TOO_MANY_REDIRECTS error
+			cookies.delete('token', { path: '/' });
 
-			// Workarround
-			return new Response(null, {  // <-- so, i have to do this way, with cavities for progressively enhanced forms
-				status: 300,
-				headers: {
-					location: `${event.url.origin}/login`,
-					'set-cookie': `token=; Path=/; Expires=${new Date(0)}`
-				}
-			});
+			// Not working <-- `cookies.delete()` is not deleting cookie when using along with `throw redirect()`
+			// cookies.delete('token', { path: '/' }); //
+			//throw redirect(307, `${event.url.origin}/login`); <-- ERR_TOO_MANY_REDIRECTS client error
+
+			// Workarround // <-- so, i have to do this way, with cavities for progressively enhanced forms
+			// return new Response(null, {
+			// 	status: 300,
+			// 	headers: {
+			// 		location: `${event.url.origin}/login`,
+			// 		'set-cookie': `token=; Path=/; Expires=${new Date(0)}`
+			// 	}
+			// });
 		}
 	}
 
