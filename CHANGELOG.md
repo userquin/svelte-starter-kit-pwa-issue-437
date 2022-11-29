@@ -2,6 +2,54 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.3.0](https://github.com/xmlking/svelte-starter-kit/compare/v0.2.0..v0.3.0) - 2022-11-29
+#### Bug Fixes
+- **(auth)** redirect immediately after detecting stale token - ([f8961d7](https://github.com/xmlking/svelte-starter-kit/commit/f8961d775af8aa38dcdd4b2ae5da510699898d1a)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** redirect immediately after detecting stale token - ([5b9aa51](https://github.com/xmlking/svelte-starter-kit/commit/5b9aa51e9310af887c2ff3cc0bd2ee071976ae66)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** redirect immediately after detecting stale token - ([72e79d7](https://github.com/xmlking/svelte-starter-kit/commit/72e79d743cdd6f0ec02bbdef05b3dcb60a923657)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** post_logout_redirect_uri for google - ([1c305d8](https://github.com/xmlking/svelte-starter-kit/commit/1c305d8e57f49bc45d4691938b2cd11ba042dacb)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** cleanup user cookies when user is stale - ([f740f92](https://github.com/xmlking/svelte-starter-kit/commit/f740f9219588c2725313f1bbade05958a6b06b4f)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** silent refresh fix [skip ci] - ([f290283](https://github.com/xmlking/svelte-starter-kit/commit/f290283135d675b080661e5b6213d7f23c30c91b)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** optmize auth.store [skip ci] - ([7ba1fcd](https://github.com/xmlking/svelte-starter-kit/commit/7ba1fcdc86e0579a39ab0040becf13839050ac9a)) - [@xmlking](https://github.com/xmlking)
+- **(config)** remove un-used config [skip ci] - ([d1a3ed9](https://github.com/xmlking/svelte-starter-kit/commit/d1a3ed927514e2aa9b4882ff966de3f86561507b)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** updated deps[skip ci] - ([b445131](https://github.com/xmlking/svelte-starter-kit/commit/b4451318bbf99739cbe68ffe9ea04d9710b34b8b)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** updated deps[skip ci] - ([132fd25](https://github.com/xmlking/svelte-starter-kit/commit/132fd25f6da0c1c737ca1ff902da18fcc5b5be43)) - [@xmlking](https://github.com/xmlking)
+- **(errors)** cleanup error code [skip ci] - ([feed052](https://github.com/xmlking/svelte-starter-kit/commit/feed0527c98312ad062b1540bd51e8116458b026)) - [@xmlking](https://github.com/xmlking)
+- **(hasura)** polish hasura tests [skip ci] - ([d4bf0a7](https://github.com/xmlking/svelte-starter-kit/commit/d4bf0a7c32cb2099edea3b29df9a0065b28f063a)) - [@xmlking](https://github.com/xmlking)
+- **(lib)** update Tags to support bind:tags [skip ci] - ([9f52ad6](https://github.com/xmlking/svelte-starter-kit/commit/9f52ad68b870a5a4a454186e2a2a1943520ebe86)) - [@xmlking](https://github.com/xmlking)
+- **(lib)** tag component polich [skip ci] - ([1bc8560](https://github.com/xmlking/svelte-starter-kit/commit/1bc8560bb6057dff936e0dd76838cee282e6ed67)) - [@xmlking](https://github.com/xmlking)
+- **(policy)** add client side validation along with form actions - ([2875b01](https://github.com/xmlking/svelte-starter-kit/commit/2875b01d79bce879fdc66eddf5f07e3f64f57225)) - [@xmlking](https://github.com/xmlking)
+- **(policy)** add client side validation along with form actions - ([6652612](https://github.com/xmlking/svelte-starter-kit/commit/665261228db069f64fe242493f42768d6ed66b1c)) - [@xmlking](https://github.com/xmlking)
+- **(policy)** lock flowbite-svelte version to 0.27.16 - ([f99e76f](https://github.com/xmlking/svelte-starter-kit/commit/f99e76f7074140b4074c72c2d323ea32cc47fdc9)) - [@xmlking](https://github.com/xmlking)
+- **(policy)** add delete action [skip ci] - ([79f0123](https://github.com/xmlking/svelte-starter-kit/commit/79f0123699fed20fafff18b29ccf602bea88c208)) - [@xmlking](https://github.com/xmlking)
+- **(root)** remove unused code - ([28b59eb](https://github.com/xmlking/svelte-starter-kit/commit/28b59eb9a0152c4e7a68411cc3f8171c5f217035)) - [@xmlking](https://github.com/xmlking)
+- **(style)** fix lint [skip ci] - ([c088626](https://github.com/xmlking/svelte-starter-kit/commit/c0886268aa5e0aead4626bfbd5802ffc9461384d)) - [@xmlking](https://github.com/xmlking)
+- **(style)** fix lint [skip ci] - ([e74e9c7](https://github.com/xmlking/svelte-starter-kit/commit/e74e9c7124c9408e4371228bf6faa8a01a3d2b63)) - [@xmlking](https://github.com/xmlking)
+#### Build system
+- **(deps)** bump actions/dependency-review-action from 2 to 3 (#40) - ([2b8da98](https://github.com/xmlking/svelte-starter-kit/commit/2b8da988bb6fd9d54fbc2e705d23d9e889b71e8f)) - dependabot[bot]
+#### Features
+- **(accounts)** add CRUD example with hasura graphql - ([e18f90e](https://github.com/xmlking/svelte-starter-kit/commit/e18f90e1ebeeabcbe8286750e299bbfbf66ff776)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** refactor auth, server side verification - ([7905854](https://github.com/xmlking/svelte-starter-kit/commit/79058540a15b870cec4d05836ace4ba5a157207f)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** replacing server-side oauth with client-side openid - ([522a610](https://github.com/xmlking/svelte-starter-kit/commit/522a6108855f7d864b5a30a6e34091c9ea655af1)) - [@xmlking](https://github.com/xmlking)
+- **(auth)** replacing server-side oauth with client-side openid - ([ab5f201](https://github.com/xmlking/svelte-starter-kit/commit/ab5f2017066eb286675dbf7d0a9d5660591893cc)) - [@xmlking](https://github.com/xmlking)
+#### Miscellaneous Chores
+- **(auth)** auth verify stale token - ([b2cc4f1](https://github.com/xmlking/svelte-starter-kit/commit/b2cc4f123a14fb9c8f0be459b13f12a300a08f98)) - [@xmlking](https://github.com/xmlking)
+- **(clsx)** switching to clsx from classnames lib - ([6d88467](https://github.com/xmlking/svelte-starter-kit/commit/6d88467af20b3ffe8d1c088a40f929ea4f769b28)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** deps updated [skip ci] - ([49689c1](https://github.com/xmlking/svelte-starter-kit/commit/49689c185300e1db99b75682bd2b0b136fd9667d)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** deps updated [skip ci] - ([513b9e2](https://github.com/xmlking/svelte-starter-kit/commit/513b9e27c598968e0606b56b9f949e4d665d19fb)) - [@xmlking](https://github.com/xmlking)
+- **(mock)** remove dup mock  [skip ci] - ([094f38b](https://github.com/xmlking/svelte-starter-kit/commit/094f38bba1c30ab6d286e15ad6635a3f93627028)) - [@xmlking](https://github.com/xmlking)
+- **(profile)** refactor [skip ci] - ([d6e8dce](https://github.com/xmlking/svelte-starter-kit/commit/d6e8dcee6fdc9265bc878998bf4f7395b4b21dd7)) - [@xmlking](https://github.com/xmlking)
+- **(root)** updated dips, tools and docs - ([1eefe49](https://github.com/xmlking/svelte-starter-kit/commit/1eefe49c4cf95a7572098e57efe0cbb3471de138)) - [@xmlking](https://github.com/xmlking)
+#### Style
+- **(root)** fix lint - ([7f8689e](https://github.com/xmlking/svelte-starter-kit/commit/7f8689eba631278550df637292caa52d03f80e2c)) - [@xmlking](https://github.com/xmlking)
+- **(ui)** adding DaisyUI UI components - ([387a1ab](https://github.com/xmlking/svelte-starter-kit/commit/387a1ab111cea7e50cfdecd2d2ce9c33ed06cff1)) - [@xmlking](https://github.com/xmlking)
+#### Tests
+- **(graphql)** add hasura graphql [skip ci] - ([2a96ddb](https://github.com/xmlking/svelte-starter-kit/commit/2a96ddb952342c99725df0bbdc178276ad81b3aa)) - [@xmlking](https://github.com/xmlking)
+- **(mock)** Mock tests with msw - ([f7a2b15](https://github.com/xmlking/svelte-starter-kit/commit/f7a2b1549415c45f11954dadc681fde3964505c7)) - [@xmlking](https://github.com/xmlking)
+- **(vitest)** Mock SvelteKit runtime [skip ci] - ([5d27f7a](https://github.com/xmlking/svelte-starter-kit/commit/5d27f7a584c19ab2657fbc00c9730d840f984330)) - [@xmlking](https://github.com/xmlking)
+
+- - -
+
 ## [v0.1.0](https://github.com/xmlking/svelte-starter-kit/compare/v0.0.2..v0.1.0) - 2022-10-16
 #### Bug Fixes
 - **(actions)** github actions - ([c4a483e](https://github.com/xmlking/svelte-starter-kit/commit/c4a483e91e1c0abbf7aefc8ec1c96df7d448f8e3)) - [@xmlking](https://github.com/xmlking)
