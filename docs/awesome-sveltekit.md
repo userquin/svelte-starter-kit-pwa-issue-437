@@ -70,6 +70,10 @@ for relative (same-origin) URLs that match one of your page routes.
 
 add `data-felte-ignore` attrubute
 
+- How to fix `Cross-site POST form submissions are forbidden` aks CSRF
+
+Add ORIGIN Env Varaible i.e., `ORIGIN=http://localhost:3000 node build/index.js`
+
 ## Community
 
 - [svelteradio](https://www.svelteradio.com/)
