@@ -25,6 +25,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 - [x] **UI Components:** tailwindcss based `flowbite` and `daisyui` , make both work together without conflect, add **DarkMode** switcher.
 - [x] K8s deployment with _letsencrypt_ ssl certificates
 - [x] Tables: [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
+- [ ] Use [NextAuth.js](https://next-auth.js.org/)  when [released](https://github.com/nextauthjs/next-auth/tree/main/apps/playground-sveltekit)
 
 ## Setup
 
