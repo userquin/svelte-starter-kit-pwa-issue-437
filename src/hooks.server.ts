@@ -45,7 +45,7 @@ if (PUBLIC_CONFY_SENTRY_DSN) {
 }
 
 // Invoked for each endpoint called and initially for SSR router
-// export const handle = sequence(setUser, guard, logger);
+// export const handle = sequence(setUser, guard, houdini, logger);
 export const handle = sequence(setUser, guard);
 
 export const handleServerError: HandleServerError = ({ error, event }) => {

@@ -1,0 +1,37 @@
+query ListPolicies($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]) {
+	counts: tz_policies_aggregate(where: { delete_time: { _is_null: true } }) {
+		aggregate {
+			count
+		}
+	}
+	tz_policies(order_by: $orderBy, limit: $limit, offset: $offset, where: { delete_time: { _is_null: true } }) {
+		id
+		display_name
+		description
+		tags
+		annotations
+		disabled
+		template
+		create_time
+		created_by
+		update_time
+		updated_by
+		delete_time
+		valid_from
+		valid_to
+		subject_display_name
+		subject_domain
+		subject_id
+		subject_secondary_id
+		subject_type
+		source_address
+		source_port
+		destination_address
+		destination_port
+		protocol
+		action
+		direction
+		app_id
+		weight
+	}
+}

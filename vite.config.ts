@@ -1,4 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import houdini from 'houdini/vite';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 import type { UserConfig } from 'vite';
@@ -15,7 +16,7 @@ const [gitTag, gitDate] = (await Promise.allSettled([pexec('git describe --tags 
 
 /** @type {import('vite').UserConfig} */
 const config: UserConfig = {
-	plugins: [sveltekit()],
+	plugins: [houdini(), sveltekit()],
 	define: {
 		// Eliminate in-source test code
 		'import.meta.vitest': 'undefined',

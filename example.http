@@ -17,7 +17,7 @@ query ListPolicies(
     }
   }
   tz_policies(
-    order_by: { update_time: desc_nulls_last }
+	order_by: $orderBy
     limit: $limit
     offset: $offset
     where: { delete_time: { _is_null: true } }

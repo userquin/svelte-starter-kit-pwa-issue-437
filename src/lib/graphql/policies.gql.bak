@@ -89,10 +89,6 @@ query ($subject_id: String, $subject_type: String = "subject_type_user", $limit:
 		template
 	}
 }
-{
-  "subject_id": "6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
-  "subject_type": "subject_type_user"
-}
 
 
 mutation $id: uuid) {
