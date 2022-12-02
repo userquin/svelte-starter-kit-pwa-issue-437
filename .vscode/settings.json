@@ -3,6 +3,7 @@
 	"explorer.autorevealExclude": {
 		"**/node_modules": true,
 		".svelte-kit": true,
+		"$houdini": true,
 		"build": true
 	},
 	////////// scm //////////

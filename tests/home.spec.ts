@@ -39,11 +39,21 @@ test.describe.serial('Home page', () => {
 
 	test.skip('skiped: login with google', async ({ page }) => {
 		// This test is not run
+		await page.goto('/');
 		await page.bringToFront();
+		await expect(page.getByRole('heading', { name: 'Combine GraphQL APIs into a unified supergraph' })).toBeVisible();
+
 		// Recording...
-		await page.getByRole('banner').getByRole('link', { name: 'Datablocks' }).click();
+		const { USERNAME = 'sumo', PASSWORD = 'demo' } = process.env;
 		await page.getByRole('link', { name: 'dashboard-link' }).click();
-		await page.getByRole('textbox', { name: 'Email or phone' }).fill('sumo@gmail.com');
+		await expect(page).toHaveURL(/login/);
+		await page.getByRole('button', { name: 'Google' }).click();
+		await expect(page).toHaveURL(new RegExp('^https://accounts.google.com.*'));
+		await page.getByRole('textbox', { name: 'Email or phone' }).fill(USERNAME);
 		await page.getByRole('button', { name: 'Next' }).click();
+		await page.getByRole('textbox', { name: 'Enter your password' }).fill(PASSWORD);
+		await page.getByRole('button', { name: 'Next' }).click();
+		await page.getByRole('link', { name: 'arrow right on rectangle Sign Out' }).click();
+		await page.getByRole('link', { name: 'dashboard-link' }).click();
 	});
 });

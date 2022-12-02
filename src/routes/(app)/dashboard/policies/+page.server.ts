@@ -1,5 +1,6 @@
 import { env as dynPriEnv } from '$env/dynamic/private';
 import { CONFY_API_ENDPOINT } from '$env/static/private';
+import { CachePolicy, GQL_ListPolicies, order_by } from '$houdini';
 import type { Account, AccountDeleteResult } from '$lib/models/schema';
 import { Logger } from '$lib/utils';
 import { getAppError, isAppError, isHttpError } from '$lib/utils/errors';
@@ -7,7 +8,7 @@ import * as Sentry from '@sentry/svelte';
 import { error, invalid } from '@sveltejs/kit';
 
 import assert from 'node:assert';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions, PageServerLoad, RequestEvent } from './$types';
 
 assert.ok(CONFY_API_ENDPOINT, 'CONFY_API_ENDPOINT not configered');
 assert.ok(dynPriEnv.CONFY_API_TOKEN, 'CONFY_API_TOKEN not configered');
@@ -69,7 +70,9 @@ const delete_mutation = `
 	}
 `;
 
-export const load: PageServerLoad = async ({ url, setHeaders }) => {
+export const load: PageServerLoad = async (event: RequestEvent) => {
+	const { url, setHeaders } = event;
+
 	const limit = parseInt(url.searchParams.get('limit') ?? '');
 	const offset = parseInt(url.searchParams.get('offset') ?? '');
 	const subject_type = url.searchParams.get('subType');
@@ -101,6 +104,17 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 		const { errors, data } = await resp.json();
 		if (errors) return { loadErrors: errors }; // return invalid(400, {loadErrors: errors });
+
+		//----
+		const policies_data = await GQL_ListPolicies.fetch({
+			event,
+			policy: CachePolicy.CacheAndNetwork,
+			variables: { limit: 10, offset: 1, orderBy: [{ update_time: order_by.desc_nulls_first }] }
+		});
+		const count = policies_data.data?.counts?.aggregate?.count;
+		const policies1 = policies_data.data?.tz_policies;
+		console.log(policies1?.[0], count);
+		//----
 
 		const policies: Account[] = data.tz_policies; // FIXME use Account model
 

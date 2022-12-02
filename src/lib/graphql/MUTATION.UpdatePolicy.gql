@@ -1,0 +1,7 @@
+mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
+	update_tz_policies_by_pk(pk_columns: { id: $id }, _set: $data) {
+		id
+		display_name
+		update_time
+	}
+}

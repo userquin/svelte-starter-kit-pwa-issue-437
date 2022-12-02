@@ -25,6 +25,7 @@
 	`;
 </script>
 
+<span>isFetching: {$allOrders.isFetching}</span>
 {#each $allOrders.data.customer as customer}
 	<div>{JSON.stringify(customer, null, 2)}</div>
 {/each}

@@ -1,0 +1,5 @@
+mutation DeletePolicy($id: uuid!) {
+	delete_tz_policies_by_pk(id: $id) {
+		display_name
+	}
+}

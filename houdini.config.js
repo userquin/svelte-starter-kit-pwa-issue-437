@@ -18,7 +18,7 @@ const config = {
 
 	plugins: {
 		'houdini-svelte': {
-			client: './src/client'
+			client: './src/lib/graphql/client'
 		}
 	},
 

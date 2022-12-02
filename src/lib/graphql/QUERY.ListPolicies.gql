@@ -1,4 +1,4 @@
-query ListPolicies2($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]) @cache(policy: CacheAndNetwork) {
+query ListPolicies($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]) {
 	counts: tz_policies_aggregate(where: { delete_time: { _is_null: true } }) {
 		aggregate {
 			count

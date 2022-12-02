@@ -74,6 +74,10 @@ add `data-felte-ignore` attrubute
 
 Add ORIGIN Env Varaible i.e., `ORIGIN=http://localhost:3000 node build/index.js`
 
+- How to make SvelteKit WebApp as PWA
+  - **Option 1:** add `src/service-worker.js` as documented in SvelteKit [Docs](https://kit.svelte.dev/docs/service-workers)
+  - **Option 2:** If you need a more full-flegded but also more opinionated solution, we recommend looking at solutions like [Vite PWA plugin](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html), which uses [Workbox](https://web.dev/learn/pwa/workbox).
+
 ## Community
 
 - [svelteradio](https://www.svelteradio.com/)

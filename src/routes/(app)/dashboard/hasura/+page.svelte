@@ -3,13 +3,13 @@
 	// import { GQL_ListPolicies } from '$houdini';
 
 	export let data: PageData;
-	let { ListPolicies } = data;
-	$: ({ ListPolicies } = data);
+	let { ListPolicies2 } = data;
+	$: ({ ListPolicies2 } = data);
 </script>
 
 <details>
-	<summary>raw data</summary>
+	<summary>raw data with @cache(policy: CacheAndNetwork)</summary>
 	<pre>
-    {JSON.stringify($ListPolicies.data, null, 2)}
+    {JSON.stringify($ListPolicies2.data, null, 2)}
   </pre>
 </details>
