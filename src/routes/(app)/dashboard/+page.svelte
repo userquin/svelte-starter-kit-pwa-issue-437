@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stats1 } from '$lib/blocks/stats';
+	import { Stats3 } from '$lib/blocks/stats';
 </script>
 
 <svelte:head>
@@ -7,7 +7,7 @@
 	<meta name="description" content="Dashboard Stats" />
 </svelte:head>
 
-<Stats1 />
-<!--<Stats2 />-->
-<!--<Stats3 />-->
+<Stats3 />
 <!--<Stats4 />-->
+<!--<Stats5 />-->
+<!--<Stats6 />-->

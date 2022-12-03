@@ -1,44 +1,24 @@
-<div class="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-	<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-		<div class="text-center">
-			<div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-teal-accent-400 sm:h-12 sm:w-12">
-				<svg class="h-8 w-8 text-teal-900 sm:h-10 sm:w-10" stroke="currentColor" viewBox="0 0 52 52">
-					<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-				</svg>
+<div class="-ml-1 flex gap-4  overflow-x-auto pl-1 pb-2">
+	<div class="flex items-center gap-4 rounded-lg bg-white p-4 shadow-md">
+		<!-- Image -->
+
+		<!-- Data -->
+		<div class="whitespace-nowrap">
+			<!-- Title -->
+			<div>Avg. Open Rate</div>
+			<!-- Value + Change -->
+			<div class="flex items-end gap-2">
+				<!-- Value -->
+				<div class="text-2xl font-bold"> 24.57 % </div>
+				<!-- Change -->
+				<div class="mb-0.5 flex items-center gap-0.5 text-sm font-semibold text-green-500 ">
+					<!--{{ if gt .Change 0.0 }}-->
+					<!--<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>-->
+					<!--{{ else if lt .Change 0.0 }}-->
+					<svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+					-3.2 %
+				</div>
 			</div>
-			<h6 class="text-4xl font-bold text-deep-purple-accent-400">819</h6>
-			<p class="text-md mb-2 font-bold">Downloads</p>
-			<p class="text-gray-700"> It’s something that’s many of the wisest people in history have kept in mind. </p>
-		</div>
-		<div class="text-center">
-			<div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-teal-accent-400 sm:h-12 sm:w-12">
-				<svg class="h-8 w-8 text-teal-900 sm:h-10 sm:w-10" stroke="currentColor" viewBox="0 0 52 52">
-					<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-				</svg>
-			</div>
-			<h6 class="text-4xl font-bold text-deep-purple-accent-400">1.3K</h6>
-			<p class="text-md mb-2 font-bold">Users</p>
-			<p class="text-gray-700"> For many men, the acquisition of wealth does not end their troubles, it only changes them. </p>
-		</div>
-		<div class="text-center">
-			<div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-teal-accent-400 sm:h-12 sm:w-12">
-				<svg class="h-8 w-8 text-teal-900 sm:h-10 sm:w-10" stroke="currentColor" viewBox="0 0 52 52">
-					<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-				</svg>
-			</div>
-			<h6 class="text-4xl font-bold text-deep-purple-accent-400">91</h6>
-			<p class="text-md mb-2 font-bold">Subscribers</p>
-			<p class="text-gray-700"> It's a helluva start, being able to recognize what makes you happy today, in this moment. </p>
-		</div>
-		<div class="text-center">
-			<div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-teal-accent-400 sm:h-12 sm:w-12">
-				<svg class="h-8 w-8 text-teal-900 sm:h-10 sm:w-10" stroke="currentColor" viewBox="0 0 52 52">
-					<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-				</svg>
-			</div>
-			<h6 class="text-4xl font-bold text-deep-purple-accent-400">52</h6>
-			<p class="text-md mb-2 font-bold">Products</p>
-			<p class="text-gray-700"> Happiness is when what you think, what you say, and what you do are in harmony. </p>
 		</div>
 	</div>
 </div>

@@ -9,6 +9,7 @@ import { browser, dev } from '$app/environment';
 import { goto } from '$app/navigation';
 import { env as dynPubEnv } from '$env/dynamic/public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
+import { localStorageStore } from '@skeletonlabs/skeleton';
 import Cookies from 'js-cookie';
 import { Log, User, UserManager, type UserManagerSettings } from 'oidc-client-ts';
 import { derived, get, writable } from 'svelte/store';
@@ -90,16 +91,11 @@ function getUserManager(provider: Provider) {
  */
 export type Provider = 'azure' | 'google';
 const LocalStorageProviderKey = 'AuthenticationProvider';
-function setProvider(newProvider: Provider) {
-	window.localStorage.setItem(LocalStorageProviderKey, newProvider);
-	provider.set(newProvider);
-}
 
 /**
  * Stores
  */
-const seedProvider = browser ? window.localStorage.getItem(LocalStorageProviderKey) ?? 'google' : 'google';
-export const provider = writable(seedProvider as Provider);
+export const provider = localStorageStore<Provider>(LocalStorageProviderKey, 'google');
 const userManager = derived(provider, ($provider) => getUserManager($provider));
 export const auth = writable<{ isAuthenticated: boolean; token?: string; profile?: AppUser }>({ isAuthenticated: false });
 
@@ -112,7 +108,7 @@ export const auth = writable<{ isAuthenticated: boolean; token?: string; profile
  * @param newProvider
  */
 export async function login(newProvider: Provider = 'google') {
-	setProvider(newProvider);
+	provider.set(newProvider);
 	const currentUserManager = get(userManager);
 	const user = await currentUserManager.getUser();
 

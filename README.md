@@ -7,7 +7,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 - JS Framework [SvelteKit](https://kit.svelte.dev/)
 - CSS: [Tailwind CSS](https://tailwindcss.com/)
-- UI Components: [[Flowbite](https://flowbite.com/)/[flowbite-svelte](https://flowbite-svelte.com/)] and [DaisyUI](https://daisyui.com/)
+- UI Components: [[Flowbite](https://flowbite.com/)/[flowbite-svelte](https://flowbite-svelte.com/)], [skeleton](https://www.skeleton.dev/) and [DaisyUI](https://daisyui.com/)
 - Unit/Component testing: [vitest](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
 - [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)

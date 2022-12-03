@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { auth, rehydrate } from '$lib/stores/auth.store';
 	import { DarkMode } from '$lib/components';
+	import { auth, rehydrate } from '$lib/stores/auth.store';
 	import { onMount } from 'svelte';
 	// import type { LayoutServerData } from './$types';
-	import { Footer, Header, SideMenu } from './blocks';
+	import { Footer, Header } from '$lib/blocks/dashboard';
+	import { SideMenu } from '$lib/blocks/side';
 
 	onMount(() => {
 		rehydrate($page.url.searchParams);

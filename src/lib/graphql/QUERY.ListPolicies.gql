@@ -5,6 +5,6 @@ query ListPolicies($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_or
 		}
 	}
 	tz_policies(order_by: $orderBy, limit: $limit, offset: $offset, where: { delete_time: { _is_null: true } }) {
-		...Policy_list_fields
+		...Policy_list_fields @houdini(mask: false)
 	}
 }

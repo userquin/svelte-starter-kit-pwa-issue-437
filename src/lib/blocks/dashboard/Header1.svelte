@@ -1,14 +1,14 @@
 <script lang="ts">
 	// ref: https://github.com/DandrewsDev/lnkd/blob/main/lnkd-front/src/routes/__layout.svelte
 
-	import { modalIdStore, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
+	import { Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
 	// import {userJwt} from "../stores.js";
 	export let loggedIn = false;
 	export let isAdmin = false;
 	export let userName = '';
 
 	function handleLoginEvent() {
-		modalIdStore.update((n) => (n = 'signin1'));
+		// TODO
 	}
 	function handleLogoutEvent() {
 		loggedIn = false;

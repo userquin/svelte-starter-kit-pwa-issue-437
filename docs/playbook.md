@@ -96,6 +96,7 @@ Other optional UI Components
 
 - [DaisyUI](https://daisyui.com/)
 - [headlessUI](https://github.com/rgossiaux/svelte-headlessui)
+- [skeleton](https://www.skeleton.dev/)
 
 I will be using both **flowbite** and **daisyui** for UI Components
 
@@ -111,6 +112,14 @@ const config = {
   plugins: [typography,  ..., daisyui]
 }
 ```
+
+#### skeleton
+
+```shell
+npm i -D @skeletonlabs/skeleton
+```
+
+And follow **skeleton** specific sveltekit [changes](https://www.skeleton.dev/guides/frameworks/sveltekit)
 
 ### UI Blocks
 

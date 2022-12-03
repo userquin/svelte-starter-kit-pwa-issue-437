@@ -1,40 +1,28 @@
-<div class="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-	<div class="row-gap-8 grid gap-10 lg:grid-cols-3">
-		<div>
-			<div class="flex">
-				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 86K </h6>
-				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
-					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-					</svg>
-				</div>
-			</div>
-			<p class="mb-2 font-bold md:text-lg">Downloads</p>
-			<p class="text-gray-700"> Three movie stars, Chloe, Lexa, and Jon, are filming a movie in the Amazon. They’re very famous and very high-maintenance effort. </p>
-		</div>
-		<div>
-			<div class="flex">
-				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 1.3K </h6>
-				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
-					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-					</svg>
-				</div>
-			</div>
-			<p class="mb-2 font-bold md:text-lg">Subscribers</p>
-			<p class="text-gray-700"> One day, after filming a scene deep in the rainforest, the three actors and their agents decide to head back to home base by foot. </p>
-		</div>
-		<div>
-			<div class="flex">
-				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 52M </h6>
-				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
-					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-					</svg>
-				</div>
-			</div>
-			<p class="mb-2 font-bold md:text-lg">Cookies</p>
-			<p class="text-gray-700"> Suddenly, they come to a large river. On the riverbank, they find a small rowboat, but it’s only big enough to hold two of them at one time. </p>
-		</div>
+<script lang="ts">
+</script>
+
+<div
+	class="order-2 flex flex-col justify-around bg-black py-32 py-4 md:h-auto
+            md:w-1/2 md:py-1 md:pb-4"
+>
+	<div class="bg-cir-grad flex justify-center px-4">
+		<img class="h-v50" src="./coverImage.png" alt="cover" />
+	</div>
+	<div class="flex flex-col justify-around md:flex-row">
+		<div class="stats mt-12 md:mt-0"><h1>250+</h1><h3 class="mt-4 text-xl text-gray-500" style="letter-spacing:5px">COMPONENTS</h3></div>
+		<div class="stats mt-9 md:mt-0"><h1>170+</h1><h3 class="mt-4 text-xl text-gray-500" style="letter-spacing:5px">ICONS</h3></div>
+		<div class="stats mt-9 md:mt-0"><h1>200+</h1><h3 class="mt-4 text-xl text-gray-500" style="letter-spacing:5px">SCREENS</h3></div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.bg-cir-grad {
+		background-image: radial-gradient(rgb(75, 85, 99), #000 60%, #000);
+	}
+	.stats {
+		@apply flex flex-col text-center;
+	}
+	.stats > h1 {
+		@apply bg-gradient-to-t from-black to-white bg-clip-text text-5xl font-black text-transparent md:text-6xl;
+	}
+</style>
