@@ -7,7 +7,7 @@ Awesome **Tailwind CSS** Links
 - [Flowbite](https://flowbite.com/) [Svelte UI Components](https://flowbite-svelte.com/)
 - Icons: [heroicons](https://heroicons.com/) via [svelte-heros-v2](https://github.com/shinokada/svelte-heros-v2) Icon Components.
 - [DaisyUI](https://daisyui.com/)
-- [headlessUI](https://github.com/rgossiaux/svelte-headlessui) **fully accessible, unstyled** UI components.
+- [headlessUI](https://github.com/CaptainCodeman/svelte-headlessui) **fully accessible, unstyled** UI components.
 
 ## UI Blocks
 

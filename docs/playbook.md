@@ -95,7 +95,7 @@ npm i -D clsx
 Other optional UI Components
 
 - [DaisyUI](https://daisyui.com/)
-- [headlessUI](https://github.com/rgossiaux/svelte-headlessui)
+- [headlessUI](https://captaincodeman.github.io/svelte-headlessui)
 - [skeleton](https://www.skeleton.dev/)
 
 I will be using both **flowbite** and **daisyui** for UI Components
