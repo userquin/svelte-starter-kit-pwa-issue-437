@@ -6,6 +6,7 @@ const typography = require('@tailwindcss/typography');
 const forms = require('@tailwindcss/forms');
 const lineClamp = require('@tailwindcss/line-clamp');
 const aspectRatio = require('@tailwindcss/aspect-ratio');
+const containerQueries = require('@tailwindcss/container-queries');
 const flowbite = require('flowbite/plugin');
 const daisyui = require('daisyui');
 // const tailwindUI = require('@tailwindcss/ui');
@@ -365,7 +366,7 @@ const config = {
 	},
 
 	// Make sure you require daisyui AFTER @tailwindcss/typography in plugins array
-	plugins: [typography, aspectRatio, lineClamp, daisyui]
+	plugins: [typography, aspectRatio, lineClamp, containerQueries, daisyui]
 };
 
 module.exports = config;

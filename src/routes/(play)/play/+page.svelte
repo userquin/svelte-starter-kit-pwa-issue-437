@@ -5,7 +5,8 @@
 		{ name: 'Resizeable', href: '/play/draggable' },
 		{ name: 'Grid1', href: '/play/grid1' },
 		{ name: 'Grid2', href: '/play/grid2' },
-		{ name: 'Grid3', href: '/play/grid3' }
+		{ name: 'Grid3', href: '/play/grid3' },
+		{ name: 'Movies', href: '/play/movies' }
 	];
 </script>
 
