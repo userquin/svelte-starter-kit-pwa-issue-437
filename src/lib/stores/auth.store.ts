@@ -211,6 +211,11 @@ async function getProfile(oidcUser: User): Promise<AppUser> {
 	const name = profile.name ?? '';
 	const email = profile.email ?? (profile.upn as string) ?? '';
 	let picture = profile.picture ?? '';
+	// profile.picture ||= '';
+	// FIXME: workaround https://github.com/authts/oidc-client-ts/issues/790
+	if (Array.isArray(picture) && picture.length > 0) {
+		picture = picture[0];
+	}
 	const roles = (profile.roles as Role[]) ?? ['Policy.Read' as Role];
 
 	// in the case of provider==Azure, lets get the real picture url
