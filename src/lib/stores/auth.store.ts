@@ -53,7 +53,9 @@ const azureUserManager = createUserManager({
 	post_logout_redirect_uri: appUrl + '/logout', // window.location.origin,
 	scope: 'profile openid User.Read', // email
 	filterProtocolClaims: true,
-	loadUserInfo: true
+	loadUserInfo: true,
+	// workaround for https://github.com/authts/oidc-client-ts/issues/790
+	mergeClaims: false
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
 });
@@ -66,6 +68,8 @@ const googleUserManager = createUserManager({
 	scope: 'profile openid email',
 	filterProtocolClaims: true,
 	loadUserInfo: true,
+	// workaround for https://github.com/authts/oidc-client-ts/issues/790
+	mergeClaims: false,
 	// accessTokenExpiringNotificationTime: 300,
 	// silentRequestTimeout: 20000,
 	metadataSeed: {
@@ -210,12 +214,8 @@ async function getProfile(oidcUser: User): Promise<AppUser> {
 	const sub = profile.sub;
 	const name = profile.name ?? '';
 	const email = profile.email ?? (profile.upn as string) ?? '';
-	let picture = profile.picture ?? '';
 	// profile.picture ||= '';
-	// FIXME: workaround https://github.com/authts/oidc-client-ts/issues/790
-	if (Array.isArray(picture) && picture.length > 0) {
-		picture = picture[0];
-	}
+	let picture = profile.picture ?? '';
 	const roles = (profile.roles as Role[]) ?? ['Policy.Read' as Role];
 
 	// in the case of provider==Azure, lets get the real picture url
