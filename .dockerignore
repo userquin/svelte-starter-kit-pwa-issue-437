@@ -1,4 +1,7 @@
 /*
+!/.graphqlrc.yaml
+!/schema.graphql
+!/houdini.config.js
 !/package.json
 !/package-lock.json
 !/svelte.config.js
