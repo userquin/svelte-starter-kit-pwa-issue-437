@@ -1,27 +1,27 @@
 fragment Policy_list_fields on tz_policies {
 	id
-	action
-	annotations
-	app_id
-	# create_time
+	# action
+	# annotations
+	# app_id
+	create_time
 	# created_by
 	# delete_time
 	# description
-	# destination_address
-	# destination_port
+	destination_address
+	destination_port
 	# direction
-	# disabled
-	# display_name
+	disabled
+	display_name
 	# protocol
-	# source_address
-	# source_port
-	# subject_display_name
+	source_address
+	source_port
+	subject_display_name
 	# subject_domain
 	# subject_id
 	# subject_secondary_id
 	# subject_type
 	# tags
-	# template
+	template
 	update_time
 	# updated_by
 	# valid_from

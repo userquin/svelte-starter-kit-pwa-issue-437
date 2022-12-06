@@ -21,7 +21,7 @@ const config = {
 			client: './src/lib/graphql/client'
 		}
 	},
-
+	quietQueryErrors: true,
 	scalars: {
 		DateTime: {
 			// the corresponding typescript type

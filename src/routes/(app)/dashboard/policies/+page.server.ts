@@ -1,7 +1,7 @@
 import { env as dynPriEnv } from '$env/dynamic/private';
 import { CONFY_API_ENDPOINT } from '$env/static/private';
-import { CachePolicy, GQL_ListPolicies, order_by } from '$houdini';
-import type { Account, AccountDeleteResult } from '$lib/models/schema';
+import { CachePolicy, GQL_DeletePolicy, GQL_SearchPolicies, order_by } from '$houdini';
+import type { AccountDeleteResult } from '$lib/models/schema';
 import { Logger } from '$lib/utils';
 import { getAppError, isAppError, isHttpError } from '$lib/utils/errors';
 import * as Sentry from '@sentry/svelte';
@@ -15,60 +15,9 @@ assert.ok(dynPriEnv.CONFY_API_TOKEN, 'CONFY_API_TOKEN not configered');
 
 const log = new Logger('policies.server');
 
-const query = `
-	query SearchPolicies(
-		$where: tz_policies_bool_exp
-		$limit: Int = 50
-		$offset: Int = 0
-		$orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]
-	) {
-		counts: tz_policies_aggregate(where: $where) {
-			aggregate {
-				count
-			}
-		}
-		tz_policies(
-			order_by: $orderBy
-			limit: $limit
-			offset: $offset
-			where: $where
-		) {
-			id
-			display_name
-			description
-			tags
-			annotations
-			disabled
-			template
-			create_time
-			update_time
-			valid_from
-			valid_to
-			subject_display_name
-			subject_domain
-			subject_id
-			subject_secondary_id
-			subject_type
-			source_address
-			source_port
-			destination_address
-			destination_port
-			protocol
-			action
-			direction
-			app_id
-			weight
-		}
-	}
-`;
+const query = GQL_SearchPolicies.artifact.raw;
 
-const delete_mutation = `
-	mutation DeletePolicy($id:uuid!) {
-		delete_tz_policies_by_pk(id:  $id) {
-			display_name
-		}
-	}
-`;
+const delete_mutation = GQL_DeletePolicy.artifact.raw;
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const { url, setHeaders } = event;
@@ -78,16 +27,17 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	const subject_type = url.searchParams.get('subType');
 	const display_name = url.searchParams.get('name');
 
-	const orderBy = [{ update_time: 'desc_nulls_last' }];
+	const orderBy = [{ update_time: order_by.desc_nulls_first }];
 	const where = {
 		delete_time: { _is_null: true },
-		...(subject_type ? { subject_type: { _eq: subject_type } } : {}),
+		...(subject_type ? { subject_type1: { _eq: subject_type } } : {}),
 		...(display_name ? { display_name: { _like: `%${display_name}%` } } : {})
 	};
 	const variables = { where, limit, offset, orderBy };
-	const operationName = 'SearchPolicies';
+	// const operationName = 'SearchPolicies';
 
 	try {
+		/*
 		const resp = await fetch(CONFY_API_ENDPOINT, {
 			method: 'POST',
 			headers: {
@@ -104,33 +54,35 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 
 		const { errors, data } = await resp.json();
 		if (errors) return { loadErrors: errors }; // return invalid(400, {loadErrors: errors });
-
+		*/
 		//----
-		const policies_data = await GQL_ListPolicies.fetch({
+		const { errors, data } = await GQL_SearchPolicies.fetch({
 			event,
 			policy: CachePolicy.CacheAndNetwork,
-			variables: { limit: 10, offset: 1, orderBy: [{ update_time: order_by.desc_nulls_first }] }
+			variables
 		});
-		const count = policies_data.data?.counts?.aggregate?.count;
-		const policies1 = policies_data.data?.tz_policies;
-		console.log(policies1?.[0], count);
+		console.log('errors', errors);
+		if (errors) return { loadErrors: errors };
+		if (!data) return { loadErrors: [{ message: 'data null' }] };
 		//----
 
-		const policies: Account[] = data.tz_policies; // FIXME use Account model
+		const count = data.counts?.aggregate?.count;
+		//const policies: Account[] = data.tz_policies; // FIXME use Account model
+		const policies = data.tz_policies; // FIXME use Account model
 
 		// TIXME: tune: This page will have cache for 5min
 		// setHeaders({
 		// 	'cache-control': 'public, max-age=300'
 		// });
 
-		return { policies };
+		return { count, policies };
 	} catch (err) {
 		log.error('accounts:actions:load:error:', err);
-		// console.error('accounts:actions:load:error:', err);
 		Sentry.setContext('source', { code: 'account' });
 		Sentry.captureException(err);
 
 		if (isHttpError(err)) {
+			console.log('in isHttpError', err);
 			throw error(err.status, err.body);
 		}
 		if (isAppError(err)) {

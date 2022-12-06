@@ -4,7 +4,6 @@
 	import { page } from '$app/stores';
 	import { Delete, Errors, Link } from '$lib/components';
 	import { addToast, ToastLevel } from '$lib/components/toast';
-	import type { Account } from '$lib/models/schema';
 	import { Button, ButtonGroup, Input, InputAddon, Navbar, NavBrand, Select } from 'flowbite-svelte';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
@@ -20,12 +19,11 @@
 	$: if (actionErrors) addToast({ message: actionErrors[0].message, dismissible: true, timeout: 10000, type: ToastLevel.Error });
 
 	export let data: PageData;
-	let { policies, loadErrors } = data;
-	// update store when `data` changed
-	$: ({ policies, loadErrors } = data);
-	$: policyStore.set(policies ?? [{} as Account]);
+	$: ({ count, policies, loadErrors } = data);
+	$: policyStore.set(policies ?? []);
+	$: console.log('count:', count);
 
-	const policyStore = writable(policies ?? [{} as Account]);
+	const policyStore = writable(policies ?? []);
 	const table = createTable(policyStore, {
 		page: addPagination({ initialPageSize: 5 }),
 		tableFilter: addTableFilter(),
@@ -137,7 +135,7 @@
 
 	async function onSearch() {
 		if (browser) {
-			await goto(`/dashboard/policies?name=${name}&subType=${subType}&limit=${limit}`);
+			await goto(`/dashboard/policies?name=${name}&subType=${subType}&limit=${limit}`, { replaceState: true, keepFocus: true });
 		}
 	}
 </script>

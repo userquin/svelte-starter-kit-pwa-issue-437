@@ -1,0 +1,21 @@
+query SearchPolicies($where: tz_policies_bool_exp, $limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]) {
+	counts: tz_policies_aggregate(where: $where) {
+		aggregate {
+			count
+		}
+	}
+	tz_policies(order_by: $orderBy, limit: $limit, offset: $offset, where: $where) {
+		# ...Policy_list_fields @houdini(mask: false)
+		id
+		create_time
+		destination_address
+		destination_port
+		disabled
+		display_name
+		source_address
+		source_port
+		subject_display_name
+		template
+		update_time
+	}
+}
