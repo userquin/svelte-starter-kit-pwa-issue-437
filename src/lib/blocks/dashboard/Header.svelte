@@ -62,8 +62,8 @@
 	<div></div>
 	<NavUl hidden="{hidden}">
 		<NavLi href="/dashboard" active="{path == '/dashboard'}">Dashboard</NavLi>
-		<NavLi data-sveltekit-prefetch="" href="/dashboard/accounts" active="{path == '/dashboard/accounts'}">Accounts</NavLi>
-		<NavLi data-sveltekit-prefetch="" href="/dashboard/policies" active="{path == '/dashboard/policies'}">Policies</NavLi>
+		<NavLi data-sveltekit-preload-data="" href="/dashboard/accounts" active="{path == '/dashboard/accounts'}">Accounts</NavLi>
+		<NavLi data-sveltekit-preload-data="" href="/dashboard/policies" active="{path == '/dashboard/policies'}">Policies</NavLi>
 		<NavLi href="/dashboard/users" active="{path == '/dashboard/users'}">Users</NavLi>
 	</NavUl>
 

@@ -1,6 +1,6 @@
 {
 	"explorer.sortOrder": "type",
-	"explorer.autorevealExclude": {
+	"explorer.autoRevealExclude": {
 		"**/node_modules": true,
 		".svelte-kit": true,
 		"$houdini": true,

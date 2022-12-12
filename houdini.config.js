@@ -11,9 +11,11 @@ const defaultMarshall = {
 
 /** @type {import('houdini').ConfigFile} */
 const config = {
-	apiUrl: 'https://prime-iguana-64.hasura.app/v1/graphql',
+	// FIXME: I want to use: apiUrl: 'env:PUBLIC_CONFY_API_ENDPOINT',
+	apiUrl: 'https://decent-donkey-83.hasura.app/v1/graphql',
 	schemaPollHeaders: {
-		'x-hasura-admin-secret': 'wPzio98C1tJo6OEOxYJQ4jzZVYmPTGZ2Fx6ibiRAwOx9aPj8TuhnXZD4tq3hMAbM'
+		// FIXME: I want to use: 'x-hasura-admin-secret': 'env:PUBLIC_CONFY_API_TOKEN'
+		'x-hasura-admin-secret': 'wao129Ie5SxRQ7RB2UhTcIMU9J6g71jDnmOMs8EZABC62WMufSd6uKFgwGt4PW5K'
 	},
 
 	plugins: {

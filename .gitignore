@@ -5,11 +5,14 @@ node_modules
 /package
 .vercel
 .output
-.vercel_build_output
+.vercel
 .netlify
 /build
 /functions
 /workers-site
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
 
 # Ignore the build css
 static/*.css
@@ -79,5 +82,5 @@ TODO.md
 coverage
 TODO
 # /infra/data
-
+infra/hasura
 $houdini

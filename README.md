@@ -61,7 +61,7 @@ NODE_ENV=DEBUG npm run dev
 
 # run with a custom inline config
 # inline environment variables has higher precedence than ones loaded from .env and .env.local files
-CONFY_API_ENDPOINT=api.mycompany.com:443 npm run dev
+PUBLIC_CONFY_API_ENDPOINT=api.mycompany.com:443 npm run dev
 ````
 
 ## Maintenance
@@ -116,7 +116,7 @@ Run from the local build directory:
 
 ```shell
 NODE_ENV=production \
-CONFY_API_ENDPOINT=api.mycompany.com:443 \
+PUBLIC_CONFY_API_ENDPOINT=api.mycompany.com:443 \
 node build
 
 # (optional) pass ORIGIN when using `adapter-node` build

@@ -1,17 +1,16 @@
-import { env as dynPriEnv } from '$env/dynamic/private';
-import { CONFY_API_ENDPOINT } from '$env/static/private';
+import { env as dynPubEnv } from '$env/dynamic/public';
 import { CachePolicy, GQL_DeletePolicy, GQL_SearchPolicies, order_by } from '$houdini';
 import type { AccountDeleteResult } from '$lib/models/schema';
 import { Logger } from '$lib/utils';
 import { getAppError, isAppError, isHttpError } from '$lib/utils/errors';
 import * as Sentry from '@sentry/svelte';
-import { error, invalid } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 
 import assert from 'node:assert';
 import type { Actions, PageServerLoad, RequestEvent } from './$types';
 
-assert.ok(CONFY_API_ENDPOINT, 'CONFY_API_ENDPOINT not configered');
-assert.ok(dynPriEnv.CONFY_API_TOKEN, 'CONFY_API_TOKEN not configered');
+assert.ok(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, 'PUBLIC_CONFY_API_ENDPOINT not configered');
+assert.ok(dynPubEnv.PUBLIC_CONFY_API_TOKEN, 'PUBLIC_CONFY_API_TOKEN not configered');
 
 const log = new Logger('policies.server');
 
@@ -30,7 +29,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	const orderBy = [{ update_time: order_by.desc_nulls_first }];
 	const where = {
 		delete_time: { _is_null: true },
-		...(subject_type ? { subject_type1: { _eq: subject_type } } : {}),
+		...(subject_type ? { subject_type: { _eq: subject_type } } : {}),
 		...(display_name ? { display_name: { _like: `%${display_name}%` } } : {})
 	};
 	const variables = { where, limit, offset, orderBy };
@@ -38,11 +37,11 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 
 	try {
 		/*
-		const resp = await fetch(CONFY_API_ENDPOINT, {
+		const resp = await fetch(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN
+				'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN
 			},
 			body: JSON.stringify({
 				query,
@@ -102,11 +101,11 @@ export const actions: Actions = {
 		const operationName = 'DeletePolicy';
 
 		try {
-			const resp = await fetch(CONFY_API_ENDPOINT, {
+			const resp = await fetch(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN
+					'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!
 				},
 				body: JSON.stringify({
 					query: delete_mutation,
@@ -117,10 +116,10 @@ export const actions: Actions = {
 			if (!resp.ok) throw error(resp.status, resp.statusText);
 
 			const { errors, data } = await resp.json();
-			if (errors) return invalid(400, { actionErrors: errors });
+			if (errors) return fail(400, { actionErrors: errors });
 
 			const actionResult: AccountDeleteResult = data.delete_tz_policies_by_pk;
-			if (!actionResult) return invalid(400, { actionErrors: [{ message: 'Not Found' }] });
+			if (!actionResult) return fail(400, { actionErrors: [{ message: 'Not Found' }] });
 
 			return {
 				actionResult

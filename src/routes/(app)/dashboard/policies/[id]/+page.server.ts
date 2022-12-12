@@ -1,10 +1,9 @@
-import { env as dynPriEnv } from '$env/dynamic/private';
-import { CONFY_API_ENDPOINT } from '$env/static/private';
+import { env as dynPubEnv } from '$env/dynamic/public';
 import { accountCreateSchema, accountUpdateSchema, type Account, type AccountSaveResult } from '$lib/models/schema';
 import { getAppError, isAppError, isHttpError, isRedirect } from '$lib/utils/errors';
 import { arrayToString, mapToString, removeEmpty, uuidSchema } from '$lib/utils/zod.utils';
 import * as Sentry from '@sentry/svelte';
-import { error, invalid, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import crypto from 'node:crypto';
 import { ZodError } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
@@ -101,11 +100,11 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const variables = { id };
 
 	try {
-		const resp = await fetch(CONFY_API_ENDPOINT, {
+		const resp = await fetch(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN,
+				'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
 				Authorization: `Bearer ${token}`
 			},
 			body: JSON.stringify({
@@ -188,11 +187,11 @@ export const actions: Actions = {
 				const variables = { data: jsonPayload };
 				console.log('variables', variables);
 
-				const resp = await fetch(CONFY_API_ENDPOINT, {
+				const resp = await fetch(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN,
+						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
 						Authorization: `Bearer ${token}`
 					},
 					body: JSON.stringify({
@@ -203,11 +202,11 @@ export const actions: Actions = {
 				if (!resp.ok) throw error(resp.status, resp.statusText);
 
 				const { errors, data } = await resp.json();
-				if (errors) return invalid(400, { actionErrors: errors });
+				if (errors) return fail(400, { actionErrors: errors });
 
 				console.log('data', data);
 				actionResult = data.insert_tz_policies_one;
-				if (!actionResult) return invalid(400, { actionErrors: [{ message: 'Not Found' }] });
+				if (!actionResult) return fail(400, { actionErrors: [{ message: 'Not Found' }] });
 
 				return { actionResult };
 				// throw redirect(303, '/dashboard/policies');
@@ -232,11 +231,11 @@ export const actions: Actions = {
 				const variables = { id, data: jsonPayload };
 				console.log('variables', variables);
 
-				const resp = await fetch(CONFY_API_ENDPOINT, {
+				const resp = await fetch(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'x-hasura-admin-secret': dynPriEnv.CONFY_API_TOKEN,
+						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
 						Authorization: `Bearer ${token}`
 					},
 					body: JSON.stringify({
@@ -247,11 +246,11 @@ export const actions: Actions = {
 				if (!resp.ok) throw error(resp.status, resp.statusText);
 
 				const { errors, data } = await resp.json();
-				if (errors) return invalid(400, { actionErrors: errors });
+				if (errors) return fail(400, { actionErrors: errors });
 
 				console.log('data', data);
 				actionResult = data.update_tz_policies_by_pk;
-				if (!actionResult) return invalid(400, { actionErrors: [{ message: 'Not Found' }] });
+				if (!actionResult) return fail(400, { actionErrors: [{ message: 'Not Found' }] });
 
 				return { actionResult };
 			}
@@ -262,7 +261,7 @@ export const actions: Actions = {
 			} else if (err instanceof ZodError) {
 				const { formErrors, fieldErrors } = err.flatten();
 				console.log('account:actions:save:error', err.flatten());
-				return invalid(400, { formErrors, fieldErrors });
+				return fail(400, { formErrors, fieldErrors });
 			} else if (isAppError(err)) {
 				throw error(500, err);
 			}

@@ -4,7 +4,7 @@
 declare namespace App {
 	type User = import('./lib/models/types/user').User;
 	interface Locals {
-		user: User;
+		user: User; // User | null; ??
 		token: string;
 	}
 	// interface PageData {}
@@ -14,16 +14,6 @@ declare namespace App {
 	}
 	// interface Platform {}
 	// interface Session {}
-}
-
-// check https://vitejs.dev/guide/env-and-mode.html#env-files
-interface ImportMetaEnv {
-	readonly PUBLIC_CONFY_API_ENDPOINT: string;
-	readonly PUBLIC_CONFY_API_TOKEN: string;
-}
-
-interface ImportMeta {
-	readonly env: ImportMetaEnv;
 }
 
 interface Window {

@@ -12,3 +12,5 @@ src/lib/models/types/**
 /infra/helm/templates/deployment.yaml
 infra/helm/templates/ingress.yaml
 schema.graphql
+$houdini
+infra/hasura

@@ -1,7 +1,7 @@
 import type { Account } from '$lib/models/types/accounts';
 import { getAppError, isAppError } from '$lib/utils/errors';
 import { createData } from '$mocks/data/accounts';
-import { error } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
 
@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	} catch (err) {
 		// err as App.Error
 		if (err instanceof ZodError) {
-			throw error(400, {
+			throw fail(400, {
 				message: 'Invalid request.',
 				context: err.flatten().fieldErrors
 			});

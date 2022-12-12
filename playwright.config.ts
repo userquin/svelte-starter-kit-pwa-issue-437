@@ -5,8 +5,7 @@ const config: PlaywrightTestConfig = {
 		command: 'npm run build && npm run preview',
 		port: 4173
 	},
-	// Add testMatch here
-	testMatch: 'tests/**/*.ts'
+	testDir: 'tests'
 };
 
 export default config;

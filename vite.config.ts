@@ -32,6 +32,7 @@ const config: UserConfig = {
 		environment: 'jsdom',
 		// in-source testing
 		includeSource: ['src/**/*.{js,ts,svelte}'],
+		include: ['src/**/*.{test,spec}.{js,ts}'],
 		// Add @testing-library/jest-dom matchers & setup MSW
 		setupFiles: ['./src/setupTest.ts', './src/mocks/setup.ts'],
 		// Exclude files in c8

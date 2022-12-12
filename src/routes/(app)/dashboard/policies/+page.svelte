@@ -129,10 +129,6 @@
 
 	const { filterValue } = pluginStates.tableFilter;
 
-	async function gotoCreatePolicy() {
-		goto('/dashboard/policies/00000000-0000-0000-0000-000000000000');
-	}
-
 	async function onSearch() {
 		if (browser) {
 			await goto(`/dashboard/policies?name=${name}&subType=${subType}&limit=${limit}`, { replaceState: true, keepFocus: true });
@@ -148,30 +144,32 @@
 <Errors errors="{loadErrors}" />
 
 {#if policies}
-	<Navbar let:hidden let:toggle border="{true}" rounded="{true}">
-		<NavBrand>
-			<ShieldCheck />
-			<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Policies </span>
-		</NavBrand>
-		<ButtonGroup class="w-1/2">
-			<Select class="w-auto !rounded-r-none" items="{subTypeOptions}" bind:value="{subType}" placeholder="Select Type" />
-			<InputAddon class="!bg-gray-50 !px-2 dark:!bg-gray-500">
-				{#if subType == 'subject_type_group'}
-					<UserGroup />
-				{:else if subType == 'subject_type_service_account'}
-					<UserCircle />
-				{:else if subType == 'subject_type_device'}
-					<DevicePhoneMobile />
-				{:else}
-					<User />
-				{/if}
-			</InputAddon>
-			<Input bind:value="{name}" class="input !rounded-none focus:outline-none" placeholder="Display Name" />
-			<Select class="w-16 !rounded-none border-l-0" items="{limits}" bind:value="{limit}" />
-			<Button color="dark" class="!p-2.5" on:click="{onSearch}"><MagnifyingGlass size="20" /></Button>
-		</ButtonGroup>
-		<Button color="dark" on:click="{gotoCreatePolicy}">Add Policy</Button>
-	</Navbar>
+	<form method="GET">
+		<Navbar let:hidden let:toggle border="{true}" rounded="{true}">
+			<NavBrand>
+				<ShieldCheck />
+				<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Policies </span>
+			</NavBrand>
+			<ButtonGroup class="w-1/2">
+				<Select class="w-auto !rounded-r-none" items="{subTypeOptions}" bind:value="{subType}" placeholder="Select Type" />
+				<InputAddon class="!bg-gray-50 !px-2 dark:!bg-gray-500">
+					{#if subType == 'subject_type_group'}
+						<UserGroup />
+					{:else if subType == 'subject_type_service_account'}
+						<UserCircle />
+					{:else if subType == 'subject_type_device'}
+						<DevicePhoneMobile />
+					{:else}
+						<User />
+					{/if}
+				</InputAddon>
+				<Input bind:value="{name}" class="input !rounded-none focus:outline-none" placeholder="Display Name" />
+				<Select class="w-16 !rounded-none border-l-0" items="{limits}" bind:value="{limit}" />
+				<Button color="dark" on:click="{onSearch}" class="!p-2.5"><MagnifyingGlass size="20" /></Button>
+			</ButtonGroup>
+			<a class="btn" href="/dashboard/policies/00000000-0000-0000-0000-000000000000">Add Policy</a>
+		</Navbar>
+	</form>
 
 	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 		<div class="flex items-center justify-between p-4">

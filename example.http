@@ -1,9 +1,9 @@
 ### list all active policies
 # @name listPolicies
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
-Authorization: Bearer {{$dotenv CONFY_API_TOKEN_ID}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
+Authorization: Bearer {{$dotenv PUBLIC_CONFY_API_ID_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 query ListPolicies(
@@ -62,9 +62,9 @@ query ListPolicies(
 
 ### search active policies
 # @name searchPolicies
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 query SearchPolicies(
@@ -129,9 +129,9 @@ query SearchPolicies(
 
 ### getPolicy by Id
 # @name getPolicy
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 query GetPolicy($id: uuid!) {
@@ -174,9 +174,9 @@ query GetPolicy($id: uuid!) {
 
 ### update policiy by ID
 # @name updatePolicy
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
@@ -218,9 +218,9 @@ mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
 
 ### create new policiy
 # @name createPolicy
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 mutation CreatePolicy($data: tz_policies_insert_input!) {
@@ -266,9 +266,9 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
 
 ### delete policiy
 # @name deletePolicy
-POST {{$dotenv CONFY_API_ENDPOINT}}
+POST {{$dotenv PUBLIC_CONFY_API_ENDPOINT}}
 Content-Type: application/json
-x-hasura-admin-secret: {{$dotenv CONFY_API_TOKEN}}
+x-hasura-admin-secret: {{$dotenv PUBLIC_CONFY_API_TOKEN}}
 X-REQUEST-TYPE: GraphQL
 
 mutation DeletePolicy($id:uuid!) {
