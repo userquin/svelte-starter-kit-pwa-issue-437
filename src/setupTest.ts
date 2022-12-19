@@ -16,7 +16,8 @@ expect.extend(matchers);
 vi.mock('$app/environment', (): typeof environment => ({
 	browser: false,
 	dev: true,
-	prerendering: false
+	building: false,
+	version: 'test'
 }));
 
 // Mock SvelteKit runtime module $app/navigation
