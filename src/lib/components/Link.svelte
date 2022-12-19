@@ -3,4 +3,4 @@
 	export let content: string;
 </script>
 
-<a href="{url}">{content}</a>
+<a href={url}>{content}</a>

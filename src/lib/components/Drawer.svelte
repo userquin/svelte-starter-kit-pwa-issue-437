@@ -8,7 +8,7 @@
 </script>
 
 {#if show}
-	<aside transition:fly="{{ x: -250, opacity: 1 }}" class="{clsx(asideClass, $$props.class)}" {...$$restProps} aria-label="Sidebar">
+	<aside transition:fly={{ x: -250, opacity: 1 }} class={clsx(asideClass, $$props.class)} {...$$restProps} aria-label="Sidebar">
 		<slot />
 	</aside>
 {/if}

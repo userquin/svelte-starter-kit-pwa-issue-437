@@ -12,6 +12,8 @@ import { sequence } from '@sveltejs/kit/hooks';
  * making them useful for initializing database clients, Sentry and so on.
  */
 
+// TODO: https://github.com/sveltejs/kit/issues/6731
+
 // Setup logger
 if (!dev) {
 	Logger.enableProductionMode();
@@ -46,7 +48,7 @@ if (PUBLIC_CONFY_SENTRY_DSN) {
 
 // Invoked for each endpoint called and initially for SSR router
 // export const handle = sequence(setUser, guard, houdini, logger);
-export const handle = sequence(setUser, guard);
+export const handle = sequence(setUser);
 
 export const handleServerError: HandleServerError = ({ error, event }) => {
 	console.error('hooks:server:handleServerError:', error);

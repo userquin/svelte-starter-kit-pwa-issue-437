@@ -6,7 +6,7 @@
 </script>
 
 <form method="POST" action="?/delete" use:enhance>
-	<input type="hidden" name="id" hidden value="{id}" />
+	<input type="hidden" name="id" hidden value={id} />
 	<button type="submit">
 		<ArchiveBox class="text-pink-700 dark:text-blue-300" />
 	</button>

@@ -9,9 +9,9 @@ X-REQUEST-TYPE: GraphQL
 query ListPolicies(
   $limit: Int = 50
   $offset: Int = 0
-  $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]
+  $orderBy: [tz_policies_order_by!] = [{ updated_at: desc_nulls_last }]
 ) {
-  counts: tz_policies_aggregate(where: { delete_time: { _is_null: true } }) {
+  counts: tz_policies_aggregate(where: { deleted_at: { _is_null: true } }) {
     aggregate {
       count
     }
@@ -20,7 +20,7 @@ query ListPolicies(
 	order_by: $orderBy
     limit: $limit
     offset: $offset
-    where: { delete_time: { _is_null: true } }
+    where: { deleted_at: { _is_null: true } }
   ) {
     id
     display_name
@@ -29,11 +29,11 @@ query ListPolicies(
     annotations
     disabled
     template
-    create_time
+    created_at
     created_by
-    update_time
+    updated_at
     updated_by
-    delete_time
+    deleted_at
     valid_from
     valid_to
     subject_display_name
@@ -55,8 +55,8 @@ query ListPolicies(
 
 
 {
-  "limit": 2,
-  "offset": 2
+  "limit": 5,
+  "offset": 0
 }
 
 
@@ -71,7 +71,7 @@ query SearchPolicies(
   $where: tz_policies_bool_exp
   $limit: Int = 50
   $offset: Int = 0
-  $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]
+  $orderBy: [tz_policies_order_by!] = [{ updated_at: desc_nulls_last }]
 ) {
   counts: tz_policies_aggregate(where: $where) {
     aggregate {
@@ -91,8 +91,8 @@ query SearchPolicies(
     annotations
     disabled
     template
-    create_time
-    update_time
+    created_at
+    updated_at
     valid_from
     valid_to
     subject_display_name
@@ -115,12 +115,12 @@ query SearchPolicies(
 
 {
   "where": {
-    "delete_time": { "_is_null": true },
+    "deleted_at": { "_is_null": true },
     "subject_type": { "_eq": "subject_type_user" },
     "display_name": { "_like": "%user%" }
   },
   "limit": 2,
-  "orderBy": [{ "update_time": "desc_nulls_last" }]
+  "orderBy": [{ "updated_at": "desc_nulls_last" }]
 }
 
 ###
@@ -143,11 +143,11 @@ query GetPolicy($id: uuid!) {
     annotations
     disabled
     template
-    create_time
+    created_at
     created_by
-    update_time
+    updated_at
     updated_by
-    delete_time
+    deleted_at
     valid_from
     valid_to
     subject_display_name
@@ -183,36 +183,17 @@ mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
   update_tz_policies_by_pk(pk_columns: { id: $id }, _set: $data) {
     id,
 	display_name,
-    update_time
+    updated_at
   }
 }
 
 {
   "id":"{{firstPoliciyId}}",
   "data":{
-    "display_name":"user 1",
-    "description":"user 1 policy",
+    "updated_by":"demo@gmail.com",
+	"description":"user 1 policy v2",
     "tags":"{tz,us}",
-    "annotations":"\"sumo\"=>\"demo\"",
-    "disabled":false,
-    "template":false,
-    "subject_id":"6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
-    "subject_secondary_id":"sumo@chintagunta.com",
-    "subject_display_name":"sumanth chinthagunta",
-    "subject_type":"subject_type_user",
-    "subject_domain":"chintagunta.com",
-    "source_address":"0.0.0.0",
-    "source_port":"5000",
-    "destination_address":"1.1.1.1",
-    "destination_port":"443",
-    "direction":"direction_egress",
-    "protocol":"Any",
-    "action":"action_block",
-    "weight":1000,
-    "app_id":"myapp.exe",
-    "create_time":"2022-09-20T23:44:12.319395+00:00",
-    "update_time":"{{$datetime rfc1123|iso8601 [offset option]}}",
-    "valid_from":"{{$datetime rfc1123|iso8601 [offset option]}}"
+    "annotations":"\"sumo\"=>\"demo1\""
   }
 }
 
@@ -227,7 +208,7 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
   insert_tz_policies_one(object: $data) {
     id,
 	display_name,
-	update_time
+	updated_at
   }
 }
 
@@ -238,8 +219,6 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
     "description":"user 1 policy",
     "tags":"{tz,us}",
     "annotations":"\"sumo\"=>\"demo\"",
-    "disabled":false,
-    "template":false,
     "subject_id":"6e9bf365-8c09-4dd9-b9b2-83f6ab315618",
     "subject_secondary_id":"sumo@chintagunta.com",
     "subject_display_name":"sumanth chinthagunta",
@@ -249,13 +228,9 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
     "source_port":"5000",
     "destination_address":"1.1.1.1",
     "destination_port":"443",
-    "direction":"direction_egress",
-    "protocol":"Any",
-    "action":"action_block",
-    "weight":1000,
     "app_id":"myapp.exe",
-    "create_time":"{{$datetime rfc1123|iso8601 [offset option]}}",
-    "update_time":"{{$datetime rfc1123|iso8601 [offset option]}}",
+	"created_by":"sumo@gmail.com",
+    "updated_by":"sumo@gmail.com",
     "valid_from":"{{$datetime rfc1123|iso8601 [offset option]}}"
   }
 }

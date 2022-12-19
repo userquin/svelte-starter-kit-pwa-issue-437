@@ -9,10 +9,10 @@
 					<svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 -mt-8 -ml-20 hidden w-32 text-blue-gray-100 sm:block lg:-ml-28 lg:-mt-10 lg:w-32">
 						<defs>
 							<pattern id="70326c9b-4a0f-429b-9c76-792941e326d5" x="0" y="0" width=".135" height=".30">
-								<circle cx="1" cy="1" r=".7"></circle>
+								<circle cx="1" cy="1" r=".7" />
 							</pattern>
 						</defs>
-						<rect fill="url(#70326c9b-4a0f-429b-9c76-792941e326d5)" width="52" height="24"></rect>
+						<rect fill="url(#70326c9b-4a0f-429b-9c76-792941e326d5)" width="52" height="24" />
 					</svg>
 					<span class="relative">The</span>
 				</span>

@@ -35,11 +35,11 @@
 </div>
 
 <ButtonGroup>
-	<Button outline on:click="{goBack}">
+	<Button outline on:click={goBack}>
 		<ArrowLeft size="18" class="mr-2 text-blue-500 dark:text-green-500" />
 		Back
 	</Button>
-	<Button outline on:click="{gotoUsers}">
+	<Button outline on:click={gotoUsers}>
 		<AdjustmentsHorizontal size="18" class="mr-2 text-blue-500 dark:text-green-500" />
 		Users
 	</Button>

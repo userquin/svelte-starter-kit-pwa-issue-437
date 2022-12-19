@@ -6,5 +6,6 @@ export const houdini: Handle = async ({ event, resolve }) => {
 	const { locals } = event;
 	setSession(event, { user: { token: locals.token } });
 
-	return await resolve(event);
+	const response = await resolve(event);
+	return response;
 };

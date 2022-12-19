@@ -4,7 +4,7 @@
 			<a href="/" class="mb-6 sm:mx-auto">
 				<div class="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-50">
 					<svg class="h-10 w-10 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 			</a>
@@ -14,10 +14,10 @@
 						<svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 -mt-8 -ml-20 hidden w-32 text-blue-gray-100 sm:block lg:-ml-28 lg:-mt-10 lg:w-32">
 							<defs>
 								<pattern id="e77df901-b9d7-4b9b-822e-16b2d410795b" x="0" y="0" width=".135" height=".30">
-									<circle cx="1" cy="1" r=".7"></circle>
+									<circle cx="1" cy="1" r=".7" />
 								</pattern>
 							</defs>
-							<rect fill="url(#e77df901-b9d7-4b9b-822e-16b2d410795b)" width="52" height="24"></rect>
+							<rect fill="url(#e77df901-b9d7-4b9b-822e-16b2d410795b)" width="52" height="24" />
 						</svg>
 						<span class="relative">The</span>
 					</span>

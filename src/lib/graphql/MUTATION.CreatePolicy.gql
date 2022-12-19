@@ -2,6 +2,6 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
 	insert_tz_policies_one(object: $data) {
 		id
 		display_name
-		update_time
+		updated_at
 	}
 }

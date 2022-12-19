@@ -8,8 +8,8 @@
 	export let error = '';
 </script>
 
-<FloatingLabelInput name="{name}" id="{name}" style="{style}" class="input-bordered input" {...$$restProps} value="{value}" color="{error ? 'red' : null}" aria-describedby="{`${name}_help`}" label="{label}" />
+<FloatingLabelInput {name} id={name} {style} class="input-bordered input" {...$$restProps} {value} color={error ? 'red' : null} aria-describedby={`${name}_help`} {label} />
 
 {#if error}
-	<p class="mt-2 text-xs font-normal text-red-700 dark:text-red-500"> <span class="font-medium">Oh, snapp!</span> {error}</p>
+	<p id={`${name}_help`} class="mt-2 text-xs font-normal text-red-700 dark:text-red-500"> <span class="font-medium">Oh, snapp!</span> {error}</p>
 {/if}

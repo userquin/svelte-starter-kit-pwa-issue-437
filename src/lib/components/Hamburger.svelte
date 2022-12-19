@@ -7,11 +7,11 @@
 	export let hamburgerClass = 'text-gray-500 hover:text-gray-700 cursor-pointer border-none focus:outline-none dark:text-white';
 </script>
 
-<button id="hamburgerBtn" class="{hamburgerClass}" class:open="{$sidebarOpen}" on:click="{toggle}" aria-label="Sidebar">
+<button id="hamburgerBtn" class={hamburgerClass} class:open={$sidebarOpen} on:click={toggle} aria-label="Sidebar">
 	<svg width="32" height="24">
-		<line id="top" x1="0" y1="2" x2="32" y2="2"></line>
-		<line id="middle" x1="0" y1="12" x2="24" y2="12"></line>
-		<line id="bottom" x1="0" y1="22" x2="32" y2="22"></line>
+		<line id="top" x1="0" y1="2" x2="32" y2="2" />
+		<line id="middle" x1="0" y1="12" x2="24" y2="12" />
+		<line id="bottom" x1="0" y1="22" x2="32" y2="22" />
 	</svg>
 </button>
 

@@ -1,5 +1,9 @@
 /// <references types="houdini-svelte">
 
+import { loadEnv } from 'vite';
+// FIXME: workaround: https://github.com/HoudiniGraphql/houdini/issues/759
+Object.assign(process.env, loadEnv(process.env.NODE_ENV, process.cwd(), ['PUBLIC', 'VITE']));
+
 const defaultMarshall = {
 	unmarshal(val) {
 		return val;
@@ -11,11 +15,9 @@ const defaultMarshall = {
 
 /** @type {import('houdini').ConfigFile} */
 const config = {
-	// FIXME: I want to use: apiUrl: 'env:PUBLIC_CONFY_API_ENDPOINT',
-	apiUrl: 'https://decent-donkey-83.hasura.app/v1/graphql',
+	apiUrl: 'env:PUBLIC_CONFY_API_ENDPOINT',
 	schemaPollHeaders: {
-		// FIXME: I want to use: 'x-hasura-admin-secret': 'env:PUBLIC_CONFY_API_TOKEN'
-		'x-hasura-admin-secret': 'wao129Ie5SxRQ7RB2UhTcIMU9J6g71jDnmOMs8EZABC62WMufSd6uKFgwGt4PW5K'
+		'x-hasura-admin-secret': 'env:PUBLIC_CONFY_API_TOKEN'
 	},
 
 	plugins: {

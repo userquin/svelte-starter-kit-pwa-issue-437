@@ -27,8 +27,8 @@
 	$: console.log('$allOrders.data on load:', $allOrders.data);
 </script>
 
-<button class="btn" on:click="{() => allOrders.loadNextPage()}">load more</button>
-<button class="btn-accent btn" on:click="{() => allOrders.fetch({ policy: CachePolicy.NetworkOnly })}">refetch</button>
+<button class="btn" on:click={() => allOrders.loadNextPage()}>load more</button>
+<button class="btn-accent btn" on:click={() => allOrders.fetch({ policy: CachePolicy.NetworkOnly })}>refetch</button>
 <span>isFetching: {$allOrders.isFetching}</span>
 {#each $allOrders.data.customer as customer}
 	<div>{JSON.stringify(customer, null, 2)}</div>

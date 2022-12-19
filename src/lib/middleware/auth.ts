@@ -1,7 +1,7 @@
 import { env as dynPubEnv } from '$env/dynamic/public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
 import { AuthLogger } from '$lib/utils';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
 import jwt, { type JwtPayload, type VerifyOptions } from 'jsonwebtoken';
 import { JwksClient } from 'jwks-rsa';
 import assert from 'node:assert';
@@ -65,24 +65,23 @@ export const setUser: Handle = async ({ event, resolve }) => {
 			AuthLogger.error(error);
 			AuthLogger.warn('bad token. deleteing token cookie');
 
-			cookies.delete('token', { path: '/' });
-
-			// Not working <-- `cookies.delete()` is not deleting cookie when using along with `throw redirect()`
-			// cookies.delete('token', { path: '/' }); //
+			// When token expire, this is not working <-- `cookies.delete()` is not deleting cookie when using along with `throw redirect()`
+			// cookies.delete('token', { path: '/' });
 			//throw redirect(307, `${event.url.origin}/login`); <-- ERR_TOO_MANY_REDIRECTS client error
 
-			// Workarround // <-- so, i have to do this way, with cavities for progressively enhanced forms
-			// return new Response(null, {
-			// 	status: 300,
-			// 	headers: {
-			// 		location: `${event.url.origin}/login`,
-			// 		'set-cookie': `token=; Path=/; Expires=${new Date(0)}`
-			// 	}
-			// });
+			// Workaround // <-- so, i have to do this way, with cavities for progressively enhanced forms (clicking form submit button after token expire)
+			return new Response(undefined, {
+				status: 307,
+				headers: {
+					location: `${event.url.origin}/login`,
+					'set-cookie': `token=; Path=/; Expires=${new Date(0)}`
+				}
+			});
 		}
 	}
 
-	return await resolve(event);
+	const response = await resolve(event);
+	return response;
 };
 
 /**
@@ -94,9 +93,21 @@ export const guard: Handle = async ({ event, resolve }) => {
 	// TODO:
 	// check if user present
 	// get user roles
-	// check if role has access to current route
-	// AuthLogger.debug('guard:locals.user', locals.user);
-	return await resolve(event);
+	// check if role has access to target route
+	AuthLogger.debug('guard:locals.user', locals.user);
+
+	if (event.url.pathname.startsWith('/dashboard')) {
+		if (!event.locals.user) {
+			throw redirect(303, `${event.url.origin}/login`);
+		}
+		if (event.url.pathname.startsWith('/dashboard/admin')) {
+			if (!event.locals.user.roles?.includes('Policy.Write')) {
+				throw redirect(303, `${event.url.origin}/dashboard`);
+			}
+		}
+	}
+	const response = await resolve(event);
+	return response;
 };
 
 async function getOpenIdConfiguration(issuer: string) {

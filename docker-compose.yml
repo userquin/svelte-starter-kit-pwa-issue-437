@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: postgresdb
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./infra/db_scripts/init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
@@ -38,7 +38,7 @@ services:
       -c ssl_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 
   hasura:
-    image: hasura/graphql-engine:v2.15.0
+    image: hasura/graphql-engine:v2.16.1
     ports:
       - '8080:8080'
     depends_on:
@@ -48,9 +48,9 @@ services:
     restart: always
     environment:
       ## postgres database to store Hasura metadata
-      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres?sslmode=allow
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgresdb?sslmode=allow
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
-      PG_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgresdb?sslmode=allow
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production

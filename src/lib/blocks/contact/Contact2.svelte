@@ -1,7 +1,7 @@
 <section class="body-font relative text-gray-600">
 	<div class="container mx-auto flex flex-wrap px-5 py-24 sm:flex-nowrap">
 		<div class="relative flex items-end justify-start overflow-hidden rounded-lg bg-gray-300 p-10 sm:mr-10 md:w-1/2 lg:w-2/3">
-			<iframe width="100%" height="100%" class="absolute inset-0" frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed" style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
+			<iframe width="100%" height="100%" class="absolute inset-0" frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed" style="filter: grayscale(1) contrast(1.2) opacity(0.4);" />
 			<div class="relative flex flex-wrap rounded bg-white py-6 shadow-md">
 				<div class="px-6 lg:w-1/2">
 					<h2 class="title-font text-xs font-semibold tracking-widest text-gray-900">ADDRESS</h2>
@@ -9,7 +9,7 @@
 				</div>
 				<div class="mt-4 px-6 lg:mt-0 lg:w-1/2">
 					<h2 class="title-font text-xs font-semibold tracking-widest text-gray-900">EMAIL</h2>
-					<a href="{'#'}" class="leading-relaxed text-indigo-500">example@email.com</a>
+					<a href={'#'} class="leading-relaxed text-indigo-500">example@email.com</a>
 					<h2 class="title-font mt-4 text-xs font-semibold tracking-widest text-gray-900">PHONE</h2>
 					<p class="leading-relaxed">123-456-7890</p>
 				</div>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="relative mb-4">
 				<label for="message" class="text-sm leading-7 text-gray-600">Message</label>
-				<textarea id="message" name="message" class="h-32 w-full resize-none rounded border border-gray-300 bg-white py-1 px-3 text-base leading-6 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"></textarea>
+				<textarea id="message" name="message" class="h-32 w-full resize-none rounded border border-gray-300 bg-white py-1 px-3 text-base leading-6 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
 			</div>
 			<button class="rounded border-0 bg-indigo-500 py-2 px-6 text-lg text-white hover:bg-indigo-600 focus:outline-none">Button</button>
 			<p class="mt-3 text-xs text-gray-500">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>

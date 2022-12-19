@@ -8,6 +8,6 @@
 	}
 </script>
 
-<div on:mouseenter="{enter}" on:mouseleave="{leave}">
-	<slot hovering="{hovering}" />
+<div on:mouseenter={enter} on:mouseleave={leave}>
+	<slot {hovering} />
 </div>

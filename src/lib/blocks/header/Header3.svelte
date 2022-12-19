@@ -3,10 +3,10 @@
 		<div class="relative flex items-center justify-between">
 			<a href="/" aria-label="Company" title="Company" class="inline-flex items-center">
 				<svg class="w-8 text-deep-purple-accent-400 dark:text-teal-accent-400" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke="currentColor" fill="none">
-					<rect x="3" y="1" width="7" height="12"></rect>
-					<rect x="3" y="17" width="7" height="6"></rect>
-					<rect x="14" y="1" width="7" height="6"></rect>
-					<rect x="14" y="11" width="7" height="12"></rect>
+					<rect x="3" y="1" width="7" height="12" />
+					<rect x="3" y="17" width="7" height="6" />
+					<rect x="14" y="1" width="7" height="6" />
+					<rect x="14" y="11" width="7" height="12" />
 				</svg>
 				<span class="ml-2 text-xl font-bold uppercase tracking-wide text-gray-800 dark:text-gray-100">Company</span>
 			</a>
@@ -23,9 +23,9 @@
 			<div class="lg:hidden">
 				<button aria-label="Open Menu" title="Open Menu" class="-mr-1 rounded p-2 transition duration-200 hover:bg-deep-purple-50 focus:bg-deep-purple-50 focus:shadow-outline focus:outline-none">
 					<svg class="w-5 text-gray-600" viewBox="0 0 24 24">
-						<path fill="currentColor" d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"></path>
-						<path fill="currentColor" d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"></path>
-						<path fill="currentColor" d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"></path>
+						<path fill="currentColor" d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z" />
+						<path fill="currentColor" d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z" />
+						<path fill="currentColor" d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z" />
 					</svg>
 				</button>
 				<!-- Mobile menu dropdown

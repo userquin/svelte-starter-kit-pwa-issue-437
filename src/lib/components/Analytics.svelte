@@ -28,7 +28,7 @@ Ref: https://joyofcode.xyz/sveltekit-google-analytics
 </script>
 
 <svelte:head>
-	<script async src="{src}"></script>
+	<script async {src}></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 

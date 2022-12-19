@@ -1,12 +1,16 @@
 import { env as dynPubEnv } from '$env/dynamic/public';
 import { accountCreateSchema, accountUpdateSchema, type Account, type AccountSaveResult } from '$lib/models/schema';
 import { getAppError, isAppError, isHttpError, isRedirect } from '$lib/utils/errors';
-import { arrayToString, mapToString, removeEmpty, uuidSchema } from '$lib/utils/zod.utils';
+import { arrayToString, mapToString, removeEmpty, replaceEmptyWithNull, uuidSchema } from '$lib/utils/zod.utils';
 import * as Sentry from '@sentry/svelte';
 import { error, fail, redirect } from '@sveltejs/kit';
+import assert from 'node:assert';
 import crypto from 'node:crypto';
 import { ZodError } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
+
+assert.ok(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, 'PUBLIC_CONFY_API_ENDPOINT not configered');
+assert.ok(dynPubEnv.PUBLIC_CONFY_API_TOKEN, 'PUBLIC_CONFY_API_TOKEN not configered');
 
 const getById = `
 query GetByID($id: uuid!) {
@@ -18,11 +22,11 @@ query GetByID($id: uuid!) {
     annotations
     disabled
     template
-    create_time
+    created_at
     created_by
-    update_time
+    updated_at
     updated_by
-    delete_time
+    deleted_at
     valid_from
     valid_to
     subject_display_name
@@ -48,7 +52,7 @@ mutation CreatePolicy($data: tz_policies_insert_input!) {
   insert_tz_policies_one(object: $data) {
     id
 	display_name,
-	update_time
+	updated_at
   }
 }
 `;
@@ -58,7 +62,7 @@ mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
   update_tz_policies_by_pk(pk_columns: { id: $id }, _set: $data) {
     id
 	display_name,
-	update_time
+	updated_at
   }
 }
 `;
@@ -73,8 +77,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		const policy: Account = {
 			id: '00000000-0000-0000-0000-000000000000',
 			display_name: '',
-			// tags: new Set(['tz', 'us']),
-			// annotations: new Map(Object.entries({ sumo: 'demo' })),
+			// tags: ['tz', 'us'],
+			// annotations: { 'sumo': 'demo' },
+			valid_from: null,
+			valid_to: null,
 			subject_id: '6e9bf365-8c09-4dd9-b9b2-83f6ab315618',
 			subject_type: 'subject_type_user',
 			subject_secondary_id: 'sumo@chintagunta.com',
@@ -90,9 +96,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			action: 'action_block',
 			direction: 'direction_egress',
 			weight: 2000,
-			create_time: new Date(),
+			created_at: new Date().toISOString(),
 			created_by: email,
-			update_time: new Date()
+			updated_at: new Date().toISOString(),
+			updated_by: email
 		};
 		return { policy };
 	}
@@ -104,7 +111,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
+				'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN,
 				Authorization: `Bearer ${token}`
 			},
 			body: JSON.stringify({
@@ -119,15 +126,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 		const policy: Account = data.tz_policies_by_pk;
 		if (!policy) return { loadErrors: [{ message: 'Not Found' }] };
+		console.log('policy>>>>>>', policy);
 
-		// trim dates
-		const policyFormatted = {
-			...policy,
-			...(policy.valid_from && { valid_from: new Date(policy.valid_from).toISOString().slice(0, 16) }),
-			...(policy.valid_to && { valid_to: new Date(policy.valid_to).toISOString().slice(0, 16) })
-		};
-
-		return { policy: policyFormatted };
+		return { policy };
 	} catch (err) {
 		console.error('account:actions:load:error:', err);
 		Sentry.setContext('source', { code: 'account' });
@@ -149,7 +150,7 @@ export const actions: Actions = {
 			throw redirect(307, '/login');
 		}
 
-		const formData = Object.fromEntries(await request.formData());
+		const formData: Record<string, unknown> = Object.fromEntries(await request.formData());
 		const {
 			user: { email },
 			token
@@ -170,18 +171,12 @@ export const actions: Actions = {
 
 				formData.id = crypto.randomUUID();
 				formData.created_by = email;
-				formData.create_time = new Date().toISOString();
 				formData.updated_by = email;
-				formData.update_time = new Date().toISOString();
 				const payload = accountCreateSchema.parse(formData);
 				const jsonPayload = {
 					...payload,
 					...(payload.tags && { tags: arrayToString(payload.tags) }),
-					...(payload.annotations && { annotations: mapToString(payload.annotations) }),
-					...(payload.valid_from && { valid_from: payload.valid_from.toISOString() }),
-					...(payload.valid_to && { valid_to: payload.valid_to.toISOString() }),
-					...(payload.create_time && { create_time: payload.create_time.toISOString() }),
-					...(payload.update_time && { update_time: payload.update_time.toISOString() })
+					...(payload.annotations && { annotations: mapToString(payload.annotations) })
 				};
 
 				const variables = { data: jsonPayload };
@@ -191,7 +186,7 @@ export const actions: Actions = {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
+						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN,
 						Authorization: `Bearer ${token}`
 					},
 					body: JSON.stringify({
@@ -216,16 +211,14 @@ export const actions: Actions = {
 			else {
 				console.log('in UPDATE', formData);
 				formData.updated_by = email;
-				formData.update_time = new Date().toISOString();
+				replaceEmptyWithNull(formData);
+				console.log('UPDATE action cleanFormData:', formData);
 				const payload = accountUpdateSchema.parse(formData);
 				console.log('in UPDATE payload', payload);
 				const jsonPayload = {
 					...payload,
 					...(payload.tags && { tags: arrayToString(payload.tags) }),
-					...(payload.annotations && { annotations: mapToString(payload.annotations) }),
-					...(payload.valid_from && { valid_from: payload.valid_from.toISOString() }),
-					...(payload.valid_to && { valid_to: payload.valid_to.toISOString() }),
-					...(payload.update_time && { update_time: payload.update_time.toISOString() })
+					...(payload.annotations && { annotations: mapToString(payload.annotations) })
 				};
 
 				const variables = { id, data: jsonPayload };
@@ -235,7 +228,7 @@ export const actions: Actions = {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!,
+						'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN,
 						Authorization: `Bearer ${token}`
 					},
 					body: JSON.stringify({

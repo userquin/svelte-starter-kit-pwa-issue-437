@@ -10,7 +10,8 @@ export function ifNonEmptyString(fn: (value: string) => unknown): (value: unknow
 		}
 
 		if (value === '') {
-			return undefined;
+			// return undefined;
+			return null;
 		}
 
 		return fn(value);
@@ -22,6 +23,10 @@ export function removeEmpty(obj) {
 	return obj;
 }
 
+export function replaceEmptyWithNull(obj) {
+	Object.entries(obj).forEach(([key, val]) => (val && typeof val === 'object' && replaceEmptyWithNull(val)) || (val === '' && (obj[key] = null)));
+	return obj;
+}
 /**
  * schemas
  */
@@ -46,7 +51,6 @@ export const stringToDate = ifNonEmptyString((arg) => new Date(arg));
 export const stringToSet = ifNonEmptyString((arg) => new Set(arg.split(',')));
 export const stringToArray = ifNonEmptyString((arg) => arg.split(','));
 export const arrayToString = (arg: string[]) => `{${arg.join(',')}}`;
-// export const StringToMap = (arg: unknown) => (typeof arg == 'string' ? new Map(Object.entries(JSON.parse(arg))) : undefined);
 export const stringToMap = ifNonEmptyString((arg) => new Map(Object.entries(JSON.parse(arg))));
 export const mapToString = (arg: Map<string, string>) => Array.from(arg, ([k, v]) => `"${k}"=>"${v}"`).join(',');
 export const stringToJSON = ifNonEmptyString((arg) => JSON.parse(arg));

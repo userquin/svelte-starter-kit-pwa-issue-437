@@ -81,6 +81,4 @@ TODO.md
 /playwright/.cache/
 coverage
 TODO
-# /infra/data
-infra/hasura
 $houdini

@@ -6,8 +6,8 @@
 	$: ({ computedValue, ListPolicies2 } = data);
 </script>
 
-<button class="btn" on:click="{() => ListPolicies2.loadNextPage()}">load more</button>
-<button class="btn-accent btn" on:click="{() => ListPolicies2.fetch({ policy: CachePolicy.NetworkOnly })}">refetch</button>
+<button class="btn" on:click={() => ListPolicies2.loadNextPage()}>load more</button>
+<button class="btn-accent btn" on:click={() => ListPolicies2.fetch({ policy: CachePolicy.NetworkOnly })}>refetch</button>
 
 {#if $ListPolicies2.isFetching}
 	Loading...
@@ -21,7 +21,7 @@
 {/if}
 {computedValue}
 <div>
-	create_time: {$ListPolicies2.data?.tz_policies?.[0].create_time} // if create_time is date type, use .toISOString() .toLocaleString()
+	created_at: {$ListPolicies2.data?.tz_policies?.[0].created_at} // if created_at is date type, use .toISOString() .toLocaleString()
 </div>
 
 <pre>

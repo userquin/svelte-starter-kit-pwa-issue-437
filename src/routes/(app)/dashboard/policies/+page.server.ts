@@ -26,9 +26,9 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 	const subject_type = url.searchParams.get('subType');
 	const display_name = url.searchParams.get('name');
 
-	const orderBy = [{ update_time: order_by.desc_nulls_first }];
+	const orderBy = [{ updated_at: order_by.desc_nulls_first }];
 	const where = {
-		delete_time: { _is_null: true },
+		deleted_at: { _is_null: true },
 		...(subject_type ? { subject_type: { _eq: subject_type } } : {}),
 		...(display_name ? { display_name: { _like: `%${display_name}%` } } : {})
 	};
@@ -57,6 +57,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		//----
 		const { errors, data } = await GQL_SearchPolicies.fetch({
 			event,
+			blocking: true,
 			policy: CachePolicy.CacheAndNetwork,
 			variables
 		});
@@ -105,7 +106,7 @@ export const actions: Actions = {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN!
+					'x-hasura-admin-secret': dynPubEnv.PUBLIC_CONFY_API_TOKEN
 				},
 				body: JSON.stringify({
 					query: delete_mutation,

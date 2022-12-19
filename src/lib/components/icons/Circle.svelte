@@ -1,14 +1,14 @@
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
-	<circle style="fill:#0055B8;" cx="255.999" cy="255.999" r="81.407"></circle>
-	<circle style="fill:#00A8E1;" cx="255.999" cy="50.631" r="42.628"></circle>
-	<circle style="fill:#FF9E16;" cx="110.776" cy="110.787" r="42.629"></circle>
-	<circle style="fill:#00A8E1;" cx="50.63" cy="255.999" r="42.629"></circle>
-	<circle style="fill:#4BB6AA;" cx="110.776" cy="401.222" r="42.629"></circle>
-	<circle style="fill:#FF9E16;" cx="255.999" cy="461.368" r="42.628"></circle>
-	<circle style="fill:#0071CE;" cx="401.222" cy="401.222" r="42.628"></circle>
-	<circle style="fill:#FF9E16;" cx="461.368" cy="255.999" r="42.628"></circle>
-	<circle style="fill:#0071CE;" cx="401.222" cy="110.777" r="42.628"></circle>
+	<circle style="fill:#0055B8;" cx="255.999" cy="255.999" r="81.407" />
+	<circle style="fill:#00A8E1;" cx="255.999" cy="50.631" r="42.628" />
+	<circle style="fill:#FF9E16;" cx="110.776" cy="110.787" r="42.629" />
+	<circle style="fill:#00A8E1;" cx="50.63" cy="255.999" r="42.629" />
+	<circle style="fill:#4BB6AA;" cx="110.776" cy="401.222" r="42.629" />
+	<circle style="fill:#FF9E16;" cx="255.999" cy="461.368" r="42.628" />
+	<circle style="fill:#0071CE;" cx="401.222" cy="401.222" r="42.628" />
+	<circle style="fill:#FF9E16;" cx="461.368" cy="255.999" r="42.628" />
+	<circle style="fill:#0071CE;" cx="401.222" cy="110.777" r="42.628" />
 	<path
 		style="fill:#1E252B;"
 		d="M463.283,205.421c-5.196-21.243-13.61-41.398-25.082-60.08c18.538-19.822,18.153-51.024-1.181-70.362
@@ -59,20 +59,21 @@
 	c11.377-13.601,18.78-30.62,20.445-49.271h66.35c3.094,19.383,17.226,35.121,35.728,40.564
 	C442.523,323.023,435.329,340.552,425.649,356.861z M461.37,290.628c-19.092,0-34.627-15.534-34.628-34.626
 	c0.001-19.095,15.535-34.629,34.628-34.628c19.092-0.001,34.626,15.533,34.627,34.625
-	C495.997,275.093,480.463,290.628,461.37,290.628z"></path>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
-	<g> </g>
+	C495.997,275.093,480.463,290.628,461.37,290.628z"
+	/>
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
+	<g />
 </svg>

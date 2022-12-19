@@ -7,7 +7,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 - JS Framework [SvelteKit](https://kit.svelte.dev/)
 - CSS: [Tailwind CSS](https://tailwindcss.com/)
-- UI Components: [[Flowbite](https://flowbite.com/)/[flowbite-svelte](https://flowbite-svelte.com/)], [skeleton](https://www.skeleton.dev/) and [DaisyUI](https://daisyui.com/)
+- UI Components: tailwindcss based [Flowbite](https://flowbite.com/)/[flowbite-svelte](https://flowbite-svelte.com/), [skeleton](https://www.skeleton.dev/) and [DaisyUI](https://daisyui.com/)
 - Unit/Component testing: [vitest](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
 - [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)
@@ -17,16 +17,20 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 ## Features
 
-- [ ] Lazy-loading images
 - [x] Responsive design
+- [ ] **Progressive Web Apps (PWAs):** Smart caching with Service Works , Re-engage customers with Push Notifications, Push Application Updates
+- [ ] Fonts and Image Optimization: edge caching, Lazy-loading images
 - [ ] SEO optimization
-- [x] ~~forms: schema definitions with `yup`. validation errors with [svelte-forms-lib](https://svelte-forms-lib-sapper-docs.vercel.app/introduction)~~
-- [ ] Forms: schema definitions with `zod`. Validation errors with [felte forms](https://felte.dev/)
-- [x] **UI Components:** tailwindcss based `flowbite` and `daisyui` , make both work together without conflect, add **DarkMode** switcher.
-- [x] K8s deployment with _letsencrypt_ ssl certificates
-- [x] Tables: [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
-- [ ] Use [NextAuth.js](https://next-auth.js.org/) when [released](https://github.com/nextauthjs/next-auth/tree/main/apps/playground-sveltekit)
-- [ ] [Vitebook](https://vitebook.dev/introduction/what-is-vitebook.html)
+- [x] **Forms:** schema definitions with `zod`. form initialization/reset/validation/error reporting with [felte](https://felte.dev/)
+- [x] **Themes:** tailwindcss **DarkMode** switcher
+- [x] **Deployment:** serverless/ k8s runtimes
+- [x] **Tables:** [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
+- [ ] **Security:** Use [Auth.js](https://authjs.dev/) when [stable](https://vercel.com/blog/announcing-sveltekit-auth)
+- [ ] [Vitebook](https://vitebook.dev/introduction/what-is-vitebook.html) or [Storybook 7](https://github.com/storybookjs/storybook/blob/next/code/frameworks/sveltekit/README.md)
+
+## Experementing
+
+- [ ] tRPC-SvelteKit: [End-to-end typesafe APIs](https://icflorescu.github.io/trpc-sveltekit) SvelteKit.
 
 ## Setup
 
@@ -89,7 +93,10 @@ npm run test:ui
 npm run test:coverage
 
 # updating Snapshots
-vitest -u
+npx vitest -u
+
+# test specific folder
+npx vitest run src/lib/utils
 ```
 
 ### E2E Tests

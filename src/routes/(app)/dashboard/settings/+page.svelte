@@ -9,7 +9,7 @@
 </svelte:head>
 
 <h2>Settings</h2>
-<Button on:click="{() => addToast({ message: 'Hello, World!', dismissible: false, timeout: 6000, type: ToastLevel.Error })}">Error</Button>
-<Button on:click="{() => addToast({ message: 'Hello, World!', dismissible: true, timeout: 6000, type: ToastLevel.Warning })}">Warning</Button>
-<Button on:click="{() => addToast({ message: 'Hello, World!', dismissible: false, timeout: 6000, type: ToastLevel.Success })}">Success</Button>
-<Button on:click="{() => addToast({ message: 'Hello, World!', dismissible: true, timeout: 6000, type: ToastLevel.Info })}">Info</Button>
+<Button on:click={() => addToast({ message: 'Hello, World!', dismissible: false, duration: 6000, type: ToastLevel.Error })}>Error</Button>
+<Button on:click={() => addToast({ message: 'Hello, World!', dismissible: true, duration: 6000, type: ToastLevel.Warning })}>Warning</Button>
+<Button on:click={() => addToast({ message: 'Hello, World!', dismissible: false, duration: 6000, type: ToastLevel.Success })}>Success</Button>
+<Button on:click={() => addToast({ message: 'Hello, World!', dismissible: true, duration: 6000, type: ToastLevel.Info })}>Info</Button>

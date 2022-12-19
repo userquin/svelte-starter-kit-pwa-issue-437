@@ -1,0 +1,3 @@
+table:
+  name: tz_policies
+  schema: public

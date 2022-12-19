@@ -28,7 +28,5 @@
 	],
 	"tabWidth": 4,
 	"embeddedLanguageFormatting": "auto",
-	"htmlWhitespaceSensitivity": "strict",
-	"svelteStrictMode": true,
-	"svelteAllowShorthand": true
+	"htmlWhitespaceSensitivity": "strict"
 }

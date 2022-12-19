@@ -121,7 +121,7 @@
 
 	////////// vitest //////////
 	"vitest.include": ["**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx,svelte}"],
-	"vitest.exclude": ["**/node_modules/**", "**/dist/**", "**/cypress/**", "**/.{idea,git,cache,output,temp}/**", "**/ignored.test.ts", "tests/**"],
+	"vitest.exclude": ["**/node_modules/**", "$houdini/**", "**/dist/**", "**/cypress/**", "**/.{idea,git,cache,output,temp}/**", "**/ignored.test.ts", "tests/**"],
 
 	////////// tailwindCSS //////////
 	"tailwindCSS.emmetCompletions": true,

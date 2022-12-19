@@ -216,7 +216,10 @@ use [houdini](https://www.houdinigraphql.com/) as GraphQL Client. [example](http
 npm i -D houdini
 
 # npx houdini init
-npx houdini init --headers "x-hasura-admin-secret"="<hasura-secret>"
+npx houdini init --headers "x-hasura-admin-secret"="<HASURA_GRAPHQL_ADMIN_SECRET>"
+
+# If you have updated your schema on the server, you can pull down the most recent schema
+npx houdini generate --pull-schema
 ```
 
 (Or) Apollo Client. [example](https://github.com/rodneylab/sveltekit-graphql-github)

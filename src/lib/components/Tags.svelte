@@ -7,7 +7,7 @@
 		return s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
 	};
 
-	export let tags: Set<string> | string[] = [];
+	export let tags: string[] | null | undefined = [];
 	export let addKeys = [13];
 	export let maxTags = 10;
 	export let onlyUnique = false;
@@ -307,8 +307,8 @@
 	}
 </script>
 
-<div class="svelte-tags-input-layout" class:sti-layout-disable="{disable}" bind:this="{layoutElement}">
-	<label for="{id}" class="{labelShow ? '' : 'sr-only'}">{labelText}</label>
+<div class="svelte-tags-input-layout" class:sti-layout-disable={disable} bind:this={layoutElement}>
+	<label for={id} class={labelShow ? '' : 'sr-only'}>{labelText}</label>
 
 	{#if tags.length > 0}
 		{#each tags as tag, i}
@@ -319,19 +319,19 @@
 					{tag[autoCompleteKey]}
 				{/if}
 				{#if !disable}
-					<span class="svelte-tags-input-tag-remove" on:pointerdown="{() => removeTag(i)}"> &#215;</span>
+					<span class="svelte-tags-input-tag-remove" on:pointerdown={() => removeTag(i)}> &#215;</span>
 				{/if}
 			</span>
 		{/each}
 	{/if}
-	<input type="text" id="{id}" name="{name}" data-felte-ignore bind:value="{tag}" on:keydown="{setTag}" on:keyup="{getMatchElements}" on:paste="{onPaste}" on:drop="{onDrop}" on:focus="{onFocus}" on:blur="{(e) => onBlur(e, tag)}" on:pointerdown="{onClick}" class="svelte-tags-input" placeholder="{placeholder}" disabled="{disable}" autocomplete="off" />
+	<input type="text" {id} {name} data-felte-ignore bind:value={tag} on:keydown={setTag} on:keyup={getMatchElements} on:paste={onPaste} on:drop={onDrop} on:focus={onFocus} on:blur={(e) => onBlur(e, tag)} on:pointerdown={onClick} class="svelte-tags-input" {placeholder} disabled={disable} autocomplete="off" />
 </div>
 
 {#if autoComplete && arrelementsmatch.length > 0}
 	<div class="svelte-tags-input-matchs-parent">
 		<ul id="{id}_matchs" class="svelte-tags-input-matchs">
 			{#each arrelementsmatch as element, index}
-				<li tabindex="-1" class:focus="{index === autoCompleteIndex}" on:pointerdown|preventDefault="{() => addTag(element.label)}">
+				<li tabindex="-1" class:focus={index === autoCompleteIndex} on:pointerdown|preventDefault={() => addTag(element.label)}>
 					{@html element.search}
 				</li>
 			{/each}

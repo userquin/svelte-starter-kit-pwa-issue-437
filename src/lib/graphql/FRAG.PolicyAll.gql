@@ -3,9 +3,9 @@ fragment Policy_all_fields on tz_policies {
 	action
 	annotations
 	app_id
-	create_time
+	created_at
 	created_by
-	delete_time
+	deleted_at
 	description
 	destination_address
 	destination_port
@@ -22,7 +22,7 @@ fragment Policy_all_fields on tz_policies {
 	subject_type
 	tags
 	template
-	update_time
+	updated_at
 	updated_by
 	valid_from
 	valid_to

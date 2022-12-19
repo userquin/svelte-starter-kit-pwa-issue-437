@@ -19,12 +19,12 @@
 	let hamburgerClass = 'text-gray-500 hover:text-gray-700 cursor-pointer border-none focus:outline-none dark:text-white hidden sm:block';
 </script>
 
-<Navbar let:hidden let:toggle fluid="{false}" border="{false}" navClass="{navClass}">
+<Navbar let:hidden let:toggle fluid={false} border={false} {navClass}>
 	<div class="flex items-center">
-		<Hamburger hamburgerClass="{hamburgerClass}" />
+		<Hamburger {hamburgerClass} />
 		<NavBrand href="/">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-3 mr-3 h-10 w-10 rounded-full bg-indigo-500 p-2 text-white" viewBox="0 0 24 24">
-				<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+				<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
 			</svg>
 			<!--			<img src="/logos/6-1.svg" class="ml-3 mr-3 h-6 sm:h-9" alt="Datablocks Logo" />-->
 			<span class="self-center whitespace-nowrap text-xl font-semibold">
@@ -46,32 +46,32 @@
 	</div>
 	-->
 	<!-- keep NavHamburger here, to keep Hamburger to left on small screen-->
-	<NavHamburger on:click="{toggle}" />
+	<NavHamburger on:click={toggle} />
 
 	<!-- TODO: dummy space to push -NavUl close to Dropdown -->
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<NavUl hidden="{hidden}">
-		<NavLi href="/dashboard" active="{path == '/dashboard'}">Dashboard</NavLi>
-		<NavLi data-sveltekit-preload-data="" href="/dashboard/accounts" active="{path == '/dashboard/accounts'}">Accounts</NavLi>
-		<NavLi data-sveltekit-preload-data="" href="/dashboard/policies" active="{path == '/dashboard/policies'}">Policies</NavLi>
-		<NavLi href="/dashboard/users" active="{path == '/dashboard/users'}">Users</NavLi>
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<div />
+	<NavUl {hidden}>
+		<NavLi href="/dashboard" active={path == '/dashboard'}>Dashboard</NavLi>
+		<NavLi data-sveltekit-preload-data="" href="/dashboard/accounts" active={path == '/dashboard/accounts'}>Accounts</NavLi>
+		<NavLi data-sveltekit-preload-data="" href="/dashboard/policies" active={path == '/dashboard/policies'}>Policies</NavLi>
+		<NavLi href="/dashboard/users" active={path == '/dashboard/users'}>Users</NavLi>
 	</NavUl>
 
 	{#if isLoggedIn}
 		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 		<div class="hidden md:block">
-			<Avatar src="{avatarUrl}" size="md" border referrerpolicy="no-referrer">{username?.substring(0, 2).toUpperCase()}</Avatar>
-			<Dropdown arrowIcon="{false}" inline="{true}">
+			<Avatar src={avatarUrl} size="md" border referrerpolicy="no-referrer">{username?.substring(0, 2).toUpperCase()}</Avatar>
+			<Dropdown arrowIcon={false} inline={true}>
 				<DropdownHeader>
 					<span class="block truncate text-sm font-medium">{name}</span>
 				</DropdownHeader>
@@ -79,7 +79,7 @@
 				<DropdownItem><a href="/dashboard/settings">Settings</a></DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<a on:click="{logout}" href="{'#'}">Sign Out</a>
+					<a on:click={logout} href={'#'}>Sign Out</a>
 				</DropdownItem>
 			</Dropdown>
 		</div>

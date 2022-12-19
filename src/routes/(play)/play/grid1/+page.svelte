@@ -25,8 +25,8 @@
 	<div class="gallery">
 		{#each dogs as dog, i (dog.id)}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<figure on:click="{swap(i)}" animate:flip="{{ duration: 500 }}" data-grid="{`img-${i + 1}`}">
-				<img src="{dog.url}" alt="good dog" />
+			<figure on:click={swap(i)} animate:flip={{ duration: 500 }} data-grid={`img-${i + 1}`}>
+				<img src={dog.url} alt="good dog" />
 			</figure>
 		{/each}
 	</div>

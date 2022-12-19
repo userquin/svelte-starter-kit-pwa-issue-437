@@ -1,10 +1,10 @@
-query ListPolicies($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ update_time: desc_nulls_last }]) {
-	counts: tz_policies_aggregate(where: { delete_time: { _is_null: true } }) {
+query ListPolicies($limit: Int = 50, $offset: Int = 0, $orderBy: [tz_policies_order_by!] = [{ updated_at: desc_nulls_last }]) {
+	counts: tz_policies_aggregate(where: { deleted_at: { _is_null: true } }) {
 		aggregate {
 			count
 		}
 	}
-	tz_policies(order_by: $orderBy, limit: $limit, offset: $offset, where: { delete_time: { _is_null: true } }) {
-		...Policy_list_fields @houdini(mask: false)
+	tz_policies(order_by: $orderBy, limit: $limit, offset: $offset, where: { deleted_at: { _is_null: true } }) {
+		...Policy_list_fields @mask_disable
 	}
 }

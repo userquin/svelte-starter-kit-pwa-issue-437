@@ -46,9 +46,9 @@ query lookupCustomerOrder {
 
 ```
 query lookupPolicies {
-  tz_policies(where: {delete_time: {_is_null: true}}, order_by: {update_time: desc_nulls_last}) {
+  tz_policies(where: {deleted_at: {_is_null: true}}, order_by: {updated_at: desc_nulls_last}) {
     id
-    create_time
+    created_at
     display_name
   }
 }

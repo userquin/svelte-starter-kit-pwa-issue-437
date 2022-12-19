@@ -113,7 +113,7 @@
 	<!--	<p class="error">{$page.error.details}</p>-->
 {/if}
 
-<Navbar let:hidden let:toggle border="{true}" rounded="{true}">
+<Navbar let:hidden let:toggle border={true} rounded={true}>
 	<NavBrand>
 		<Users />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Accounts </span>
@@ -124,19 +124,19 @@
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 			<MagnifyingGlassCircle />
 		</div>
-		<Input bind:value="{firstName}" class="pl-10" placeholder="First Name..." />
+		<Input bind:value={firstName} class="pl-10" placeholder="First Name..." />
 	</div>
 	<div class="relative hidden md:block">
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 			<MagnifyingGlassCircle />
 		</div>
-		<Input bind:value="{lastName}" class="pl-10" placeholder="Last Name..." />
+		<Input bind:value={lastName} class="pl-10" placeholder="Last Name..." />
 	</div>
 	<div class="relative hidden md:block">
-		<Select class="pl-10" items="{limits}" bind:value="{limit}" />
+		<Select class="pl-10" items={limits} bind:value={limit} />
 	</div>
 
-	<Button on:click="{search}">Search</Button>
+	<Button on:click={search}>Search</Button>
 </Navbar>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -146,9 +146,9 @@
 			<label for="table-search" class="sr-only">Search</label>
 			<div class="relative mt-1">
 				<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-					<svg class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+					<svg class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
 				</div>
-				<input bind:value="{$filterValue}" type="text" id="table-search" class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" placeholder="Search rows..." />
+				<input bind:value={$filterValue} type="text" id="table-search" class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" placeholder="Search rows..." />
 			</div>
 		</div>
 	</div>
@@ -156,13 +156,13 @@
 	<table {...$tableAttrs} class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
 		<thead class="bg-gray-50 text-xs uppercase text-gray-700  dark:bg-gray-700 dark:text-gray-400">
 			{#each $headerRows as headerRow (headerRow.id)}
-				<Subscribe attrs="{headerRow.attrs()}" let:attrs>
+				<Subscribe attrs={headerRow.attrs()} let:attrs>
 					<tr {...attrs}>
 						{#each headerRow.cells as cell (cell.id)}
-							<Subscribe attrs="{cell.attrs()}" let:attrs props="{cell.props()}" let:props>
-								<th {...attrs} on:click="{props.sort.toggle}" class="py-3 px-6">
+							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
+								<th {...attrs} on:click={props.sort.toggle} class="py-3 px-6">
 									<div class="flex items-center">
-										<Render of="{cell.render()}" />
+										<Render of={cell.render()} />
 										{#if props.sort.order === 'asc'}
 											<ChevronDown size="16" variation="solid" class="ml-1" />
 										{:else if props.sort.order === 'desc'}
@@ -178,12 +178,12 @@
 		</thead>
 		<tbody {...$tableBodyAttrs}>
 			{#each $pageRows as row (row.id)}
-				<Subscribe attrs="{row.attrs()}" let:attrs>
+				<Subscribe attrs={row.attrs()} let:attrs>
 					<tr {...attrs} class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
 						{#each row.cells as cell (cell.id)}
-							<Subscribe attrs="{cell.attrs()}" let:attrs props="{cell.props()}" let:props>
-								<td {...attrs} class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white" class:matches="{props.tableFilter.matches}">
-									<Render of="{cell.render()}" />
+							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
+								<td {...attrs} class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white" class:matches={props.tableFilter.matches}>
+									<Render of={cell.render()} />
 								</td>
 							</Subscribe>
 						{/each}
@@ -196,15 +196,15 @@
 	<nav class="flex items-center justify-between p-4" aria-label="Table navigation">
 		<span class="flex items-center text-sm text-gray-700 dark:text-gray-400">
 			<span class="pr-2">Rows ({$pageSize}): </span>
-			<Select items="{limits}" bind:value="{$pageSize}" size="sm" class="w-1/6 p-1 text-xs" />
+			<Select items={limits} bind:value={$pageSize} size="sm" class="w-1/6 p-1 text-xs" />
 			<span class="pl-4">
 				Showing <span class="font-semibold text-gray-900 dark:text-white">{$pageIndex + 1}</span>
 				out of <span class="font-semibold text-gray-900 dark:text-white">{$pageCount}</span> Pages
 			</span>
 		</span>
 		<ButtonGroup>
-			<Button on:click="{() => $pageIndex--}" disabled="{!$hasPreviousPage}">Prev</Button>
-			<Button on:click="{() => $pageIndex++}" disabled="{!$hasNextPage}">Next</Button>
+			<Button on:click={() => $pageIndex--} disabled={!$hasPreviousPage}>Prev</Button>
+			<Button on:click={() => $pageIndex++} disabled={!$hasNextPage}>Next</Button>
 		</ButtonGroup>
 	</nav>
 </div>

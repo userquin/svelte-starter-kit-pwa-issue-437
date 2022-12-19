@@ -17,6 +17,6 @@
 
 <h2 class="pb-2 text-2xl">Demos</h2>
 
-<Listgroup active items="{links}" let:item class="w-48">
+<Listgroup active items={links} let:item class="w-48">
 	{item.name}
 </Listgroup>

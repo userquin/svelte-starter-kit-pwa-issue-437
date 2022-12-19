@@ -5,7 +5,7 @@
 				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 86K </h6>
 				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
 					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 1.3K </h6>
 				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
 					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 				<h6 class="mr-2 text-4xl font-bold text-deep-purple-accent-400 md:text-5xl"> 52M </h6>
 				<div class="flex h-7 w-7 items-center justify-center rounded-full bg-teal-accent-400">
 					<svg class="h-7 w-7 text-teal-900" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 			</div>

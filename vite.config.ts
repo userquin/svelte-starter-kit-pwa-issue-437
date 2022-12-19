@@ -45,6 +45,10 @@ const config: UserConfig = {
 		},
 		// Exclude playwright tests folder
 		exclude: [...configDefaults.exclude, 'tests']
+	},
+	// FIXME: remove fsevents???
+	optimizeDeps: {
+		exclude: ['fsevents']
 	}
 };
 

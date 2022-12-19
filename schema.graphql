@@ -96,715 +96,6 @@ input String_comparison_exp {
   _similar: String
 }
 
-"""
-columns and relationships of "_rowpermissions.chat"
-"""
-type _rowpermissions_chat {
-  created_at: timestamp!
-  id: Int!
-  message: String!
-  receiver_id: Int!
-  sender_id: Int!
-
-  """An object relationship"""
-  user: _rowpermissions_user!
-
-  """An object relationship"""
-  userBySenderId: _rowpermissions_user!
-}
-
-"""
-aggregated selection of "_rowpermissions.chat"
-"""
-type _rowpermissions_chat_aggregate {
-  aggregate: _rowpermissions_chat_aggregate_fields
-  nodes: [_rowpermissions_chat!]!
-}
-
-input _rowpermissions_chat_aggregate_bool_exp {
-  count: _rowpermissions_chat_aggregate_bool_exp_count
-}
-
-input _rowpermissions_chat_aggregate_bool_exp_count {
-  arguments: [_rowpermissions_chat_select_column!]
-  distinct: Boolean
-  filter: _rowpermissions_chat_bool_exp
-  predicate: Int_comparison_exp!
-}
-
-"""
-aggregate fields of "_rowpermissions.chat"
-"""
-type _rowpermissions_chat_aggregate_fields {
-  avg: _rowpermissions_chat_avg_fields
-  count(columns: [_rowpermissions_chat_select_column!], distinct: Boolean): Int!
-  max: _rowpermissions_chat_max_fields
-  min: _rowpermissions_chat_min_fields
-  stddev: _rowpermissions_chat_stddev_fields
-  stddev_pop: _rowpermissions_chat_stddev_pop_fields
-  stddev_samp: _rowpermissions_chat_stddev_samp_fields
-  sum: _rowpermissions_chat_sum_fields
-  var_pop: _rowpermissions_chat_var_pop_fields
-  var_samp: _rowpermissions_chat_var_samp_fields
-  variance: _rowpermissions_chat_variance_fields
-}
-
-"""
-order by aggregate values of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_aggregate_order_by {
-  avg: _rowpermissions_chat_avg_order_by
-  count: order_by
-  max: _rowpermissions_chat_max_order_by
-  min: _rowpermissions_chat_min_order_by
-  stddev: _rowpermissions_chat_stddev_order_by
-  stddev_pop: _rowpermissions_chat_stddev_pop_order_by
-  stddev_samp: _rowpermissions_chat_stddev_samp_order_by
-  sum: _rowpermissions_chat_sum_order_by
-  var_pop: _rowpermissions_chat_var_pop_order_by
-  var_samp: _rowpermissions_chat_var_samp_order_by
-  variance: _rowpermissions_chat_variance_order_by
-}
-
-"""
-input type for inserting array relation for remote table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_arr_rel_insert_input {
-  data: [_rowpermissions_chat_insert_input!]!
-
-  """upsert condition"""
-  on_conflict: _rowpermissions_chat_on_conflict
-}
-
-"""aggregate avg on columns"""
-type _rowpermissions_chat_avg_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by avg() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_avg_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""
-Boolean expression to filter rows from the table "_rowpermissions.chat". All fields are combined with a logical 'AND'.
-"""
-input _rowpermissions_chat_bool_exp {
-  _and: [_rowpermissions_chat_bool_exp!]
-  _not: _rowpermissions_chat_bool_exp
-  _or: [_rowpermissions_chat_bool_exp!]
-  created_at: timestamp_comparison_exp
-  id: Int_comparison_exp
-  message: String_comparison_exp
-  receiver_id: Int_comparison_exp
-  sender_id: Int_comparison_exp
-  user: _rowpermissions_user_bool_exp
-  userBySenderId: _rowpermissions_user_bool_exp
-}
-
-"""
-unique or primary key constraints on table "_rowpermissions.chat"
-"""
-enum _rowpermissions_chat_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  chat_pkey
-}
-
-"""
-input type for incrementing numeric columns in table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_inc_input {
-  id: Int
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""
-input type for inserting data into table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_insert_input {
-  created_at: timestamp
-  id: Int
-  message: String
-  receiver_id: Int
-  sender_id: Int
-  user: _rowpermissions_user_obj_rel_insert_input
-  userBySenderId: _rowpermissions_user_obj_rel_insert_input
-}
-
-"""aggregate max on columns"""
-type _rowpermissions_chat_max_fields {
-  created_at: timestamp
-  id: Int
-  message: String
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""
-order by max() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_max_order_by {
-  created_at: order_by
-  id: order_by
-  message: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""aggregate min on columns"""
-type _rowpermissions_chat_min_fields {
-  created_at: timestamp
-  id: Int
-  message: String
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""
-order by min() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_min_order_by {
-  created_at: order_by
-  id: order_by
-  message: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""
-response of any mutation on the table "_rowpermissions.chat"
-"""
-type _rowpermissions_chat_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [_rowpermissions_chat!]!
-}
-
-"""
-on_conflict condition type for table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_on_conflict {
-  constraint: _rowpermissions_chat_constraint!
-  update_columns: [_rowpermissions_chat_update_column!]! = []
-  where: _rowpermissions_chat_bool_exp
-}
-
-"""Ordering options when selecting data from "_rowpermissions.chat"."""
-input _rowpermissions_chat_order_by {
-  created_at: order_by
-  id: order_by
-  message: order_by
-  receiver_id: order_by
-  sender_id: order_by
-  user: _rowpermissions_user_order_by
-  userBySenderId: _rowpermissions_user_order_by
-}
-
-"""primary key columns input for table: _rowpermissions.chat"""
-input _rowpermissions_chat_pk_columns_input {
-  id: Int!
-}
-
-"""
-select columns of table "_rowpermissions.chat"
-"""
-enum _rowpermissions_chat_select_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  id
-
-  """column name"""
-  message
-
-  """column name"""
-  receiver_id
-
-  """column name"""
-  sender_id
-}
-
-"""
-input type for updating data in table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_set_input {
-  created_at: timestamp
-  id: Int
-  message: String
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""aggregate stddev on columns"""
-type _rowpermissions_chat_stddev_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by stddev() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_stddev_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""aggregate stddev_pop on columns"""
-type _rowpermissions_chat_stddev_pop_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by stddev_pop() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_stddev_pop_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""aggregate stddev_samp on columns"""
-type _rowpermissions_chat_stddev_samp_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by stddev_samp() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_stddev_samp_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""
-Streaming cursor of the table "_rowpermissions_chat"
-"""
-input _rowpermissions_chat_stream_cursor_input {
-  """Stream column input with initial value"""
-  initial_value: _rowpermissions_chat_stream_cursor_value_input!
-
-  """cursor ordering"""
-  ordering: cursor_ordering
-}
-
-"""Initial value of the column from where the streaming should start"""
-input _rowpermissions_chat_stream_cursor_value_input {
-  created_at: timestamp
-  id: Int
-  message: String
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""aggregate sum on columns"""
-type _rowpermissions_chat_sum_fields {
-  id: Int
-  receiver_id: Int
-  sender_id: Int
-}
-
-"""
-order by sum() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_sum_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""
-update columns of table "_rowpermissions.chat"
-"""
-enum _rowpermissions_chat_update_column {
-  """column name"""
-  created_at
-
-  """column name"""
-  id
-
-  """column name"""
-  message
-
-  """column name"""
-  receiver_id
-
-  """column name"""
-  sender_id
-}
-
-input _rowpermissions_chat_updates {
-  """increments the numeric columns with given value of the filtered values"""
-  _inc: _rowpermissions_chat_inc_input
-
-  """sets the columns of the filtered rows to the given values"""
-  _set: _rowpermissions_chat_set_input
-  where: _rowpermissions_chat_bool_exp!
-}
-
-"""aggregate var_pop on columns"""
-type _rowpermissions_chat_var_pop_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by var_pop() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_var_pop_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""aggregate var_samp on columns"""
-type _rowpermissions_chat_var_samp_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by var_samp() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_var_samp_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""aggregate variance on columns"""
-type _rowpermissions_chat_variance_fields {
-  id: Float
-  receiver_id: Float
-  sender_id: Float
-}
-
-"""
-order by variance() on columns of table "_rowpermissions.chat"
-"""
-input _rowpermissions_chat_variance_order_by {
-  id: order_by
-  receiver_id: order_by
-  sender_id: order_by
-}
-
-"""
-columns and relationships of "_rowpermissions.user"
-"""
-type _rowpermissions_user {
-  """An array relationship"""
-  chats(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): [_rowpermissions_chat!]!
-
-  """An array relationship"""
-  chatsBySenderId(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): [_rowpermissions_chat!]!
-
-  """An aggregate relationship"""
-  chatsBySenderId_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): _rowpermissions_chat_aggregate!
-
-  """An aggregate relationship"""
-  chats_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): _rowpermissions_chat_aggregate!
-  id: Int!
-  name: String!
-}
-
-"""
-aggregated selection of "_rowpermissions.user"
-"""
-type _rowpermissions_user_aggregate {
-  aggregate: _rowpermissions_user_aggregate_fields
-  nodes: [_rowpermissions_user!]!
-}
-
-"""
-aggregate fields of "_rowpermissions.user"
-"""
-type _rowpermissions_user_aggregate_fields {
-  avg: _rowpermissions_user_avg_fields
-  count(columns: [_rowpermissions_user_select_column!], distinct: Boolean): Int!
-  max: _rowpermissions_user_max_fields
-  min: _rowpermissions_user_min_fields
-  stddev: _rowpermissions_user_stddev_fields
-  stddev_pop: _rowpermissions_user_stddev_pop_fields
-  stddev_samp: _rowpermissions_user_stddev_samp_fields
-  sum: _rowpermissions_user_sum_fields
-  var_pop: _rowpermissions_user_var_pop_fields
-  var_samp: _rowpermissions_user_var_samp_fields
-  variance: _rowpermissions_user_variance_fields
-}
-
-"""aggregate avg on columns"""
-type _rowpermissions_user_avg_fields {
-  id: Float
-}
-
-"""
-Boolean expression to filter rows from the table "_rowpermissions.user". All fields are combined with a logical 'AND'.
-"""
-input _rowpermissions_user_bool_exp {
-  _and: [_rowpermissions_user_bool_exp!]
-  _not: _rowpermissions_user_bool_exp
-  _or: [_rowpermissions_user_bool_exp!]
-  chats: _rowpermissions_chat_bool_exp
-  chatsBySenderId: _rowpermissions_chat_bool_exp
-  chatsBySenderId_aggregate: _rowpermissions_chat_aggregate_bool_exp
-  chats_aggregate: _rowpermissions_chat_aggregate_bool_exp
-  id: Int_comparison_exp
-  name: String_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "_rowpermissions.user"
-"""
-enum _rowpermissions_user_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  user_pkey
-}
-
-"""
-input type for incrementing numeric columns in table "_rowpermissions.user"
-"""
-input _rowpermissions_user_inc_input {
-  id: Int
-}
-
-"""
-input type for inserting data into table "_rowpermissions.user"
-"""
-input _rowpermissions_user_insert_input {
-  chats: _rowpermissions_chat_arr_rel_insert_input
-  chatsBySenderId: _rowpermissions_chat_arr_rel_insert_input
-  id: Int
-  name: String
-}
-
-"""aggregate max on columns"""
-type _rowpermissions_user_max_fields {
-  id: Int
-  name: String
-}
-
-"""aggregate min on columns"""
-type _rowpermissions_user_min_fields {
-  id: Int
-  name: String
-}
-
-"""
-response of any mutation on the table "_rowpermissions.user"
-"""
-type _rowpermissions_user_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [_rowpermissions_user!]!
-}
-
-"""
-input type for inserting object relation for remote table "_rowpermissions.user"
-"""
-input _rowpermissions_user_obj_rel_insert_input {
-  data: _rowpermissions_user_insert_input!
-
-  """upsert condition"""
-  on_conflict: _rowpermissions_user_on_conflict
-}
-
-"""
-on_conflict condition type for table "_rowpermissions.user"
-"""
-input _rowpermissions_user_on_conflict {
-  constraint: _rowpermissions_user_constraint!
-  update_columns: [_rowpermissions_user_update_column!]! = []
-  where: _rowpermissions_user_bool_exp
-}
-
-"""Ordering options when selecting data from "_rowpermissions.user"."""
-input _rowpermissions_user_order_by {
-  chatsBySenderId_aggregate: _rowpermissions_chat_aggregate_order_by
-  chats_aggregate: _rowpermissions_chat_aggregate_order_by
-  id: order_by
-  name: order_by
-}
-
-"""primary key columns input for table: _rowpermissions.user"""
-input _rowpermissions_user_pk_columns_input {
-  id: Int!
-}
-
-"""
-select columns of table "_rowpermissions.user"
-"""
-enum _rowpermissions_user_select_column {
-  """column name"""
-  id
-
-  """column name"""
-  name
-}
-
-"""
-input type for updating data in table "_rowpermissions.user"
-"""
-input _rowpermissions_user_set_input {
-  id: Int
-  name: String
-}
-
-"""aggregate stddev on columns"""
-type _rowpermissions_user_stddev_fields {
-  id: Float
-}
-
-"""aggregate stddev_pop on columns"""
-type _rowpermissions_user_stddev_pop_fields {
-  id: Float
-}
-
-"""aggregate stddev_samp on columns"""
-type _rowpermissions_user_stddev_samp_fields {
-  id: Float
-}
-
-"""
-Streaming cursor of the table "_rowpermissions_user"
-"""
-input _rowpermissions_user_stream_cursor_input {
-  """Stream column input with initial value"""
-  initial_value: _rowpermissions_user_stream_cursor_value_input!
-
-  """cursor ordering"""
-  ordering: cursor_ordering
-}
-
-"""Initial value of the column from where the streaming should start"""
-input _rowpermissions_user_stream_cursor_value_input {
-  id: Int
-  name: String
-}
-
-"""aggregate sum on columns"""
-type _rowpermissions_user_sum_fields {
-  id: Int
-}
-
-"""
-update columns of table "_rowpermissions.user"
-"""
-enum _rowpermissions_user_update_column {
-  """column name"""
-  id
-
-  """column name"""
-  name
-}
-
-input _rowpermissions_user_updates {
-  """increments the numeric columns with given value of the filtered values"""
-  _inc: _rowpermissions_user_inc_input
-
-  """sets the columns of the filtered rows to the given values"""
-  _set: _rowpermissions_user_set_input
-  where: _rowpermissions_user_bool_exp!
-}
-
-"""aggregate var_pop on columns"""
-type _rowpermissions_user_var_pop_fields {
-  id: Float
-}
-
-"""aggregate var_samp on columns"""
-type _rowpermissions_user_var_samp_fields {
-  id: Float
-}
-
-"""aggregate variance on columns"""
-type _rowpermissions_user_variance_fields {
-  id: Float
-}
-
 scalar _text
 
 """
@@ -1179,32 +470,6 @@ input hstore_comparison_exp {
 """mutation root"""
 type mutation_root {
   """
-  delete data from the table: "_rowpermissions.chat"
-  """
-  delete__rowpermissions_chat(
-    """filter the rows which have to be deleted"""
-    where: _rowpermissions_chat_bool_exp!
-  ): _rowpermissions_chat_mutation_response
-
-  """
-  delete single row from the table: "_rowpermissions.chat"
-  """
-  delete__rowpermissions_chat_by_pk(id: Int!): _rowpermissions_chat
-
-  """
-  delete data from the table: "_rowpermissions.user"
-  """
-  delete__rowpermissions_user(
-    """filter the rows which have to be deleted"""
-    where: _rowpermissions_user_bool_exp!
-  ): _rowpermissions_user_mutation_response
-
-  """
-  delete single row from the table: "_rowpermissions.user"
-  """
-  delete__rowpermissions_user_by_pk(id: Int!): _rowpermissions_user
-
-  """
   delete data from the table: "customer"
   """
   delete_customer(
@@ -1242,50 +507,6 @@ type mutation_root {
   delete single row from the table: "tz_policies"
   """
   delete_tz_policies_by_pk(id: uuid!): tz_policies
-
-  """
-  insert data into the table: "_rowpermissions.chat"
-  """
-  insert__rowpermissions_chat(
-    """the rows to be inserted"""
-    objects: [_rowpermissions_chat_insert_input!]!
-
-    """upsert condition"""
-    on_conflict: _rowpermissions_chat_on_conflict
-  ): _rowpermissions_chat_mutation_response
-
-  """
-  insert a single row into the table: "_rowpermissions.chat"
-  """
-  insert__rowpermissions_chat_one(
-    """the row to be inserted"""
-    object: _rowpermissions_chat_insert_input!
-
-    """upsert condition"""
-    on_conflict: _rowpermissions_chat_on_conflict
-  ): _rowpermissions_chat
-
-  """
-  insert data into the table: "_rowpermissions.user"
-  """
-  insert__rowpermissions_user(
-    """the rows to be inserted"""
-    objects: [_rowpermissions_user_insert_input!]!
-
-    """upsert condition"""
-    on_conflict: _rowpermissions_user_on_conflict
-  ): _rowpermissions_user_mutation_response
-
-  """
-  insert a single row into the table: "_rowpermissions.user"
-  """
-  insert__rowpermissions_user_one(
-    """the row to be inserted"""
-    object: _rowpermissions_user_insert_input!
-
-    """upsert condition"""
-    on_conflict: _rowpermissions_user_on_conflict
-  ): _rowpermissions_user
 
   """
   insert data into the table: "customer"
@@ -1352,74 +573,6 @@ type mutation_root {
     """upsert condition"""
     on_conflict: tz_policies_on_conflict
   ): tz_policies
-
-  """
-  update data of the table: "_rowpermissions.chat"
-  """
-  update__rowpermissions_chat(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: _rowpermissions_chat_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: _rowpermissions_chat_set_input
-
-    """filter the rows which have to be updated"""
-    where: _rowpermissions_chat_bool_exp!
-  ): _rowpermissions_chat_mutation_response
-
-  """
-  update single row of the table: "_rowpermissions.chat"
-  """
-  update__rowpermissions_chat_by_pk(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: _rowpermissions_chat_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: _rowpermissions_chat_set_input
-    pk_columns: _rowpermissions_chat_pk_columns_input!
-  ): _rowpermissions_chat
-
-  """
-  update multiples rows of table: "_rowpermissions.chat"
-  """
-  update__rowpermissions_chat_many(
-    """updates to execute, in order"""
-    updates: [_rowpermissions_chat_updates!]!
-  ): [_rowpermissions_chat_mutation_response]
-
-  """
-  update data of the table: "_rowpermissions.user"
-  """
-  update__rowpermissions_user(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: _rowpermissions_user_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: _rowpermissions_user_set_input
-
-    """filter the rows which have to be updated"""
-    where: _rowpermissions_user_bool_exp!
-  ): _rowpermissions_user_mutation_response
-
-  """
-  update single row of the table: "_rowpermissions.user"
-  """
-  update__rowpermissions_user_by_pk(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: _rowpermissions_user_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: _rowpermissions_user_set_input
-    pk_columns: _rowpermissions_user_pk_columns_input!
-  ): _rowpermissions_user
-
-  """
-  update multiples rows of table: "_rowpermissions.user"
-  """
-  update__rowpermissions_user_many(
-    """updates to execute, in order"""
-    updates: [_rowpermissions_user_updates!]!
-  ): [_rowpermissions_user_mutation_response]
 
   """
   update data of the table: "customer"
@@ -1967,96 +1120,6 @@ input order_variance_order_by {
 
 type query_root {
   """
-  fetch data from the table: "_rowpermissions.chat"
-  """
-  _rowpermissions_chat(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): [_rowpermissions_chat!]!
-
-  """
-  fetch aggregated fields from the table: "_rowpermissions.chat"
-  """
-  _rowpermissions_chat_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): _rowpermissions_chat_aggregate!
-
-  """
-  fetch data from the table: "_rowpermissions.chat" using primary key columns
-  """
-  _rowpermissions_chat_by_pk(id: Int!): _rowpermissions_chat
-
-  """
-  fetch data from the table: "_rowpermissions.user"
-  """
-  _rowpermissions_user(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_user_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_user_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_user_bool_exp
-  ): [_rowpermissions_user!]!
-
-  """
-  fetch aggregated fields from the table: "_rowpermissions.user"
-  """
-  _rowpermissions_user_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_user_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_user_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_user_bool_exp
-  ): _rowpermissions_user_aggregate!
-
-  """
-  fetch data from the table: "_rowpermissions.user" using primary key columns
-  """
-  _rowpermissions_user_by_pk(id: Int!): _rowpermissions_user
-
-  """
   fetch data from the table: "customer"
   """
   customer(
@@ -2187,124 +1250,6 @@ type query_root {
 }
 
 type subscription_root {
-  """
-  fetch data from the table: "_rowpermissions.chat"
-  """
-  _rowpermissions_chat(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): [_rowpermissions_chat!]!
-
-  """
-  fetch aggregated fields from the table: "_rowpermissions.chat"
-  """
-  _rowpermissions_chat_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_chat_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_chat_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): _rowpermissions_chat_aggregate!
-
-  """
-  fetch data from the table: "_rowpermissions.chat" using primary key columns
-  """
-  _rowpermissions_chat_by_pk(id: Int!): _rowpermissions_chat
-
-  """
-  fetch data from the table in a streaming manner: "_rowpermissions.chat"
-  """
-  _rowpermissions_chat_stream(
-    """maximum number of rows returned in a single batch"""
-    batch_size: Int!
-
-    """cursor to stream the results returned by the query"""
-    cursor: [_rowpermissions_chat_stream_cursor_input]!
-
-    """filter the rows returned"""
-    where: _rowpermissions_chat_bool_exp
-  ): [_rowpermissions_chat!]!
-
-  """
-  fetch data from the table: "_rowpermissions.user"
-  """
-  _rowpermissions_user(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_user_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_user_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_user_bool_exp
-  ): [_rowpermissions_user!]!
-
-  """
-  fetch aggregated fields from the table: "_rowpermissions.user"
-  """
-  _rowpermissions_user_aggregate(
-    """distinct select on columns"""
-    distinct_on: [_rowpermissions_user_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [_rowpermissions_user_order_by!]
-
-    """filter the rows returned"""
-    where: _rowpermissions_user_bool_exp
-  ): _rowpermissions_user_aggregate!
-
-  """
-  fetch data from the table: "_rowpermissions.user" using primary key columns
-  """
-  _rowpermissions_user_by_pk(id: Int!): _rowpermissions_user
-
-  """
-  fetch data from the table in a streaming manner: "_rowpermissions.user"
-  """
-  _rowpermissions_user_stream(
-    """maximum number of rows returned in a single batch"""
-    batch_size: Int!
-
-    """cursor to stream the results returned by the query"""
-    cursor: [_rowpermissions_user_stream_cursor_input]!
-
-    """filter the rows returned"""
-    where: _rowpermissions_user_bool_exp
-  ): [_rowpermissions_user!]!
-
   """
   fetch data from the table: "customer"
   """
@@ -2477,23 +1422,6 @@ type subscription_root {
   ): [tz_policies!]!
 }
 
-scalar timestamp
-
-"""
-Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
-"""
-input timestamp_comparison_exp {
-  _eq: timestamp
-  _gt: timestamp
-  _gte: timestamp
-  _in: [timestamp!]
-  _is_null: Boolean
-  _lt: timestamp
-  _lte: timestamp
-  _neq: timestamp
-  _nin: [timestamp!]
-}
-
 scalar timestamptz
 
 """
@@ -2518,9 +1446,9 @@ type tz_policies {
   action: String!
   annotations: hstore
   app_id: String
-  create_time: timestamptz!
-  created_by: String
-  delete_time: timestamptz
+  created_at: timestamptz!
+  created_by: String!
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2538,8 +1466,8 @@ type tz_policies {
   subject_type: String
   tags: _text
   template: Boolean
-  update_time: timestamptz!
-  updated_by: String
+  updated_at: timestamptz!
+  updated_by: String!
   valid_from: timestamptz
   valid_to: timestamptz
   weight: Int
@@ -2585,9 +1513,9 @@ input tz_policies_bool_exp {
   action: String_comparison_exp
   annotations: hstore_comparison_exp
   app_id: String_comparison_exp
-  create_time: timestamptz_comparison_exp
+  created_at: timestamptz_comparison_exp
   created_by: String_comparison_exp
-  delete_time: timestamptz_comparison_exp
+  deleted_at: timestamptz_comparison_exp
   description: String_comparison_exp
   destination_address: String_comparison_exp
   destination_port: String_comparison_exp
@@ -2605,7 +1533,7 @@ input tz_policies_bool_exp {
   subject_type: String_comparison_exp
   tags: _text_comparison_exp
   template: Boolean_comparison_exp
-  update_time: timestamptz_comparison_exp
+  updated_at: timestamptz_comparison_exp
   updated_by: String_comparison_exp
   valid_from: timestamptz_comparison_exp
   valid_to: timestamptz_comparison_exp
@@ -2636,9 +1564,9 @@ input tz_policies_insert_input {
   action: String
   annotations: hstore
   app_id: String
-  create_time: timestamptz
+  created_at: timestamptz
   created_by: String
-  delete_time: timestamptz
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2656,7 +1584,7 @@ input tz_policies_insert_input {
   subject_type: String
   tags: _text
   template: Boolean
-  update_time: timestamptz
+  updated_at: timestamptz
   updated_by: String
   valid_from: timestamptz
   valid_to: timestamptz
@@ -2667,9 +1595,9 @@ input tz_policies_insert_input {
 type tz_policies_max_fields {
   action: String
   app_id: String
-  create_time: timestamptz
+  created_at: timestamptz
   created_by: String
-  delete_time: timestamptz
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2684,7 +1612,7 @@ type tz_policies_max_fields {
   subject_id: String
   subject_secondary_id: String
   subject_type: String
-  update_time: timestamptz
+  updated_at: timestamptz
   updated_by: String
   valid_from: timestamptz
   valid_to: timestamptz
@@ -2695,9 +1623,9 @@ type tz_policies_max_fields {
 type tz_policies_min_fields {
   action: String
   app_id: String
-  create_time: timestamptz
+  created_at: timestamptz
   created_by: String
-  delete_time: timestamptz
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2712,7 +1640,7 @@ type tz_policies_min_fields {
   subject_id: String
   subject_secondary_id: String
   subject_type: String
-  update_time: timestamptz
+  updated_at: timestamptz
   updated_by: String
   valid_from: timestamptz
   valid_to: timestamptz
@@ -2744,9 +1672,9 @@ input tz_policies_order_by {
   action: order_by
   annotations: order_by
   app_id: order_by
-  create_time: order_by
+  created_at: order_by
   created_by: order_by
-  delete_time: order_by
+  deleted_at: order_by
   description: order_by
   destination_address: order_by
   destination_port: order_by
@@ -2764,7 +1692,7 @@ input tz_policies_order_by {
   subject_type: order_by
   tags: order_by
   template: order_by
-  update_time: order_by
+  updated_at: order_by
   updated_by: order_by
   valid_from: order_by
   valid_to: order_by
@@ -2790,13 +1718,13 @@ enum tz_policies_select_column {
   app_id
 
   """column name"""
-  create_time
+  created_at
 
   """column name"""
   created_by
 
   """column name"""
-  delete_time
+  deleted_at
 
   """column name"""
   description
@@ -2850,7 +1778,7 @@ enum tz_policies_select_column {
   template
 
   """column name"""
-  update_time
+  updated_at
 
   """column name"""
   updated_by
@@ -2872,9 +1800,9 @@ input tz_policies_set_input {
   action: String
   annotations: hstore
   app_id: String
-  create_time: timestamptz
+  created_at: timestamptz
   created_by: String
-  delete_time: timestamptz
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2892,7 +1820,7 @@ input tz_policies_set_input {
   subject_type: String
   tags: _text
   template: Boolean
-  update_time: timestamptz
+  updated_at: timestamptz
   updated_by: String
   valid_from: timestamptz
   valid_to: timestamptz
@@ -2930,9 +1858,9 @@ input tz_policies_stream_cursor_value_input {
   action: String
   annotations: hstore
   app_id: String
-  create_time: timestamptz
+  created_at: timestamptz
   created_by: String
-  delete_time: timestamptz
+  deleted_at: timestamptz
   description: String
   destination_address: String
   destination_port: String
@@ -2950,7 +1878,7 @@ input tz_policies_stream_cursor_value_input {
   subject_type: String
   tags: _text
   template: Boolean
-  update_time: timestamptz
+  updated_at: timestamptz
   updated_by: String
   valid_from: timestamptz
   valid_to: timestamptz
@@ -2976,13 +1904,13 @@ enum tz_policies_update_column {
   app_id
 
   """column name"""
-  create_time
+  created_at
 
   """column name"""
   created_by
 
   """column name"""
-  delete_time
+  deleted_at
 
   """column name"""
   description
@@ -3036,7 +1964,7 @@ enum tz_policies_update_column {
   template
 
   """column name"""
-  update_time
+  updated_at
 
   """column name"""
   updated_by

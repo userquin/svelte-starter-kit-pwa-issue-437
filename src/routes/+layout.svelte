@@ -3,6 +3,6 @@
 	import '../app.pcss';
 </script>
 
-<Toasts position="bottom-right" />
+<Toasts placement="bottom-right" />
 
 <slot />

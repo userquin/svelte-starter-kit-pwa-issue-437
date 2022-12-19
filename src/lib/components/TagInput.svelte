@@ -46,14 +46,14 @@
 <div class="tag-input">
 	<ul class="tag-list">
 		{#each [...tags.values()] as tag (tag)}
-			<li class="tag" animate:flip="{{ duration: 200 }}" style="background-color: {colour(tag)};">
+			<li class="tag" animate:flip={{ duration: 200 }} style="background-color: {colour(tag)};">
 				<span>{tag}</span>
-				<button class="remove-button" on:click="{() => removeTag(tag)}">⨯</button></li
+				<button class="remove-button" on:click={() => removeTag(tag)}>⨯</button></li
 			>
 		{/each}
 		<li class="input">
-			<input class="tag-entry" type="text" {...$$restProps} on:keyup="{handleInput}" on:blur="{parseInput}" bind:value="{current}" />
-			<input type="hidden" {...$$restProps} hidden value="{tags}" />
+			<input class="tag-entry" type="text" {...$$restProps} on:keyup={handleInput} on:blur={parseInput} bind:value={current} />
+			<input type="hidden" {...$$restProps} hidden value={tags} />
 		</li>
 	</ul>
 </div>

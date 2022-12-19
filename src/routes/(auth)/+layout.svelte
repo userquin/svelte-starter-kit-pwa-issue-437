@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex min-h-screen flex-col">
-	<DarkMode btnClass="{btnClass}" />
+	<DarkMode {btnClass} />
 
 	<Header1 />
 

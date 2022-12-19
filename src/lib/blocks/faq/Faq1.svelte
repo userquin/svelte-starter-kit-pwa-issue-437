@@ -6,9 +6,9 @@
 				<span class="relative inline-block">
 					<svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 -mt-8 -ml-20 hidden w-32 text-blue-gray-100 sm:block lg:-ml-28 lg:-mt-10 lg:w-32">
 						<defs>
-							<pattern id="f77828ea-acc7-4b05-89fe-052b4c6b68b2" x="0" y="0" width=".135" height=".30"><circle cx="1" cy="1" r=".7"></circle></pattern>
+							<pattern id="f77828ea-acc7-4b05-89fe-052b4c6b68b2" x="0" y="0" width=".135" height=".30"><circle cx="1" cy="1" r=".7" /></pattern>
 						</defs>
-						<rect fill="url(#f77828ea-acc7-4b05-89fe-052b4c6b68b2)" width="52" height="24"></rect>
+						<rect fill="url(#f77828ea-acc7-4b05-89fe-052b4c6b68b2)" width="52" height="24" />
 					</svg>
 					<span class="relative">The</span>
 				</span>
@@ -22,7 +22,7 @@
 					<p class="text-lg font-medium">The quick, brown fox jumps over a lazy dog?</p>
 					<!-- Add "transform rotate-180" classes on svg, if is open" -->
 					<svg viewBox="0 0 24 24" class="w-3 text-gray-600 transition-transform duration-200">
-						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round"></polyline>
+						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round" />
 					</svg>
 				</button>
 				<!-- Show content if is open
@@ -33,7 +33,7 @@
 				<button type="button" aria-label="Open item" title="Open item" class="flex w-full items-center justify-between p-4 focus:outline-none">
 					<p class="text-lg font-medium">The first mate and his Skipper too will do?</p>
 					<svg viewBox="0 0 24 24" class="w-3 rotate-180 transform text-gray-600 transition-transform duration-200">
-						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round"></polyline>
+						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round" />
 					</svg>
 				</button>
 				<!-- Show content if is open
@@ -44,7 +44,7 @@
 				<button type="button" aria-label="Open item" title="Open item" class="flex w-full items-center justify-between p-4 focus:outline-none">
 					<p class="text-lg font-medium">Is the Space Pope reptilian!?</p>
 					<svg viewBox="0 0 24 24" class="w-3 rotate-180 transform text-gray-600 transition-transform duration-200">
-						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round"></polyline>
+						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round" />
 					</svg>
 				</button>
 				<!-- Show content if is open
@@ -55,7 +55,7 @@
 				<button type="button" aria-label="Open item" title="Open item" class="flex w-full items-center justify-between p-4 focus:outline-none">
 					<p class="text-lg font-medium">How much money you got on you?</p>
 					<svg viewBox="0 0 24 24" class="w-3 rotate-180 transform text-gray-600 transition-transform duration-200">
-						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round"></polyline>
+						<polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="2,7 12,17 22,7" stroke-linejoin="round" />
 					</svg>
 				</button>
 				<!-- Show content if is open

@@ -15,42 +15,42 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<Drawer bind:show="{$sidebarOpen}" asideClass="{asideClass}">
+<Drawer bind:show={$sidebarOpen} {asideClass}>
 	<Sidebar>
-		<SidebarWrapper divClass="{divClass}">
+		<SidebarWrapper {divClass}>
 			<SidebarGroup>
 				<!--				<SidebarBrand site={{	name: 'Datablocks',href: '/',img: '/logos/6-1.svg' }}/>-->
-				<SidebarItem href="/dashboard" icon="{{ name: ChartPie, class: 'text-red-500 mr-2 dark:text-blue-500' }}" label="Dashboard">
+				<SidebarItem href="/dashboard" icon={{ name: ChartPie, class: 'text-red-500 mr-2 dark:text-blue-500' }} label="Dashboard">
 					<svelte:fragment slot="icon"><ChartPie class="mr-2 text-red-500 dark:text-blue-500" /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Reports" spanClass="{spanClass}">
+				<SidebarItem label="Reports" {spanClass}>
 					<svelte:fragment slot="icon"><Squares2x2 /></svelte:fragment>
 					<svelte:fragment slot="subtext">
 						<span class="ml-3 inline-flex items-center justify-center rounded-full bg-gray-200 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
 					</svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Notifications" spanClass="{spanClass}">
+				<SidebarItem label="Notifications" {spanClass}>
 					<svelte:fragment slot="icon"><Bell /></svelte:fragment>
 					<svelte:fragment slot="subtext">
 						<span class="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-200 p-3 text-sm font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-200">3</span>
 					</svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Accounts" href="/dashboard/accounts" active="{activeUrl === '/dashboard/accounts'}">
+				<SidebarItem label="Accounts" href="/dashboard/accounts" active={activeUrl === '/dashboard/accounts'}>
 					<svelte:fragment slot="icon"><AcademicCap /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Policies" href="/dashboard/policies" active="{activeUrl === '/dashboard/policies'}">
+				<SidebarItem label="Policies" href="/dashboard/policies" active={activeUrl === '/dashboard/policies'}>
 					<svelte:fragment slot="icon"><ShieldCheck /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Users" href="/dashboard/users" active="{activeUrl === '/dashboard/users'}">
+				<SidebarItem label="Users" href="/dashboard/users" active={activeUrl === '/dashboard/users'}>
 					<svelte:fragment slot="icon"><Users /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Tenants" href="/dashboard/tenants" active="{activeUrl === '/dashboard/tenants'}">
+				<SidebarItem label="Tenants" href="/dashboard/tenants" active={activeUrl === '/dashboard/tenants'}>
 					<svelte:fragment slot="icon"><UserGroup /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem label="Settings" href="/dashboard/settings" active="{activeUrl === '/dashboard/settings'}">
+				<SidebarItem label="Settings" href="/dashboard/settings" active={activeUrl === '/dashboard/settings'}>
 					<svelte:fragment slot="icon"><Cog /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem on:click="{logout}" href="{'#'}" label="Sign Out">
+				<SidebarItem on:click={logout} href={'#'} label="Sign Out">
 					<svelte:fragment slot="icon"><ArrowRightOnRectangle /></svelte:fragment>
 				</SidebarItem>
 			</SidebarGroup>

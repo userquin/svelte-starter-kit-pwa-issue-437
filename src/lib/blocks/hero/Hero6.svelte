@@ -12,7 +12,7 @@
 			<div class="max-w-md">
 				<div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
 					<svg class="h-12 w-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 				<h6 class="mb-2 font-semibold leading-5">The deep ocean</h6>
@@ -21,7 +21,7 @@
 			<div class="max-w-md">
 				<div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
 					<svg class="h-12 w-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 				<h6 class="mb-2 font-semibold leading-5">When has justice</h6>
@@ -30,7 +30,7 @@
 			<div class="max-w-md">
 				<div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
 					<svg class="h-12 w-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 				<h6 class="mb-2 font-semibold leading-5">Organically grow</h6>
@@ -39,7 +39,7 @@
 			<div class="max-w-md">
 				<div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
 					<svg class="h-12 w-12 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+						<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23" />
 					</svg>
 				</div>
 				<h6 class="mb-2 font-semibold leading-5">A slice of heaven</h6>

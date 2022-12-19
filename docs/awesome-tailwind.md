@@ -8,6 +8,8 @@ Awesome **Tailwind CSS** Links
 - Icons: [heroicons](https://heroicons.com/) via [svelte-heros-v2](https://github.com/shinokada/svelte-heros-v2) Icon Components.
 - [DaisyUI](https://daisyui.com/)
 - [headlessUI](https://github.com/CaptainCodeman/svelte-headlessui) **fully accessible, unstyled** UI components.
+- [Preline]([preline](https://preline.co/index.html)
+- [Skeleton](https://www.skeleton.dev/) - Build fast and reactive web interfaces using Svelte + Tailwind CSS.
 
 ## UI Blocks
 
@@ -16,7 +18,9 @@ Awesome **Tailwind CSS** Links
 - [Tailwind Components](https://tailwindcomponents.com/) (Free)
 - Flowbite [Blocks](https://flowbite.com/blocks/) via [flowbite-svelte-blocks](https://github.com/shinokada/flowbite-svelte-blocks)
 - [Konsta UI](https://konstaui.com/svelte) - is a free and open source mobile UI svelte components framework built with [Tailwind CSS](https://tailwindcss.com/).
+- [Preline Blocks]([preline](https://preline.co/examples.html)
 
 ## Guides
 
 - [6 Tips for Tailwind CSS Development](https://jfelix.info/blog/6-tips-for-tailwind-css-development-with-resources)
+- [Collection of Tailwind Components](https://github.com/unlight/tailwind-components)
