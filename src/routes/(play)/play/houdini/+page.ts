@@ -1,7 +1,7 @@
 import { order_by } from '$houdini';
 import type { AfterLoadEvent, ListPolicies2Variables as Variables } from './$houdini';
 
-export const ListPolicies2Variables: Variables = ({ url }) => {
+export const _ListPolicies2Variables: Variables = ({ url }) => {
 	const limit = parseInt(url.searchParams.get('limit') ?? '');
 	const offset = parseInt(url.searchParams.get('offset') ?? '');
 

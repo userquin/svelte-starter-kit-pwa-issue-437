@@ -1,5 +1,5 @@
 import { env as dynPubEnv } from '$env/dynamic/public';
-import { CachePolicy, GQL_DeletePolicy, GQL_SearchPolicies, order_by } from '$houdini';
+import { CachePolicy, DeletePolicyStore, order_by, SearchPoliciesStore } from '$houdini';
 import type { AccountDeleteResult } from '$lib/models/schema';
 import { Logger } from '$lib/utils';
 import { getAppError, isAppError, isHttpError } from '$lib/utils/errors';
@@ -14,9 +14,10 @@ assert.ok(dynPubEnv.PUBLIC_CONFY_API_TOKEN, 'PUBLIC_CONFY_API_TOKEN not configer
 
 const log = new Logger('policies.server');
 
-const query = GQL_SearchPolicies.artifact.raw;
+const searchPoliciesStore = new SearchPoliciesStore();
+const query = searchPoliciesStore.artifact.raw;
 
-const delete_mutation = GQL_DeletePolicy.artifact.raw;
+const delete_mutation = new DeletePolicyStore().artifact.raw;
 
 export const load: PageServerLoad = async (event: RequestEvent) => {
 	const { url, setHeaders } = event;
@@ -55,7 +56,7 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		if (errors) return { loadErrors: errors }; // return invalid(400, {loadErrors: errors });
 		*/
 		//----
-		const { errors, data } = await GQL_SearchPolicies.fetch({
+		const { errors, data } = await searchPoliciesStore.fetch({
 			event,
 			blocking: true,
 			policy: CachePolicy.CacheAndNetwork,

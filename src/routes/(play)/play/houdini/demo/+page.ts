@@ -1,4 +1,4 @@
-export function allOrdersVariables() {
+export function _allOrdersVariables() {
 	return {
 		limit: 2
 	};

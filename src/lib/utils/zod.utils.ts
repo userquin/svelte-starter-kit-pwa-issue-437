@@ -3,6 +3,16 @@ import { z } from 'zod';
 /**
  * Utility functions
  */
+export function emptyToNull(arg: unknown) {
+	if (typeof arg !== 'string') {
+		return arg;
+	}
+	if (arg.trim() === '') {
+		return null;
+	}
+	return arg;
+}
+
 export function ifNonEmptyString(fn: (value: string) => unknown): (value: unknown) => unknown {
 	return (value: unknown) => {
 		if (typeof value !== 'string') {
@@ -30,8 +40,8 @@ export function replaceEmptyWithNull(obj) {
 /**
  * schemas
  */
-
 export const uuidSchema = z.string().uuid();
+export const dbOffsetDate = z.preprocess((arg) => (arg === '' ? null : arg), z.string().datetime({ offset: true }).nullish());
 
 /**
  * Converters / type coercion

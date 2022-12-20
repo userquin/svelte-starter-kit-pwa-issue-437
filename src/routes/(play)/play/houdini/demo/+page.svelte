@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { CachePolicy, graphql } from '$houdini';
 
-	const allOrders = graphql`
+	const allOrders = graphql(`
 		query allOrders($limit: Int = 10) {
 			customer(limit: $limit) @paginate {
 				email
@@ -22,14 +22,16 @@
 				}
 			}
 		}
-	`;
+	`);
 
 	$: console.log('$allOrders.data on load:', $allOrders.data);
 </script>
 
 <button class="btn" on:click={() => allOrders.loadNextPage()}>load more</button>
 <button class="btn-accent btn" on:click={() => allOrders.fetch({ policy: CachePolicy.NetworkOnly })}>refetch</button>
+<br />
 <span>isFetching: {$allOrders.isFetching}</span>
 {#each $allOrders.data.customer as customer}
-	<div>{JSON.stringify(customer, null, 2)}</div>
+	<p> Customer: {customer.first_name} {customer.last_name} <span>Order Count: {customer.orders.length}</span></p>
+	<!-- <pre>{JSON.stringify(customer, null, 2)}</pre> -->
 {/each}

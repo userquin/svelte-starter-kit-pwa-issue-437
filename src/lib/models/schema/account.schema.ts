@@ -1,4 +1,4 @@
-import { stringToArray, stringToJSON, stringToMap } from '$lib/utils/zod.utils';
+import { emptyToNull, stringToArray, stringToJSON, stringToMap } from '$lib/utils/zod.utils';
 import { z } from 'zod';
 
 function checkValidDates(ctx: z.RefinementCtx, valid_from: string | undefined | null, valid_to: string | undefined | null) {
@@ -22,8 +22,10 @@ export const accountClientSchema = z
 		// annotations: z.preprocess(stringToMap, z.map(z.string().trim().min(3), z.string().trim().min(3))).nullish(), // nullish() = optional().nullable()
 		disabled: z.boolean().optional().default(false),
 		template: z.boolean().optional().default(false),
-		valid_from: z.string().datetime({ offset: true }).nullish().catch(null), // .transform(str => str ? new Date(str) : undefined),
-		valid_to: z.string().datetime({ offset: true }).nullish().catch(null), // .transform(str => str ? new Date(str) : undefined),
+		// valid_from: z.string().datetime({ offset: true }).nullish().catch(null),
+		// valid_to: z.string().datetime({ offset: true }).nullish().catch(null),
+		valid_from: z.preprocess(emptyToNull, z.string().datetime({ offset: true }).nullish()),
+		valid_to: z.preprocess(emptyToNull, z.string().datetime({ offset: true }).nullish()),
 		source_address: z.string().trim().nullish(),
 		source_port: z.string().trim().nullish(),
 		destination_address: z.string().trim().nullish(),

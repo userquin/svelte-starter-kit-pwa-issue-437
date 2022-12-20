@@ -1,9 +1,3 @@
-/// <references types="houdini-svelte">
-
-import { loadEnv } from 'vite';
-// FIXME: workaround: https://github.com/HoudiniGraphql/houdini/issues/759
-Object.assign(process.env, loadEnv(process.env.NODE_ENV, process.cwd(), ['PUBLIC', 'VITE']));
-
 const defaultMarshall = {
 	unmarshal(val) {
 		return val;

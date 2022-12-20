@@ -8,6 +8,7 @@ Show how this repo is setup via step-by-step guild
 
 ```shell
 npm create svelte@latest svelte-starter-kit
+# select `yes` for TypeScript, ESLint, Prettier, Playwright and Vitest
 cd svelte-starter-kit
 npm install
 cd it init && git add -A
@@ -28,8 +29,6 @@ Code coverage via [c8](https://github.com/bcoe/c8) or [istanbul](https://istanbu
 For examples checkout [Svelte Component Test Recipes](https://github.com/davipon/svelte-component-test-recipes)
 
 ```shell
-# lets run preset to automate vitest setup for sveltekit
-npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
 # optional
 npm i -O @vitest/ui
 ```
@@ -72,7 +71,7 @@ determining the polyfills you need based on your targeted browsers or runtime en
 Read: [Use Future CSS Today](https://joyofcode.xyz/using-future-css-in-svelte) and Watch: [video](https://www.youtube.com/watch?v=eqwtoaP-0pk)
 
 ```shell
-npm i -D postcss-preset-env postcss-load-config @types/postcss-preset-env
+npm i -D postcss-preset-env
 ```
 
 Add `postcssPresetEnv` plugin for `postcss` and include it in [postcss.config.cjs](../postcss.config.cjs).
