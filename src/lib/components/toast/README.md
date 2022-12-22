@@ -9,7 +9,7 @@
    	import { Toasts } from '$lib/components/toast';
    </script>
 
-   <Toasts position="bottom-right" />
+   <Toasts placements="bottom-right" />
 
    <div>
    	<Header />
