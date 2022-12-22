@@ -28,7 +28,7 @@ if (PUBLIC_CONFY_SENTRY_DSN) {
 	});
 }
 
-export const handleClientError: HandleClientError = ({ error, event }) => {
+export const handleClientError = (({ error, event }) => {
 	console.error('hooks:client:handleClientError:', error);
 	Sentry.setExtra('event', event);
 	Sentry.captureException(error);
@@ -38,4 +38,4 @@ export const handleClientError: HandleClientError = ({ error, event }) => {
 		message: err.message ?? 'Whoops!',
 		context: err.context
 	};
-};
+}) satisfies HandleClientError;

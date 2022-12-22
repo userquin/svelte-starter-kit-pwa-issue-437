@@ -67,7 +67,7 @@ mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
 }
 `;
 
-export const load: PageServerLoad = async ({ params, locals }) => {
+export const load = (async ({ params, locals }) => {
 	const {
 		user: { email },
 		token
@@ -142,9 +142,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		}
 		throw error(500, getAppError(err));
 	}
-};
+}) satisfies PageServerLoad;
 
-export const actions: Actions = {
+export const actions = {
 	save: async ({ params, request, locals }) => {
 		if (!locals.user) {
 			throw redirect(307, '/login');
@@ -261,4 +261,4 @@ export const actions: Actions = {
 			throw error(500, getAppError(err));
 		}
 	}
-};
+} satisfies Actions;

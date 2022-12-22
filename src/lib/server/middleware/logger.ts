@@ -1,7 +1,7 @@
 import { RequestLogger } from '$lib/utils';
 import type { Handle } from '@sveltejs/kit';
 
-export const logger: Handle = async ({ event, resolve }) => {
+export const logger = (async ({ event, resolve }) => {
 	const timestamp = Date.now();
 	const response = await resolve(event);
 	const elapsed = Date.now() - timestamp;
@@ -10,4 +10,4 @@ export const logger: Handle = async ({ event, resolve }) => {
 		`${event.request.method} ${event.request.url} ${response.status} ${elapsed}ms`
 	);
 	return response;
-};
+}) satisfies Handle;

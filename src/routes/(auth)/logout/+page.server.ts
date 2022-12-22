@@ -8,7 +8,7 @@ const log = new Logger('logout:server');
  * This route is set as `post_logout_redirect_uri`
  * Needed it to clear any server set cookies
  */
-export const load: PageServerLoad = async ({ url, locals, cookies }) => {
+export const load = (async ({ url, locals, cookies }) => {
 	const post_logout_redirect_uri = url.searchParams.get('post_logout_redirect_uri');
 	log.debug('load:user:', locals.user);
 	log.debug('load:token:', cookies.get('token'));
@@ -18,4 +18,4 @@ export const load: PageServerLoad = async ({ url, locals, cookies }) => {
 	} else {
 		throw redirect(303, '/');
 	}
-};
+}) satisfies PageServerLoad;

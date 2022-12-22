@@ -19,7 +19,7 @@ const query = searchPoliciesStore.artifact.raw;
 
 const delete_mutation = new DeletePolicyStore().artifact.raw;
 
-export const load: PageServerLoad = async (event: RequestEvent) => {
+export const load = (async (event: RequestEvent) => {
 	const { url, setHeaders } = event;
 
 	const limit = parseInt(url.searchParams.get('limit') ?? '');
@@ -91,9 +91,9 @@ export const load: PageServerLoad = async (event: RequestEvent) => {
 		}
 		throw error(500, getAppError(err));
 	}
-};
+}) satisfies PageServerLoad;
 
-export const actions: Actions = {
+export const actions = {
 	delete: async ({ request }) => {
 		const formData = await request.formData();
 		const id = formData.get('id');
@@ -137,4 +137,4 @@ export const actions: Actions = {
 			throw error(500, getAppError(err));
 		}
 	}
-};
+} satisfies Actions;

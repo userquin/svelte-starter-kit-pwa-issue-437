@@ -4,7 +4,7 @@ import { error, fail } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load = (async ({ params }) => {
 	const { id } = params;
 	const payload = { id };
 	try {
@@ -25,4 +25,4 @@ export const load: PageServerLoad = async ({ params }) => {
 		}
 		throw error(500, getAppError(err));
 	}
-};
+}) satisfies PageServerLoad;

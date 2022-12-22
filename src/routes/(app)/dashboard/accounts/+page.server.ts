@@ -5,7 +5,7 @@ import { error, fail } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load = (async ({ url }) => {
 	const firstName = url.searchParams.get('firstName') ?? encodeURIComponent('*');
 	const lastName = url.searchParams.get('lastName') ?? encodeURIComponent('*');
 	const limit = url.searchParams.get('limit') ?? '50';
@@ -26,4 +26,4 @@ export const load: PageServerLoad = async ({ url }) => {
 		}
 		throw error(500, getAppError(err));
 	}
-};
+}) satisfies PageServerLoad;

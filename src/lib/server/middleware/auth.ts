@@ -1,7 +1,7 @@
 import { env as dynPubEnv } from '$env/dynamic/public';
 import type { Role, User as AppUser } from '$lib/models/types/user';
 import { AuthLogger } from '$lib/utils';
-import { redirect, type Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import jwt, { type JwtPayload, type VerifyOptions } from 'jsonwebtoken';
 import { JwksClient } from 'jwks-rsa';
 import assert from 'node:assert';
@@ -36,7 +36,7 @@ const verifyOptions = new Map<string, VerifyOptions>([
 	]
 ]);
 
-export const setUser: Handle = async ({ event, resolve }) => {
+export const setUser = (async ({ event, resolve }) => {
 	const { cookies } = event;
 
 	const token = cookies.get('token');
@@ -82,33 +82,7 @@ export const setUser: Handle = async ({ event, resolve }) => {
 
 	const response = await resolve(event);
 	return response;
-};
-
-/**
- * Protect the route
- * It shoud be the last middleware
- */
-export const guard: Handle = async ({ event, resolve }) => {
-	const { locals } = event;
-	// TODO:
-	// check if user present
-	// get user roles
-	// check if role has access to target route
-	AuthLogger.debug('guard:locals.user', locals.user);
-
-	if (event.url.pathname.startsWith('/dashboard')) {
-		if (!event.locals.user) {
-			throw redirect(303, `${event.url.origin}/login`);
-		}
-		if (event.url.pathname.startsWith('/dashboard/admin')) {
-			if (!event.locals.user.roles?.includes('Policy.Write')) {
-				throw redirect(303, `${event.url.origin}/dashboard`);
-			}
-		}
-	}
-	const response = await resolve(event);
-	return response;
-};
+}) satisfies Handle;
 
 async function getOpenIdConfiguration(issuer: string) {
 	const resp = await fetch(`${issuer}/.well-known/openid-configuration`);
