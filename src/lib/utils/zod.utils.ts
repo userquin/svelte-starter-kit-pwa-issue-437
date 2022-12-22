@@ -29,12 +29,16 @@ export function ifNonEmptyString(fn: (value: string) => unknown): (value: unknow
 }
 
 export function removeEmpty(obj) {
-	Object.entries(obj).forEach(([key, val]) => (val && typeof val === 'object' && removeEmpty(val)) || ((val === null || val === '') && delete obj[key]));
+	Object.entries(obj).forEach(
+		([key, val]) => (val && typeof val === 'object' && removeEmpty(val)) || ((val === null || val === '') && delete obj[key])
+	);
 	return obj;
 }
 
 export function replaceEmptyWithNull(obj) {
-	Object.entries(obj).forEach(([key, val]) => (val && typeof val === 'object' && replaceEmptyWithNull(val)) || (val === '' && (obj[key] = null)));
+	Object.entries(obj).forEach(
+		([key, val]) => (val && typeof val === 'object' && replaceEmptyWithNull(val)) || (val === '' && (obj[key] = null))
+	);
 	return obj;
 }
 /**

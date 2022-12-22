@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts">
 	import { dev } from '$app/environment';
 
 	if (typeof window !== 'undefined' && dev) {

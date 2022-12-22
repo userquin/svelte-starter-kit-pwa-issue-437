@@ -5,6 +5,9 @@ export const logger: Handle = async ({ event, resolve }) => {
 	const timestamp = Date.now();
 	const response = await resolve(event);
 	const elapsed = Date.now() - timestamp;
-	RequestLogger.info({ elapsed, request: event.request, response }, `${event.request.method} ${event.request.url} ${response.status} ${elapsed}ms`);
+	RequestLogger.info(
+		{ elapsed, request: event.request, response },
+		`${event.request.method} ${event.request.url} ${response.status} ${elapsed}ms`
+	);
 	return response;
 };
