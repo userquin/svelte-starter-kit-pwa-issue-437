@@ -101,3 +101,4 @@ query MyQuery {
 ## Reference
 
 - Sample metadata <https://github.com/hasura/template-gallery/tree/main/postgres>-
+- Hasura and AuthJS [intigration](https://hasura.io/learn/graphql/hasura-authentication/integrations/nextjs-auth/)

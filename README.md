@@ -30,7 +30,8 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 
 ## Experementing
 
-- [ ] tRPC-SvelteKit: [End-to-end typesafe APIs](https://icflorescu.github.io/trpc-sveltekit) SvelteKit.
+- [ ] **tRPC-SvelteKit** [End-to-end typesafe APIs](https://icflorescu.github.io/trpc-sveltekit) SvelteKit.
+- [ ] **Monorepo:** Convert to monorepo using [pnpm](https://pnpm.io/), [turborepo/turbopack](https://turbo.build/), [rome](https://rome.tools/) and [changesets](https://github.com/changesets/changesets). [Guide](https://nhost.io/blog/how-we-configured-pnpm-and-turborepo-for-our-monorepo) & Examples [[1](https://github.com/vercel/turbo/tree/main/examples/with-svelte), [2](https://github.com/oneezy/monorepo)]
 
 ## Setup
 

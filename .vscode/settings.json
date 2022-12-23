@@ -54,7 +54,7 @@
 	"workbench.editor.labelFormat": "short",
 	////////// File settings //////////
 	"files.autoSave": "afterDelay",
-	"files.autoSaveDelay": 1000,
+	"files.autoSaveDelay": 60000,
 	"files.exclude": {
 		"**/.git": true,
 		"**/.DS_Store": true,

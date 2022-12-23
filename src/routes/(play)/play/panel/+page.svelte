@@ -15,10 +15,6 @@
 	<meta name="description" content="Panel demo" />
 </svelte:head>
 
-<!-- https://github.com/sveltejs/learn.svelte.dev/blob/main/src/lib/components/SplitPane.svelte
-https://github.com/replayio/devtools/pull/8398/files
-https://github.com/sveltejs/learn.svelte.dev/blob/main/src/routes/tutorial/%5Bslug%5D/+page.svelte -->
-
 <ContextMenu />
 
 <div class="container" style="--toggle-height: {$mobile ? '4.6rem' : '0px'}">
