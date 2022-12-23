@@ -7,10 +7,13 @@
 	let path: string;
 	$: path = $page.url.pathname;
 
-	export let isLoggedIn = false;
-	export let name: string | undefined;
-	export let username: string | undefined;
-	export let avatarUrl = '/images/profile-picture-3.webp';
+	export let user:
+		| {
+				name?: string | null;
+				email?: string | null;
+				image?: string | null;
+		  }
+		| undefined;
 
 	// let navClass = ' border-gray-200 px-2 sm:px-4 py-2.5 bg-white dark:bg-gray-800'
 	// Added `bg-gray-50 dark:bg-gray-700` like sidebar and footer
@@ -67,13 +70,13 @@
 		<NavLi href="/dashboard/users" active={path == '/dashboard/users'}>Users</NavLi>
 	</NavUl>
 
-	{#if isLoggedIn}
+	{#if user}
 		<!-- TODO: see if we can use  `hidden` prop to hide Dropdown on small screen-->
 		<div class="hidden md:block">
-			<Avatar src={avatarUrl} size="md" border referrerpolicy="no-referrer">{username?.substring(0, 2).toUpperCase()}</Avatar>
+			<Avatar src={user.image ?? '/images/profile-picture-3.webp'} size="md" border referrerpolicy="no-referrer">{user.name?.substring(0, 2).toUpperCase()}</Avatar>
 			<Dropdown arrowIcon={false} inline={true}>
 				<DropdownHeader>
-					<span class="block truncate text-sm font-medium">{name}</span>
+					<span class="block truncate text-sm font-medium" aria-label={user.email}>{user.name}</span>
 				</DropdownHeader>
 				<DropdownItem><a href="/dashboard/profile">Profile</a></DropdownItem>
 				<DropdownItem><a href="/dashboard/settings">Settings</a></DropdownItem>

@@ -28,11 +28,12 @@ WORKDIR /app
 
 COPY . .
 # clean install all dependencies (except optional)
-RUN npm ci --omit=optional --no-audit --unsafe-perm
+# RUN npm ci --omit=optional --no-audit --unsafe-perm
+RUN pnpm i --frozen-lockfile --no-optional --unsafe-perm
 # remove potential security issues
-RUN npm audit fix
+RUN pnpm audit --fix
 # build SvelteKit app
-RUN npm run build:node
+RUN pnpm build:node
 
 # This stage installs the runtime dependencies.
 FROM --platform=${BUILDPLATFORM} node:19-alpine as build-runtime

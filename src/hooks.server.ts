@@ -1,7 +1,7 @@
 import { PUBLIC_CONFY_SENTRY_DSN } from '$env/static/public';
 
 import { dev } from '$app/environment';
-import { setUser } from '$lib/server/middleware';
+import { auth } from '$lib/server/middleware';
 import { Logger } from '$lib/utils';
 import * as Sentry from '@sentry/svelte';
 import { BrowserTracing } from '@sentry/tracing';
@@ -47,8 +47,8 @@ if (PUBLIC_CONFY_SENTRY_DSN) {
 }
 
 // Invoked for each endpoint called and initially for SSR router
-// export const handle = sequence(setUser, guard, houdini, logger);
-export const handle = sequence(setUser);
+// export const handle = sequence(auth, guard, houdini, logger);
+export const handle = sequence(auth);
 
 export const handleServerError = (({ error, event }) => {
 	console.error('hooks:server:handleServerError:', error);

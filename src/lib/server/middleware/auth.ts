@@ -36,7 +36,7 @@ const verifyOptions = new Map<string, VerifyOptions>([
 	]
 ]);
 
-export const setUser = (async ({ event, resolve }) => {
+export const auth = (async ({ event, resolve }) => {
 	const { cookies } = event;
 
 	const token = cookies.get('token');

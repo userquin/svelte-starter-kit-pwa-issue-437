@@ -38,9 +38,9 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 ```shell
 cd ~/Developer/Work/SPA
 git clone https://github.com/xmlking/svelte-starter-kit.git
-cd /svelte-starter-kit && npm install
+cd /svelte-starter-kit && pnpm i
 # playwright is required for end-to-end testing
-npx playwright install
+pnpx playwright install
 ```
 
 ### Environment Variables
@@ -53,20 +53,20 @@ Use `.env.local` to override environment variables in `.env` (like API keys) for
 ````shell
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `pnpm i` (or `pnpm i` or `yarn`), start a development server:
 
 ```shell
-npm run dev
+pnpm dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm dev -- --open
 
 # run in debug mode
-NODE_ENV=DEBUG npm run dev
+NODE_ENV=DEBUG pnpm dev
 
 # run with a custom inline config
 # inline environment variables has higher precedence than ones loaded from .env and .env.local files
-PUBLIC_CONFY_API_ENDPOINT=api.mycompany.com:443 npm run dev
+PUBLIC_CONFY_API_ENDPOINT=api.mycompany.com:443 pnpm dev
 ````
 
 ## Maintenance
@@ -76,8 +76,7 @@ PUBLIC_CONFY_API_ENDPOINT=api.mycompany.com:443 npm run dev
 To update the packages to their latest versions in `package.json`
 
 ```shell
-ncu -u
-npm i
+pnpm up --latest
 ```
 
 ## Testing
@@ -85,25 +84,25 @@ npm i
 ### Unit/Component Tests
 
 ```shell
-npm run test
+pnpm test
 
-npm run test:ui
+pnpm test:ui
 #Then, you can visit the Vitest UI at http://localhost:51204/__vitest__/.
 
 # test coverage
-npm run test:coverage
+pnpm test:coverage
 
 # updating Snapshots
-npx vitest -u
+pnpx vitest -u
 
 # test specific folder
-npx vitest run src/lib/utils
+pnpx vitest run src/lib/utils
 ```
 
 ### E2E Tests
 
 ```shell
-npm run test:e2e
+pnpm test:e2e
 ```
 
 ## Building
@@ -111,11 +110,11 @@ npm run test:e2e
 To create a production version of your app:
 
 ```shell
-npm run build
+pnpm build
 # build for hybrid rendering on nodejs runtime
-npm run build:node
+pnpm build:node
 # build for static rendering on nginx runtime
-npm run build:static
+pnpm build:static
 # run build
 node build
 ```
@@ -134,7 +133,7 @@ ORIGIN=https://my.site \
 node build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `pnpm preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target
 > environment.

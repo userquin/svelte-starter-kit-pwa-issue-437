@@ -21,7 +21,7 @@
 
 <div class="flex h-screen flex-col">
 	<!--  start::navbar   -->
-	<Header isLoggedIn={$auth.isAuthenticated} name={$auth.profile?.name} username={$auth.profile?.sub} avatarUrl={$auth.profile?.picture} />
+	<Header user={{name: $auth.profile?.name, email: $auth.profile?.sub, image: $auth.profile?.picture}} />
 	<!--  end::navbar     -->
 	<div class="flex flex-1 overflow-hidden">
 		<!--   start::Sidebar    -->

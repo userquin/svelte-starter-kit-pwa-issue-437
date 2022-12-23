@@ -1,7 +1,7 @@
 # Required Checks
 
-- [ ] Lint pass `npm run check`
-- [ ] Code format `npm run format`
+- [ ] Lint pass `pnpm check`
+- [ ] Code format `pnpm format`
 - [ ] Unit tested
 - [ ] E2E tested
 
