@@ -10,7 +10,8 @@
 		{ name: 'Houdini', href: '/play/houdini?limit=2' },
 		{ name: 'Houdini-page', href: '/play/houdini/demo' },
 		{ name: 'HyperUI', href: '/play/hyperui' },
-		{ name: 'panel', href: '/play/panel' }
+		{ name: 'panel', href: '/play/panel' },
+		{ name: 'sverdle', href: '/play/sverdle' }
 	];
 </script>
 

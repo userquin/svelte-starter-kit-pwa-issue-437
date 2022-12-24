@@ -8,8 +8,6 @@
 /**
  * Module dependencies.
  */
-import debugModule from 'debug';
-const debug = debugModule('chat:elizabot');
 
 // import default responses
 import * as defaultResponses from './default-responses.json';

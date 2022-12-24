@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1.4
-
-# Add tini to act as PID1 for proper signal handling
+############################################################
+### stage_tini
+### add tini to act as PID1 for proper signal handling
+############################################################
 FROM --platform=${BUILDPLATFORM} alpine as tini
 ENV TINI_VERSION v0.19.0
 # Use BuildKit to help translate architecture names
@@ -16,8 +18,15 @@ RUN case ${TARGETPLATFORM} in \
     && wget -q https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-${TINI_ARCH} -O /tini \
     && chmod +x /tini
 
-# This stage builds the application.
-FROM --platform=${BUILDPLATFORM} node:19 as build-app
+############################################################
+### stage_build
+### this stage builds the application.
+############################################################
+FROM --platform=${BUILDPLATFORM} node:19 as build
+
+# install pnpm
+#RUN curl -fsSL https://get.pnpm.io/install.sh | sh -; node - add --global pnpm
+RUN corepack enable; corepack prepare pnpm@7.19.0 --activate
 
 # build-args are used in vite.config.ts
 ARG BUILD_TIME
@@ -26,30 +35,37 @@ ARG BUILD_REVISION
 
 WORKDIR /app
 
-COPY . .
 # clean install all dependencies (except optional)
-# RUN npm ci --omit=optional --no-audit --unsafe-perm
-RUN pnpm i --frozen-lockfile --no-optional --unsafe-perm
-# remove potential security issues
-RUN pnpm audit --fix
+COPY .npmrc package.json pnpm-lock.yaml ./
+RUN pnpm fetch --no-optional --ignore-scripts --unsafe-perm
+RUN pnpm install -r --offline --no-optional --ignore-scripts --unsafe-perm
+
+COPY . .
+
 # build SvelteKit app
 RUN pnpm build:node
 
-# This stage installs the runtime dependencies.
-FROM --platform=${BUILDPLATFORM} node:19-alpine as build-runtime
+############################################################
+### stage_runtime
+### this stage installs the runtime dependencies.
+############################################################
+FROM --platform=${BUILDPLATFORM} node:19-alpine as runtime
+
+# install pnpm
+RUN corepack enable; corepack prepare pnpm@7.19.0 --activate
 
 WORKDIR /app
-COPY package.json package-lock.json ./
+
 # clean install dependencies, no devDependencies, no prepare script
-#RUN --mount=type=cache,target=/root/.cache/node \
-#    --mount=type=cache,target=/root/.cache/node-build \
-#    npm ci --production --unsafe-perm --ignore-scripts
+COPY .npmrc package.json pnpm-lock.yaml ./
+RUN pnpm fetch --prod --unsafe-perm --ignore-scripts --unsafe-perm
+RUN pnpm install -r --offline --prod
+RUN pnpm prune --prod --no-optional
 
-RUN npm ci --production --omit=optional --unsafe-perm --ignore-scripts
-# remove potential security issues
-RUN npm audit fix
-
-# This stage only needs the compiled application and the runtime dependencies.
+############################################################
+### stage_final
+### this stage only needs the compiled application and the runtime dependencies.
+############################################################
 #FROM gcr.io/distroless/nodejs:19 as final
 FROM gcr.io/distroless/nodejs:18-debug as final
 ENV NODE_ENV production
@@ -57,10 +73,10 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY --from=tini /tini /tini
 ENTRYPOINT ["/tini", "-s", "--", "/nodejs/bin/node"]
-COPY --from=build-app /app/build ./build
-#COPY --from=build-app /app/config ./config
-COPY --from=build-runtime /app/package.json ./package.json
-COPY --from=build-runtime /app/node_modules ./node_modules
+COPY --from=build /app/build ./build
+#COPY --from=build /app/config ./config
+COPY --from=runtime /app/package.json ./package.json
+COPY --from=runtime /app/node_modules ./node_modules
 
 EXPOSE 3000
 #USER nonroot:nonroot

@@ -7,14 +7,16 @@ Show how this repo is setup via step-by-step guild
 ### Create
 
 ```shell
-npm create svelte@latest svelte-starter-kit
+pnpm create svelte@latest svelte-starter-kit
 # select `yes` for TypeScript, ESLint, Prettier, Playwright and Vitest
-cd svelte-starter-kit
-pnpm i
-cd it init && git add -A
-git commit -m "chore(root): first commit"
-pnpm dev -- --open
 ```
+
+Next steps:
+
+1. cd svelte-starter-kit
+2. npm install (or pnpm install, etc)
+3. git init && git add -A && git commit -m "chore(root): first commit" (optional)
+4. npm run dev -- --open
 
 In this Playbook, we will be using [svelte-add](https://github.com/svelte-add/svelte-add) to easily add and integrate 3rd party tools to this Svelte App.
 

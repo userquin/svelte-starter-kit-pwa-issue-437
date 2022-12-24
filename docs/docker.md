@@ -47,11 +47,10 @@ docker inspect --format "{{.Architecture}}" $DOCKER_IMAGE:$VERSION
 
 # run
 docker run -it --rm --platform linux/amd64 -p 3000:3000 \
--e NODE_ENV=production -e PUBLIC_CONFY_API_ENDPOINT=api.datablocks.com:443 \
-$DOCKER_IMAGE:$VERSION
+-e NODE_ENV=production -e ORIGIN=http://localhost:3000 --env-file ./.env $DOCKER_IMAGE:$VERSION
+
 docker run -it --rm --platform linux/arm64 -p 3000:3000 \
--e NODE_ENV=production -e PUBLIC_CONFY_API_ENDPOINT=api.datablocks.com:443 \
-$DOCKER_IMAGE:$VERSION
+-e NODE_ENV=production -e ORIGIN=http://localhost:3000 --env-file ./.env $DOCKER_IMAGE:$VERSION
 ## (or)
 docker compose up
 

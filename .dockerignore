@@ -3,7 +3,8 @@
 !/schema.graphql
 !/houdini.config.js
 !/package.json
-!/package-lock.json
+!/pnpm-lock.yaml
+!/pnpm-workspace.yaml
 !/svelte.config.js
 !/tailwind.config.cjs
 !/vite.config.js

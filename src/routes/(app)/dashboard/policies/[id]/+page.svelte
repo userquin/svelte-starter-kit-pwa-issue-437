@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { ErrorMessage, Errors, FloatingLabelField, Tags } from '$lib/components';
-	// import {default as TagInput } from '$lib/components/TagInput.svelte';
+// import {default as TagInput } from '$lib/components/TagInput.svelte';
 	import { DateInput } from '$lib/components/form';
 	import { addToast, ToastLevel } from '$lib/components/toast';
 	import type { Account } from '$lib/models/schema';
@@ -151,8 +151,8 @@
 
 <Breadcrumb aria-label="Default breadcrumb example" class="mb-6">
 	<BreadcrumbItem href="/dashboard" home>Home</BreadcrumbItem>
-	<BreadcrumbItem href="/dashboard/policies">Accounts</BreadcrumbItem>
-	<BreadcrumbItem>Edit Account</BreadcrumbItem>
+	<BreadcrumbItem href="/dashboard/policies">Policy</BreadcrumbItem>
+	<BreadcrumbItem>Edit Policy</BreadcrumbItem>
 </Breadcrumb>
 
 <Errors errors={loadErrors} />
