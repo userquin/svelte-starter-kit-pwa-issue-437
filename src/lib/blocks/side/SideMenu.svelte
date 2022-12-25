@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Drawer } from '$lib/components';
-	import { logout } from '$lib/stores/auth.store';
 	import { sidebarOpen } from '$lib/stores/sidebar.store';
 	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
 	import { AcademicCap, ArrowRightOnRectangle, Bell, ChartPie, ClipboardDocumentList, Cog, HandRaised, ShieldCheck, Squares2x2, Star, UserGroup, Users } from 'svelte-heros-v2';
@@ -50,7 +49,7 @@
 				<SidebarItem label="Settings" href="/dashboard/settings" active={activeUrl === '/dashboard/settings'}>
 					<svelte:fragment slot="icon"><Cog /></svelte:fragment>
 				</SidebarItem>
-				<SidebarItem on:click={logout} href={'#'} label="Sign Out">
+				<SidebarItem href='/auth/signout?callbackUrl=/blog' label="Sign Out">
 					<svelte:fragment slot="icon"><ArrowRightOnRectangle /></svelte:fragment>
 				</SidebarItem>
 			</SidebarGroup>

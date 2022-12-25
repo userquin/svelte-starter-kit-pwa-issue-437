@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/svelte';
 import { error, fail } from '@sveltejs/kit';
 
 import assert from 'node:assert';
-import type { Actions, PageServerLoad, RequestEvent } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 assert.ok(dynPubEnv.PUBLIC_CONFY_API_ENDPOINT, 'PUBLIC_CONFY_API_ENDPOINT not configered');
 assert.ok(dynPubEnv.PUBLIC_CONFY_API_TOKEN, 'PUBLIC_CONFY_API_TOKEN not configered');
@@ -19,8 +19,9 @@ const query = searchPoliciesStore.artifact.raw;
 
 const delete_mutation = new DeletePolicyStore().artifact.raw;
 
-export const load = (async (event: RequestEvent) => {
-	const { url, setHeaders } = event;
+export const load = (async (event) => {
+	const { url, setHeaders, parent } = event;
+	await parent(); // HINT: to make sure use session is valid
 
 	const limit = parseInt(url.searchParams.get('limit') ?? '');
 	const offset = parseInt(url.searchParams.get('offset') ?? '');

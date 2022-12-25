@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Hamburger } from '$lib/components';
-	import { logout } from '$lib/stores/auth.store';
 	import { Avatar, Dropdown, DropdownDivider, DropdownHeader, DropdownItem, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
 
 	let path: string;
@@ -82,7 +81,7 @@
 				<DropdownItem><a href="/dashboard/settings">Settings</a></DropdownItem>
 				<DropdownDivider />
 				<DropdownItem>
-					<a on:click={logout} href={'#'}>Sign Out</a>
+					<a href="/auth/signout">Sign Out</a>
 				</DropdownItem>
 			</Dropdown>
 		</div>

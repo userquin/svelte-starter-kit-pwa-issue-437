@@ -67,11 +67,18 @@ mutation UpdatePolicy($id: uuid!, $data: tz_policies_set_input!) {
 }
 `;
 
-export const load = (async ({ params, locals }) => {
+export const load = (async ({ params, locals, parent }) => {
 	const {
-		user: { email },
-		token
-	} = locals;
+		session: {
+			token,
+			user: { email }
+		}
+	} = await parent();
+
+	if (!email) {
+		throw redirect(307, '/auth/signin');
+	}
+
 	const { id } = params;
 	if (id == '00000000-0000-0000-0000-000000000000') {
 		const policy: Account = {
@@ -146,15 +153,16 @@ export const load = (async ({ params, locals }) => {
 
 export const actions = {
 	save: async ({ params, request, locals }) => {
-		if (!locals.user) {
-			throw redirect(307, '/login');
+		const {
+			token,
+			user: { email }
+		} = await locals.getSession();
+
+		if (!email) {
+			throw redirect(307, '/auth/signin');
 		}
 
 		const formData: Record<string, unknown> = Object.fromEntries(await request.formData());
-		const {
-			user: { email },
-			token
-		} = locals;
 
 		try {
 			let actionResult: AccountSaveResult;
