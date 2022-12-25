@@ -2,6 +2,39 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.4.0](https://github.com/xmlking/svelte-starter-kit/compare/v0.3.0..v0.4.0) - 2022-12-25
+#### Bug Fixes
+- **(auth)**  workaround for https://github.com/authts/oidc-client-ts/issues/790 [skip ci] - ([a1302c4](https://github.com/xmlking/svelte-starter-kit/commit/a1302c4a9ab64b1c1048afb4d115698a0dcf28ec)) - [@xmlking](https://github.com/xmlking)
+- **(build)** adding missing houdini config files to dockerignore - ([1e22416](https://github.com/xmlking/svelte-starter-kit/commit/1e2241695a48d2dedbd76cdfc4ec847298ade382)) - [@xmlking](https://github.com/xmlking)
+- **(deploy)** add ORIGIN to fix CSRF error in prod - ([7699de3](https://github.com/xmlking/svelte-starter-kit/commit/7699de38204c05d202d0da48f73bce5587d6bac0)) - [@xmlking](https://github.com/xmlking)
+- **(play)** add elizabot - ([a1bd369](https://github.com/xmlking/svelte-starter-kit/commit/a1bd3698dd0ff723e09356f635aafb54977e3118)) - [@xmlking](https://github.com/xmlking)
+- **(play)** add container-queries play example [skip ci] - ([ae5e9b7](https://github.com/xmlking/svelte-starter-kit/commit/ae5e9b71505081242fb7c6da5dde6e09e5951047)) - [@xmlking](https://github.com/xmlking)
+#### Build system
+- **(deps)** updated deps - ([a8d49b3](https://github.com/xmlking/svelte-starter-kit/commit/a8d49b3c907b3b96dce72cb8ff805139c44a6771)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** updated deps - ([cab7c2c](https://github.com/xmlking/svelte-starter-kit/commit/cab7c2c8b5f1d101850df29c4cd9b66d77617382)) - [@xmlking](https://github.com/xmlking)
+- **(deps)** updated deps [skip ci] - ([493c6eb](https://github.com/xmlking/svelte-starter-kit/commit/493c6eba2bda878b164a43266ee7140d79f89f37)) - [@xmlking](https://github.com/xmlking)
+- **(houdini)** updated houdini to 0.19.0 - ([f8f29f8](https://github.com/xmlking/svelte-starter-kit/commit/f8f29f880f77e7a3d52ac7485240b7b7094bf197)) - [@xmlking](https://github.com/xmlking)
+- **(houdini)** updated houdini to 0.19.0 - ([034c251](https://github.com/xmlking/svelte-starter-kit/commit/034c25161ae0798d82eae9ab8452244498fb655e)) - [@xmlking](https://github.com/xmlking)
+- **(pnpm)** switch npm to pnpm - ([bb64d44](https://github.com/xmlking/svelte-starter-kit/commit/bb64d449df3a2a69b8383f73a794a21187cd4b08)) - [@xmlking](https://github.com/xmlking)
+- **(pnpm)** switch npm to pnpm - ([a2beff0](https://github.com/xmlking/svelte-starter-kit/commit/a2beff0c4ee34c1195b53e8bdb43dc3bb2f3634f)) - [@xmlking](https://github.com/xmlking)
+#### Documentation
+- **(README)** updated todo in README - ([ac99184](https://github.com/xmlking/svelte-starter-kit/commit/ac99184d1d3f6ef0cff6b71c9103d18766e6b0d3)) - [@xmlking](https://github.com/xmlking)
+- **(docs)** polish docs [skip ci] - ([098ca1a](https://github.com/xmlking/svelte-starter-kit/commit/098ca1a14297cf6be6b15aa97b4e985fbb23eb6c)) - [@xmlking](https://github.com/xmlking)
+- **(docs)** polish docs [skip ci] - ([ad4a4d1](https://github.com/xmlking/svelte-starter-kit/commit/ad4a4d197cedc0a5ab23a443af4105b2b80d7d8f)) - [@xmlking](https://github.com/xmlking)
+#### Features
+- **(hasura)** hasura metadata, migrations sync with source - ([2a5d58d](https://github.com/xmlking/svelte-starter-kit/commit/2a5d58d3bb0fdac1ae756c463f07df52e13ef786)) - [@xmlking](https://github.com/xmlking)
+- **(houdini)** adding houdini graphql client (#49) - ([42f0119](https://github.com/xmlking/svelte-starter-kit/commit/42f01192960eb6ceeb553d50ee8cc2a8105146ff)) - [@xmlking](https://github.com/xmlking)
+#### Refactoring
+- **(auth)** using mergeClaims: false to avoid duplicate profile picture [skip ci] - ([bffdc37](https://github.com/xmlking/svelte-starter-kit/commit/bffdc371aece921c8fedc1ace4b92b8a48f55200)) - [@xmlking](https://github.com/xmlking)
+- **(blocks)** moved dashboard/blocks to lib/blocks [skip ci] - ([96e2787](https://github.com/xmlking/svelte-starter-kit/commit/96e27874b1aee584665177819a794d1139c694a9)) - [@xmlking](https://github.com/xmlking)
+- **(houdini)** move houdini examples to play [skip ci] - ([e22164f](https://github.com/xmlking/svelte-starter-kit/commit/e22164f8afd6563de6bd1b8520ad333cd852432f)) - [@xmlking](https://github.com/xmlking)
+- **(houdini)** move houdini client and adding some gql files [skip ci] - ([1fc63cb](https://github.com/xmlking/svelte-starter-kit/commit/1fc63cb4ea2bd754785ab6ba99b443599de7034a)) - [@xmlking](https://github.com/xmlking)
+#### Style
+- **(lint)** format code - ([99f81e4](https://github.com/xmlking/svelte-starter-kit/commit/99f81e4b8313186aa9ff3db7d3f2ae4f0755c7f8)) - [@xmlking](https://github.com/xmlking)
+- **(svelte)** using typescript satisfies - ([dd7a25c](https://github.com/xmlking/svelte-starter-kit/commit/dd7a25c008341afe79240a439e505d8a1538d387)) - [@xmlking](https://github.com/xmlking)
+
+- - -
+
 ## [v0.3.0](https://github.com/xmlking/svelte-starter-kit/compare/v0.2.0..v0.3.0) - 2022-11-29
 #### Bug Fixes
 - **(auth)** redirect immediately after detecting stale token - ([f8961d7](https://github.com/xmlking/svelte-starter-kit/commit/f8961d775af8aa38dcdd4b2ae5da510699898d1a)) - [@xmlking](https://github.com/xmlking)
