@@ -1,4 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import houdini from 'houdini/vite';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -21,7 +22,42 @@ const [gitTag, gitDate] = (
 
 /** @type {import('vite').UserConfig} */
 const config: UserConfig = {
-	plugins: [houdini(), sveltekit()],
+	plugins: [
+		houdini(),
+		sveltekit(),
+		SvelteKitPWA({
+			/* pwa options */
+			// adapterFallback: 'index.html',
+			manifest: {
+				short_name: 'svelte-starter-kit',
+				name: 'svelte-starter-kit',
+				lang: 'en',
+				scope: '/',
+				start_url: '/',
+				display: 'standalone',
+				theme_color: '#ffffff',
+				background_color: '#ffffff',
+				icons: [
+					{
+						src: '/android-chrome-192x192.png',
+						sizes: '192x192',
+						type: 'image/png'
+					},
+					{
+						src: '/android-chrome-512x512.png',
+						sizes: '512x512',
+						type: 'image/png'
+					},
+					{
+						src: '/android-chrome-512x512.png',
+						sizes: '512x512',
+						type: 'image/png',
+						purpose: 'any maskable'
+					}
+				]
+			}
+		})
+	],
 	define: {
 		// Eliminate in-source test code
 		'import.meta.vitest': 'undefined',

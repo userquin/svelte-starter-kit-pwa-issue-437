@@ -9,7 +9,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"types": ["vitest/globals", "vitest/importMeta", "@testing-library/jest-dom", "@types/gtag.js"],
+		"types": ["vitest/globals", "vitest/importMeta", "@testing-library/jest-dom", "vite-plugin-pwa/client", "@types/gtag.js"],
 		"rootDirs": [".", "./.svelte-kit/types", "./$houdini/types"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

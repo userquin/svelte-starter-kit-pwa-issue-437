@@ -14,13 +14,19 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 - API mocking: [Mock Service Worker](https://mswjs.io/)
 - Code Coverage [c8](https://c8.io/)
 - End-to-End Testing: [playwright](https://playwright.dev/)
+- GraphQL: [Houdini](https://www.houdinigraphql.com/) & [Hasura](https://hasura.io/)
+- Authentication: [Auth.js](https://authjs.dev/)
 
 ## Features
 
 - [x] Responsive design
-- [ ] **Progressive Web Apps (PWAs):** Smart caching with Service Works , Re-engage customers with Push Notifications, Push Application Updates
+- [ ] **Progressive Web Apps (PWAs):** with [Vite PWA](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
+  - [x] Smart caching with Service Works
+  - [ ] Re-engage customers with Push Notifications
+  - [ ] Push Application Updates
 - [ ] Fonts and Image Optimization: edge caching, Lazy-loading images
 - [ ] SEO optimization
+- [x] **GraphQL:** [Houdini](https://www.houdinigraphql.com/) the disappearing GraphQL client for SvelteKit. and [nHost](https://nhost.io/) as BaaS
 - [x] **Forms:** schema definitions with `zod`. form initialization/reset/validation/error reporting with [felte](https://felte.dev/)
 - [x] **Themes:** tailwindcss **DarkMode** switcher
 - [x] **Deployment:** serverless/ k8s runtimes
@@ -39,7 +45,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 ```shell
 cd ~/Developer/Work/SPA
 git clone https://github.com/xmlking/svelte-starter-kit.git
-cd /svelte-starter-kit && pnpm i
+cd svelte-starter-kit && pnpm i
 # playwright is required for end-to-end testing
 pnpx playwright install
 ```

@@ -240,11 +240,10 @@ pnpm add -D @graphql-codegen/cli @graphql-codegen/client-preset -w
 
 #### OpenID Connect
 
-Usage example [softrig-workshop-templates](https://github.com/urrang/softrig-workshop-templates/tree/main/svelte)
+Use [Auth.js](https://authjs.dev/) for Authentication
 
 ```shell
-pnpm add -D oidc-client-ts -w
-pnpm add -D jwks-rsa jsonwebtoken -w
+pnpm add @auth/core @auth/sveltekit
 ```
 
 #### Cookies
@@ -261,4 +260,10 @@ Custom form elements
 
 ```shell
 pnpm add -D svelecte -w
+```
+
+#### Progressive Web Apps (PWA)
+
+```shell
+pnpm add -D  @vite-pwa/sveltekit vite-plugin-pwa workbox-window
 ```
