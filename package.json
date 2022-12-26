@@ -10,7 +10,7 @@
 		"build:static": "ADAPTER=static vite build",
 		"build:lib": "svelte-kit sync && svelte-package",
 		"prepublishOnly": "echo 'Did you mean to publish `./package/`, instead of `./`?' && exit 1",
-		"preview": "vite preview",
+		"preview": "NEXTAUTH_URL=http://localhost:4173 AUTH_TRUST_HOST=http://localhost:4173 vite preview",
 		"test": "vitest",
 		"test:ui": "vitest --ui",
 		"test:coverage": "vitest run --coverage",
