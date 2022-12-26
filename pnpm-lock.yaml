@@ -46,7 +46,7 @@ specifiers:
   eslint-plugin-svelte3: 4.0.0
   felte: 1.2.6
   flowbite: 1.5.5
-  flowbite-svelte: 0.29.5
+  flowbite-svelte: 0.29.7
   graphql: 16.6.0
   houdini: 0.19.2
   houdini-svelte: 0.19.2
@@ -123,7 +123,7 @@ devDependencies:
   eslint-plugin-svelte3: 4.0.0_khrjkzzv5v2x7orkj5o7sxbz3a
   felte: 1.2.6_svelte@3.55.0
   flowbite: 1.5.5
-  flowbite-svelte: 0.29.5
+  flowbite-svelte: 0.29.7
   graphql: 16.6.0
   houdini: 0.19.2
   houdini-svelte: 0.19.2_graphql@16.6.0
@@ -4134,8 +4134,8 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
-  /flowbite-svelte/0.29.5:
-    resolution: {integrity: sha512-ZpXgXI28I8E5sGTLhV5a2KbpYiRIyU1UUZ5sEp1XRRHHkUbbIG3GI0jZx61AB1spie+BYUubNbE4+jad4rzekw==}
+  /flowbite-svelte/0.29.7:
+    resolution: {integrity: sha512-cNA+sT5+y77E/vevpuvGiUDy0LB0Hwo9OkZBGCevKvk2qVeLZB1LhYuhRDAVHALrv3vpZqSjdy/LJJ2dup4XRA==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
       '@popperjs/core': 2.11.6
