@@ -8,7 +8,7 @@ import { redirect, type Handle } from '@sveltejs/kit';
 export const guard = (async ({ event, resolve }) => {
 	// skip auth logic on build to prevent infinite redirection in production mode
 	// FIXME: https://github.com/nextauthjs/next-auth/discussions/6186
-	if (building) return resolve(event);
+	if (building) return await resolve(event);
 
 	const { locals } = event;
 	// TODO:

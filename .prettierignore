@@ -14,3 +14,8 @@ infra/helm/templates/ingress.yaml
 schema.graphql
 $houdini
 infra/hasura
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
