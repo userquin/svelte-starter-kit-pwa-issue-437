@@ -12,7 +12,7 @@ node_modules
 /workers-site
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
+dev-dist
 
 # Ignore the build css
 static/*.css
@@ -72,6 +72,7 @@ pids
 # TODO: Remove me after https://github.com/sveltejs/kit/pull/5663
 !.env
 !.env.test
+
 # project specific files #
 ##########################
 stats.html

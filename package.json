@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"dev:debug": "DEBUG=* vite dev",
+		"dev:sw": "SW_DEV=true vite dev",
 		"build": "vite build",
 		"build:node": "ADAPTER=node vite build",
 		"build:static": "ADAPTER=static vite build",
@@ -48,8 +49,8 @@
 		"@types/gtag.js": "0.0.12",
 		"@types/js-cookie": "3.0.2",
 		"@types/testing-library__jest-dom": "5.14.5",
-		"@typescript-eslint/eslint-plugin": "5.47.0",
-		"@typescript-eslint/parser": "5.47.0",
+		"@typescript-eslint/eslint-plugin": "5.47.1",
+		"@typescript-eslint/parser": "5.47.1",
 		"@vite-pwa/sveltekit": "0.1.0",
 		"@vitest/coverage-c8": "0.26.2",
 		"autoprefixer": "10.4.13",

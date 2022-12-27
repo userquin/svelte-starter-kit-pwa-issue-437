@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Listgroup } from 'flowbite-svelte';
+  	import { Listgroup } from 'flowbite-svelte';
 	let links = [
-		{ name: 'Draggable', href: '/play/draggable', current: true },
-		{ name: 'Resizeable', href: '/play/draggable' },
+		{ name: 'demo', href: '/play/demo' },
+		{ name: 'Chat', href: '/play/chat' },
 		{ name: 'Grid1', href: '/play/grid1' },
 		{ name: 'Grid2', href: '/play/grid2' },
 		{ name: 'Grid3', href: '/play/grid3' },

@@ -11,25 +11,26 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 - Unit/Component testing: [vitest](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
 - [Svelte Testing Library](https://github.com/testing-library/svelte-testing-library)
-- API mocking: [Mock Service Worker](https://mswjs.io/)
+- API Mocking: [Mock Service Worker](https://mswjs.io/)
 - Code Coverage [c8](https://c8.io/)
 - End-to-End Testing: [playwright](https://playwright.dev/)
 - GraphQL: [Houdini](https://www.houdinigraphql.com/) & [Hasura](https://hasura.io/)
 - Authentication: [Auth.js](https://authjs.dev/)
+- PWA: [Vite PWA](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
 
 ## Features
 
-- [x] Responsive design
-- [ ] **Progressive Web Apps (PWAs):** with [Vite PWA](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
+- [x] Responsive Design: [Container queries](https://www.smashingmagazine.com/2021/05/complete-guide-css-container-queries/)
+- [ ] **Progressive Web Apps (PWAs):**
   - [x] Smart caching with Service Works
   - [ ] Re-engage customers with Push Notifications
-  - [ ] Push Application Updates
+  - [x] Push Application Updates
 - [ ] Fonts and Image Optimization: edge caching, Lazy-loading images
 - [ ] SEO optimization
 - [x] **GraphQL:** [Houdini](https://www.houdinigraphql.com/) the disappearing GraphQL client for SvelteKit. and [nHost](https://nhost.io/) as BaaS
 - [x] **Forms:** schema definitions with `zod`. form initialization/reset/validation/error reporting with [felte](https://felte.dev/)
 - [x] **Themes:** tailwindcss **DarkMode** switcher
-- [x] **Deployment:** serverless/ k8s runtimes
+- [x] **Deployment:** Docker build and deployment serverless / k8s runtimes.
 - [x] **Tables:** [svelte-headless-table](https://svelte-headless-table.bryanmylee.com/docs/getting-started/overview#what-is-a-headless-ui-library)
 - [ ] **Security:** Use [Auth.js](https://authjs.dev/) when [stable](https://vercel.com/blog/announcing-sveltekit-auth)
 - [ ] [Vitebook](https://vitebook.dev/introduction/what-is-vitebook.html) or [Storybook 7](https://github.com/storybookjs/storybook/blob/next/code/frameworks/sveltekit/README.md)
@@ -37,7 +38,7 @@ by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create
 ## Experementing
 
 - [ ] **tRPC-SvelteKit** [End-to-end typesafe APIs](https://icflorescu.github.io/trpc-sveltekit) SvelteKit.
-- [ ] **Monorepo:** Convert to monorepo using [pnpm](https://pnpm.io/), [turborepo/turbopack](https://turbo.build/), [rome](https://rome.tools/) and [changesets](https://github.com/changesets/changesets). [Guide](https://nhost.io/blog/how-we-configured-pnpm-and-turborepo-for-our-monorepo) & Examples [[1](https://github.com/vercel/turbo/tree/main/examples/with-svelte), [2](https://github.com/oneezy/monorepo)]
+- [ ] **Monorepo:** Convert to monorepo using [pnpm](https://pnpm.io/), [turborepo/turbopack](https://turbo.build/), [rome](https://rome.tools/) and [changesets](https://github.com/changesets/changesets). [Guide](https://nhost.io/blog/how-we-configured-pnpm-and-turborepo-for-our-monorepo) & Examples [[1](https://github.com/vercel/turbo/tree/main/examples/with-svelte), [2](https://github.com/oneezy/monorepo),[3](https://github.com/orefalo/sveltekit-monorepo)]
 - [ ] **TAURI:** Use [tauri](https://tauri.app/) for multi-platform
 
 ## Setup

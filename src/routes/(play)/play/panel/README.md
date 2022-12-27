@@ -4,6 +4,7 @@ Rsizable split-panel layout library
 
 ## Options
 
+- [svelte-splitpanes](https://github.com/orefalo/svelte-splitpanes)
 - [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels)
 - [dirk dashboard](https://samknows.github.io/dirk/)
 - <https://github.com/replayio/devtools/pull/8398/files>

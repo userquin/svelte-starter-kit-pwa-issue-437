@@ -7,7 +7,14 @@
 
 <DarkMode {btnClass} />
 
-<div class="h-full w-full">
-	<!-- <div class="flex h-screen flex-col"> -->
+<div class="flex flex-col h-screen">
+  <header class="text-center p-5 border-b-4">
+    <a class="btn " href="/play">Menu</a>
+  </header>
+  <main class="flex-grow pt-1 px-3">
 	<slot />
+  </main>
+  <footer class="flex justify-center p-5 border-t-2">
+    Social links
+  </footer>
 </div>

@@ -8,6 +8,7 @@ node_modules/**
 CHANGELOG.md
 src/lib/models/types/**
 .idea
+dev-dist
 
 /infra/helm/templates/deployment.yaml
 infra/helm/templates/ingress.yaml

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { draggable } from '@neodrag/svelte';
 	import { afterUpdate, beforeUpdate } from 'svelte';
 	import * as eliza from './elizabot';
 
@@ -49,7 +50,12 @@
 	}
 </script>
 
-<div class="absolute bottom-0 right-0 h-96 w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:p-6 md:p-8">
+<svelte:head>
+	<title>Chat</title>
+	<meta name="description" content="Eliza Chat" />
+</svelte:head>
+
+<div use:draggable={{ axis: 'both', bounds: 'parent' }} class=" h-96 w-full max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:p-6 md:p-8">
 	<div class="chat">
 		<h1>Eliza</h1>
 
