@@ -15,7 +15,7 @@ const config = {
 
 		// When hosting SPA on GitHub Pages
 		// paths: {
-		// 	base: dev ? '' : '/svelte-starter-kit',
+		//   base: dev ? '' : '/svelte-starter-kit',
 		// },
 
 		// prerender: { entries: [] },

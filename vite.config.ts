@@ -27,6 +27,8 @@ const config: UserConfig = {
 		sveltekit(),
 		SvelteKitPWA({
 			// adapterFallback: 'index.html',
+			base: '/',
+			scope: '/',
 			/* enable sw on development */
 			devOptions: {
 				enabled: process.env.SW_DEV === 'true'
@@ -44,23 +46,24 @@ const config: UserConfig = {
 				short_name: 'svelte-starter-kit',
 				description: 'Svelte starter template project',
 				lang: 'en',
+				scope: '/',
 				start_url: '/',
 				display: 'standalone',
 				theme_color: '#ffffff',
 				background_color: '#ffffff',
 				icons: [
 					{
-						src: 'android-chrome-192x192.png',
+						src: '/android-chrome-192x192.png',
 						sizes: '192x192',
 						type: 'image/png'
 					},
 					{
-						src: 'android-chrome-512x512.png',
+						src: '/android-chrome-512x512.png',
 						sizes: '512x512',
 						type: 'image/png'
 					},
 					{
-						src: 'android-chrome-512x512.png',
+						src: '/android-chrome-512x512.png',
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'any maskable'
