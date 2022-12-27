@@ -1,20 +1,20 @@
 /* eslint-disable */
 // @ts-nocheck
 // FIXME above
-import {
-	AZURE_AD_CLIENT_ID,
-	AZURE_AD_CLIENT_SECRET,
-	AZURE_AD_TENANT_ID,
-	GITHUB_ID,
-	GITHUB_SECRET,
-	GOOGLE_ID,
-	GOOGLE_SECRET
-} from '$env/static/private';
+import { env as dynPriEnv } from '$env/dynamic/private';
 import AzureAD from '@auth/core/providers/azure-ad';
 import GitHub from '@auth/core/providers/github';
 import Google from '@auth/core/providers/google';
 import { SvelteKitAuth } from '@auth/sveltekit';
 import type { Handle } from '@sveltejs/kit';
+
+const AZURE_AD_CLIENT_ID = dynPriEnv.AZURE_AD_CLIENT_ID;
+const AZURE_AD_CLIENT_SECRET = dynPriEnv.AZURE_AD_CLIENT_SECRET;
+const AZURE_AD_TENANT_ID = dynPriEnv.AZURE_AD_TENANT_ID;
+const GITHUB_ID = dynPriEnv.GITHUB_ID;
+const GITHUB_SECRET = dynPriEnv.GITHUB_SECRET;
+const GOOGLE_ID = dynPriEnv.GOOGLE_ID;
+const GOOGLE_SECRET = dynPriEnv.GOOGLE_SECRET;
 
 // TODO: https://hasura.io/learn/graphql/hasura-authentication/integrations/nextjs-auth/
 

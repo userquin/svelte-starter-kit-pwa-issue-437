@@ -35,10 +35,10 @@ docker buildx build --platform linux/arm64,linux/amd64 \
 --push .
 
 # (optional) pull recent images from GHCR
-docker pull --platform linux/amd64 $DOCKER_IMAGE\:latest
 docker pull --platform linux/arm64 $DOCKER_IMAGE\:latest
-docker pull --platform linux/amd64 $DOCKER_IMAGE\:$VERSION
+docker pull --platform linux/amd64 $DOCKER_IMAGE\:latest
 docker pull --platform linux/arm64 $DOCKER_IMAGE\:$VERSION
+docker pull --platform linux/amd64 $DOCKER_IMAGE\:$VERSION
 
 # inspect
 docker buildx imagetools inspect $DOCKER_IMAGE:$VERSION
